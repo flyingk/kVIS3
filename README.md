@@ -19,7 +19,7 @@ Available BSP's are:
 
 ## Additional information:
 
-Refer to the [Wiki](https://gitlab.com/flyingk/kVIS/wikis/home) for a user manual and coding information.
+Refer to the [help](https://flyingk.github.io/kVIS3/) for a user manual and coding information.
 
 Development of kVIS3 supported by The University of Sydney, School of AMME, and Lilium GmbH. 
 
