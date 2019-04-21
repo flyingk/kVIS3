@@ -10,11 +10,9 @@ Run 'kVIS3.m' after installing the two toolboxes in the `Contributed` folder and
 
 kVIS3 requires a *Board Support Package*, specified in the preferences file, to import and process data from the user's data acquisition system.
 
-Available BSP's are:
+Freely available BSP's are:
 
-- ArduPilot
-- UAVmainframe
-- Lilium proprietary
+- [ArduPilot](https://github.com/flyingk/kVIS3_bsp_ardupilot)
 - tbd.
 
 ## Additional information:
