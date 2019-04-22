@@ -95,3 +95,4 @@ end
 m8 = uimenu(handles.appWindow,'Text','Help');
 uimenu(m8,'Text','kVIS Help','Callback', @kVIS_help_Callback);
 uimenu(m8,'Text','BSP Help','Callback', @BSP_help_Callback);
+uimenu(m8,'Text','About','Callback', @kVIS_about_Callback);
