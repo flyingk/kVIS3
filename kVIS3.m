@@ -19,20 +19,22 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function kVIS3()
+
+clc
+
 disp('*********************************************************************')
 disp(' ')
 disp('kVIS3 Data Visualisation')
 disp(' ')
-disp('Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and contributors')
+disp('Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson')
+disp('and contributors')
 disp(' ')
 disp('This program is distributed in the hope that it will be useful,')
 disp('but WITHOUT ANY WARRANTY; without even the implied warranty of')
 disp('MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the')
-disp('NU General Public License for more details.')
+disp('GNU General Public License for more details.')
 disp(' ')
 disp('*********************************************************************')
-
-
 %
 % check for required toolboxes
 %
@@ -59,8 +61,7 @@ addpath(kVIS_prefs.sidpac_path);
 try
     kVIS_prefs.BSP_Info = BSP_ID();
 catch
-    errordlg('No valid BSP found...')
-    kVIS_prefs.BSP_Info = '';
+    errordlg('No valid Board Support Package found...')
     return
 end
 
