@@ -1,1 +1,4 @@
 /kVIS_preferences.m
+.DS_Store
+*.m~
+*.mex*
