@@ -22,3 +22,10 @@ Refer to the [help](https://flyingk.github.io/kVIS3/) for a user manual and codi
 Development of kVIS3 supported by The University of Sydney, School of AMME, and Lilium GmbH. 
 
 ## Created and copyright by Matt Anderson Ph.D. and Kai Lehmkühler Ph.D.
+
+## Contributions:
+
+- [Matlab GUI Layout Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/47982-gui-layout-toolbox)
+- [Matlab Widgets Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/66235-widgets-toolbox)
+- [Plot Google Maps](https://github.com/zoharby/plot_google_map)
+- [Icons](https://icons8.com)
