@@ -1,0 +1,210 @@
+% kVIS3 Data Visualisation
+%
+% Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
+% contributors
+%
+% Contact: kvis3@uav-flightresearch.com
+% 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+function kVIS_exportList_Callback(hObject, ~)
+
+% get GUI data
+handles = guidata(hObject);
+
+
+% get menu entry - plot selection
+val = hObject.Value;
+
+exportName = hObject.String{val};
+
+% edit the plot definition file, if selected
+if handles.uiTabExports.editExportDefBtn == 1
+    
+    BSP_Path = handles.preferences.bsp_dir;
+    BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
+    
+    cmdstr = ['open ' BSP_Exports_Path '/' exportName '_Export_Def.xlsx'];
+    
+    rc = system(cmdstr);
+    
+    if rc ~= 0
+        disp('Export definition file (.xlsx) not found. Opening folder instead...')
+        cmdstr = ['open ' BSP_Exports_Path];
+        system(cmdstr);
+    end
+    
+    return
+end
+
+
+try
+    fds = kVIS_getCurrentFds(hObject);
+catch
+    disp('No fds loaded. Abort.')
+    return;
+end
+
+BSP_Name = fds.BoardSupportPackage;
+
+ExportDefinition = handles.uiTabExports.Exports.(BSP_Name).(exportName);
+
+ExportDef = ExportDefinition(6:end,:);
+
+% Columns:
+exportNo = 1;
+channel = 2;
+scaleFactor = 3;
+fcnHandle = 4;
+fcnChannel = 5;
+labelOverride = 6;
+unitOverride = 7;
+
+nExports = max(cell2mat(ExportDef(:,exportNo)));
+
+for I = 1: nExports
+    
+    % get data
+    ChanID = strsplit(ExportDef{I, channel}, '/');
+    [yp, yMeta] = kVIS_fdsGetChannel(fds, ChanID{1}, ChanID{2});
+    
+    if yp == -1
+        disp('y channel not found... Skipping.')
+        continue;
+    end
+    
+    % apply scale factor
+    yp = yp * ExportDef{I,scaleFactor};
+    
+    % apply function to data
+    if ~isnan(ExportDef{I,fcnHandle})
+        ccF = strsplit(ExportDef{I, fcnChannel}, '/');
+        [fcnData] = kVIS_fdsGetChannel(fds, ccF{1}, ccF{2});
+        
+        if fcnData == -1
+            disp('Function channel not found... Ignoring.')
+            continue;
+        end
+        
+        try
+            yp = feval(ExportDef{I,fcnHandle}, yp, fcnData);
+        catch
+            disp('Function handle invalid... Ignoring.')
+            continue;
+        end
+    end
+    
+    % ensure data is not complex
+    if ~isreal(yp)
+        disp('complex magic :( converting to real...')
+        yp = real(yp);
+    end
+    
+    % LabelOverride
+    if ~isnan(ExportDef{I, labelOverride})
+        yMeta.dispName = ExportDef{I, labelOverride};
+    end
+    
+    % UnitOverride
+    if ~isnan(ExportDef{I, unitOverride})
+        yMeta.unit = ExportDef{I, unitOverride};
+    end
+    
+    exportData(:,I) = yp;
+    
+    if ~isempty(yMeta.frame)
+        exportLabels{:,I} = [yMeta.dispName ' (' yMeta.unit ') (F_' yMeta.frame ')'];
+    else
+        exportLabels{:,I} = [yMeta.dispName ' (' yMeta.unit ')'];
+    end
+end
+
+
+% export full data length
+if handles.uiTabExports.exportsUseLimitsBtn == 1
+    
+    exportRange = kVIS_getDataRange(hObject, 'XLim');
+    
+    timeVec = exportData(:,1);
+    locs = find(timeVec > exportRange(1) & timeVec < exportRange(2));
+    
+    exportData = exportData(locs,:);
+end
+
+
+%
+% snapshot
+%
+if handles.uiTabExports.exportsSnapshotsBtn == 1
+    %
+    % select point
+    %
+    [x,~] = ginput(1);
+    x = round(x*100)/100;
+    %
+    % specify time range to average
+    %
+    answerAverages = inputdlg({'Time interval to average [sec]:'},'',1,{'0.01'});
+    answerAverages = str2double(answerAverages);
+    exportRange = [x-answerAverages/2 x+answerAverages/2];
+    
+    timeVec = exportData(:,1);
+    locs = find(timeVec > exportRange(1) & timeVec < exportRange(2));
+    if isempty(locs)
+        disp('selected interval contains no sample')
+        return
+    end
+    exportData = mean(exportData(locs,:),1);
+end
+%
+% export format: default CSV
+%
+answerFormat = questdlg('Export format', '', 'Matrix', 'Vectors', 'CSV', 'CSV');
+%
+% save file
+%
+switch answerFormat
+    
+    case 'Matrix'
+        
+    case 'Vectors'
+    
+    case 'CSV'
+        % select file name
+        [file,path] = uiputfile('export.csv','Save file name');
+        
+        if file == 0
+            return
+        end
+        
+        % write header with channel labels
+        fileID = fopen(fullfile(path,file), 'w');
+        
+        for I = 1:length(exportLabels)
+            fprintf(fileID,'%s',exportLabels{I});
+            if I < length(exportLabels)
+                fprintf(fileID,',');
+            else
+                fprintf(fileID,'\n');
+            end
+        end
+        
+        fclose(fileID);
+        
+        % write data
+        dlmwrite(fullfile(path,file), exportData, '-append')
+end
+
+end
+

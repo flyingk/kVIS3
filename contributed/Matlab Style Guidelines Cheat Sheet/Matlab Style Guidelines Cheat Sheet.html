@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 6.0.3.2 (Windows)"/>
+	<meta name="created" content="2014-01-14T20:51:00.240000000"/>
+	<meta name="changed" content="2018-06-01T10:19:44.128000000"/>
+	<style type="text/css">
+		@page { margin: 0.25in }
+		p { margin-bottom: 0.08in; page-break-before: auto }
+		p.western { font-size: 7pt; font-weight: normal }
+		p.cjk { font-size: 10pt }
+		h1 { margin-left: 0.05in; text-indent: -0.05in; margin-top: 0.03in; margin-bottom: 0.03in; page-break-before: auto }
+		h1.western { font-family: "Arial", sans-serif; font-size: 13pt }
+		h1.cjk { font-family: "Microsoft YaHei"; font-size: 14pt; font-weight: normal }
+		h1.ctl { font-family: "Mangal"; font-size: 14pt; font-weight: normal }
+		h2 { margin-top: 0.02in; margin-bottom: 0.02in; page-break-before: auto }
+		h2.western { font-family: "Arial", sans-serif; font-size: 10pt; font-style: italic }
+		h2.cjk { font-family: "Microsoft YaHei"; font-size: 14pt; font-style: italic }
+		h2.ctl { font-family: "Mangal"; font-size: 14pt; font-style: italic }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<div title="header">
+	<p align="center" style="margin-bottom: 0in; page-break-after: avoid">
+	<font face="Arial, sans-serif"><font size="5" style="font-size: 18pt"><b>MATLAB
+	Style Guidelines Cheat Sheet</b></font></font></p>
+	<p class="western" align="center" style="margin-bottom: 0in">Compiled
+	by Jason Nicholson Edited by Richard Johnson, Version 1.3,
+	2014-January-29</p>
+	<p class="western" align="center" style="margin-bottom: 0.08in">This
+	is a quick reference.  For more information, see <i>The Elements of
+	MATLAB Style</i><span style="font-style: normal">, </span><span style="font-style: normal">ISBN
+	0521732581,</span><span style="font-style: normal"> by Richard
+	Johnson linked in the references at the bottom.</span></p>
+</div>
+<h1 class="western"><b>Naming Conventions</b></h1>
+<h2 class="western">Variables</h2>
+<p class="western" style="margin-bottom: 0in"><span style="font-weight: normal">Variable
+names should be mixed case starting with lower case.</span> 
+</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	velocity,
+angularAcceleration.</font></p>
+<p class="western" style="margin-bottom: 0in">Variables with a large
+scope should have meaningful names.  Variables with a small scope can
+have short names.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Small
+scope:</font> x, y, z</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Large
+scope:</font> velocity, acceleration</font></p>
+<p class="western" style="margin-bottom: 0in">The prefix n should be
+used for variables representing the number of objects.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	nFiles,
+nCars, nLines</font></p>
+<p class="western" style="margin-bottom: 0in">Use a convention on
+pluralization  consistently.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	point,
+pointArray</font></p>
+<p class="western" style="margin-bottom: 0in">Variables representing
+a single entity number can be suffixed by <font face="CourierNewPSMT, monospace"><i>No</i></font>.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	tableNo,
+employeeNo</font></p>
+<p class="western" style="margin-bottom: 0in">Iterator variables
+should be named or prefixed with <font face="CourierNewPSMT, monospace"><i>i,
+j, k,</i></font> etc.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	iFiles,
+jColumns</font></p>
+<p class="western" style="margin-bottom: 0in">For nested loops, the
+iterator should be alphabetical order and helpful names.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	for
+iFiles = 1:nFiles</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">		for
+jPositions = 1:nPositions</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">		&hellip;</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">		end</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	end</font></p>
+<p class="western" style="margin-bottom: 0in">Avoid negated boolean
+variable names.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	<strike>isNotFound</strike><span style="text-decoration: none">
+</span><span style="text-decoration: none"><font face="Times New Roman, serif">instead
+use</font></span><span style="text-decoration: none"> isFound</span></font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Acronyms,
+even if normally uppercase, should be mixed or lower case.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Use</font>
+html, isUsaSpecific</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Avoid
+using a keyword or special value name.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><span style="text-decoration: none">	</span><span style="text-decoration: none">Just
+don't do it.</span></font></p>
+<h2 class="western">Constants</h2>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Named
+constants should be all uppercase using underscore to separate words.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	MAX_ITERATIONS,
+COLOR_RED</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Constants
+can be prefixed by a common type name.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	COLOR_RED,
+COLOR_GREEN, COLOR_BLUE</font></p>
+<h2 class="western">Structures</h2>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Structure
+names should be mixed case and begin with a capital letter.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	Car,
+DumpTruck</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Do
+not include the name of the structure in the field name.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><span style="text-decoration: none">	</span><span style="text-decoration: none"><font face="Times New Roman, serif">Use</font></span><span style="text-decoration: none">
+Segment.length</span></font></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Avoid</font>
+Segment.segmentLength</font></p>
+<h2 class="western">Functions</h2>
+<p class="western" style="margin-bottom: 0.04in; text-decoration: none">
+The names of functions should document there use.</p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Names
+of functions should be written in lower or mixed case.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	width(),
+computeTotalWidth()</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Functions
+should have meaningful names.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Use</font>
+computeTotalWidth</font></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	<font face="Times New Roman, serif">Avoid</font>
+compwid</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Functions
+with single output can be named for the output</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	shearStress(),
+standardError()</font></p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Functions
+with no output argument or which only return a handle should be named
+after what they do.</p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	plotfft()</font></p>
+<p class="western" style="margin-bottom: 0in"><span style="text-decoration: none">Reserve
+the prefix </span><span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i>get/set</i></font></span><span style="text-decoration: none">
+for accessing an object or property.</span></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	getobj(),
+setappdata()</font></p>
+<p class="western" style="margin-bottom: 0in"><span style="text-decoration: none">Reserve
+t</span><span style="text-decoration: none">he prefix </span><span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">compute</span></i></font></span><span style="text-decoration: none">
+</span><span style="text-decoration: none">for </span><span style="text-decoration: none">methods
+where something is computed.</span></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	computeSumOfResiduals(),
+	computeSpread()</font></p>
+<p class="western" style="margin-bottom: 0in"><span style="text-decoration: none">Reserve
+t</span><span style="text-decoration: none">he prefix </span><span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i>find</i></font></span><span style="text-decoration: none">
+</span><span style="text-decoration: none">for</span><span style="text-decoration: none">
+methods where something is looked up.</span></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	findOldestRecord()</font></p>
+<p class="western" style="margin-bottom: 0in"><span style="text-decoration: none">Reserve
+t</span><span style="text-decoration: none">he prefix </span><span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">initialize</span></i></font></font></span><span style="text-decoration: none">
+</span><span style="text-decoration: none">for</span><span style="text-decoration: none">
+</span><span style="text-decoration: none">instantiating </span><span style="text-decoration: none">an
+</span><span style="text-decoration: none">object or concept.</span></p>
+<p style="margin-bottom: 0in; text-decoration: none"><font face="CourierNewPSMT, monospace">	initializeProblemState()</font></p>
+<p class="western" style="margin-bottom: 0in"><span style="text-decoration: none">Reserve
+the prefix </span><span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i>is</i></font></span><span style="text-decoration: none"><i>
+</i></span><span style="text-decoration: none"><span style="font-style: normal">for
+boolean functions.</span></span></p>
+<p style="margin-bottom: 0in; font-style: normal; text-decoration: none">
+<font face="CourierNewPSMT, monospace">	isCrazy, isNuts,
+isOffHisRocker</font></p>
+<p class="western" style="margin-bottom: 0in; font-style: normal; text-decoration: none">
+Use complement names for complement operations.</p>
+<p style="margin-left: 0.25in; margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><span style="text-decoration: none"><span style="font-style: normal">get/set,
+add/remove, create/destroy, start/stop, insert/delete,
+increment/decrement, old/new, begin/end, first/last, up/down,
+min/max, next/previous, open/close, show/hide, </span></span><span style="text-decoration: none"><span style="font-style: normal">suspend/resume,
+etc.</span></span></font></p>
+<p class="western" style="margin-bottom: 0in; font-style: normal; text-decoration: none">
+Avoid unintentional shadowing of function names. Use which -all or
+exist to check for shadowing.</p>
+<h2 class="western">General</h2>
+<p class="western" style="margin-bottom: 0in">Abbreviations in names
+should be avoided.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	Use
+computeArrivalTime</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	Avoid
+comparr</font></p>
+<p class="western" style="margin-bottom: 0.04in">Consider making
+names pronounceable.</p>
+<p class="western" style="margin-bottom: 0in">All names should be
+written in English.</p>
+<h1 class="western">Files and Organization</h1>
+<h2 class="western">M-Files</h2>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Modularize
+code.  Use small well designed pieces to make the whole.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Write
+functions that are easy to test.</font></p>
+<p class="western" style="margin-bottom: 0.04in; font-weight: normal">
+<font size="1" style="font-size: 7pt">Make interaction clear. Use
+inputs and outputs rather than global variables.</font></p>
+<p style="margin-bottom: 0.04in; font-weight: normal"><font face="Times New Roman, serif"><font size="1" style="font-size: 7pt">Replace
+long lists of arguments with structures.</font></font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Partitioning.
+ All s<span style="font-weight: normal">ub-function</span>s and most
+functions should do one thing very well.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Use
+existing functions rather than custom coded functions when possible.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Move
+blocks of code used in multiple m-files to functions.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Use
+sub-functions when a function is only called by one other function.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Write
+test scripts for every function.</font></p>
+<h2 class="western">Input/Output</h2>
+<p class="western" style="margin-bottom: 0.04in">Make input and
+output modules for large functions.</p>
+<p class="western" style="margin-bottom: 0in; text-decoration: none">Format
+output for easy use.  For humans, make it human readable.  For
+machines,  make it parsable.</p>
+<h1 class="western">Statements</h1>
+<h2 class="western">Variables and constants</h2>
+<p class="western" style="margin-bottom: 0.04in">Variables should not
+be reused unless required by memory limitations.</p>
+<p class="western" style="margin-bottom: 0in">Related variables of
+the same type can be declared in a common statement.  Unrelated
+variables should not be declared in the same statement.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	persistent
+x, y, z</font></p>
+<p class="western" style="margin-bottom: 0.04in">Document important
+variables in comments near the start of the file.</p>
+<p class="western" style="margin-bottom: 0in">Document constants with
+end of line comments.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	THRESHOLD
+= 10; % Max noise level</font></p>
+<h2 class="western">Global Variables</h2>
+<p class="western" style="margin-bottom: 0.04in">Minimize use of
+global variables and constants.</p>
+<p class="western" style="margin-bottom: 0in; font-weight: normal"><font size="1" style="font-size: 7pt">Consider
+using a function instead of a global constant.</font></p>
+<h2 class="western">Loops</h2>
+<p class="western" style="margin-bottom: 0in"><font size="1" style="font-size: 7pt">Variables
+used in loops should be initialized immediately before the loop.</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	result
+= zeros(nDays,1);</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	for
+iDay = 1:nDays</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">		result(iDay)
+= foo(iDay);</font></font></p>
+<p class="western" style="margin-bottom: 0in"><font size="1" style="font-size: 7pt">	<font face="CourierNewPSMT, monospace"><span style="font-weight: normal">end</span></font></font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Minimize
+the use of <span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">break</span></i></font></span>
+and <span style="text-decoration: none"><font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">continue</span></i></font></span>
+in loops.</font></p>
+<p class="western" style="margin-bottom: 0in"><font size="1" style="font-size: 7pt">The
+end lines in nested loops can have comments to clarify the code
+block.</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	for
+index=1:2</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">		if
+index==1</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">			dosomething(index);</font></font></p>
+<p class="western" style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">			<span style="font-weight: normal">&hellip;</span></font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">		end
+% End if</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	end
+% End for</font></font></p>
+<h2 class="western">Conditionals</h2>
+<p class="western" style="margin-bottom: 0in">Avoid complicated
+conditional expressions.  Use temporary logical variables instead.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	isValid
+= (v &gt;= lowerLimit) &amp; </font>
+</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">		
+     (v &lt;= upperLimit);</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	isNew
+= ismember(v, valueArray);</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font face="Times New Roman, serif">Avoid
+the</font><font face="Times New Roman, serif"> conditional expression
+</font><font face="CourierNewPSMT, monospace"><i>if 0</i></font><font face="Times New Roman, serif"><span style="font-style: normal">.</span></font></p>
+<p class="western" style="margin-bottom: 0.04in"><font face="Times New Roman, serif"><span style="font-style: normal">An
+</span></font><font face="CourierNewPSMT, monospace"><i>if-else</i></font><font face="Times New Roman, serif"><span style="font-style: normal">
+sequence should include the else condition.</span></font></p>
+<p class="western" style="margin-bottom: 0.04in"><font face="Times New Roman, serif"><span style="font-style: normal">The
+usual case should be put in the </span></font><font face="CourierNewPSMT, monospace"><i>if</i></font><font face="Times New Roman, serif"><span style="font-style: normal">-part
+and the exception in the </span></font><font face="CourierNewPSMT, monospace"><i>else</i></font><font face="Times New Roman, serif"><span style="font-style: normal">-part
+of an </span></font><font face="CourierNewPSMT, monospace"><i>if-else</i></font><font face="CourierNewPSMT, monospace"><span style="font-style: normal">
+</span></font><font face="Times New Roman, serif"><span style="font-style: normal">statement.</span></font></p>
+<p style="margin-bottom: 0.04in"><font face="CourierNewPSMT, monospace"><font face="Times New Roman, serif"><span style="font-style: normal">A
+</span></font><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">switch</span></i></font></font><font face="Times New Roman, serif"><span style="font-style: normal">
+statement should include the </span></font><font face="CourierNewPSMT, monospace"><i>otherwise
+</i></font><font face="Times New Roman, serif"><span style="font-style: normal">condition.</span></font></font></p>
+<p class="western" style="margin-bottom: 0.04in; font-style: normal"><font face="Times New Roman, serif">Use
+a <font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">switch</span></i></font></font>
+sequence if the variable is a string.</font></p>
+<p style="margin-bottom: 0.04in"><font face="CourierNewPSMT, monospace"><font face="Times New Roman, serif"><span style="font-style: normal">Use
+</span></font><font face="Times New Roman, serif"><span style="font-style: normal">a
+</span></font><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">switch</span></i></font></font><font face="Times New Roman, serif"><span style="font-style: normal">
+statements in place of </span></font><font face="Times New Roman, serif"><span style="font-style: normal">many
+</span></font><font face="CourierNewPSMT, monospace"><i>if-elseif-else</i></font><font face="Times New Roman, serif"><span style="font-style: normal">
+statements </span></font><font face="Times New Roman, serif"><span style="font-style: normal">when
+possible</span></font><font face="Times New Roman, serif"><span style="font-style: normal">.</span></font></font></p>
+<h2 class="western"><font face="Arial, sans-serif"><font size="2" style="font-size: 10pt"><i><b>General</b></i></font></font></h2>
+<p class="western" style="margin-bottom: 0.04in">Avoid cryptic code. 
+You should be able to look at it a month from now and know what it
+does.</p>
+<p class="western" style="margin-bottom: 0.04in">Use parentheses for
+clarity even if not need because of operator precedence.</p>
+<p class="western" style="margin-bottom: 0.04in">Minimize the use of
+numbers in expressions. Use a named constant instead.</p>
+<p class="western" style="margin-bottom: 0in">Always use a zero
+before the decimal point.</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	THRESHOLD
+= 0.5</font></p>
+<p class="western" style="margin-bottom: 0in">Make floating point
+comparisons with caution.</p>
+<h1 class="western">Layout, Comments, and Documentation</h1>
+<h2 class="western">Layout</h2>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Contents
+should be kept within the first 80 columns.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Lines
+should be split after commas, spaces, and operators.</font></p>
+<p class="western" style="margin-bottom: 0in"><font size="1" style="font-size: 7pt">Align
+a continued line with the beginning of the expression on the previous
+line.</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	totalSum
+= a + b + c &hellip;</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	
+          d + e;</font></font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Basic
+indentation should be 4 spaces.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">In
+general, a line of code should contain only one executable statement.</font></p>
+<p class="western" style="margin-bottom: 0in"><font size="1" style="font-size: 7pt">Short
+single statement <font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">if</span></i></font>,
+<font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">for</span></i></font>,
+or <font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">while</span></i></font>
+statements can be written on one line.</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt">	if
+(condition), statement; end</font></font></p>
+<h2 class="western">White Space</h2>
+<p class="western" style="margin-bottom: 0.04in">S<font size="1" style="font-size: 7pt">urround
+</font><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">=</span></i></font></font><font size="1" style="font-size: 7pt">,
+</font><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">&amp;</span></i></font></font><font size="1" style="font-size: 7pt">,
+and </font><font face="CourierNewPSMT, monospace"><font size="1" style="font-size: 7pt"><i><span style="font-weight: normal">|</span></i></font></font><font size="1" style="font-size: 7pt">
+by spaces.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Follow
+commas by a space.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Keywords
+should be followed by a space.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Blocks
+of code should be separated by three blank lines or a section break.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Use
+code alignment wherever it enhances readability.</font></p>
+<h2 class="western">Comments</h2>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Comments
+cannot justify poorly written code.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Comments
+should agree with the code but not restate the code.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Comments
+should have the same indentation as the statement(s) referenced.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Traditional
+function header comments should support <font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">help</span></i></font>
+and <font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">lookfor</span></i></font>.
+<font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">help
+</span></i></font><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">prints
+the first continuous block of comments.  </span></span></font><font face="CourierNewPSMT, monospace"><i><span style="font-weight: normal">lookfor</span></i></font><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">
+search</span></span></font><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">es</span></span></font><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">
+the 1</span></span></font><sup><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">st</span></span></font></sup><font face="Times New Roman, serif"><span style="font-style: normal"><span style="font-weight: normal">
+comment line of all m-files on the path.</span></span></font></font></p>
+<p style="margin-bottom: 0.04in; font-style: normal; font-weight: normal">
+<font face="Times New Roman, serif"><font size="1" style="font-size: 7pt">Function
+headers should discuss any special requirements for the input/output
+argument and describe any side effects of the function.</font></font></p>
+<p class="western" style="margin-bottom: 0.04in; font-style: normal; font-weight: normal">
+<font face="Times New Roman, serif"><font size="1" style="font-size: 7pt">Write
+the function name using correct case in the function header comments.</font></font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	function
+runEverything</font></p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	%
+runEverything runs all mfiles </font>
+</p>
+<p style="margin-bottom: 0in"><font face="CourierNewPSMT, monospace">	
+ in its folder</font></p>
+<p class="western" style="margin-bottom: 0.04in; font-style: normal; font-weight: normal">
+<font face="Times New Roman, serif"><font size="1" style="font-size: 7pt">Put
+any copyright lines and change history after the function header with
+a blank line in between.</font></font></p>
+<p style="margin-bottom: 0.04in; font-style: normal; font-weight: normal">
+<font face="Times New Roman, serif"><font size="1" style="font-size: 7pt">All
+comments should be in English.</font></font></p>
+<h2 class="western">Documentation</h2>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Write
+header comments with text markup to provide user documentation.
+Include sections that correspond to a help page: syntax, description,
+example, and see also. </font>
+</p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Consider
+writing the documentation first to better define inputs, outputs and
+functionality.</font></p>
+<p class="western" style="margin-bottom: 0.04in"><font size="1" style="font-size: 7pt">Consider
+using a source control tool such as SVN or GIT.  If you do not use a
+source control tool, document changes by adding change history
+comments after the function header or near the top of the script.</font></p>
+<div title="footer">
+	<h1 class="western" style="margin-top: 0in"><font size="2" style="font-size: 10pt">References</font></h1>
+	<p class="western" style="margin-bottom: 0in">Johnson, Richard. 
+	&ldquo;MATLAB Programming Style Guidelines.&rdquo; Version 1.5. 
+	<span style="font-style: normal">Datatool. 2002-</span><span style="font-style: normal">Oct</span><span style="font-style: normal">.
+	 </span><span style="font-style: normal">Accessed 2014-Jan-15.
+	</span><a href="http://goo.gl/uyGVM5"><span style="font-style: normal">http://goo.gl/uyGVM5</span></a></p>
+	<p class="western" style="margin-bottom: 0in"><span style="font-style: normal">Johnson,
+	Richard.  &ldquo;</span><i>The Elements of MATLAB Style.</i><span style="font-style: normal">
+	Cambridge University Press, </span><span style="font-style: normal">2010-Dec-31</span><span style="font-style: normal">.
+	</span><a href="http://goo.gl/cUA7Gr"><span style="font-style: normal">http://goo.gl/cUA7Gr</span></a></p>
+	<p class="western" style="margin-bottom: 0in"><span style="font-style: normal">J</span><span style="font-style: normal">ohnson,
+	Richard.  &ldquo;Updates to The Elements of MATLAB Style.&rdquo; 
+	2012-May-07.  Accessed 2014-Jan-29. <a href="http://goo.gl/GwHqNp">http://goo.gl/GwHqNp</a></span></p>
+</div>
+</body>
+</html>
