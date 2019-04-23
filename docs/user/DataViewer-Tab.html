@@ -1,95 +1,138 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>1-DataViewer-Tab</title>
-  <style>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>1-DataViewer-Tab</title>
+    <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<h1 id="data-viewer">DATA VIEWER:</h1>
-<figure>
-<img src="./img/data_viewer.jpeg" alt="data_viewer" /><figcaption>data_viewer</figcaption>
-</figure>
-<h2 id="ui-controls-ribbon">UI Controls Ribbon:</h2>
-<h3 id="open-fds">Open FDS:</h3>
-<p>Function: Open an existing <code>FDS</code> file from disk.</p>
-<p>Implementation: Use <code>uiopen</code> to get file name</p>
-<h3 id="save-fds">Save FDS:</h3>
-<p>Function: Save <code>FDS</code> file to previous location, if exists (<strong>Replaces existing file - Use Save As in menu to save to new location</strong>). If file has not been saved before, prompt for save location.</p>
-<p>Implementation: Save to previous location by overwriting without confirmation prompt. Prompt for new location, if file is from import operation and has not been saved.</p>
-<h3 id="undo-zoom">Undo Zoom:</h3>
-<p>Function: Restore plot limits to state prior last zoom operation.</p>
-<h3 id="fit">Fit:</h3>
-<p>Function: Zoom all axes to fit the plotted data (identical to <code>Reset Limits</code> button in <code>Data Range</code>)</p>
-<p>Implementation: Sets <code>XLim</code>, <code>YLim</code> properties of all plots to <code>[min(XData) max(XData)]</code>, <code>[min(YData) max(YData)]</code>, and update fields in <code>Data Range</code>.</p>
-<h3 id="pan">Pan:</h3>
-<p>Function: Enables native Matlab pan function</p>
-<p><em>CAN (WANT) we update Data Range while scrolling?? Or copy new limits after finish scrolling?</em></p>
-<h3 id="data-cursor">Data Cursor:</h3>
-<p>Function: Enables native Matlab data cursor function</p>
-<h3 id="grid">Grid:</h3>
-<p>Function: Shows/hides grid in main axes</p>
-<h3 id="hold">Hold:</h3>
-<p>Function: Add lines to existing plot when depressed (‘hold on’) – applies to selected axis</p>
-<h3 id="clear">Clear:</h3>
-<p>Function: Clear and reset all axes</p>
-<p>Implementation: - Clear and reset axes to default style, hide second Y axis. - Keep content of <code>Data Range</code> fields to enable creation of a new plot within the same limits. - Set/keep grid according to button state. - Clear hold button. - Select Main Axis L</p>
-<h3 id="next-plot-axes">Next Plot Axes:</h3>
-<ul>
-<li>Main L: Select left y-axis in main plot</li>
-<li>Main R: Select right y-axis in main plot</li>
-<li>Top: Select upper, secondary axes (meant for status flags and other channels that do not require scale)</li>
-<li>Top2: Select upper, secondary axes with data coloured by value (Modes, booleans) details TBD.</li>
-</ul>
-<h3 id="legend">Legend:</h3>
-<p>Function: Show/hide legend (right click on legend allows to change its formatting)</p>
-<h3 id="plot-export">Plot Export:</h3>
-<p>Function: Export main axes to new figure (for saving/printing)</p>
-<p><em>Export all axes? Or even print to pdf directly?</em></p>
-<h3 id="show-events">Show Events:</h3>
-<p>Function: Show overlay with event locations</p>
-<h3 id="map">Map:</h3>
-<p>Function: show google map with data overlay in separate window. For details see the <a href="User-Interface/left/MapViewer">Map Viewer</a> page.</p>
-<h3 id="cut">Cut:</h3>
-<p>Function: Applies a cut at the defined X-limits. This will edit the content of the entire data set: - <strong>All</strong> data channels will be cut to new time limits - <code>FDS</code> attributes are updated to reflect the change - <code>Data Range</code> is reset to limits of new data range</p>
-<p>The edit is performed <strong>IN MEMORY</strong> only. The user has to <strong>manually</strong> save the new <code>FDS</code> to conserve the edit. An <code>Apply and Save</code> function is available in the menu to combine the steps.</p>
-<h3 id="set-time-reference">Set Time Reference:</h3>
-<p>Function: Defines currently selected data set as the time reference. Other data sets can then be aligned to the reference by specifying time offsets.</p>
-<p>Implementation:</p>
-<h3 id="set-time-offset">Set Time Offset:</h3>
-<p>Function: Define a time offset relative to the previously defined master data set. Plots of this offset dataset will be moved in time to reflect the offset.</p>
-<p>Implementation: Write specified time offset value into the <code>Offset</code> attribute of the <code>FDS</code> structure. Indicate offset value in <code>Data Sets</code> list in front of the name.</p>
-<h2 id="ui-controls-plot">UI Controls Plot:</h2>
-<ul>
-<li>Right click on a plot line: Opens context menu to inspect/highlight/edit/delete that line.</li>
-</ul>
-<h2 id="ui-controls-data-tab">UI Controls Data Tab:</h2>
-<p>See <a href="Edit-Tabs/1%20Data%20Tab">Data Tab</a> page.</p>
-<h2 id="ui-controls-data-range">UI Controls Data Range:</h2>
-<h3 id="reset-lim">Reset Lim:</h3>
-<p>Function: Reset plot limits to XData, YData range in plot for all axes. Identical to <code>Fit</code> button in ribbon.</p>
-<h3 id="time-limits">Time Limits:</h3>
-<p>Function: Specify X-axis range for all plots (<em>incl. custom plots??</em>) - Enter values directly into the input fields. <strong>Enter</strong> updates plot(s) - <code>Pick X-Lim</code> button: Use crosshairs in the plot to specify new limits</p>
-<p>Implementation: - Ensure correct handling of wrong order input values</p>
-<p><em>How to handle abort of crosshair input??</em></p>
-<h3 id="vertical-lr-limits">Vertical (L/R) Limits:</h3>
-<p>Function: Specify Y-axis range for left and right axis (independently) - Enter values directly into the input fields. <strong>Enter</strong> updates plot(s) - <code>Pick Y(L/R)-Lim</code> button: Use crosshairs in the plot to specify new limits for selected axis</p>
-<p>Implementation: - Ensure correct handling of wrong order input values</p>
-<p><em>How to handle abort of crosshair input??</em></p>
-<h2 id="dev.-notes">Dev. Notes:</h2>
-<ul>
-<li><p>basic legend implemented, uses auto-update feature</p></li>
-<li><p>TeX rendering broken; to fix this, we probably need to create a legend for an empty plot at startup, then switch <code>Interpreter</code> to <code>latex</code>, set lines’ <code>DisplayName</code> to TeX version.</p></li>
-</ul>
-</body>
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>  <![endif]-->
+  </head>
+  <body>
+    <h1 id="data-viewer">DATA VIEWER:</h1>
+    <figure>
+      <img src="../img/data_viewer.jpeg" alt="data_viewer" /><figcaption>data_viewer</figcaption>
+    </figure>
+    <h2 id="ui-controls-ribbon">UI Controls Ribbon:</h2>
+    <h3 id="open-fds">Open FDS:</h3>
+    <p>Function: Open an existing <code>FDS</code> file from disk.</p>
+    <p>Implementation: Use <code>uiopen</code> to get file name</p>
+    <h3 id="save-fds">Save FDS:</h3>
+    <p>Function: Save <code>FDS</code> file to previous location, if exists (<strong>Replaces
+        existing file - Use Save As in menu to save to new location</strong>).
+      If file has not been saved before, prompt for save location.</p>
+    <p>Implementation: Save to previous location by overwriting without
+      confirmation prompt. Prompt for new location, if file is from import
+      operation and has not been saved.</p>
+    <h3 id="undo-zoom">Undo Zoom:</h3>
+    <p>Function: Restore plot limits to state prior last zoom operation.</p>
+    <h3 id="fit">Fit:</h3>
+    <p>Function: Zoom all axes to fit the plotted data (identical to <code>Reset Limits</code>
+      button in <code>Data Range</code>)</p>
+    <p>Implementation: Sets <code>XLim</code>, <code>YLim</code> properties of
+      all plots to <code>[min(XData) max(XData)]</code>, <code>[min(YData) max(YData)]</code>,
+      and update fields in <code>Data Range</code>.</p>
+    <h3 id="pan">Pan:</h3>
+    <p>Function: Enables native Matlab pan function</p>
+    <p><em>CAN (WANT) we update Data Range while scrolling?? Or copy new limits
+        after finish scrolling?</em></p>
+    <h3 id="data-cursor">Data Cursor:</h3>
+    <p>Function: Enables native Matlab data cursor function</p>
+    <h3 id="grid">Grid:</h3>
+    <p>Function: Shows/hides grid in main axes</p>
+    <h3 id="hold">Hold:</h3>
+    <p>Function: Add lines to existing plot when depressed (‘hold on’) – applies
+      to selected axis</p>
+    <h3 id="clear">Clear:</h3>
+    <p>Function: Clear and reset all axes</p>
+    <p>Implementation: - Clear and reset axes to default style, hide second Y
+      axis. - Keep content of <code>Data Range</code> fields to enable creation
+      of a new plot within the same limits. - Set/keep grid according to button
+      state. - Clear hold button. - Select Main Axis L</p>
+    <h3 id="next-plot-axes">Next Plot Axes:</h3>
+    <ul>
+      <li>Main L: Select left y-axis in main plot</li>
+      <li>Main R: Select right y-axis in main plot</li>
+      <li>Top: Select upper, secondary axes (meant for status flags and other
+        channels that do not require scale)</li>
+      <li>Top2: Select upper, secondary axes with data coloured by value (Modes,
+        booleans) details TBD.</li>
+    </ul>
+    <h3 id="legend">Legend:</h3>
+    <p>Function: Show/hide legend (right click on legend allows to change its
+      formatting)</p>
+    <h3 id="plot-export">Plot Export:</h3>
+    <p>Function: Export main axes to new figure (for saving/printing)</p>
+    <p><em>Export all axes? Or even print to pdf directly?</em></p>
+    <h3 id="show-events">Show Events:</h3>
+    <p>Function: Show overlay with event locations</p>
+    <h3 id="map">Map:</h3>
+    <p>Function: show google map with data overlay in separate window. For
+      details see the <a href="User-Interface/left/MapViewer">Map Viewer</a>
+      page.</p>
+    <h3 id="cut">Cut:</h3>
+    <p>Function: Applies a cut at the defined X-limits. This will edit the
+      content of the entire data set: - <strong>All</strong> data channels will
+      be cut to new time limits - <code>FDS</code> attributes are updated to
+      reflect the change - <code>Data Range</code> is reset to limits of new
+      data range</p>
+    <p>The edit is performed <strong>IN MEMORY</strong> only. The user has to <strong>manually</strong>
+      save the new <code>FDS</code> to conserve the edit. An <code>Apply and Save</code>
+      function is available in the menu to combine the steps.</p>
+    <h3 id="set-time-reference">Set Time Reference:</h3>
+    <p>Function: Defines currently selected data set as the time reference.
+      Other data sets can then be aligned to the reference by specifying time
+      offsets.</p>
+    <p>Implementation:</p>
+    <h3 id="set-time-offset">Set Time Offset:</h3>
+    <p>Function: Define a time offset relative to the previously defined master
+      data set. Plots of this offset dataset will be moved in time to reflect
+      the offset.</p>
+    <p>Implementation: Write specified time offset value into the <code>Offset</code>
+      attribute of the <code>FDS</code> structure. Indicate offset value in <code>Data Sets</code>
+      list in front of the name.</p>
+    <h2 id="ui-controls-plot">UI Controls Plot:</h2>
+    <ul>
+      <li>Right click on a plot line: Opens context menu to
+        inspect/highlight/edit/delete that line.</li>
+    </ul>
+    <h2 id="ui-controls-data-tab">UI Controls Data Tab:</h2>
+    <p>See <a href="Edit-Tabs/1%20Data%20Tab">Data Tab</a> page.</p>
+    <h2 id="ui-controls-data-range">UI Controls Data Range:</h2>
+    <h3 id="reset-lim">Reset Lim:</h3>
+    <p>Function: Reset plot limits to XData, YData range in plot for all axes.
+      Identical to <code>Fit</code> button in ribbon.</p>
+    <h3 id="time-limits">Time Limits:</h3>
+    <p>Function: Specify X-axis range for all plots (<em>incl. custom plots??</em>)
+      - Enter values directly into the input fields. <strong>Enter</strong>
+      updates plot(s) - <code>Pick X-Lim</code> button: Use crosshairs in the
+      plot to specify new limits</p>
+    <p>Implementation: - Ensure correct handling of wrong order input values</p>
+    <p><em>How to handle abort of crosshair input??</em></p>
+    <h3 id="vertical-lr-limits">Vertical (L/R) Limits:</h3>
+    <p>Function: Specify Y-axis range for left and right axis (independently) -
+      Enter values directly into the input fields. <strong>Enter</strong>
+      updates plot(s) - <code>Pick Y(L/R)-Lim</code> button: Use crosshairs in
+      the plot to specify new limits for selected axis</p>
+    <p>Implementation: - Ensure correct handling of wrong order input values</p>
+    <p><em>How to handle abort of crosshair input??</em></p>
+    <h2 id="dev.-notes">Dev. Notes:</h2>
+    <ul>
+      <li>
+        <p>basic legend implemented, uses auto-update feature</p>
+      </li>
+      <li>
+        <p>TeX rendering broken; to fix this, we probably need to create a
+          legend for an empty plot at startup, then switch <code>Interpreter</code>
+          to <code>latex</code>, set lines’ <code>DisplayName</code> to TeX
+          version.</p>
+      </li>
+    </ul>
+  </body>
 </html>

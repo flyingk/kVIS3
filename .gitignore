@@ -2,4 +2,6 @@
 .DS_Store
 *.m~
 *.mex*
+*.asv
 *.bak
+*.html.bak
