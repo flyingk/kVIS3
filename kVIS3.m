@@ -35,6 +35,7 @@ disp('MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the')
 disp('GNU General Public License for more details.')
 disp(' ')
 disp('*********************************************************************')
+disp(' ')
 %
 % check for required toolboxes
 %
