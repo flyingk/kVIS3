@@ -31,11 +31,11 @@ end
 % Find the correct index by trying to match the name
 i=1;
 
-while (strcmp(fds.fdata{1,i},field_name) ~=1)
+while (strcmp(fds.fdata{fds.fdataRows.groupLabel,i}, field_name) == false)
     i=i+1;
     
     % Check if we've reached the end of the data set
-    if (i > length(fds.fdata))
+    if (i > size(fds.fdata,2))
         fprintf('Data file name %s does not exist\n',field_name);
         data = -1;
         index = -1;
