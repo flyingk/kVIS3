@@ -80,7 +80,8 @@ if size(PlotDefinition, 2) < 19
     kVIS_generateCustomPlotM(finp, fds, PlotDefinition, xlim, []);
 else
     % Create a new figure and format it
-    finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],'Units','normalized');
+    finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
+        'Units','normalized','Name',PlotDefinition{3,2});
     
     kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
 end

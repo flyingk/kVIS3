@@ -29,7 +29,7 @@ DefaultStyle.Axes.YColor = 'w';
 DefaultStyle.Axes.GridColor = 'k';
 DefaultStyle.Axes.MinorGridColor = 'k';
 DefaultStyle.Legend.FontSize = 12;
-DefaultStyle.Legend.Location = 'northeastoutside';
+DefaultStyle.Legend.Location = 'northeast';
 
 if isempty(Style)
     Style = DefaultStyle;
@@ -242,7 +242,7 @@ for i = 1:size(plotDef, 1)
     else
         
         if ~isnan(plotDef{i, yAxisLabel})
-            ylabel(plotDef{i, yAxisLabel},'Interpreter','none');
+            ylabel(plotDef{i, yAxisLabel},'Interpreter','latex');
         else
             ylabel([])
         end
