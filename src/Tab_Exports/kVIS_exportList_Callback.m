@@ -120,7 +120,7 @@ for I = 1: nExports
     if ~isnan(ExportDef{I, unitOverride})
         yMeta.unit = ExportDef{I, unitOverride};
     end
-    
+
     exportData(:,I) = yp;
     
     if ~isempty(yMeta.frame)
@@ -178,6 +178,9 @@ switch answerFormat
     
     case 'Matrix'
         
+        assignin('base', 'exportLabels', exportLabels)
+        assignin('base', 'exportData', exportData)
+        
     case 'Vectors'
     
     case 'CSV'
@@ -203,7 +206,7 @@ switch answerFormat
         fclose(fileID);
         
         % write data
-        dlmwrite(fullfile(path,file), exportData, '-append')
+        dlmwrite(fullfile(path,file), exportData, '-append','precision',8)
 end
 
 end
