@@ -27,8 +27,6 @@ fds = kVIS_getCurrentFds(hObject);
 disp('Search Results:')
 disp('===============')
 disp(' ')
-disp('Multiple results: Search again for desired data group name to open tree at that location.')
-disp(' ')
 
 searchStr = handles.uiTabData.groupSearchString.String;
 
@@ -55,7 +53,7 @@ for i = 1:size(fds.fdata,2)
             channel = find(a==true);
             
             for j = 1:length(channel)
-                res = [fds.fdata{fds.fdataRows.groupLabel, i} '/' fds.fdata{fds.fdataRows.varNames, i}{channel(j)}];
+                res = [num2str(i) '/' num2str(channel(j)) '/' fds.fdata{fds.fdataRows.groupLabel, i} '/' fds.fdata{fds.fdataRows.varNames, i}{channel(j)}];
                 findChan = [findChan res];
             end
         end
@@ -63,25 +61,36 @@ for i = 1:size(fds.fdata,2)
 end
 
 if ~isempty(findChan)
-    disp('ChannelResults:')
-    disp(' ')
-    for i = 1: length(findChan)
-        fprintf('%d) %s\n', i, findChan{i})
-    end
+%     disp('ChannelResults:')
+%     disp(' ')
+%     for i = 1: length(findChan)
+%         fprintf('%d) %s\n', i, findChan{i})
+%     end
+    
+    sel = listdlg('ListString', findChan, 'ListSize', [300,500],...
+        'SelectionMode','single','PromptString','Search results:','OkString','Select');
 else
     disp('No match in channel names found...')
 end
 
 %
-% open tree group for single result
+% open tree  and plot signal for selected result
 %
-if size(fds.fdata(fds.fdataRows.groupLabel, findGroups)) == 1
+if ~isempty(sel)
     
-    kVIS_fdsUpdateSelectionInfo(hObject, find(findGroups==true))
+    str = strsplit(findChan{sel},'/');
+    
+    % open tree group
+    kVIS_fdsUpdateSelectionInfo(hObject, str2double(str{1}))
     
     fds = kVIS_getCurrentFds(hObject);
     
     kVIS_groupTreeUpdate(hObject, fds)
+    
+    % set channel list entry
+    set(handles.uiTabData.channelListbox,'Value', str2double(str{2}));
+    
+    kVIS_channelList_Callback(hObject, [])
 end
 end
 
