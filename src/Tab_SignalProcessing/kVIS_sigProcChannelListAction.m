@@ -19,7 +19,6 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function kVIS_sigProcChannelListAction(hObject)
-
 %
 %  Plot the selected column of fdata.
 %
@@ -27,6 +26,13 @@ handles=guidata(hObject);
 
 % Load signal data.
 [signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+
+% get selected range
+xRange = kVIS_getDataRange(hObject, 'XLim');
+locs = find(signalMeta.timeVec >= xRange(1) & signalMeta.timeVec <= xRange(2));
+
+signal = signal(locs);
+signalMeta.timeVec = signalMeta.timeVec(locs);
 
 % plot the signal into the specified axes
 kVIS_plotSignal( ...
