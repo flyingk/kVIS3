@@ -31,7 +31,7 @@ disp(' ')
 searchStr = handles.uiTabData.groupSearchString.String;
 
 % search for groups
-findGroups = contains(fds.fdata(fds.fdataRows.groupLabel, :), searchStr);
+findGroups = contains(fds.fdata(fds.fdataRows.groupLabel, :), searchStr, 'IgnoreCase',true);
 
 if ~any(findGroups)
     disp('No match in group names found...')
@@ -47,7 +47,7 @@ findChan = {};
 for i = 1:size(fds.fdata,2)
     if ~isempty(fds.fdata{fds.fdataRows.varNames, i})
         
-        a =  contains(fds.fdata{fds.fdataRows.varNames, i}, searchStr);
+        a =  contains(fds.fdata{fds.fdataRows.varNames, i}, searchStr ,'IgnoreCase',true);
         if any(a)
             group = i;
             channel = find(a==true);
@@ -70,6 +70,7 @@ if ~isempty(findChan)
     sel = listdlg('ListString', findChan, 'ListSize', [300,500],...
         'SelectionMode','single','PromptString','Search results:','OkString','Select');
 else
+    sel = [];
     disp('No match in channel names found...')
 end
 
