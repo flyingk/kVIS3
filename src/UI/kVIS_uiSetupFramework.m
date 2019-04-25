@@ -40,7 +40,7 @@ appWindow = figure( ...
 %
 % Assign the a name to appear in the window title.
 %
-set(appWindow,'name',['kVIS3 alpha build 005 - BSP: ' kVIS_Prefs.BSP_Info.Name ' build ' kVIS_Prefs.BSP_Info.Version]);
+set(appWindow,'name',['kVIS3 alpha build 006 - BSP: ' kVIS_Prefs.BSP_Info.Name ' build ' kVIS_Prefs.BSP_Info.Version]);
 
 %
 % get handle structure
