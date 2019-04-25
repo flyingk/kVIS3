@@ -25,6 +25,7 @@ function kVIS_plotLineContextMenuActions_Callback(source, ~, line)
     end
 
     switch source.Label
+        
     case 'Highlight'
         if isfield(line.UserData, 'HighlightState') && line.UserData.HighlightState
             line.LineWidth = 0.5;
@@ -33,6 +34,38 @@ function kVIS_plotLineContextMenuActions_Callback(source, ~, line)
             line.LineWidth = 2.5;
             line.UserData.HighlightState = true;
         end
+        
+    case 'Modify'
+        
+        y = line.YData;
+        
+        answ = inputdlg({'Enter Operator (y = line data):','Optional operator channel (group/channel) (z variable):'});
+        
+        if ~isempty(answ)
+            
+            if ~isempty(answ{2})
+                fds = kVIS_getCurrentFds(source);
+                zChanID = strsplit(answ{2}, '/');
+                z = kVIS_fdsGetChannel(fds, zChanID{1}, zChanID{2});
+                
+                if z == -1
+                    disp('y channel not found... Skipping.')
+                    return
+                end
+                
+                z = z';
+            end
+            
+            res = eval(answ{1});
+            
+            line.YData = res;
+            line.LineStyle = '-.';
+            line.LineWidth = 1.5;
+            
+            line.DisplayName = [line.DisplayName '_MOD_(' answ{1} ')'];
+            
+        end
+        
     case 'Delete'
         delete(line);
     otherwise
