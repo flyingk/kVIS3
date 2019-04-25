@@ -52,6 +52,11 @@ end
 % run prefs file
 kVIS_prefs = kVIS_preferences;
 
+if isempty(kVIS_prefs.bsp_dir)
+    errordlg('No Board Support Package specified - Abort.')
+    return
+end
+
 % Update Matlab path
 addpath(genpath('src'));
 addpath(genpath('Contributed'));
