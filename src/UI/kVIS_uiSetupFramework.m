@@ -184,6 +184,10 @@ guidata(appWindow, handles);
 % Default data viewer axes (main axes left)
 %
 kVIS_dataViewerAxesSelect_Callback(appWindow, [], 0);
+%
+% Default sig proc plot style (linear)
+%
+kVIS_sigProcAxesSelect_Callback(appWindow, [], 0);
 
 % Select initial active tab
 handles.uiFramework.uiTabGroupLeft.SelectedTab = handles.uiTabDataViewer.tabHandle;

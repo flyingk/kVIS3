@@ -18,15 +18,13 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_plotSignal(hObject, signal, signalMeta, hold_mode, axes_handle)
+function kVIS_plotSignal(hObject, signal, signalMeta, hold_mode, axes_handle, plotFcn)
 % Add a signal to the DataViewer plot.
 % The UserData field of every line is filled with metadata that allows to
 % identify the data source.
 % Additionally, a context menu is setup to provide editing features.
 
 handles=guidata(hObject);
-
-
 
 % current_lines = kVIS_findValidPlotLines(axes_handle);
 
@@ -54,9 +52,9 @@ else
     hold(axes_handle, 'off');
 end
 %
-% plot line
+% plot line (linear/log/others)
 %
-newLine = plot(axes_handle, signalMeta.timeVec, signal);
+newLine = feval(plotFcn, axes_handle, signalMeta.timeVec, signal);
 %
 % save meta data
 %
