@@ -91,13 +91,13 @@ if marginU == 0
     marginU = 0.1;
 end
 
-if axes_handle == handles.uiTabDataViewer.axesBot
-    kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
-    kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
-elseif axes_handle == handles.uiTabDataViewer.axesTop
-    kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
-    kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
-end
+% if axes_handle == handles.uiTabDataViewer.axesBot
+%     kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
+%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
+% elseif axes_handle == handles.uiTabDataViewer.axesTop
+%     kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
+%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
+% end
 
 
 %% labels
