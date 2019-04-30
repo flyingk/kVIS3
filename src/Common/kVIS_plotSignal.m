@@ -91,13 +91,13 @@ if marginU == 0
     marginU = 0.1;
 end
 
-% if axes_handle == handles.uiTabDataViewer.axesBot
-%     kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
-%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
-% elseif axes_handle == handles.uiTabDataViewer.axesTop
-%     kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
-%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
-% end
+if axes_handle == handles.uiTabDataViewer.axesBot
+    kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
+    kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
+elseif axes_handle == handles.uiTabDataViewer.axesTop
+    kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
+    kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
+end
 
 
 %% labels
@@ -119,5 +119,6 @@ end
 % update all axes styles
 kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesTop, handles.uiTabDataViewer.plotStyles.AxesT);
 kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesBot, handles.uiTabDataViewer.plotStyles.AxesB);
-
+handles.uiTabDataViewer.axesBot.XRuler.Exponent = 0; % no exp in time stamps
+% xtickformat(handles.uiTabDataViewer.axesBot, '%10.2f')
 end

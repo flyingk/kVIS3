@@ -35,8 +35,8 @@ switch select
             h.uiDataRange.YLmin.String = 'auto';
             h.uiDataRange.YLmax.String = 'auto';
         else
-            h.uiDataRange.YLmin.String = num2str(value(1),'%.2f');
-            h.uiDataRange.YLmax.String = num2str(value(2),'%.2f');
+            h.uiDataRange.YLmin.String = num2str(value(1),'%g');
+            h.uiDataRange.YLmax.String = num2str(value(2),'%g');
         end
         
     case 'YrLim'
@@ -45,14 +45,14 @@ switch select
             h.uiDataRange.YRmin.String = 'auto';
             h.uiDataRange.YRmax.String = 'auto';
         else
-            h.uiDataRange.YRmin.String = num2str(value(1),'%.2f');
-            h.uiDataRange.YRmax.String = num2str(value(2),'%.2f');
+            h.uiDataRange.YRmin.String = num2str(value(1),'%g');
+            h.uiDataRange.YRmax.String = num2str(value(2),'%g');
         end
         
     case 'YtLim'
         
-        h.uiDataRange.YTmin.String = num2str(value(1),'%.2f');
-        h.uiDataRange.YTmax.String = num2str(value(2),'%.2f');
+        h.uiDataRange.YTmin.String = num2str(value(1),'%g');
+        h.uiDataRange.YTmax.String = num2str(value(2),'%g');
 end
 
 guidata(hObject, h);
