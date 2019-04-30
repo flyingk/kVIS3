@@ -142,13 +142,18 @@ for i = 1:size(plotDef, 1)
     
     % apply function to data
     if ~isnan(plotDef{i,fcnHandle})
-        ccF = strsplit(plotDef{i, fcnChannel}, '/');
-        [fcnData] = kVIS_fdsGetChannel(fds, ccF{1}, ccF{2});
-        
-        if fcnData == -1
-            disp('Function channel not found... Ignoring.')
-            k=k-1;
-            continue;
+        % check if operator is numeric constant or channel name
+        if ~isnumeric(plotDef{i, fcnChannel})
+            ccF = strsplit(plotDef{i, fcnChannel}, '/');
+            [fcnData] = kVIS_fdsGetChannel(fds, ccF{1}, ccF{2});
+            
+            if fcnData == -1
+                disp('Function channel not found... Ignoring.')
+                k=k-1;
+                continue;
+            end
+        else
+            fcnData = ones(length(yp),1) * plotDef{i, fcnChannel};
         end
         
         try
