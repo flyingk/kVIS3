@@ -45,7 +45,14 @@ kVIS_plotSignal( ...
 
 % fft plot, replace timevec with freq vector
 % remove signal mean ...
-[p, signalMeta.timeVec] = spect(signal-mean(signal), signalMeta.timeVec, [0.01:0.01:50]*2*pi, 10, 0, 0);
+
+if any(isnan(signal))
+    errordlg('Signal contains NaN. FFT not possible at the moment...')
+    return
+end
+
+% generate psd
+[p, signalMeta.timeVec] = spect(signal-mean(signal), signalMeta.timeVec, [0.01:0.01:signalMeta.sampleRate/2]*2*pi, 10, 0, 0);
 
 kVIS_plotSignal( ...
     hObject, ...

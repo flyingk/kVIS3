@@ -51,6 +51,6 @@ signalMeta.dataSet   = fdsName;
 signalMeta.dataGroup = fds.fdata{fds.fdataRows.groupLabel, var_idx};
 signalMeta.timeVec   = fds.fdata{fds.fdataRows.data, var_idx}(:, 1);
 signalMeta.offSet    = fds.timeOffset;
-
+signalMeta.sampleRate= fds.fdataAttributes.sampleRates(var_idx);
 end
 
