@@ -89,7 +89,7 @@ function [ fds ] = kVIS_fdsUpgradeLegacy(fds)
     if ~isfield(fds, 'event_list') || isempty(fds.event_list)
         fds.event_list = kVIS_fdsCreateEmptyEventList();
     elseif iscell(fds.event_list)
-        EventList = CreateEmptyEventList();
+        EventList = kVIS_fdsCreateEmptyEventList();
         for I = 1 : size(fds.event_list, 1)
             K = numel(EventList) + 1;
             EventList(K).Type  = fds.event_list{I, 1};
