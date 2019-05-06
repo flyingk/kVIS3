@@ -219,11 +219,11 @@ if nargin >= 2
                 autoAxis = varargin{idx+1};
             case 'apikey'
                 apiKey = varargin{idx+1}; % set new key
-                % save key to file
-                funcFile = which('plot_google_map.m');
-                pth = fileparts(funcFile);
-                keyFile = fullfile(pth,'api_key.mat');
-                save(keyFile,'apiKey')
+%                 % save key to file
+%                 funcFile = which('plot_google_map.m');
+%                 pth = fileparts(funcFile);
+%                 keyFile = fullfile(pth,'api_key.mat');
+%                 save(keyFile,'apiKey')
             case 'style'
                 style = varargin{idx+1};
             case 'mapscale'
