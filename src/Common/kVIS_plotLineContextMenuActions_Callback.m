@@ -105,6 +105,14 @@ switch source.Label
             line.UserData.modState = false;
         end
         
+    case 'Export to workspace'
+        
+        y = line.YData;
+        
+        answ = inputdlg('Variable name:')
+        
+        assignin('base', answ{1}, y)
+        
     %
     % delete the line
     %
