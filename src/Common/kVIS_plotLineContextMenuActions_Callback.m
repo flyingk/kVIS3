@@ -50,7 +50,8 @@ switch source.Label
         y = line.YData';
         
         % ask for desired operation
-        answ = inputdlg({'Enter Operator (y = line data):','Optional operator channel (group/channel) (z variable):'});
+        answ = inputdlg({'Matlab expression ( y = line data ):','Optional operator channel (group/channel) ( z variable ):'},...
+            'Line data math operation', 1, {'y',''});
         
         if ~isempty(answ)
             
