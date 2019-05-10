@@ -28,7 +28,7 @@ end
 
 handles = kVIS_uiSetupSigProcRibbonGroup(handles, handles.uiFramework.uiRibbonRight);
 
-handles.uiTabSigProc.tabHandle = uitab(uiTabGroupLeft,'Title','Signal Processing','Backgroundcolor',handles.preferences.uiBackgroundColour);
+handles.uiTabSigProc.tabHandle = uitab(uiTabGroupLeft,'Title','Signal Analysis','Backgroundcolor',handles.preferences.uiBackgroundColour);
 handles.uiFramework.listOfTabs = [handles.uiFramework.listOfTabs handles.uiTabSigProc.tabHandle];
 handles.uiFramework.listOfTabsPlotFcn = {handles.uiFramework.listOfTabsPlotFcn, @kVIS_sigProcChannelListAction};
 

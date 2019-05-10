@@ -37,6 +37,10 @@ switch source.Label
             line.LineWidth = 0.5;
             line.UserData.HighlightState = false;
         else
+            answ = inputdlg('New Line colour ( Matlab letter code )');
+            if ~isempty(answ)
+                line.Color = answ{1};
+            end
             line.LineWidth = 2.5;
             line.UserData.HighlightState = true;
         end
