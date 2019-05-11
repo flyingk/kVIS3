@@ -219,7 +219,9 @@ for i = 1:size(plotDef, 1)
         
     else
         
-        p = plot(ax(pltindex), xp(pts), yp(pts)); hold on
+        p = plot(ax(pltindex), xp(pts), yp(pts)); 
+        
+        hold(ax(pltindex), 'on');
         p.LineWidth = 2.0;
 
     end
@@ -253,7 +255,7 @@ for i = 1:size(plotDef, 1)
         end
         
         
-        legend_handle = legend(labelstr,'Interpreter','latex');
+        legend_handle = legend(ax(pltindex), labelstr, 'Interpreter', 'latex');
         
         if ~isnan(plotDef{i,LegendLocation})
             Style.Legend.Location = plotDef{i,LegendLocation};
@@ -276,7 +278,7 @@ for i = 1:size(plotDef, 1)
         p.Color = plotDef{i,Color};
     end
     
-    grid on
+    grid(ax(pltindex), 'on');
     
     if ~isnan(plotDef{i,xChannel})
         Style.Axes.Tag = 'noXaxislink';

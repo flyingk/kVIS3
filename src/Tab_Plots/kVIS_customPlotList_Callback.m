@@ -71,20 +71,30 @@ else % use X-Limits (if button pressed or for events)
     xlim = kVIS_getDataRange(hObject, 'XLim');
     
 end
-
+tic
 
 if size(PlotDefinition, 2) < 19
     % Create a new figure and format it
-    finp = figure('Position',[100,100,1000,800],'Units','normalized');
+    finp = figure('Position',[100,100,1000,800],'Units','normalized',...
+        'Visible','off');
     
     kVIS_generateCustomPlotM(finp, fds, PlotDefinition, xlim, []);
 else
     % Create a new figure and format it
     finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
-        'Units','normalized','Name',PlotDefinition{3,2});
+        'Units','normalized','Name',PlotDefinition{3,2},...
+        'Visible','off');
+    
+    hh = msgbox('Creating Plot...');
     
     kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
 end
+toc
+%
+% show plot figure
+%
+finp.Visible = 'on';
+delete(hh);
 
 end
 
