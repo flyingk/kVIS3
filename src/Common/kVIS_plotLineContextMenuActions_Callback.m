@@ -87,7 +87,7 @@ switch source.Label
             %
             line.YData = res;
             line.LineStyle = '-';
-            line.Color = 'm';
+%             line.Color = 'm';
             
             line.DisplayName = [line.DisplayName '_MOD_(' answ{1} ')'];
                
