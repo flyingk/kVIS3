@@ -49,13 +49,11 @@ alt = kVIS_downSample(alt(locs), 5);
 
 % track colouring
 try
-    [signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+    [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
     
     chan_name = [signalMeta.name ' ' signalMeta.unit];
     
-    c = signal(locs);
-    
-    c = kVIS_downSample(c, 5);
+    c = kVIS_downSample(c(locs), 5);
 catch
     c = zeros(size(lon));
     chan_name = [];
