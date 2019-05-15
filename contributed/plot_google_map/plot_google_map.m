@@ -131,7 +131,9 @@ function varargout = plot_google_map(varargin)
 % Version 1.1 - 25/08/2011
 
 persistent apiKey useTemp
+
 if isnumeric(apiKey)
+    apiKey
     % first run, check if API key file exists
     if exist('api_key.mat','file')
         load api_key apiKey
@@ -218,13 +220,8 @@ if nargin >= 2
             case 'autoaxis'
                 autoAxis = varargin{idx+1};
             case 'apikey'
-                if isnumeric(apiKey)
+                if ~isempty(varargin{idx+1})
                     apiKey = varargin{idx+1}; % set new key
-                    %                 % save key to file
-                    %                 funcFile = which('plot_google_map.m');
-                    %                 pth = fileparts(funcFile);
-                    %                 keyFile = fullfile(pth,'api_key.mat');
-                    %                 save(keyFile,'apiKey')
                 end
             case 'style'
                 style = varargin{idx+1};

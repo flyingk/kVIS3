@@ -77,6 +77,7 @@ else
     % Plot in marker
     text(axes_handle, lon(1),lat(1),'IN','color','w','HorizontalAlignment','center','FontWeight','bold');
 end
+
 if (xlim(2)+0.2 >= max(t))
     % Plot land marker
     plot(axes_handle, lon(end),lat(end),'wx','lineWidth',2,'markerSize',10);
@@ -84,6 +85,7 @@ else
     % Plot out marker
     text(axes_handle, lon(end),lat(end),'OUT','color','w','HorizontalAlignment','center','FontWeight','bold');
 end
+
 
 % % Fix up the axes
 % dxlims = (max(lon)-min(lon))*0.1; dxlim = max(abs(dxlims));
@@ -95,17 +97,18 @@ plot_google_map( ...
     'mapType','satellite', ...
     'MapScale',2, ...
     'Refresh',1, ...
-    'apikey',handles.preferences.google_maps_api_key);
+    'Axis', axes_handle,...
+    'apikey', handles.preferences.google_maps_api_key...
+    );
 
 % pretty run
 title(['Track color: ' chan_name], 'Color','w', 'FontSize', 18)
-
 
 axes_handle.XColor = 'w';
 axes_handle.YColor = 'w';
 axes_handle.ZColor = 'w';
 
-view(2)
+view(axes_handle, 2)
 
 colormap jet
 cb = colorbar;
