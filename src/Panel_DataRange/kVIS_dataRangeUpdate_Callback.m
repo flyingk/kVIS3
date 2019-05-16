@@ -33,7 +33,10 @@ switch select
             return
         end
         
-        h.uiTabDataViewer.axesBot.XLim = xlim;
+        l = findobj('Tag', 'plotPanel_active');
+        l2 = findobj(l,'Type','axes');
+        
+        l2.XLim = xlim;
         
     case 'YlLim'
 

@@ -18,28 +18,18 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(hObject, ~)
+function kVIS_clearPlotLayout_Callback(hObject, ~)
 
-handles=guidata(hObject);
+handles = guidata(hObject);
 
-l = findobj('Tag', 'plotPanel_active');
-ax_r = findobj(l,'Type','axes');
+e = handles.uiTabDataViewer.Divider.Contents;
 
-limx=get(ax_r,'Xlim');
-scalex=get(ax_r,'XScale');
-scaley=get(ax_r,'YScale');
-labelx=get(ax_r,'Xlabel');
-labely=get(ax_r,'Ylabel');
+delete(e(2:end))
 
-f2=figure;
-set(f2,'Color','w');
-ax2=axes('Parent',f2);
-copyobj(allchild(ax_r), ax2);
-set(ax2,'XLim',limx)
-set(ax2,'XScale',scalex)
-set(ax2,'YScale',scaley)
-set(ax2,'Xlabel',labelx)
-set(ax2,'Ylabel',labely)
-grid(ax2, 'on')
+e(1).Tag = 'plotPanel_active';
+
+handles.uiTabDataViewer.Divider.Widths  = -1;
+handles.uiTabDataViewer.Divider.Heights = -1;
+
 end
 

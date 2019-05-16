@@ -40,22 +40,14 @@ else
     % Load signal data.
     [signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
     
-    switch handles.uiTabDataViewer.AxesSelector
-    case 'main_left'
-        axes_handle = handles.uiTabDataViewer.axesBot;
-        if size(axes_handle.YAxis,1) == 2
-            yyaxis(axes_handle, 'left');
-        end
-    case 'main_right'
-        axes_handle = handles.uiTabDataViewer.axesBot;
-        yyaxis(axes_handle, 'right');
-    case 'top'
-        axes_handle = handles.uiTabDataViewer.axesTop;
-    otherwise
-        error('Invalid axes selected');
-    end
-    
+    %
+    % selected axes
+    %
+    l = findobj('Tag', 'plotPanel_active');
+    axes_handle = l.Children;
+    %
     % plot the signal into the specified axes
+    %
     kVIS_plotSignal( ...
         hObject, ...
         signal, signalMeta, ...

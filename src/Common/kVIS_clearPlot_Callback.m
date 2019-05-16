@@ -24,12 +24,10 @@ handles = guidata(hObject);
 %
 % clear and reset axes (removes y right if active)
 %
-cla(handles.uiTabDataViewer.axesTop, 'reset');
-cla(handles.uiTabDataViewer.axesBot, 'reset');
-
-% tab sig proc - move to tab fcn later
-cla(handles.uiTabSigProc.axesLeft, 'reset');
-cla(handles.uiTabSigProc.axesRight, 'reset');
+l = findobj('Tag', 'plotPanel_active');
+l2 = findobj(l,'Type','axes');
+cla(l2, 'reset');
+kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim');
 %
 % reset button states
 %
@@ -47,9 +45,5 @@ kVIS_dataViewerAxesSelect_Callback(hObject, [], 0)
 handles.uiFramework.zoomHandle.ActionPreCallback = @kVIS_preZoom_Callback;
 handles.uiFramework.zoomHandle.ActionPostCallback = @kVIS_postZoom_Callback;
 handles.uiFramework.panHandle.ActionPostCallback = @kVIS_postPan_Callback;
-%
-% restore top axes to default
-%
-handles.uiTabDataViewer.Divider.Heights = [60 -1];
 
 end

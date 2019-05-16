@@ -91,34 +91,31 @@ if marginU == 0
     marginU = 0.1;
 end
 
-if axes_handle == handles.uiTabDataViewer.axesBot
-    kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
-    kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
-elseif axes_handle == handles.uiTabDataViewer.axesTop
-    kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
-    kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
-end
+% if axes_handle == handles.uiTabDataViewer.axesBot
+%     kVIS_setDataRange(hObject, 'YlLim', [plotMin-marginL plotMax+marginU]);
+%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
+% elseif axes_handle == handles.uiTabDataViewer.axesTop
+%     kVIS_setDataRange(hObject, 'YtLim', [plotMin-marginL plotMax+marginU]);
+%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
+% end
 
 
 %% labels
-if axes_handle == handles.uiTabDataViewer.axesBot
-    xlabel(axes_handle,'Time [sec]');
     
-    if size(current_lines) == 1
-        lbl = [signalMeta.dispName ' (' signalMeta.unit ') (' signalMeta.frame ')'];
-        ylabel(axes_handle, lbl, 'Interpreter','none');
-%         lbl = ['$ \mathsf{' signalMeta.texName(2:end-1) '} $']
-%         ylabel(axes_handle, lbl, 'Interpreter','latex', 'FontSize', 16);
-    else
-        ylabel(axes_handle, []);
-        lg = legend(current_lines, {},'Interpreter','latex');
-        kVIS_setGraphicsStyle(lg, handles.uiTabDataViewer.plotStyles.Legend);
-    end
+if size(current_lines) == 1
+    lbl = [signalMeta.dispName ' (' signalMeta.unit ') (' signalMeta.frame ')'];
+    ylabel(axes_handle, lbl, 'Interpreter','none');
+    %         lbl = ['$ \mathsf{' signalMeta.texName(2:end-1) '} $']
+    %         ylabel(axes_handle, lbl, 'Interpreter','latex', 'FontSize', 16);
+else
+    ylabel(axes_handle, []);
+    lg = legend(axes_handle, current_lines, {},'Interpreter','latex');
+    kVIS_setGraphicsStyle(lg, handles.uiTabDataViewer.plotStyles.Legend);
 end
 
+
 % update all axes styles
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesTop, handles.uiTabDataViewer.plotStyles.AxesT);
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesBot, handles.uiTabDataViewer.plotStyles.AxesB);
-handles.uiTabDataViewer.axesBot.XRuler.Exponent = 0; % no exp in time stamps
+kVIS_setGraphicsStyle(axes_handle, handles.uiTabDataViewer.plotStyles.AxesB);
+axes_handle.XRuler.Exponent = 0; % no exp in time stamps
 % xtickformat(handles.uiTabDataViewer.axesBot, '%10.2f')
 end

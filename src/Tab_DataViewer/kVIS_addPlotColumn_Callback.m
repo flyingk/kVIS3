@@ -18,28 +18,17 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(hObject, ~)
+function kVIS_addPlotColumn_Callback(hObject, ~)
 
-handles=guidata(hObject);
+handles = guidata(hObject);
 
-l = findobj('Tag', 'plotPanel_active');
-ax_r = findobj(l,'Type','axes');
+w=handles.uiTabDataViewer.Divider.Widths;
+h=handles.uiTabDataViewer.Divider.Heights;
 
-limx=get(ax_r,'Xlim');
-scalex=get(ax_r,'XScale');
-scaley=get(ax_r,'YScale');
-labelx=get(ax_r,'Xlabel');
-labely=get(ax_r,'Ylabel');
+handles.uiTabDataViewer.Divider.Widths = [w; -1];
+handles.uiTabDataViewer.Divider.Heights = h(1:end-1);
 
-f2=figure;
-set(f2,'Color','w');
-ax2=axes('Parent',f2);
-copyobj(allchild(ax_r), ax2);
-set(ax2,'XLim',limx)
-set(ax2,'XScale',scalex)
-set(ax2,'YScale',scaley)
-set(ax2,'Xlabel',labelx)
-set(ax2,'Ylabel',labely)
-grid(ax2, 'on')
+w=handles.uiTabDataViewer.Divider.Widths;
+h=handles.uiTabDataViewer.Divider.Heights;
 end
 

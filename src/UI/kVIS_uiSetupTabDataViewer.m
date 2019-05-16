@@ -32,21 +32,14 @@ handles.uiTabDataViewer.tabHandle = uitab(uiTabGroupLeft,'Title','Data Viewer');
 handles.uiFramework.listOfTabs = [handles.uiTabDataViewer.tabHandle];
 handles.uiFramework.listOfTabsPlotFcn = @kVIS_dataViewerChannelListAction;
 
-handles.uiTabDataViewer.Divider = uix.VBoxFlex('Parent',handles.uiTabDataViewer.tabHandle);
+handles.uiTabDataViewer.Divider = uix.GridFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
+% handles.uiTabDataViewer.Divider = uix.HBoxFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
 
-tabDataViewerTop = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
-    'Tag', 'plotPanel', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
-tabDataViewerBot = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
-    'Tag', 'plotPanel', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
-
-handles.uiTabDataViewer.Divider.Heights = [60 -1];
+tabDataViewerMain = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
+    'Tag', 'plotPanel_active', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
 
 %% axes
-handles.uiTabDataViewer.axesTop = axes('Parent', tabDataViewerTop, 'Units','normalized', 'Position',[0.05 0.05 0.9 0.9]);
-handles.uiTabDataViewer.axesBot = axes('Parent', tabDataViewerBot, 'Units','normalized', 'Position',[0.05 0.06 0.9 0.9]);
-
-linkaxes([handles.uiTabDataViewer.axesTop, handles.uiTabDataViewer.axesBot], 'x');
-
+handles.uiTabDataViewer.axesBot = axes('Parent', tabDataViewerMain, 'Units','normalized', 'Position',[0.05 0.06 0.9 0.9]);
 %
 % plot style definitions
 %
@@ -54,7 +47,6 @@ plotStyles = data_viewer_options(handles.preferences);
 handles.uiTabDataViewer.plotStyles = plotStyles;
 
 
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesTop, plotStyles.AxesT);
 kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesBot, plotStyles.AxesB);
 end
 
@@ -78,7 +70,7 @@ Style.AxesT.YColor = 'w';
 Style.AxesT.GridColor = 'k';
 Style.AxesT.MinorGridColor = 'k';
 Style.AxesT.XMinorGrid  = 'on';
-Style.AxesT.YMinorGrid  = 'off';
+Style.AxesT.YMinorGrid  = 'on';
 Style.AxesT.XGrid  = 'on';
 Style.AxesT.YGrid  = 'on';
 
@@ -100,16 +92,5 @@ Style.Signal.LineWidth = 0.5;
 % Legend style (any attributes understood by set(legend_handle, ...))
 %DV.Style.Legend.Interpreter = 'latex';
 Style.Legend.FontSize = preferences.defaultLegendFontSize;
-
-end
-
-function kVIS_plotPanelSelectFcn(hObject, ~)
-
-handles = guidata(hObject);
-
-l = findobj('Tag', 'plotPanel');
-
-l(l==hObject).BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
-l(l~=hObject).BackgroundColor = handles.preferences.uiBackgroundColour;
 
 end

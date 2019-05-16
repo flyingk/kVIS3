@@ -66,7 +66,7 @@ uiRibbonDivider = uix.VBox('Parent',appWindow);
 
 uiRibbon = uix.HBox('Parent', uiRibbonDivider);
 
-uiMainHorizontalDivider = uix.HBoxFlex('Parent',uiRibbonDivider);
+uiMainHorizontalDivider = uix.HBoxFlex('Parent',uiRibbonDivider,'Spacing',2);
 
 uiRibbonDivider.Heights = [60 -1];
 
@@ -125,7 +125,7 @@ handles = kVIS_uiSetupTabExports(handles, handles.uiFramework.uiTabGroupRight);
 %% left hand tabs
 % built-in:
 handles = kVIS_uiSetupTabDataViewer(handles, handles.uiFramework.uiTabGroupLeft);
-% handles = kVIS_uiSetupTabSigProc(handles, handles.uiFramework.uiTabGroupLeft);
+handles = kVIS_uiSetupTabSigProc(handles, handles.uiFramework.uiTabGroupLeft);
 
 % BSP provided tabs
 for i = 1:size(kVIS_Prefs.BSP_Info.customTabs,1)
