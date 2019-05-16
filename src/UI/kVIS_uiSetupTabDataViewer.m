@@ -34,8 +34,10 @@ handles.uiFramework.listOfTabsPlotFcn = @kVIS_dataViewerChannelListAction;
 
 handles.uiTabDataViewer.Divider = uix.VBoxFlex('Parent',handles.uiTabDataViewer.tabHandle);
 
-tabDataViewerTop = uipanel('Parent',handles.uiTabDataViewer.Divider,'Backgroundcolor',handles.preferences.uiBackgroundColour);
-tabDataViewerBot = uipanel('Parent',handles.uiTabDataViewer.Divider,'Backgroundcolor',handles.preferences.uiBackgroundColour);
+tabDataViewerTop = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
+    'Tag', 'plotPanel', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
+tabDataViewerBot = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
+    'Tag', 'plotPanel', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
 
 handles.uiTabDataViewer.Divider.Heights = [60 -1];
 
@@ -98,5 +100,16 @@ Style.Signal.LineWidth = 0.5;
 % Legend style (any attributes understood by set(legend_handle, ...))
 %DV.Style.Legend.Interpreter = 'latex';
 Style.Legend.FontSize = preferences.defaultLegendFontSize;
+
+end
+
+function kVIS_plotPanelSelectFcn(hObject, ~)
+
+handles = guidata(hObject);
+
+l = findobj('Tag', 'plotPanel');
+
+l(l==hObject).BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
+l(l~=hObject).BackgroundColor = handles.preferences.uiBackgroundColour;
 
 end
