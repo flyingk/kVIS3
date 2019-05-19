@@ -46,6 +46,7 @@ e = handles.uiTabDataViewer.Divider.Contents;
 delete(e(2:end))
 
 e(1).Tag = 'plotPanel_active';
+e(1).BackgroundColor = handles.preferences.uiBackgroundColour;
 
 guidata(hObject, handles);
 end

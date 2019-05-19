@@ -41,21 +41,23 @@ if strcmp(l.UserData.PlotType, 'fft') && isempty(l.UserData.fftLink)
     
     l.UserData.listener = addlistener(ax,'UserData','PostSet',@kVIS_fftUpdate);
     
-    l.BackgroundColor = 'c'; %handles.preferences.uiBackgroundColour + [0.15 0 0.15];
+    hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
+    l.BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
+    l.HighlightColor = handles.preferences.uiBackgroundColour;
     l.Tag = 'fftPanel';
     
     kVIS_fftUpdate([],[])
     
 else
     
-    l.BackgroundColor = handles.preferences.uiBackgroundColour;
+    l.HighlightColor = handles.preferences.uiBackgroundColour;
     l.Tag = 'plotPanel';
     
 end
 %
 % set selected plot active
 %
-hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
+hObject.HighlightColor = 'c';
 hObject.Tag = 'plotPanel_active';
 
 end
