@@ -19,16 +19,20 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function kVIS_addPlotColumn_Callback(hObject, ~)
-
+%
+% add a column to the grid and create first panel
+%
 handles = guidata(hObject);
 
-w=handles.uiTabDataViewer.Divider.Widths;
-h=handles.uiTabDataViewer.Divider.Heights;
+% new column
+cols = handles.uiTabDataViewer.DividerH.Contents;
+nextCol = size(cols,1) + 1;
 
-handles.uiTabDataViewer.Divider.Widths = [w; -1];
-handles.uiTabDataViewer.Divider.Heights = h(1:end-1);
+handles.uiTabDataViewer.Divider(nextCol) = uix.VBoxFlex('Parent',handles.uiTabDataViewer.DividerH,'Spacing',2);
 
-w=handles.uiTabDataViewer.Divider.Widths;
-h=handles.uiTabDataViewer.Divider.Heights;
+% first panel
+kVIS_addPlotAxes(handles, nextCol)
+
+guidata(hObject, handles);
 end
 

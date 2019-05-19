@@ -43,8 +43,8 @@ else
     %
     % selected axes
     %
-    l = findobj('Tag', 'plotPanel_active');
-    axes_handle = l.Children;
+    targetPanel = findobj('Tag', 'plotPanel_active');
+    targetAxes = findobj(targetPanel, 'Type', 'axes');
     %
     % plot the signal into the specified axes
     %
@@ -52,9 +52,11 @@ else
         hObject, ...
         signal, signalMeta, ...
         handles.uiFramework.holdToggle, ...
-        axes_handle, ...
+        targetAxes, ...
         @plot ...
         );
+    
+    targetAxes.UserData = randi(1000);
     
     evplot(hObject);
 

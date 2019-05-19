@@ -18,14 +18,33 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_addPlotAxes_Callback(hObject, ~)
-%
-% Add plot to selected column
-%
-handles = guidata(hObject);
+function kVIS_fftContextMenuAction(hObject, ~, ax)
 
-l = findobj('Tag', 'plotPanel_active');
+switch hObject.Label
+    
+    case 'linear'
+        
+        ax.XScale = 'linear';
+        ax.YScale = 'linear';
+        
+    case 'log x'
+        
+        ax.XScale = 'log';
+        ax.YScale = 'linear';
+        
+            case 'log y'
+        
+        ax.XScale = 'linear';
+        ax.YScale = 'log';
+        
+    case 'loglog'
+        
+        ax.XScale = 'log';
+        ax.YScale = 'log';
+        
+    case 'Set Frequency Range'
+        
+end
 
-kVIS_addPlotAxes(handles, l.UserData.Column)
 end
 

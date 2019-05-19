@@ -22,14 +22,31 @@ function kVIS_clearPlotLayout_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
+%
+% delete listener objects for linked plots
+%
+l = findobj('Tag', 'fftPanel');
+if ~isempty(l)
+    delete(l.UserData.listener);
+end
+
+%
+% remove all but first columns
+%
+e = handles.uiTabDataViewer.DividerH.Contents;
+
+delete(e(2:end))
+
+handles.uiTabDataViewer.Divider = handles.uiTabDataViewer.Divider(1);
+%
+% remove all but first panel in column one
+%
 e = handles.uiTabDataViewer.Divider.Contents;
 
 delete(e(2:end))
 
 e(1).Tag = 'plotPanel_active';
 
-handles.uiTabDataViewer.Divider.Widths  = -1;
-handles.uiTabDataViewer.Divider.Heights = -1;
-
+guidata(hObject, handles);
 end
 

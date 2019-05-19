@@ -30,24 +30,23 @@ handles = kVIS_uiSetupDataViewerRibbonGroup(handles, handles.uiFramework.uiRibbo
 
 handles.uiTabDataViewer.tabHandle = uitab(uiTabGroupLeft,'Title','Data Viewer');
 handles.uiFramework.listOfTabs = [handles.uiTabDataViewer.tabHandle];
-handles.uiFramework.listOfTabsPlotFcn = @kVIS_dataViewerChannelListAction;
-
-handles.uiTabDataViewer.Divider = uix.GridFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
-% handles.uiTabDataViewer.Divider = uix.HBoxFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
-
-tabDataViewerMain = uipanel('Parent',handles.uiTabDataViewer.Divider,'BackgroundColor',handles.preferences.uiBackgroundColour,...
-    'Tag', 'plotPanel_active', 'ButtonDownFcn', @kVIS_plotPanelSelectFcn);
-
-%% axes
-handles.uiTabDataViewer.axesBot = axes('Parent', tabDataViewerMain, 'Units','normalized', 'Position',[0.05 0.06 0.9 0.9]);
+handles.uiFramework.listOfTabsPlotFcn = {@kVIS_dataViewerChannelListAction};
+%
+% horizontal box
+%
+handles.uiTabDataViewer.DividerH = uix.HBoxFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
+%
+% first column
+%
+handles.uiTabDataViewer.Divider = uix.VBoxFlex('Parent',handles.uiTabDataViewer.DividerH,'Spacing',2);
 %
 % plot style definitions
 %
-plotStyles = data_viewer_options(handles.preferences);
-handles.uiTabDataViewer.plotStyles = plotStyles;
-
-
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesBot, plotStyles.AxesB);
+handles.uiTabDataViewer.plotStyles = data_viewer_options(handles.preferences);
+%
+% create first plot
+%
+kVIS_addPlotAxes(handles, 1);
 end
 
 function Style = data_viewer_options(preferences)

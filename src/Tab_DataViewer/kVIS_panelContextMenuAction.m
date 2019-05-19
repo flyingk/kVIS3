@@ -18,14 +18,25 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_addPlotAxes_Callback(hObject, ~)
-%
-% Add plot to selected column
-%
-handles = guidata(hObject);
+function kVIS_panelContextMenuAction(hObject, ~, panel)
 
-l = findobj('Tag', 'plotPanel_active');
+switch hObject.Label
+    
+    case 'Timeplot'
+        
+        panel.UserData.PlotType = 'standard';
+        panel.UserData.fftLink = [];
+        
+    case 'Frequency plot'
+        
+        panel.UserData.PlotType = 'fft';
+        panel.UserData.fftLink = [];
+        
+    case 'Delete'
+        
+%         delete(panel)
+        
+end
 
-kVIS_addPlotAxes(handles, l.UserData.Column)
 end
 
