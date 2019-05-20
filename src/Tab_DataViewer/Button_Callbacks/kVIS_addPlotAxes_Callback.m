@@ -24,7 +24,8 @@ function kVIS_addPlotAxes_Callback(hObject, ~)
 %
 handles = guidata(hObject);
 
-l = findobj('Tag', 'plotPanel_active');
+% selected column
+l = findobj('HighlightColor', 'c');
 
 if isempty(l)
     column = 1;

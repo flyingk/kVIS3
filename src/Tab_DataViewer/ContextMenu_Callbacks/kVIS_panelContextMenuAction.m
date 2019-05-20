@@ -40,8 +40,19 @@ switch hObject.Label
         
     case 'Delete plot'
         
-%         panel.UserData.Column
-        delete(panel)
+        handles = guidata(hObject);
+        
+        % last plot in column
+        if size(handles.uiTabDataViewer.Divider(panel.UserData.Column).Contents,1) == 1
+            if panel.UserData.Column > 1
+                delete(handles.uiTabDataViewer.Divider(panel.UserData.Column))
+            else
+                errordlg('Can''t delete last plot in first column.')
+                return
+            end
+        else
+            delete(panel)
+        end
         
 end
 
