@@ -53,9 +53,9 @@ kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
 %
 np.UserData.axesHandle = ax; % save axes handle in panel
 np.UserData.Column = column; % save location of the panel in the grid
-np.UserData.linkPending = false;
-np.UserData.linkTo = [];
-np.UserData.linkFrom = [];
+np.UserData.linkPending = false; % link request
+np.UserData.linkTo = []; % link target
+np.UserData.linkFrom = []; % link source
 
 %
 % copy data range to new axes

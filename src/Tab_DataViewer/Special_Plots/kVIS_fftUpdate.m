@@ -24,6 +24,12 @@ function kVIS_fftUpdate(~, ~)
 sourcePanel = findobj('HighlightColor', 'c');
 % link target
 targetPanel = sourcePanel.UserData.linkTo;
+
+if isempty(targetPanel)
+    errordlg('Cannot find data source. Ensure the corresponding timeplot is selected for manual update...')
+    return
+end
+
 ax = targetPanel.UserData.axesHandle;
 
 if ~isfield(ax.UserData, 'fmin')
@@ -35,6 +41,9 @@ lines = findobj(sourcePanel, 'Type', 'Line');
 
 % generate psd
 if ~isempty(lines)
+    
+    % clear plot
+    cla(ax);
     
     % get selected range
     xRange = kVIS_getDataRange(gcf, 'XLim');
@@ -72,7 +81,7 @@ if ~isempty(lines)
         end
         
         [p, f] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
-        
+
         plot(ax, f, p, 'Color', colour)
         
     end
