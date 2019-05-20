@@ -44,6 +44,16 @@ switch hObject.Label
         
     case 'Set Frequency Range'
         
+        answ = inputdlg({'Min. Freq. [Hz]', 'Max. Freq. [Hz]'}, 'PSD Frequency Range', 1, {num2str(0.01), num2str(5)});
+        
+        if isempty(answ)
+            return
+        else
+            ax.UserData.fmin = str2double(answ(1));
+            ax.UserData.fmax = str2double(answ(2));
+            kVIS_fftUpdate([], []);
+        end
+        
 end
 
 end

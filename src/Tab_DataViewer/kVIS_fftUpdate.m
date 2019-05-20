@@ -18,10 +18,15 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_fftUpdate(~,~)
+function kVIS_fftUpdate(~, ~)
 
 targetPanel = findobj('Tag', 'fftPanel');
 ax = targetPanel.Children;
+
+if ~isfield(ax.UserData, 'fmin')
+    ax.UserData.fmin = 0.01;
+    ax.UserData.fmax = 10;
+end
 
 sourcePanel = targetPanel.UserData.fftLink;
 
@@ -30,6 +35,10 @@ lines = findobj(sourcePanel, 'Type', 'Line');
 % generate psd
 if ~isempty(lines)
     
+    % get selected range
+    xRange = kVIS_getDataRange(gcf, 'XLim');
+        
+    % save axes style
     xScale = ax.XScale;
     yScale = ax.YScale;
     
@@ -41,12 +50,21 @@ if ~isempty(lines)
         hold(ax, 'off');
     end
     
+    fmin = ax.UserData.fmin;
+    fmax = ax.UserData.fmax;
+    
     for i=1:ll
         % generate psd - needs to be done one by one to account for
         % potentially different sample rates...
         signal = lines(i).YData';
         timeVec= lines(i).XData';
-        [p, f] = spect(signal-mean(signal), timeVec, [0.01:0.01:10]*2*pi, 10, 0, 0);
+        
+        % generate psd for selected range
+        locs = find(timeVec >= xRange(1) & timeVec <= xRange(2));
+        signal = signal(locs);
+        timeVec= timeVec(locs);
+        
+        [p, f] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
         
         plot(ax, f,p)
         
