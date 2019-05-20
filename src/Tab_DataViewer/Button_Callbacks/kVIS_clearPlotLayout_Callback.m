@@ -25,7 +25,7 @@ handles = guidata(hObject);
 %
 % delete listener objects for linked plots
 %
-l = findobj('Tag', 'fftPanel');
+l = findobj('Tag', 'fftplot');
 if ~isempty(l)
     delete(l.UserData.listener);
 end
@@ -45,7 +45,7 @@ e = handles.uiTabDataViewer.Divider.Contents;
 
 delete(e(2:end))
 
-e(1).Tag = 'plotPanel_active';
+e(1).Tag = 'timeplot';
 e(1).BackgroundColor = handles.preferences.uiBackgroundColour;
 
 guidata(hObject, handles);

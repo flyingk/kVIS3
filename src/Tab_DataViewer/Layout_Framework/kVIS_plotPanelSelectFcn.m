@@ -18,51 +18,74 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_plotPanelSelectFcn(hObject, ~)
+function kVIS_plotPanelSelectFcn(selectedPanel, ~)
+% scenarios
+% - no previous selection: make current panel active
+% - previous selection exists:
+%   - no link request: make current panel active, previous panel inactive
+%   - link request: link panels, make target active
 
-handles = guidata(hObject);
+handles = guidata(selectedPanel);
 
 %
-% previously selected panel
+% get previously selected panel
 %
-sourcePanel = findobj('HighlightColor', 'c');
+previousPanel = findobj('HighlightColor', 'c');
 
-if ~isempty(sourcePanel) && ~isempty(handles)
+if isempty(previousPanel)
+    %
     % first plot or nothing selected after delete
-    sourcePanel.HighlightColor = handles.preferences.uiBackgroundColour;
+    %
+    selectedPanel.HighlightColor = 'c';
+    
+elseif previousPanel == selectedPanel
+    %
+    % callback goes all the time...
+    %
+    return
+    
+elseif ~strcmp(selectedPanel.Tag, 'timeplot')
+    %
+    % don't select special plots
+    %
+    return
     
 else
-%     %
-%     % link request?
-%     %
-%     if sourcePanel.UserData.linkPending == true
-%         % link panels
-%         sourcePanel.UserData.linkFrom = hObject;
-%         hObject.UserData.linkFrom = sourcePanel;
-%         sourcePanel.UserData.linkPending = false;
-%         
-%         % install listener on timeplot
-%         ax = hObject.axesHandle;
-%         
-%         sourcePanel.UserData.listener = addlistener(ax,'UserData','PostSet',@kVIS_fftUpdate);
-%         
-%         % indicate link
-%         rn = 1;%rand;
-%         hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
-%         sourcePanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
-%         sourcePanel.HighlightColor = handles.preferences.uiBackgroundColour;
-%         
-%         kVIS_fftUpdate([],[])
-%         
-%         
-%     end
+    %
+    % link request?
+    %
+    if previousPanel.UserData.linkPending == true
+        % link panels
+        previousPanel.UserData.linkFrom = selectedPanel;
+        selectedPanel.UserData.linkTo = previousPanel;
+        previousPanel.UserData.linkPending = false;
+        
+        % install listener on linked timeplot
+        % save listener handle in link target
+        previousPanel.UserData.listener = addlistener(selectedPanel.UserData.axesHandle,...
+            'UserData','PostSet',@kVIS_fftUpdate);
+        
+        % indicate link
+        rn = 1;%rand;
+        selectedPanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
+        previousPanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
+        
+        previousPanel.HighlightColor = handles.preferences.uiBackgroundColour;
+        selectedPanel.HighlightColor = 'c';
+        
+        kVIS_fftUpdate([],[])
+           
+    else
+        %
+        % set selected panel active, previous panel inactive
+        %
+        selectedPanel.HighlightColor = 'c';
+        
+        previousPanel.HighlightColor = handles.preferences.uiBackgroundColour;
+        
+    end
     
 end
-%
-% set selected plot active
-%
-hObject.HighlightColor = 'c';
-
 
 
 end

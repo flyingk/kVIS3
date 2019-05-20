@@ -20,15 +20,16 @@
 
 function kVIS_fftUpdate(~, ~)
 
-targetPanel = findobj('Tag', 'fftPanel');
-ax = findobj(targetPanel, 'Type', 'axes');
+% active panel
+sourcePanel = findobj('HighlightColor', 'c');
+% link target
+targetPanel = sourcePanel.UserData.linkTo;
+ax = targetPanel.UserData.axesHandle;
 
 if ~isfield(ax.UserData, 'fmin')
     ax.UserData.fmin = 0.01;
     ax.UserData.fmax = 10;
 end
-
-sourcePanel = targetPanel.UserData.fftLink;
 
 lines = findobj(sourcePanel, 'Type', 'Line');
 
