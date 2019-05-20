@@ -65,6 +65,11 @@ if ~isempty(lines)
         signal = signal(locs);
         timeVec= timeVec(locs);
         
+        if any(isnan(signal))
+            errordlg('Signal contains NaN. FFT not possible at the moment...')
+            return
+        end
+        
         [p, f] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
         
         plot(ax, f, p, 'Color', colour)
