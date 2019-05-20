@@ -70,9 +70,6 @@ end
 
 
 function [ m ] = kVIS_createPanelContextMenu(panel)
-% This function creates a context menu for a given Line object.
-% The menu displays some metadata helping to identify the line, and
-% provides some callback actions.
 
 m = uicontextmenu();
 
