@@ -101,6 +101,7 @@ end
 
 
 %% labels
+xlabel(axes_handle, 'Time [sec]')
     
 if size(current_lines) == 1
     lbl = [signalMeta.dispName ' (' signalMeta.unit ') (' signalMeta.frame ')'];
@@ -115,7 +116,7 @@ end
 
 
 % update all axes styles
+kVIS_axesResizeToContainer(axes_handle);
 kVIS_setGraphicsStyle(axes_handle, handles.uiTabDataViewer.plotStyles.AxesB);
 axes_handle.XRuler.Exponent = 0; % no exp in time stamps
-% xtickformat(handles.uiTabDataViewer.axesBot, '%10.2f')
 end
