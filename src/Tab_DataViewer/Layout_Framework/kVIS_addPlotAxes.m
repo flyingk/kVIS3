@@ -21,51 +21,54 @@
 function kVIS_addPlotAxes(handles, column)
 
 %
-% de-focus previous axes
+% add new panel
 %
-l = findobj('Tag', 'plotPanel_active');
-
-if ~isempty(l)
-    l.HighlightColor = handles.preferences.uiBackgroundColour;
-    l.Tag = 'plotPanel';
-end
-
-%
-% add new panel/axes
-%
-np = uipanel('Parent',handles.uiTabDataViewer.Divider(column),...
+np = uipanel(...
+    'Parent',handles.uiTabDataViewer.Divider(column),...
     'BackgroundColor',handles.preferences.uiBackgroundColour,...
-    'Tag', 'plotPanel_active',...
+    'Tag', 'timeplot',...
     'ButtonDownFcn', @kVIS_plotPanelSelectFcn,...
-    'BorderType','line', 'BorderWidth', 2, 'HighlightColor', 'c',...
+    'BorderType','line',...
+    'BorderWidth', 2,...
+    'HighlightColor',handles.preferences.uiBackgroundColour,...
     'SizeChangedFcn', @kVIS_panelSizeChanged_Callback);
-
-ax = axes('Parent', np, 'Units','normalized');
-kVIS_axesResizeToContainer(ax)
-
-kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
-%
-% save location of the panel in the grid
-%
-np.UserData.Column = column;
-%
-% default plot type
-%
-np.UserData.PlotType = 'standard';
 %
 % create context menu
 %
 np.UIContextMenu = kVIS_createPanelContextMenu(np);
 
 %
+% add axes as standard timeplot
+%
+ax = axes('Parent', np,...
+    'Units','normalized',...
+    'Tag', 'timeplot');
+
+kVIS_axesResizeToContainer(ax)
+
+kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
+
+%
+% Panel User Data structure
+%
+np.UserData.axesHandle = ax; % save axes handle in panel
+np.UserData.Column = column; % save location of the panel in the grid
+np.UserData.linkPending = false;
+np.UserData.linkTo = [];
+np.UserData.linkFrom = [];
+
+%
 % copy data range to new axes
 %
 % kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim');
-%
-% link axes time
-%
-% ax = findobj(handles.uiTabDataViewer.Divider, 'Type', 'axes');
+
+% % 
+% % link axes time
+% % 
+% ax = findobj(handles.uiTabDataViewer.Divider, 'Type', 'axes', 'Tag', 'timeplot');
 % linkaxes(ax,'x');
+
+kVIS_plotPanelSelectFcn(np, [])
 end
 
 

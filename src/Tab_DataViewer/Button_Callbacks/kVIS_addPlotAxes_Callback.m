@@ -26,6 +26,12 @@ handles = guidata(hObject);
 
 l = findobj('Tag', 'plotPanel_active');
 
-kVIS_addPlotAxes(handles, l.UserData.Column)
+if isempty(l)
+    column = 1;
+else
+    column = l.UserData.Column;
+end
+
+kVIS_addPlotAxes(handles, column)
 end
 

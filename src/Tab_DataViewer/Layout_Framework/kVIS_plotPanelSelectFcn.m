@@ -22,43 +22,47 @@ function kVIS_plotPanelSelectFcn(hObject, ~)
 
 handles = guidata(hObject);
 
-if strcmp(hObject.Tag, 'fftPanel')
-    return
-end
-
 %
 % previously selected panel
 %
-l = findobj('Tag', 'plotPanel_active');
-%
-% link fft plot, if created previously
-%
-if strcmp(l.UserData.PlotType, 'fft') && isempty(l.UserData.fftLink)
-    
-    l.UserData.fftLink = hObject;
-    
-    ax = hObject.Children;
-    
-    l.UserData.listener = addlistener(ax,'UserData','PostSet',@kVIS_fftUpdate);
-    
-    rn = 1;%rand;
-    hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
-    l.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
-    l.HighlightColor = handles.preferences.uiBackgroundColour;
-    l.Tag = 'fftPanel';
-    
-    kVIS_fftUpdate([],[])
+sourcePanel = findobj('HighlightColor', 'c');
+
+if ~isempty(sourcePanel) && ~isempty(handles)
+    % first plot or nothing selected after delete
+    sourcePanel.HighlightColor = handles.preferences.uiBackgroundColour;
     
 else
-    
-    l.HighlightColor = handles.preferences.uiBackgroundColour;
-    l.Tag = 'plotPanel';
+%     %
+%     % link request?
+%     %
+%     if sourcePanel.UserData.linkPending == true
+%         % link panels
+%         sourcePanel.UserData.linkFrom = hObject;
+%         hObject.UserData.linkFrom = sourcePanel;
+%         sourcePanel.UserData.linkPending = false;
+%         
+%         % install listener on timeplot
+%         ax = hObject.axesHandle;
+%         
+%         sourcePanel.UserData.listener = addlistener(ax,'UserData','PostSet',@kVIS_fftUpdate);
+%         
+%         % indicate link
+%         rn = 1;%rand;
+%         hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
+%         sourcePanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
+%         sourcePanel.HighlightColor = handles.preferences.uiBackgroundColour;
+%         
+%         kVIS_fftUpdate([],[])
+%         
+%         
+%     end
     
 end
 %
 % set selected plot active
 %
 hObject.HighlightColor = 'c';
-hObject.Tag = 'plotPanel_active';
+
+
 
 end

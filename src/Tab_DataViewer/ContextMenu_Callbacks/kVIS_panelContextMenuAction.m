@@ -24,17 +24,24 @@ switch hObject.Label
     
     case 'Timeplot'
         
-        panel.UserData.PlotType = 'standard';
-        panel.UserData.fftLink = [];
+        panel.Tag = 'timeplot';
+        panel.UserData.axesHandle.Tag = 'timeplot';
+        panel.UserData.linkPending = false;
+        panel.UserData.linkTo = [];
+        panel.UserData.linkFrom = [];
         
     case 'Frequency plot'
         
-        panel.UserData.PlotType = 'fft';
-        panel.UserData.fftLink = [];
+        panel.Tag = 'fftplot';
+        panel.UserData.axesHandle.Tag = 'fftplot';
+        panel.UserData.linkPending = true;
+        panel.UserData.linkTo = [];
+        panel.UserData.linkFrom = [];
         
-    case 'Delete'
+    case 'Delete plot'
         
-%         delete(panel)
+%         panel.UserData.Column
+        delete(panel)
         
 end
 

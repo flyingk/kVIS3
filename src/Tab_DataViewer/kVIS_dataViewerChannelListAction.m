@@ -43,8 +43,8 @@ else
     %
     % selected axes
     %
-    targetPanel = findobj('Tag', 'plotPanel_active');
-    targetAxes = findobj(targetPanel, 'Type', 'axes');
+    targetPanel = findobj('HighlightColor', 'c');
+    targetAxes = targetPanel.UserData.axesHandle;
     %
     % plot the signal into the specified axes
     %
