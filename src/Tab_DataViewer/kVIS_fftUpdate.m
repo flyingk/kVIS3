@@ -21,7 +21,7 @@
 function kVIS_fftUpdate(~, ~)
 
 targetPanel = findobj('Tag', 'fftPanel');
-ax = targetPanel.Children;
+ax = findobj(targetPanel, 'Type', 'axes');
 
 if ~isfield(ax.UserData, 'fmin')
     ax.UserData.fmin = 0.01;
@@ -82,8 +82,12 @@ if ~isempty(lines)
     ax.XScale = xScale;
     ax.YScale = yScale;
     
+    xlabel(ax, 'Frequency [Hz]');
+    ylabel(ax, 'Power Spectral Density (PSD)');
+    
     handles = guidata(gcf);
     kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
+    kVIS_axesResizeToContainer(ax);
 end
 
 
