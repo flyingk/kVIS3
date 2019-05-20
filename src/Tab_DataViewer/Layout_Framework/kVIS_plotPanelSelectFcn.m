@@ -41,8 +41,9 @@ if strcmp(l.UserData.PlotType, 'fft') && isempty(l.UserData.fftLink)
     
     l.UserData.listener = addlistener(ax,'UserData','PostSet',@kVIS_fftUpdate);
     
-    hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
-    l.BackgroundColor = handles.preferences.uiBackgroundColour + 0.15;
+    rn = rand;
+    hObject.BackgroundColor = handles.preferences.uiBackgroundColour + 0.3*rn;
+    l.BackgroundColor = handles.preferences.uiBackgroundColour + 0.3*rn;
     l.HighlightColor = handles.preferences.uiBackgroundColour;
     l.Tag = 'fftPanel';
     

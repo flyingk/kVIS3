@@ -58,6 +58,7 @@ if ~isempty(lines)
         % potentially different sample rates...
         signal = lines(i).YData';
         timeVec= lines(i).XData';
+        colour = lines(i).Color;
         
         % generate psd for selected range
         locs = find(timeVec >= xRange(1) & timeVec <= xRange(2));
@@ -66,7 +67,7 @@ if ~isempty(lines)
         
         [p, f] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
         
-        plot(ax, f,p)
+        plot(ax, f, p, 'Color', colour)
         
     end
     
@@ -75,6 +76,9 @@ if ~isempty(lines)
     ax.UIContextMenu = kVIS_createFFTContextMenu(ax);
     ax.XScale = xScale;
     ax.YScale = yScale;
+    
+    handles = guidata(gcf);
+    kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
 end
 
 
