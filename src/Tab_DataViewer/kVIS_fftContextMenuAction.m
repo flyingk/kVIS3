@@ -22,6 +22,10 @@ function kVIS_fftContextMenuAction(hObject, ~, ax)
 
 switch hObject.Label
     
+    case 'Force Update'
+
+        kVIS_fftUpdate([], []);
+    
     case 'linear'
         
         ax.XScale = 'linear';
