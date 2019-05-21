@@ -22,24 +22,17 @@ function kVIS_dataViewerExportPlot(hObject, ~)
 
 handles=guidata(hObject);
 
-l = findobj('Tag', 'plotPanel_active');
-ax_r = findobj(l,'Type','axes');
-
-limx=get(ax_r,'Xlim');
-scalex=get(ax_r,'XScale');
-scaley=get(ax_r,'YScale');
-labelx=get(ax_r,'Xlabel');
-labely=get(ax_r,'Ylabel');
+l = findobj('HighlightColor', 'c');
 
 f2=figure;
 set(f2,'Color','w');
-ax2=axes('Parent',f2);
-copyobj(allchild(ax_r), ax2);
-set(ax2,'XLim',limx)
-set(ax2,'XScale',scalex)
-set(ax2,'YScale',scaley)
-set(ax2,'Xlabel',labelx)
-set(ax2,'Ylabel',labely)
-grid(ax2, 'on')
+
+
+h = copyobj(allchild(l), f2);
+
+ax = findobj(h, 'Type', 'axes');
+
+ax.XColor = 'k';
+ax.YColor = 'k';
 end
 
