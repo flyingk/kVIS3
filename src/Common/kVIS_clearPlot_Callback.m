@@ -24,10 +24,9 @@ handles = guidata(hObject);
 %
 % clear and reset axes (removes y right if active)
 %
-l = findobj('Tag', 'plotPanel_active');
+l = findobj('HighlightColor', 'c');
 l2 = findobj(l,'Type','axes');
 cla(l2, 'reset');
-kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim');
 %
 % reset button states
 %
@@ -35,10 +34,6 @@ kVIS_holdButton_Callback(findobj('Tag', 'DefaultRibbonGroupHoldToggle'), [], 1);
 kVIS_zoomButton_Callback(findobj('Tag','DefaultRibbonGroupZoomToggle'), [], 1);
 kVIS_cursorButton_Callback(findobj('Tag','DefaultRibbonGroupCursorToggle'), [], 1);
 kVIS_panButton_Callback(findobj('Tag','DefaultRibbonGroupPanToggle'), [], 1);
-%
-% reset to default axes
-%
-kVIS_dataViewerAxesSelect_Callback(hObject, [], 0)
 %
 % update plot callbacks (get modified by map view...)
 %

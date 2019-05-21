@@ -38,6 +38,11 @@ switch hObject.Label
         panel.UserData.linkTo = [];
         panel.UserData.linkFrom = [];
         
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        
+        hObject.Checked = 'on';
+        
     case 'Delete plot'
         
         handles = guidata(hObject);
