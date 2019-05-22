@@ -24,9 +24,12 @@ handles = guidata(hObject);
 %
 % clear and reset axes (removes y right if active)
 %
-l = findobj('HighlightColor', 'c');
-l2 = findobj(l,'Type','axes');
-cla(l2, 'reset');
+l = kVIS_dataViewerGetActivePanel();
+cla(l.axesHandle, 'reset');
+
+kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
+kVIS_axesResizeToContainer(l.axesHandle);
+
 %
 % reset button states
 %
