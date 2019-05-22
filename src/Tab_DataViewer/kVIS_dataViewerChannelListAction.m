@@ -82,7 +82,11 @@ if et.Value == 1
         delete(h)
     end
     
-    axes_handle = handles.uiTabDataViewer.axesBot;
+    %
+    % selected axes
+    %
+    targetPanel = kVIS_dataViewerGetActivePanel();
+    axes_handle = targetPanel.axesHandle;
     
     hold(axes_handle, 'on');
     
