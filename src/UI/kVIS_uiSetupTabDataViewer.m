@@ -46,7 +46,7 @@ handles.uiTabDataViewer.plotStyles = data_viewer_options(handles.preferences);
 %
 % create first plot
 %
-kVIS_addPlotAxes(handles, 1);
+kVIS_dataViewerAddElement(handles, 1);
 end
 
 function Style = data_viewer_options(preferences)

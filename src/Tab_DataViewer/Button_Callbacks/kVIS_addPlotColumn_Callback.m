@@ -31,7 +31,7 @@ nextCol = size(cols,1) + 1;
 handles.uiTabDataViewer.Divider(nextCol) = uix.VBoxFlex('Parent',handles.uiTabDataViewer.DividerH,'Spacing',2);
 
 % first panel
-kVIS_addPlotAxes(handles, nextCol)
+kVIS_dataViewerAddElement(handles, nextCol)
 
 guidata(hObject, handles);
 end

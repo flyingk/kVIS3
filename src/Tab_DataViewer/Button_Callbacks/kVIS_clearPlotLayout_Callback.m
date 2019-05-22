@@ -27,7 +27,7 @@ handles = guidata(hObject);
 %
 l = findobj('Tag', 'fftplot');
 if ~isempty(l)
-    delete(l.UserData.listener);
+    delete(l.plotChangedListener);
 end
 
 %

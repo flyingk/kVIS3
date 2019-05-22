@@ -43,8 +43,8 @@ else
     %
     % selected axes
     %
-    targetPanel = findobj('HighlightColor', 'c');
-    targetAxes = targetPanel.UserData.axesHandle;
+    targetPanel = kVIS_dataViewerGetActivePanel();
+    targetAxes = targetPanel.axesHandle;
     %
     % plot the signal into the specified axes
     %
@@ -56,7 +56,7 @@ else
         @plot ...
         );
     
-    targetAxes.UserData = randi(1000);
+    targetPanel.plotChanged = randi(1000);
     
     evplot(hObject);
 

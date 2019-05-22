@@ -18,44 +18,16 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(hObject, ~)
+function kVIS_dataViewerLinkTimeAxes(handles)
+%
+% link all available timeplots
+%
+l = findobj(handles.uiTabDataViewer.Divider, 'Type', 'uipanel', 'Tag', 'timeplot');
 
-% handles=guidata(hObject);
-
-l = kVIS_dataViewerGetActivePanel();
-
-if ~isempty(l.linkTo)
+for i = 1:size(l, 1)
     
-    f3=figure;
-    set(f3,'Color','w');
-    
-    
-    h = copyobj(allchild(l.linkTo), f3);
-    
-    ax = findobj(h, 'Type', 'axes');
-    
-    ax.XColor = 'k';
-    ax.YColor = 'k';
-    
-    kVIS_axesResizeToContainer(ax);
-    
-    f3p = f3.Position;
-    
-    movegui(f3, f3p(1:2) + [-100 0])
+    ax(i) = l(i).axesHandle;
     
 end
 
-f2=figure;
-set(f2,'Color','w');
-
-
-h = copyobj(allchild(l), f2);
-
-ax = findobj(h, 'Type', 'axes');
-
-ax.XColor = 'k';
-ax.YColor = 'k';
-
-kVIS_axesResizeToContainer(ax)
-end
-
+linkaxes(ax, 'x');

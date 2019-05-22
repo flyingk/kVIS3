@@ -18,44 +18,8 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(hObject, ~)
-
-% handles=guidata(hObject);
-
-l = kVIS_dataViewerGetActivePanel();
-
-if ~isempty(l.linkTo)
-    
-    f3=figure;
-    set(f3,'Color','w');
-    
-    
-    h = copyobj(allchild(l.linkTo), f3);
-    
-    ax = findobj(h, 'Type', 'axes');
-    
-    ax.XColor = 'k';
-    ax.YColor = 'k';
-    
-    kVIS_axesResizeToContainer(ax);
-    
-    f3p = f3.Position;
-    
-    movegui(f3, f3p(1:2) + [-100 0])
-    
-end
-
-f2=figure;
-set(f2,'Color','w');
-
-
-h = copyobj(allchild(l), f2);
-
-ax = findobj(h, 'Type', 'axes');
-
-ax.XColor = 'k';
-ax.YColor = 'k';
-
-kVIS_axesResizeToContainer(ax)
-end
-
+function selectedPanel = kVIS_dataViewerGetActivePanel()
+%
+% return currently selected element
+%
+selectedPanel = findobj('HighlightColor', 'c');

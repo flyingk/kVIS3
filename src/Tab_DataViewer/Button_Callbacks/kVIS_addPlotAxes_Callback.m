@@ -24,15 +24,14 @@ function kVIS_addPlotAxes_Callback(hObject, ~)
 %
 handles = guidata(hObject);
 
-% selected column
-l = findobj('HighlightColor', 'c');
+l = kVIS_dataViewerGetActivePanel();
 
 if isempty(l)
     column = 1;
 else
-    column = l.UserData.Column;
+    column = l.gridLocation(2);
 end
 
-kVIS_addPlotAxes(handles, column)
+kVIS_dataViewerAddElement(handles, column)
 end
 

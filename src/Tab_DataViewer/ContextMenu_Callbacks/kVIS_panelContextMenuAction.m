@@ -25,32 +25,30 @@ switch hObject.Label
     case 'Timeplot'
         
         panel.Tag = 'timeplot';
-        panel.UserData.axesHandle.Tag = 'timeplot';
-        panel.UserData.linkPending = false;
-        panel.UserData.linkTo = [];
-        panel.UserData.linkFrom = [];
+        panel.linkPending = false;
+        panel.linkTo = [];
+        panel.linkFrom = [];
         
     case 'Frequency plot'
         
         panel.Tag = 'fftplot';
-        panel.UserData.axesHandle.Tag = 'fftplot';
-        panel.UserData.linkPending = true;
-        panel.UserData.linkTo = [];
-        panel.UserData.linkFrom = [];
+        panel.linkPending = true;
+        panel.linkTo = [];
+        panel.linkFrom = [];
         
         oldM = findobj(hObject.Parent, 'Checked', 'on');
         oldM.Checked = 'off';
         
         hObject.Checked = 'on';
         
-    case 'Delete plot'
+    case 'Delete panel'
         
         handles = guidata(hObject);
         
         % last plot in column
-        if size(handles.uiTabDataViewer.Divider(panel.UserData.Column).Contents,1) == 1
-            if panel.UserData.Column > 1
-                delete(handles.uiTabDataViewer.Divider(panel.UserData.Column))
+        if size(handles.uiTabDataViewer.Divider(panel.gridLocation(2)).Contents,1) == 1
+            if panel.gridLocation(2) > 1
+                delete(handles.uiTabDataViewer.Divider(panel.gridLocation(2)))
             else
                 errordlg('Can''t delete last plot in first column.')
                 return

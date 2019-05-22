@@ -21,16 +21,16 @@
 function kVIS_fftUpdate(~, ~)
 
 % active panel
-sourcePanel = findobj('HighlightColor', 'c');
+sourcePanel = kVIS_dataViewerGetActivePanel();
 % link target
-targetPanel = sourcePanel.UserData.linkTo;
+targetPanel = sourcePanel.linkTo;
 
 if isempty(targetPanel)
     errordlg('Cannot find data source. Ensure the corresponding timeplot is selected for manual update...')
     return
 end
 
-ax = targetPanel.UserData.axesHandle;
+ax = targetPanel.axesHandle;
 
 if ~isfield(ax.UserData, 'fmin')
     ax.UserData.fmin = 0.01;

@@ -18,52 +18,75 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_addPlotAxes(handles, column)
+function kVIS_dataViewerAddElement(handles, column)
 
 %
-% add new panel
+% add new panel as standard timeplot
 %
-np = uipanel(...
-    'Parent',handles.uiTabDataViewer.Divider(column),...
-    'BackgroundColor',handles.preferences.uiBackgroundColour,...
-    'Tag', 'timeplot',...
-    'ButtonDownFcn', @kVIS_plotPanelSelectFcn,...
-    'BorderType','line',...
-    'BorderWidth', 2,...
-    'HighlightColor',handles.preferences.uiBackgroundColour,...
-    'SizeChangedFcn', @kVIS_panelSizeChanged_Callback);
-%
-% create panel context menu
-%
-np.UIContextMenu = kVIS_createPanelContextMenu(np);
+np = newPanel(handles, column);
 
 %
-% add axes as standard timeplot
+% add axes 
 %
-ax = axes('Parent', np,...
-    'Units','normalized',...
-    'Tag', 'timeplot');
+ax = axes('Parent', np, 'Units','normalized');
 
 kVIS_axesResizeToContainer(ax)
 
 kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
 
 %
-% Panel User Data structure
+% set panel properties
 %
-np.UserData.axesHandle = ax; % save axes handle in panel
-np.UserData.Column = column; % save location of the panel in the grid
-np.UserData.linkPending = false; % link request
-np.UserData.linkTo = []; % link target
-np.UserData.linkFrom = []; % link source
+np.axesHandle = ax;
+np.gridLocation = [size(np.Parent,1), column];
+np.linkPending = false;
 
-% % 
-% % link axes time
-% % 
-% ax = findobj(handles.uiTabDataViewer.Divider, 'Type', 'axes', 'Tag', 'timeplot');
-% linkaxes(ax,'x');
+% 
+% link axes time
+% 
+kVIS_dataViewerLinkTimeAxes(handles);
 
-kVIS_plotPanelSelectFcn(np, [])
+%
+% make panel active
+%
+kVIS_dataViewerSelectFcn(np, [])
+end
+
+
+function np = newPanel(handles, column)
+
+%
+% add new panel as standard timeplot
+%
+np = uipanel(...
+    'Parent',handles.uiTabDataViewer.Divider(column),...
+    'BackgroundColor',handles.preferences.uiBackgroundColour,...
+    'Tag', 'timeplot',...
+    'ButtonDownFcn', @kVIS_dataViewerSelectFcn,...
+    'BorderType','line',...
+    'BorderWidth', 2,...
+    'HighlightColor',handles.preferences.uiBackgroundColour,...
+    'SizeChangedFcn', @kVIS_panelSizeChanged_Callback);
+
+%
+% Panel new properties
+%
+addprop(np, 'axesHandle');  % save axes handle in panel
+addprop(np, 'gridLocation');% save location of the panel in the grid
+addprop(np, 'linkPending'); % link request
+addprop(np, 'linkTo');      % link target
+addprop(np, 'linkFrom');    % link source
+addprop(np, 'xLim');
+addprop(np, 'yLim');
+p0 = addprop(np, 'plotChanged');
+p0.SetObservable = true;
+addprop(np, 'plotChangedListener');
+
+%
+% create panel context menu
+%
+np.UIContextMenu = kVIS_createPanelContextMenu(np);
+
 end
 
 

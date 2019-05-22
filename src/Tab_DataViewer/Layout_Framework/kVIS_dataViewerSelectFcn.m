@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_plotPanelSelectFcn(selectedPanel, ~)
+function kVIS_dataViewerSelectFcn(selectedPanel, ~)
 % scenarios
 % - no previous selection: make current panel active
 % - previous selection exists:
@@ -30,7 +30,7 @@ handles = guidata(selectedPanel);
 %
 % get previously selected panel
 %
-previousPanel = findobj('HighlightColor', 'c');
+previousPanel = kVIS_dataViewerGetActivePanel;
 
 if isempty(previousPanel)
     %
@@ -54,16 +54,16 @@ else
     %
     % link request?
     %
-    if previousPanel.UserData.linkPending == true
+    if previousPanel.linkPending == true
         % link panels
-        previousPanel.UserData.linkFrom = selectedPanel;
-        selectedPanel.UserData.linkTo = previousPanel;
-        previousPanel.UserData.linkPending = false;
+        previousPanel.linkFrom = selectedPanel;
+        selectedPanel.linkTo = previousPanel;
+        previousPanel.linkPending = false;
         
         % install listener on linked timeplot
         % save listener handle in link target
-        previousPanel.UserData.listener = addlistener(selectedPanel.UserData.axesHandle,...
-            'UserData','PostSet',@kVIS_fftUpdate);
+        previousPanel.plotChangedListener = addlistener(selectedPanel,...
+            'plotChanged','PostSet',@kVIS_fftUpdate);
         
         % indicate link
         rn = 1;%rand;
