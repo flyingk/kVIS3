@@ -69,5 +69,7 @@ switch select
         
 end
 
+targetPanel.plotChanged = randi(10000);
+
 end
 

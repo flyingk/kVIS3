@@ -25,5 +25,7 @@ h = kVIS_dataViewerGetActivePanel;
 % update data range fields with zoom results
 kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
 kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
+
+h.plotChanged = randi(10000);
 end
 

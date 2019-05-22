@@ -30,5 +30,7 @@ kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim')
 
 kVIS_setDataRange(hObject, 'YLim', h.yLimOld)
 kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim')
+
+h.plotChanged = randi(10000);
 end
 
