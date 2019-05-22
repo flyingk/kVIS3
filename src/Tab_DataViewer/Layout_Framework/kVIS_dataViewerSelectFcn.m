@@ -74,7 +74,7 @@ else
         selectedPanel.HighlightColor = 'c';
         
         kVIS_fftUpdate([],[])
-           
+        
     else
         %
         % set selected panel active, previous panel inactive
