@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerLinkTimeAxes(handles)
+function kVIS_dataViewerLinkTimeAxes(handles, cmd)
 %
 % link all available timeplots
 %
@@ -30,4 +30,4 @@ for i = 1:size(l, 1)
     
 end
 
-linkaxes(ax, 'x');
+linkaxes(ax, cmd);

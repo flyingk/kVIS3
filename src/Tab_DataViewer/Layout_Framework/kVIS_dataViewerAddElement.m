@@ -46,14 +46,14 @@ np.linkPending = false;
 %
 kVIS_dataViewerSelectFcn(np, [])
  
-% % 
-% % link axes time
-% % 
-% pp = findobj('Tag','timeplot');
-% if size(pp,1) > 1
-%     kVIS_dataRangeUpdate_Callback(gcf, [], 'XLim')
-%     kVIS_dataViewerLinkTimeAxes(handles);
-% end
+% 
+% link axes time
+% 
+pp = findobj('Tag','timeplot');
+if size(pp,1) > 1
+    kVIS_dataRangeUpdate_Callback(gcf, [], 'XLim')
+    kVIS_dataViewerLinkTimeAxes(handles, 'x');
+end
 end
 
 

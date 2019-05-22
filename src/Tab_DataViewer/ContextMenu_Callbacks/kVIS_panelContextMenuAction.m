@@ -20,6 +20,8 @@
 
 function kVIS_panelContextMenuAction(hObject, ~, panel)
 
+handles = guidata(hObject);
+
 switch hObject.Label
     
     case 'Timeplot'
@@ -31,6 +33,8 @@ switch hObject.Label
         
     case 'Frequency plot'
         
+        kVIS_dataViewerLinkTimeAxes(handles, 'off');
+        
         panel.Tag = 'fftplot';
         panel.linkPending = true;
         panel.linkTo = [];
@@ -41,9 +45,11 @@ switch hObject.Label
         
         hObject.Checked = 'on';
         
+        kVIS_dataViewerLinkTimeAxes(handles, 'x');
+        
     case 'Delete panel'
         
-        handles = guidata(hObject);
+        kVIS_dataViewerLinkTimeAxes(handles, 'off');
         
         % last plot in column
         if size(handles.uiTabDataViewer.Divider(panel.gridLocation(2)).Contents,1) == 1
@@ -56,6 +62,8 @@ switch hObject.Label
         else
             delete(panel)
         end
+        
+        kVIS_dataViewerLinkTimeAxes(handles, 'x');
         
 end
 
