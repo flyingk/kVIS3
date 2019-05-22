@@ -37,6 +37,11 @@ if ~isempty(l.UserData.linkTo)
     ax.XColor = 'k';
     ax.YColor = 'k';
     
+    kVIS_axesResizeToContainer(ax);
+    
+    f3p = f3.Position;
+    
+    movegui(f3, f3p(1:2) + [-100 0])
     
 end
 
@@ -51,5 +56,6 @@ ax = findobj(h, 'Type', 'axes');
 ax.XColor = 'k';
 ax.YColor = 'k';
 
+kVIS_axesResizeToContainer(ax)
 end
 
