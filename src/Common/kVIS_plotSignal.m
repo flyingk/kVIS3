@@ -100,6 +100,10 @@ end
 % end
 
 
+kVIS_setDataRange(hObject, 'YLim', [plotMin plotMax]);
+kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim');
+
+
 %% labels
 xlabel(axes_handle, 'Time [sec]')
     

@@ -29,30 +29,15 @@ switch select
         h.uiDataRange.Xmin.String = num2str(value(1),'%.2f');
         h.uiDataRange.Xmax.String = num2str(value(2),'%.2f');
         
-    case 'YlLim'
+    case 'YLim'
         
         if isempty(value)
-            h.uiDataRange.YLmin.String = 'auto';
-            h.uiDataRange.YLmax.String = 'auto';
+            h.uiDataRange.Ymin.String = 'auto';
+            h.uiDataRange.Ymax.String = 'auto';
         else
-            h.uiDataRange.YLmin.String = num2str(value(1),'%g');
-            h.uiDataRange.YLmax.String = num2str(value(2),'%g');
+            h.uiDataRange.Ymin.String = num2str(value(1),'%g');
+            h.uiDataRange.Ymax.String = num2str(value(2),'%g');
         end
-        
-    case 'YrLim'
-        
-        if isempty(value)
-            h.uiDataRange.YRmin.String = 'auto';
-            h.uiDataRange.YRmax.String = 'auto';
-        else
-            h.uiDataRange.YRmin.String = num2str(value(1),'%g');
-            h.uiDataRange.YRmax.String = num2str(value(2),'%g');
-        end
-        
-    case 'YtLim'
-        
-        h.uiDataRange.YTmin.String = num2str(value(1),'%g');
-        h.uiDataRange.YTmax.String = num2str(value(2),'%g');
 end
 
 guidata(hObject, h);

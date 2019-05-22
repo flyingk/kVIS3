@@ -35,19 +35,13 @@ switch select
         
         kVIS_dataRangeUpdate_Callback(hObject, [], select);
         
-    case 'YlLim'
+    case 'YLim'
         
-        h.uiDataRange.YLmin.String = 'auto';
-        h.uiDataRange.YLmax.String = 'auto';
-        
-        kVIS_dataRangeUpdate_Callback(hObject, [], select);
-        
-    case 'YrLim'
-        
-        h.uiDataRange.YRmin.String = 'auto';
-        h.uiDataRange.YRmax.String = 'auto';
+        h.uiDataRange.Ymin.String = 'auto';
+        h.uiDataRange.Ymax.String = 'auto';
         
         kVIS_dataRangeUpdate_Callback(hObject, [], select);
+        
         
     case 'all'
         
@@ -57,15 +51,10 @@ switch select
         
         kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim');
         
-        h.uiDataRange.YLmin.String = 'auto';
-        h.uiDataRange.YLmax.String = 'auto';
+        h.uiDataRange.Ymin.String = 'auto';
+        h.uiDataRange.Ymax.String = 'auto';
         
-        kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim');
-        
-        h.uiDataRange.YRmin.String = 'auto';
-        h.uiDataRange.YRmax.String = 'auto';  
-        
-        kVIS_dataRangeUpdate_Callback(hObject, [], 'YrLim');
+        kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim');
 end
 
 end

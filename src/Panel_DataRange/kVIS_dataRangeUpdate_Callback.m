@@ -20,7 +20,15 @@
 
 function [] = kVIS_dataRangeUpdate_Callback(hObject, ~, select)
 
-h = guidata(hObject);
+% h = guidata(hObject);
+
+targetPanel = kVIS_dataViewerGetActivePanel;
+
+if isempty(targetPanel)
+    return
+end
+
+targetAxes = targetPanel.axesHandle;
 
 switch select
     
@@ -33,14 +41,11 @@ switch select
             return
         end
         
-        targetPanel = findobj('HighlightColor', 'c');
-        targetAxes = targetPanel.UserData.axesHandle;
-        
         targetAxes.XLim = xlim;
+
+    case 'YLim'
         
-    case 'YlLim'
-        
-        ylim = kVIS_getDataRange(hObject, 'YlLim');
+        ylim = kVIS_getDataRange(hObject, 'YLim');
         
         if ylim(1) > ylim(2)
             errordlg('Vertical Limits must be increasing...')
@@ -49,7 +54,7 @@ switch select
         
         if isnan(ylim)
             % auto limits
-            h.uiTabDataViewer.axesBot.YLim = [-inf inf];
+            targetAxes.YLim = [-inf inf];
         else
             % as specified - replace 'auto' fields with inf
             if isnan(ylim(1))
@@ -58,20 +63,9 @@ switch select
                 ylim(2) = inf;
             end
             
-            h.uiTabDataViewer.axesBot.YLim = ylim;
+            targetAxes.YLim = ylim;
         end
         
-   
-    case 'YtLim'
-        
-        ylim = kVIS_getDataRange(hObject, 'YtLim');
-        
-        if ylim(1) > ylim(2)
-            errordlg('Vertical Limits must be increasing...')
-            return
-        end
-        
-        h.uiTabDataViewer.axesTop.YLim = ylim;
         
 end
 

@@ -41,15 +41,17 @@ np.axesHandle = ax;
 np.gridLocation = [size(np.Parent,1), column];
 np.linkPending = false;
 
-% 
-% link axes time
-% 
-kVIS_dataViewerLinkTimeAxes(handles);
-
 %
 % make panel active
 %
 kVIS_dataViewerSelectFcn(np, [])
+ 
+% % 
+% % link axes time
+% % 
+% kVIS_dataRangeUpdate_Callback(gcf, [], 'XLim')
+% kVIS_dataViewerLinkTimeAxes(handles);
+
 end
 
 

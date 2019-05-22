@@ -86,7 +86,7 @@ if et.Value == 1
     
     hold(axes_handle, 'on');
     
-    ylim = kVIS_getDataRange(hObject, 'YlLim');
+    ylim = kVIS_getDataRange(hObject, 'YLim');
     
     
     fds = kVIS_getCurrentFds(hObject);
