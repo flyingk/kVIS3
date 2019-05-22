@@ -18,14 +18,14 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_preZoom_Callback(hObject, ~)
+function kVIS_preZoom_Callback(~, ~)
 %
-% save pre zoom axes limits into axes user data structure for later
+% save pre zoom axes limits into panel data structure for later
 % retrieval.
 %
-h = gca;
+h = kVIS_dataViewerGetActivePanel;
 
-h.UserData.xLimOld = h.XLim;
-h.UserData.yLimOld = h.YLim;
+h.xLimOld = h.axesHandle.XLim;
+h.yLimOld = h.axesHandle.YLim;
 end
 

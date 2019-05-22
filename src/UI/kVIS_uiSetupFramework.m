@@ -144,8 +144,7 @@ handles.uiFramework.zcmIN = uimenu(zoomContextMenu, 'Label', 'Zoom In', 'Checked
 handles.uiFramework.zcmOUT= uimenu(zoomContextMenu, 'Label', 'Zoom Out', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'out'});
 handles.uiFramework.zcmXY = uimenu(zoomContextMenu, 'Label', 'Unconstrained', 'Checked', 'on', 'Separator', 'on', 'Callback', {@kVIS_zoomMenu_Callback, 'xy'});
 handles.uiFramework.zcmX  = uimenu(zoomContextMenu, 'Label', 'Horizontal', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'x'});
-handles.uiFramework.zcmYL = uimenu(zoomContextMenu, 'Label', 'Vertical Left', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'yl'});
-% handles.uiFramework.zcmYR = uimenu(zoomContextMenu, 'Label', 'Vertical Right', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'yr'});
+handles.uiFramework.zcmY = uimenu(zoomContextMenu, 'Label', 'Vertical', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'y'});
 
 zoomHandle = zoom(appWindow);
 

@@ -80,6 +80,8 @@ addprop(np, 'linkTo');      % link target
 addprop(np, 'linkFrom');    % link source
 addprop(np, 'xLim');
 addprop(np, 'yLim');
+addprop(np, 'xLimOld');
+addprop(np, 'yLimOld');
 p0 = addprop(np, 'plotChanged');
 p0.SetObservable = true;
 addprop(np, 'plotChangedListener');

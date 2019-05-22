@@ -20,10 +20,10 @@
 
 function kVIS_postZoom_Callback(hObject, ~)
 
-h = gca;
+h = kVIS_dataViewerGetActivePanel;
 
-kVIS_setDataRange(hObject, 'XLim', h.XLim)
-kVIS_setDataRange(hObject, 'YlLim', h.YLim)
-
+% update data range fields with zoom results
+kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
+kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
 end
 
