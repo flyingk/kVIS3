@@ -23,9 +23,6 @@ function kVIS_axesResizeToContainer(ax)
 % Maximise axes usage of available container area
 %
 
-% panel type
-pt = ax.Parent.Tag;
-
 % restore property so that axes never get larger than container
 ax.ActivePositionProperty = 'outerposition';
 % max dimensions
@@ -33,7 +30,11 @@ outerpos = [0 0 1 1];
 % required space for labels
 ti = ax.TightInset;
 
-if strcmp(pt, 'timeplot')
+
+% panel type
+pt = ax.Parent.Tag;
+
+if strcmp(pt, 'timeplot') || strcmp(pt, 'fftplot')
     
     % format axes - keep some minimum margins
     left   = max([0.04 ti(1)]);
