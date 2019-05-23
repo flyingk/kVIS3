@@ -108,33 +108,10 @@ axes_handle.ZColor = 'w';
 
 view(axes_handle, 2)
 
-colormap jet
-cb = colorbar;
+colormap(axes_handle, 'jet')
+cb = colorbar(axes_handle,'Location','east');
 cb.Color = 'w';
 
-kVIS_mapResizeToContainer(axes_handle);
-
-end
-
-function kVIS_mapResizeToContainer(ax)
-%
-% Maximise axes usage of available container area
-%
-
-% restore property so that axes never get larger than container
-ax.ActivePositionProperty = 'outerposition';
-% max dimensions
-outerpos = [0 0 1 1];
-% required space for labels
-ti = ax.TightInset;
-
-% format axes - keep some minimum margins
-left   = max([0.04 ti(1)]);
-bottom = ti(2);
-ax_width = outerpos(3) - left - max([0.075 ti(3)]);
-ax_height = outerpos(4) - bottom - 0.05;
-
-% update axes position
-ax.Position = [left bottom ax_width ax_height];
+kVIS_axesResizeToContainer(axes_handle);
 
 end
