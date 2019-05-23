@@ -34,7 +34,7 @@ ti = ax.TightInset;
 left   = max([0.04 ti(1)]);
 bottom = ti(2);
 ax_width = outerpos(3) - left - max([0.03 ti(3)]);
-ax_height = outerpos(4) - bottom - ti(4);
+ax_height = outerpos(4) - bottom - 0.015;
 
 % update axes position
 ax.Position = [left bottom ax_width ax_height];
