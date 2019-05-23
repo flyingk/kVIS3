@@ -117,6 +117,7 @@ for i = 1:size(plotDef, 1)
         clear p labelstr mm ma
         
         hh(pltindex) = uipanel('Parent', columnIDX(plotDef{i,Col}), 'Backgroundcolor', [0.3,0.4,0.58]);
+        hh(pltindex).Tag = 'timeplot';
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
     else
         % continue in current axes
