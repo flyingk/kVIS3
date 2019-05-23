@@ -76,15 +76,15 @@ fds.aircraftData = struct( ...
 fds.testInfo = struct( ...
    'date',              '', ... Test date
    'startTime',         '', ... UTC time of test start
-   'stopTime',          '', ... UTC time of test end
    'description',       '', ... Short description of data content
    'pilot',             '', ... Pilot name
    'location',          '', ... Airfield designation
+   'airfieldElevation', '', ... Airfield elevation above MSL [m]
    'weather',           '', ... Local weather description string
    'windDir',           '', ... Wind direction [deg]
    'windSpeed',         '', ... Wind speed [m/s]
    'ambientPressure',   '', ... Local ambient pressure [Pa]
-   'ambientTemperature','', ... Local ambient temperature [K]
+   'ambientTemperature','', ... Local ambient temperature [C]
    'gravity',           ''  ... gravitational acceleration [m/s2]
 );
 
