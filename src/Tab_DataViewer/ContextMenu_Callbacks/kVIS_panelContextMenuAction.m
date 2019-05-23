@@ -45,7 +45,8 @@ switch hObject.Label
         
         hObject.Checked = 'on';
         
-        kVIS_dataViewerLinkTimeAxes(handles, 'x');
+        % this needs more work
+%         kVIS_dataViewerLinkTimeAxes(handles, 'x');
         
     case 'Delete panel'
         
