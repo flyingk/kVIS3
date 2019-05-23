@@ -111,6 +111,12 @@ if et.Value == 1
             'EdgeColor','r',...
             'Facecolor','r',...
             'FaceAlpha',0.2);
+        
+        % use context menu for labels
+        m = uicontextmenu();
+        uimenu('Parent', m, 'Label', sprintf('%s: %s', eventList(j).type, eventList(j).description), 'Enable', 'off');
+        
+        pp(j).UIContextMenu = m;
     end
     
     handles.uiTabDataViewer.showEvents = pp;
