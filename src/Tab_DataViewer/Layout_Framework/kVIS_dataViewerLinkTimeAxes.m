@@ -24,6 +24,10 @@ function kVIS_dataViewerLinkTimeAxes(handles, cmd)
 %
 l = findobj(handles.uiTabDataViewer.Divider, 'Type', 'uipanel', 'Tag', 'timeplot');
 
+if isempty(l)
+    return
+end
+
 for i = 1:size(l, 1)
     
     ax(i) = l(i).axesHandle;

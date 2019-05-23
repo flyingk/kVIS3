@@ -47,6 +47,22 @@ switch hObject.Label
         
         % this needs more work
 %         kVIS_dataViewerLinkTimeAxes(handles, 'x');
+
+    case 'Map plot'
+        
+        kVIS_dataViewerLinkTimeAxes(handles, 'off');
+        
+        panel.Tag = 'mapplot';
+        panel.linkPending = false;
+        panel.linkTo = [];
+        panel.linkFrom = [];
+        
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        
+        hObject.Checked = 'on';
+        
+        kVIS_createMap_Callback(hObject, []);
         
     case 'Delete panel'
         

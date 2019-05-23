@@ -36,7 +36,7 @@ h.CData = signal;
 caxis(h.Parent,'auto')
 
 
-title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 18)
+title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 14)
 
 end
 

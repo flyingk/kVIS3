@@ -44,7 +44,7 @@ elseif previousPanel == selectedPanel
     %
     return
     
-elseif ~strcmp(selectedPanel.Tag, 'timeplot')
+elseif strcmp(selectedPanel.Tag, 'fftplot')
     %
     % don't select special plots
     %

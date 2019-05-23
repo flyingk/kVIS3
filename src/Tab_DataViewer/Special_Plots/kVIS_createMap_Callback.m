@@ -25,10 +25,7 @@ function kVIS_createMap_Callback(hObject, ~)
 
 % Work out which locs to plot (only plot what's zoomed in on)
 handles = guidata(hObject);
-%
-% hide top axes
-%
-handles.uiTabDataViewer.Divider.Heights = [0 -1];
+
 
 fds = kVIS_getCurrentFds(hObject);
 
@@ -62,7 +59,8 @@ end
 %
 % create plot
 %
-axes_handle = handles.uiTabDataViewer.axesBot;
+targetPanel = kVIS_dataViewerGetActivePanel();
+axes_handle = targetPanel.axesHandle;
 cla(axes_handle, 'reset');
 hold on
 
@@ -102,7 +100,7 @@ plot_google_map( ...
     );
 
 % pretty run
-title(['Track color: ' chan_name], 'Color','w', 'FontSize', 18)
+title(['Track color: ' chan_name], 'Color','w', 'FontSize', 14)
 
 axes_handle.XColor = 'w';
 axes_handle.YColor = 'w';
@@ -113,4 +111,30 @@ view(axes_handle, 2)
 colormap jet
 cb = colorbar;
 cb.Color = 'w';
-return
+
+kVIS_mapResizeToContainer(axes_handle);
+
+end
+
+function kVIS_mapResizeToContainer(ax)
+%
+% Maximise axes usage of available container area
+%
+
+% restore property so that axes never get larger than container
+ax.ActivePositionProperty = 'outerposition';
+% max dimensions
+outerpos = [0 0 1 1];
+% required space for labels
+ti = ax.TightInset;
+
+% format axes - keep some minimum margins
+left   = max([0.04 ti(1)]);
+bottom = ti(2);
+ax_width = outerpos(3) - left - max([0.075 ti(3)]);
+ax_height = outerpos(4) - bottom - 0.05;
+
+% update axes position
+ax.Position = [left bottom ax_width ax_height];
+
+end
