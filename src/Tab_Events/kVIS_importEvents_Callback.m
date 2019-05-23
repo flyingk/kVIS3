@@ -31,7 +31,7 @@ eventList = BSP_eventImportFcn(hObject);
 
 fds.eventList = eventList;
 
-fds = kVIS_eventTimeSeries(hObject, fds);
+% fds = kVIS_eventTimeSeries(hObject, fds);
 
 kVIS_updateDataSet(hObject, fds, name)
 
