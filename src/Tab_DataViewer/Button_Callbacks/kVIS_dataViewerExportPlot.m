@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(hObject, ~)
+function kVIS_dataViewerExportPlot(~, ~)
 
 % handles=guidata(hObject);
 
@@ -36,6 +36,8 @@ if ~isempty(l.linkTo)
     
     ax.XColor = 'k';
     ax.YColor = 'k';
+    
+    ax.Parent.Tag = l.linkTo.Tag;
     
     kVIS_axesResizeToContainer(ax);
     
@@ -55,6 +57,8 @@ ax = findobj(h, 'Type', 'axes');
 
 ax.XColor = 'k';
 ax.YColor = 'k';
+
+ax.Parent.Tag = l.Tag;
 
 kVIS_axesResizeToContainer(ax)
 end
