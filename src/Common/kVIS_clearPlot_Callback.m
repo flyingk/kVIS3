@@ -22,14 +22,17 @@ function kVIS_clearPlot_Callback(hObject, ~)
 
 handles = guidata(hObject);
 %
-% clear and reset axes (removes y right if active)
+% clear and reset axes
 %
 l = kVIS_dataViewerGetActivePanel();
 cla(l.axesHandle, 'reset');
 
 kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
 kVIS_axesResizeToContainer(l.axesHandle);
-
+%
+% reset y axes limits
+%
+kVIS_setDataRange(hObject, 'YLim', []);
 %
 % reset button states
 %
