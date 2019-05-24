@@ -4,17 +4,17 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -31,6 +31,12 @@ switch hObject.Label
         panel.linkTo = [];
         panel.linkFrom = [];
         
+        % find the checked menu item
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        % check on for selection
+        hObject.Checked = 'on';
+        
     case 'Frequency plot'
         
         kVIS_dataViewerLinkTimeAxes(handles, 'off');
@@ -46,8 +52,8 @@ switch hObject.Label
         hObject.Checked = 'on';
         
         % this needs more work
-%         kVIS_dataViewerLinkTimeAxes(handles, 'x');
-
+        %         kVIS_dataViewerLinkTimeAxes(handles, 'x');
+        
     case 'Map plot'
         
         kVIS_dataViewerLinkTimeAxes(handles, 'off');
@@ -66,21 +72,7 @@ switch hObject.Label
         
     case 'Delete panel'
         
-        kVIS_dataViewerLinkTimeAxes(handles, 'off');
-        
-        % last plot in column
-        if size(handles.uiTabDataViewer.Divider(panel.gridLocation(2)).Contents,1) == 1
-            if panel.gridLocation(2) > 1
-                delete(handles.uiTabDataViewer.Divider(panel.gridLocation(2)))
-            else
-                errordlg('Can''t delete last plot in first column.')
-                return
-            end
-        else
-            delete(panel)
-        end
-        
-        kVIS_dataViewerLinkTimeAxes(handles, 'x');
+        kVIS_dataViewerDelElement(handles);
         
 end
 

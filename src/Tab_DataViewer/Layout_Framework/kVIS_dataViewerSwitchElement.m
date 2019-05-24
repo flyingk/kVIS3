@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerSelectFcn(selectedPanel, ~)
+function kVIS_dataViewerSwitchElement(selectedPanel, ~)
 % scenarios
 % - no previous selection: make current panel active
 % - previous selection exists:
