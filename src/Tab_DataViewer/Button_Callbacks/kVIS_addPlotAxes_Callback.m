@@ -22,16 +22,6 @@ function kVIS_addPlotAxes_Callback(hObject, ~)
 %
 % Add plot to selected column
 %
-handles = guidata(hObject);
-
-l = kVIS_dataViewerGetActivePanel();
-
-if isempty(l)
-    column = 1;
-else
-    column = l.gridLocation(2);
-end
-
-kVIS_dataViewerAddElement(handles, column)
+kVIS_dataViewerAddElement(hObject, [], []);
 end
 

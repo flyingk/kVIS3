@@ -25,28 +25,24 @@ if ~nargin
     kVIS3;
     return;
 end
-
+%
+% add button group
+%
 handles = kVIS_uiSetupDataViewerRibbonGroup(handles, handles.uiFramework.uiRibbonRight);
-
-handles.uiTabDataViewer.tabHandle = uitab(uiTabGroupLeft,'Title','Data Viewer');
-handles.uiFramework.listOfTabs = [handles.uiTabDataViewer.tabHandle];
+%
+% add tab, register handle and event fcn
+%
+handles.uiTabDataViewer.tabHandle     = uitab(uiTabGroupLeft,'Title','Data Viewer');
+handles.uiFramework.listOfTabs        = [handles.uiTabDataViewer.tabHandle];
 handles.uiFramework.listOfTabsPlotFcn = {@kVIS_dataViewerChannelListAction};
 %
 % horizontal box
 %
 handles.uiTabDataViewer.DividerH = uix.HBoxFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
 %
-% first column
-%
-handles.uiTabDataViewer.Divider = uix.VBoxFlex('Parent',handles.uiTabDataViewer.DividerH,'Spacing',2);
-%
 % plot style definitions
 %
 handles.uiTabDataViewer.plotStyles = data_viewer_options(handles.preferences);
-%
-% create first plot
-%
-kVIS_dataViewerAddElement(handles, 1);
 end
 
 function Style = data_viewer_options(preferences)

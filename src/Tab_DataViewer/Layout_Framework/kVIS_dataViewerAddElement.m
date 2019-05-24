@@ -18,7 +18,22 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerAddElement(handles, column)
+function kVIS_dataViewerAddElement(hObject, ~, newColumn)
+
+handles = guidata(hObject);
+
+l = kVIS_dataViewerGetActivePanel();
+
+if isempty(l)
+    % first column
+    column = 1;
+elseif ~isempty(newColumn)
+    % newly added column
+    column = newColumn;
+else
+    % same column as active panel
+    column = l.gridLocation(2);
+end
 
 %
 % add new panel as standard timeplot
@@ -38,7 +53,7 @@ kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
 % set panel properties
 %
 np.axesHandle = ax;
-np.gridLocation = [size(np.Parent,1), column];
+np.gridLocation = [0, column]; % row can change by deleting panel... WIP
 np.linkPending = false;
 
 %
