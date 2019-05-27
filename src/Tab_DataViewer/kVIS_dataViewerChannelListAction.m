@@ -87,7 +87,9 @@ if et.Value == 1
     hold(axes_handle, 'on');
     
     ylim = kVIS_getDataRange(hObject, 'YLim');
-    
+    if isnan(ylim)
+        ylim = axes_handle.YLim;
+    end
     
     fds = kVIS_getCurrentFds(hObject);
     
