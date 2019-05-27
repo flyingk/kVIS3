@@ -102,6 +102,12 @@ for i = 1:size(Ch, 1)
     
     % get channel data
     [yp(:,i), meta] = kVIS_fdsGetChannel(fds, Ch{i,6}, Ch{i,7});
+    
+    if ~isstruct(meta)
+        disp('invalid plot def for this dataset...')
+        continue
+    end
+    
     label = meta.name;
     unit = meta.unit;
 

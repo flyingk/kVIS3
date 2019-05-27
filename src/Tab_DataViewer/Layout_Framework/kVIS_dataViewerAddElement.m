@@ -55,6 +55,8 @@ kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
 np.axesHandle = ax;
 np.gridLocation = [0, column]; % row can change by deleting panel... WIP
 np.linkPending = false;
+np.xLim = kVIS_getDataRange(hObject,'XLim');
+np.yLim = kVIS_getDataRange(hObject,'YLim');
 
 %
 % make panel active
