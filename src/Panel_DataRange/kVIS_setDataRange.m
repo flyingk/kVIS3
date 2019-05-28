@@ -31,7 +31,7 @@ switch select
         
     case 'YLim'
         
-        if isempty(value)
+        if isempty(value) || any(isnan(value))
             h.uiDataRange.Ymin.String = 'auto';
             h.uiDataRange.Ymax.String = 'auto';
         else

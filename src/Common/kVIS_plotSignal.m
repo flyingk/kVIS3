@@ -99,11 +99,12 @@ end
 %     kVIS_dataRangeUpdate_Callback(hObject, [], 'YtLim');
 % end
 
-% ylim = kVIS_getDataRange(hObject, 'YLim')
-% if ~isnan(ylim)
+% keep plot limits if set to value
+ylim = kVIS_getDataRange(hObject, 'YLim');
+if ~any(isnan(ylim))
 %     kVIS_setDataRange(hObject, 'YLim', [plotMin plotMax]);
-%     kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim');
-% end
+    kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim');
+end
 
 %% labels
 xlabel(axes_handle, 'Time [sec]')
