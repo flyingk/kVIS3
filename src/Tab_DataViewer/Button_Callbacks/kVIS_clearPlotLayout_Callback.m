@@ -22,31 +22,13 @@ function kVIS_clearPlotLayout_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-%
-% delete listener objects for linked plots
-%
-% l = findobj('Tag', 'fftplot');
-% if ~isempty(l)
-%     delete(l.plotChangedListener);
-% end
+panels = findobj(handles.uiTabDataViewer.DividerH, 'Type', 'uipanel');
 
-%
-% remove all but first columns
-%
-e = handles.uiTabDataViewer.DividerH.Contents;
-
-delete(e(2:end))
+for i = 1:size(panels,1)
+    kVIS_dataViewerDelElement(handles, panels(i))
+end
 
 handles.uiTabDataViewer.Divider = handles.uiTabDataViewer.Divider(1);
-%
-% remove all but first panel in column one
-%
-e = handles.uiTabDataViewer.Divider.Contents;
-
-delete(e(2:end))
-
-e(1).Tag = 'timeplot';
-e(1).BackgroundColor = handles.preferences.uiBackgroundColour;
 
 guidata(hObject, handles);
 end

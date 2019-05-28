@@ -72,7 +72,7 @@ switch hObject.Label
         
     case 'Delete panel'
         
-        kVIS_dataViewerDelElement(handles);
+        kVIS_dataViewerDelElement(handles, []);
         
 end
 

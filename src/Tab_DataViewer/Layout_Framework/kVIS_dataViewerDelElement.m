@@ -18,13 +18,41 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerDelElement(handles)
+function kVIS_dataViewerDelElement(handles, panel)
 
-panel = kVIS_dataViewerGetActivePanel();
+if isempty(panel)
+    panel = kVIS_dataViewerGetActivePanel();
+end
 
+% remove time axes links
 kVIS_dataViewerLinkTimeAxes(handles, 'off');
 
-% last plot in column
+% delete listener (if exists)
+delete(panel.plotChangedListener);
+
+% if link target, break link
+if ~isempty(panel.linkFrom)
+    delete(panel.linkFrom.plotChangedListener);
+    panel.linkFrom.BackgroundColor = handles.preferences.uiBackgroundColour;
+    panel.linkFrom.linkTo = [];
+    panel.linkFrom = [];
+    
+end
+
+% if link source, remove link
+if ~isempty(panel.linkTo)
+    rm(handles, panel.linkTo);
+end
+
+rm(handles, panel);
+
+kVIS_dataViewerLinkTimeAxes(handles, 'x');
+end
+
+
+function rm(handles, panel)
+
+% last plot in column -> remove column
 if size(handles.uiTabDataViewer.Divider(panel.gridLocation(2)).Contents,1) == 1
     if panel.gridLocation(2) > 1
         delete(handles.uiTabDataViewer.Divider(panel.gridLocation(2)))
@@ -36,7 +64,4 @@ else
     delete(panel)
 end
 
-kVIS_dataViewerLinkTimeAxes(handles, 'x');
 end
-
-

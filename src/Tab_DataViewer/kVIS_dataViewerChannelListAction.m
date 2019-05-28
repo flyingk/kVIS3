@@ -25,6 +25,11 @@ function kVIS_dataViewerChannelListAction(hObject)
 %
 targetPanel = kVIS_dataViewerGetActivePanel();
 
+if isempty(targetPanel)
+    errordlg('No plot selected...')
+    return
+end
+
 %
 % update map plot
 %
