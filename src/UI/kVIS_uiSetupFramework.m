@@ -159,6 +159,7 @@ handles.uiFramework.zoomContextMenu = zoomContextMenu;
 %% set up pan functionality
 panHandle = pan(appWindow);
 
+panHandle.ActionPreCallback = @kVIS_prePan_Callback;
 panHandle.ActionPostCallback = @kVIS_postPan_Callback;
 handles.uiFramework.panHandle = panHandle;
 

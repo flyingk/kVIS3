@@ -18,9 +18,9 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_preZoom_Callback(~, ~)
+function kVIS_prePan_Callback(~, ~)
 %
-% save pre zoom axes limits into panel data structure for later
+% save pre pan axes limits into panel data structure for later
 % retrieval.
 %
 h = kVIS_dataViewerGetActivePanel;
