@@ -4,23 +4,31 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function [] = kVIS_dataRangeUpdate_Callback(hObject, ~, select)
 
-h = guidata(hObject);
+% h = guidata(hObject);
+
+targetPanel = kVIS_dataViewerGetActivePanel;
+
+if isempty(targetPanel)
+    return
+end
+
+targetAxes = targetPanel.axesHandle;
 
 switch select
     
@@ -33,11 +41,11 @@ switch select
             return
         end
         
-        h.uiTabDataViewer.axesBot.XLim = xlim;
-        
-    case 'YlLim'
+        targetAxes.XLim = xlim;
 
-        ylim = kVIS_getDataRange(hObject, 'YlLim');
+    case 'YLim'
+        
+        ylim = kVIS_getDataRange(hObject, 'YLim');
         
         if ylim(1) > ylim(2)
             errordlg('Vertical Limits must be increasing...')
@@ -46,7 +54,7 @@ switch select
         
         if isnan(ylim)
             % auto limits
-            h.uiTabDataViewer.axesBot.YLim = [-inf inf];
+            targetAxes.YLim = [-inf inf];
         else
             % as specified - replace 'auto' fields with inf
             if isnan(ylim(1))
@@ -55,23 +63,13 @@ switch select
                 ylim(2) = inf;
             end
             
-            h.uiTabDataViewer.axesBot.YLim = ylim;
+            targetAxes.YLim = ylim;
         end
         
-    case 'YrLim'
-        
-    case 'YtLim'
-        
-        ylim = kVIS_getDataRange(hObject, 'YtLim');
-        
-        if ylim(1) > ylim(2)
-            errordlg('Vertical Limits must be increasing...')
-            return
-        end
-        
-        h.uiTabDataViewer.axesTop.YLim = ylim;
         
 end
+
+targetPanel.plotChanged = randi(10000);
 
 end
 

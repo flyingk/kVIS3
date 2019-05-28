@@ -40,7 +40,7 @@ appWindow = figure( ...
 %
 % Assign the a name to appear in the window title.
 %
-set(appWindow,'name',['kVIS3 alpha build 008 - BSP: ' kVIS_Prefs.BSP_Info.Name ' build ' kVIS_Prefs.BSP_Info.Version]);
+set(appWindow,'name',['kVIS3 beta 001 - BSP: ' kVIS_Prefs.BSP_Info.Name ' build ' kVIS_Prefs.BSP_Info.Version]);
 
 %
 % get handle structure
@@ -66,7 +66,7 @@ uiRibbonDivider = uix.VBox('Parent',appWindow);
 
 uiRibbon = uix.HBox('Parent', uiRibbonDivider);
 
-uiMainHorizontalDivider = uix.HBoxFlex('Parent',uiRibbonDivider);
+uiMainHorizontalDivider = uix.HBoxFlex('Parent',uiRibbonDivider,'Spacing',2);
 
 uiRibbonDivider.Heights = [60 -1];
 
@@ -97,7 +97,7 @@ uiBoxRight.Heights = [-1 120];
 handles.uiFramework.uiRibbonLeft  = uix.CardPanel('Parent', uiRibbon);
 handles.uiFramework.uiRibbonRight = uix.CardPanel('Parent', uiRibbon);
 
-uiRibbon.Widths = [525 -1];
+uiRibbon.Widths = [600 -1];
 
 %
 % add default ribbon (file/plot options)
@@ -125,7 +125,7 @@ handles = kVIS_uiSetupTabExports(handles, handles.uiFramework.uiTabGroupRight);
 %% left hand tabs
 % built-in:
 handles = kVIS_uiSetupTabDataViewer(handles, handles.uiFramework.uiTabGroupLeft);
-handles = kVIS_uiSetupTabSigProc(handles, handles.uiFramework.uiTabGroupLeft);
+% handles = kVIS_uiSetupTabSigProc(handles, handles.uiFramework.uiTabGroupLeft);
 
 % BSP provided tabs
 for i = 1:size(kVIS_Prefs.BSP_Info.customTabs,1)
@@ -144,8 +144,7 @@ handles.uiFramework.zcmIN = uimenu(zoomContextMenu, 'Label', 'Zoom In', 'Checked
 handles.uiFramework.zcmOUT= uimenu(zoomContextMenu, 'Label', 'Zoom Out', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'out'});
 handles.uiFramework.zcmXY = uimenu(zoomContextMenu, 'Label', 'Unconstrained', 'Checked', 'on', 'Separator', 'on', 'Callback', {@kVIS_zoomMenu_Callback, 'xy'});
 handles.uiFramework.zcmX  = uimenu(zoomContextMenu, 'Label', 'Horizontal', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'x'});
-handles.uiFramework.zcmYL = uimenu(zoomContextMenu, 'Label', 'Vertical Left', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'yl'});
-% handles.uiFramework.zcmYR = uimenu(zoomContextMenu, 'Label', 'Vertical Right', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'yr'});
+handles.uiFramework.zcmY  = uimenu(zoomContextMenu, 'Label', 'Vertical', 'Checked', 'off', 'Callback', {@kVIS_zoomMenu_Callback, 'y'});
 
 zoomHandle = zoom(appWindow);
 
@@ -160,36 +159,34 @@ handles.uiFramework.zoomContextMenu = zoomContextMenu;
 %% set up pan functionality
 panHandle = pan(appWindow);
 
+panHandle.ActionPreCallback = @kVIS_prePan_Callback;
 panHandle.ActionPostCallback = @kVIS_postPan_Callback;
 handles.uiFramework.panHandle = panHandle;
 
 %% set default app/ui state
 
 %
-% Make the window visible.
-%
-set(appWindow,'visible','on');
-
-%
 % create plot toggle button fields
 %
 handles.uiFramework.holdToggle = 0;
 handles.uiFramework.gridToggle = 1;
+
 %
 % Save handles
 %
 guidata(appWindow, handles);
 
-%
-% Default data viewer axes (main axes left)
-%
-kVIS_dataViewerAxesSelect_Callback(appWindow, [], 0);
-%
-% Default sig proc plot style (linear)
-%
-kVIS_sigProcAxesSelect_Callback(appWindow, [], 0);
-
-% Select initial active tab
+% Select initially active tab
 handles.uiFramework.uiTabGroupLeft.SelectedTab = handles.uiTabDataViewer.tabHandle;
 handles.uiFramework.uiRibbonRight.Selection = 1;
+
+%
+% create first plot panel in data viewer
+%
+kVIS_addPlotColumn_Callback(appWindow, []);
+
+%
+% Make the window visible.
+%
+set(appWindow,'visible','on');
 end

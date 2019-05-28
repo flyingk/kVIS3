@@ -18,14 +18,10 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_postZoom_Callback(hObject, ~)
-
-h = kVIS_dataViewerGetActivePanel;
-
-% update data range fields with zoom results
-kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
-kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
-
-h.plotChanged = randi(10000);
+function kVIS_addPlotAxes_Callback(hObject, ~)
+%
+% Add plot to selected column
+%
+kVIS_dataViewerAddElement(hObject, [], []);
 end
 

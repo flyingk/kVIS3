@@ -4,28 +4,62 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_postZoom_Callback(hObject, ~)
+function kVIS_dataViewerExportPlot(~, ~)
 
-h = kVIS_dataViewerGetActivePanel;
+% handles=guidata(hObject);
 
-% update data range fields with zoom results
-kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
-kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
+l = kVIS_dataViewerGetActivePanel();
 
-h.plotChanged = randi(10000);
+if ~isempty(l.linkTo)
+    
+    f3=figure;
+    set(f3,'Color','w');
+    
+    
+    h = copyobj(allchild(l.linkTo), f3);
+    
+    ax = findobj(h, 'Type', 'axes');
+    
+    ax.XColor = 'k';
+    ax.YColor = 'k';
+    
+    ax.Parent.Tag = l.linkTo.Tag;
+    
+    kVIS_axesResizeToContainer(ax);
+    
+    f3p = f3.Position;
+    
+    movegui(f3, f3p(1:2) + [-100 0])
+    
+end
+
+f2=figure;
+set(f2,'Color','w');
+
+
+h = copyobj(allchild(l), f2);
+
+ax = findobj(h, 'Type', 'axes');
+
+ax.XColor = 'k';
+ax.YColor = 'k';
+
+ax.Parent.Tag = l.Tag;
+
+kVIS_axesResizeToContainer(ax)
 end
 

@@ -25,10 +25,7 @@ function kVIS_createMap_Callback(hObject, ~)
 
 % Work out which locs to plot (only plot what's zoomed in on)
 handles = guidata(hObject);
-%
-% hide top axes
-%
-handles.uiTabDataViewer.Divider.Heights = [0 -1];
+
 
 fds = kVIS_getCurrentFds(hObject);
 
@@ -62,7 +59,8 @@ end
 %
 % create plot
 %
-axes_handle = handles.uiTabDataViewer.axesBot;
+targetPanel = kVIS_dataViewerGetActivePanel();
+axes_handle = targetPanel.axesHandle;
 cla(axes_handle, 'reset');
 hold on
 
@@ -102,7 +100,7 @@ plot_google_map( ...
     );
 
 % pretty run
-title(['Track color: ' chan_name], 'Color','w', 'FontSize', 18)
+title(['Track color: ' chan_name], 'Color','w', 'FontSize', 14)
 
 axes_handle.XColor = 'w';
 axes_handle.YColor = 'w';
@@ -110,7 +108,10 @@ axes_handle.ZColor = 'w';
 
 view(axes_handle, 2)
 
-colormap jet
-cb = colorbar;
+colormap(axes_handle, 'jet')
+cb = colorbar(axes_handle,'Location','east');
 cb.Color = 'w';
-return
+
+kVIS_axesResizeToContainer(axes_handle);
+
+end

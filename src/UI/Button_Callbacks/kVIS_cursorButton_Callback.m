@@ -26,7 +26,9 @@ end
 
 if hObject.Value == 1
     hObject.CData = imread('icons8-target-36.png')-25;
-    datacursormode on
+    dcm = datacursormode(gcf);
+    dcm.Enable = 'on';
+    dcm.UpdateFcn = @kVIS_dataCursor_Callback;
         
     kVIS_zoomButton_Callback(findobj('Tag','DefaultRibbonGroupZoomToggle'), [], 1);
     kVIS_panButton_Callback(findobj('Tag','DefaultRibbonGroupPanToggle'), [], 1);

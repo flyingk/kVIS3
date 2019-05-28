@@ -18,14 +18,25 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_postZoom_Callback(hObject, ~)
+function kVIS_updateMap(hObject, h)
+%
+% update map track colouring with data from selected channel
+%
+[signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
 
-h = kVIS_dataViewerGetActivePanel;
+% get limits and prep data
+xlim = kVIS_getDataRange(hObject, 'XLim');
+locs = find(signalMeta.timeVec > xlim(1) & signalMeta.timeVec < xlim(2));
 
-% update data range fields with zoom results
-kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
-kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
+signal = kVIS_downSample(signal(locs), 5);
 
-h.plotChanged = randi(10000);
+% update plot
+h.CData = signal;
+
+caxis(h.Parent,'auto')
+
+
+title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 14)
+
 end
 

@@ -1,113 +1,1 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>FDS-File-format-V-1.0</title>
-  <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<p>The FDS ( Flight Data Structure ) file is a structure containing a cell array with the actual data, and some supporting fields that describe or ease the interpretation of the data:</p>
-<h2 id="list-of-fields">List of Fields:</h2>
-<h3 id="cell-array-fdata">Cell Array <code>fdata</code>:</h3>
-<p>Array holding data and associate information (labels, units, tree state) - Row content of the array defined by the fields of the structure <code>fdataRows</code>. - Each column of the cell array represents a (logical/functional) group of data channels. The composition of each group is defined by the BSP. - All groups must have a common time vector as the first channel, the BSP shall re-sample individual channels of a group to comply with this requirement. - Time vectors shall start from zero and should be provided relative to the <code>startTime</code> field in <code>testInfo</code>.</p>
-<h3 id="struct-fdatarows">Struct <code>fdataRows</code>:</h3>
-<p>Relates row number of the <code>fdata</code> cell array with an identifier. This avoids hard-coded addressing for compatibility with older files.</p>
-<pre><code>struct( ...
-    &#39;groupLabel&#39;        , 1, ... group name
-    &#39;varNames&#39;          , 2, ... list of channel names
-    &#39;varUnits&#39;          , 3, ... list of channel units
-    &#39;varFrames&#39;         , 4, ... reference frame of channel
-    &#39;varNamesDisp&#39;      , 5, ... display name of variable - the BSP may provide this separate field and it shall take precedence over the &#39;vars&#39; field entry for generating channel names.
-    &#39;varLabelsTeX&#39;      , 6, ... assembled TeX version channel label ([Label (or &#39;varNamesDisp&#39;, if available) Unit Frame])
-    &#39;data&#39;              , 7, ... channel data - group sample time vector as channel 1 (all channels in group have common time vector)
-    &#39;treeParent&#39;        , 8, ... group parent in tree
-    &#39;treeGroupExpanded&#39; , 9, ... group node expanded
-    &#39;treeGroupSelected&#39; ,10  ... group node selected
-);</code></pre>
-<h3 id="struct-fdataattributes">Struct <code>fdataAttributes</code>:</h3>
-<p>Store attributes of <code>fdata</code> for easy access without loading the potentially large cell array. All fields, except <code>nfiles</code>, are arrays of size <code>[nfiles]</code>.</p>
-<pre><code>struct( ...
-    &#39;nFiles&#39;    , {}, ... number of data groups in fdata
-    &#39;nChnls&#39;    , {}, ... number of channels for each group
-    &#39;nPoints&#39;   , {}, ... number of samples for each group
-    &#39;sampleRates&#39;, {}, ... sample rate for each group
-    &#39;startTimes&#39; , {}, ... start time value for each group, relative to the `startTime` field in `testInfo`
-    &#39;stopTimes&#39;  , {}  ... stop time value for each group, relative to the `startTime` field in `testInfo`
-);</code></pre>
-<h3 id="struct-eventlist">Struct <code>eventList</code>:</h3>
-<p>Store event data</p>
-<pre><code>struct( ...
-     &#39;type&#39;       , {}, ... event type (non-unique)
-     &#39;start&#39;      , {}, ... start time, relative to the `startTime` field in `testInfo`
-     &#39;end&#39;        , {}, ... end time, relative to the `startTime` field in `testInfo`
-     &#39;description&#39;, {}, ... optional description
-     &#39;plotDef&#39;    , {}  ... linked custom plot definition provided by the BSP
-);</code></pre>
-<h3 id="array-eventtypes">Array <code>eventTypes</code>:</h3>
-<p>List of event types - to be updated by BSP during import</p>
-<p>Should provide some generic types and an ‘unspecified’ default type.</p>
-<pre><code>eventTypes = {&#39;unspecified&#39;, &#39;armed&#39;};</code></pre>
-<h3 id="struct-aircaftdata">Struct <code>aircaftData</code>:</h3>
-<p>Store information about the aircraft (mass, inertias…)</p>
-<ul>
-<li>mass, inertia and CG at take-off. If variable, these need to be provided as data channels</li>
-<li>body axes frame: X forward, Y right, Z down</li>
-<li>may contain BSP specific fields (see Notes)</li>
-</ul>
-<pre><code>struct( ...
-   &#39;acIdentifier&#39;, {}, ... aircraft name/identifier
-   &#39;sRef&#39;, {}, ... Full aircraft coefficient reference area
-   &#39;cRef&#39;, {}, ... Full aircraft moment coefficient reference chord length
-   &#39;bRef&#39;, {}, ... Full aircraft moment coefficient reference span
-   &#39;mass&#39;, {}, ... Take off mass
-   &#39;ixx&#39;,  {}, ... Take off Inertia around X body axis
-   &#39;iyy&#39;,  {}, ... Take off Inertia around Y body axis
-   &#39;izz&#39;,  {}, ... Take off Inertia around Z body axis
-   &#39;ixz&#39;,  {}, ... Take off Inertia around XZ body axis
-   &#39;xCG&#39;,  {}, ... Take off CG location along X body axis
-   &#39;yCG&#39;,  {}, ... Take off CG location along Y body axis
-   &#39;zCG&#39;,  {}  ... Take off CG location along Z body axis
-);</code></pre>
-<h3 id="struct-testinfo">Struct <code>testInfo</code>:</h3>
-<p>Store information about the flight test (pilot, weather…)</p>
-<pre><code>struct( ...
-   &#39;date&#39;,              {}, ... Test date
-   &#39;startTime&#39;,         {}, ... UTC time of test start
-   &#39;stopTime&#39;,          {}, ... UTC time of test end
-   &#39;description&#39;,       {}, ... Short description of data content
-   &#39;pilot&#39;,             {}, ... Pilot name
-   &#39;location&#39;,          {}, ... Airfield designation
-   &#39;weather&#39;,           {}, ... Local weather description string
-   &#39;windDir&#39;,           {}, ... Wind direction [deg]
-   &#39;windSpeed&#39;,         {}, ... Wind speed [m/s]
-   &#39;ambientPressure&#39;,   {}, ... Local ambient pressure [Pa]
-   &#39;ambientTemperature&#39;,{} ... Local ambient temperature [K]
-   &#39;gravity&#39;,           {} ... Gravitational acceleration [m/s2]
-);</code></pre>
-<ul>
-<li>may contain BSP specific fields (see Notes)</li>
-</ul>
-<h3 id="other-fields">Other Fields:</h3>
-<ul>
-<li><p>double <code>timeOffset</code>: time axis offset for this dataset (relative to a Master set specified in the App)</p></li>
-<li><p>char <code>created[]</code>: time and date of fds struct creation</p></li>
-<li><p>char <code>boardSupportPackage[]</code>: identifier of data acquisition system, enables BSP specific functionalities</p></li>
-<li><p>float <code>fdsVersion</code>: version of FDS format definition</p></li>
-</ul>
-<h2 id="notes">Notes</h2>
-<ul>
-<li><p>FDS can contain BSP specific fields, as long as they do not interfere with this specification. No KSID baseline function may require a non standard FDS field. Access to BSP specific fields must only be done through a BSP function.</p></li>
-<li><p>Sensor location fields??</p></li>
-</ul>
-</body>
-</html>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">  <head>    <meta charset="utf-8" />    <meta name="generator" content="pandoc" />    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />    <title>FDS-File-format-V-1.0</title>    <style>      code{white-space: pre-wrap;}      span.smallcaps{font-variant: small-caps;}      span.underline{text-decoration: underline;}      div.column{display: inline-block; vertical-align: top; width: 50%;}  </style>    <!--[if lt IE 9]>    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>  <![endif]-->  </head>  <body>    <p>The FDS ( Flight Data Structure ) file is a structure containing a cell      array with the actual data, and some supporting fields that describe or      ease the interpretation of the data:</p>    <h2 id="list-of-fields">List of Fields:</h2>    <h3 id="cell-array-fdata">Cell Array <code>fdata</code>:</h3>    <p>Array holding data and associate information (labels, units, tree state)      - Row content of the array defined by the fields of the structure <code>fdataRows</code>.      - Each column of the cell array represents a (logical/functional) group of      data channels. The composition of each group is defined by the BSP. - All      groups must have a common time vector as the first channel, the BSP shall      re-sample individual channels of a group to comply with this requirement.      - Time vectors shall start from zero and should be provided relative to      the <code>startTime</code> field in <code>testInfo</code>.</p>    <h3 id="struct-fdatarows">Struct <code>fdataRows</code>:</h3>    <p>Relates row number of the <code>fdata</code> cell array with an      identifier. This avoids hard-coded addressing for compatibility with older      files.</p>    <pre><code>struct( ...    'groupLabel'        , 1, ... group name    'varNames'          , 2, ... list of channel names    'varUnits'          , 3, ... list of channel units    'varFrames'         , 4, ... reference frame of channel    'varNamesDisp'      , 5, ... display name of variable - the BSP may provide this separate field and it shall take precedence over the 'vars' field entry for generating channel names.    'varLabelsTeX'      , 6, ... assembled TeX version channel label ([Label (or 'varNamesDisp', if available) Unit Frame])    'data'              , 7, ... channel data - group sample time vector as channel 1 (all channels in group have common time vector)    'treeParent'        , 8, ... group parent in tree    'treeGroupExpanded' , 9, ... group node expanded    'treeGroupSelected' ,10  ... group node selected);</code></pre>    <h3 id="struct-fdataattributes">Struct <code>fdataAttributes</code>:</h3>    <p>Store attributes of <code>fdata</code> for easy access without loading      the potentially large cell array. All fields, except <code>nfiles</code>,      are arrays of size <code>[nfiles]</code>.</p>    <pre><code>struct( ...    'nFiles'    , {}, ... number of data groups in fdata    'nChnls'    , {}, ... number of channels for each group    'nPoints'   , {}, ... number of samples for each group    'sampleRates', {}, ... sample rate for each group    'startTimes' , {}, ... start time value for each group, relative to the `startTime` field in `testInfo`    'stopTimes'  , {}  ... stop time value for each group, relative to the `startTime` field in `testInfo`);</code></pre>    <h3 id="struct-eventlist">Struct <code>eventList</code>:</h3>    <p>Store event data</p>    <pre><code>struct( ...     'type'       , {}, ... event type (non-unique)     'start'      , {}, ... start time, relative to the `startTime` field in `testInfo`     'end'        , {}, ... end time, relative to the `startTime` field in `testInfo`     'description', {}, ... optional description     'plotDef'    , {}  ... linked custom plot definition provided by the BSP);</code></pre>    <h3 id="array-eventtypes">Array <code>eventTypes</code>:</h3>    <p>List of event types - to be updated by BSP during import</p>    <p>Should provide some generic types and an ‘unspecified’ default type.</p>    <pre><code>eventTypes = {'unspecified', 'armed'};</code></pre>    <h3 id="struct-aircaftdata">Struct <code>aircaftData</code>:</h3>    <p>Store information about the aircraft (mass, inertias…)</p>    <ul>      <li>mass, inertia and CG at take-off. If variable, these need to be        provided as data channels</li>      <li>body axes frame: X forward, Y right, Z down</li>      <li>may contain BSP specific fields (see Notes)</li>    </ul>    <pre><code>struct( ...   'acIdentifier', {}, ... aircraft name/identifier   'sRef', {}, ... Full aircraft coefficient reference area   'cRef', {}, ... Full aircraft moment coefficient reference chord length   'bRef', {}, ... Full aircraft moment coefficient reference span   'mass', {}, ... Take off mass   'ixx',  {}, ... Take off Inertia around X body axis   'iyy',  {}, ... Take off Inertia around Y body axis   'izz',  {}, ... Take off Inertia around Z body axis   'ixz',  {}, ... Take off Inertia around XZ body axis   'xCG',  {}, ... Take off CG location along X body axis   'yCG',  {}, ... Take off CG location along Y body axis   'zCG',  {}  ... Take off CG location along Z body axis);</code></pre>    <h3 id="struct-testinfo">Struct <code>testInfo</code>:</h3>    <p>Store information about the flight test (pilot, weather…)</p>    <pre><code>struct( ...   'date',              {}, ... Test date   'startTime',         {}, ... UTC time of test start   'description',       {}, ... Short description of data content   'pilot',             {}, ... Pilot name   'location',          {}, ... Airfield designation<br />   'airfieldElevation'  {}, ... Airfield elevation above MSL [m]<br />   'weather',           {}, ... Local weather description string   'windDir',           {}, ... Wind direction [deg]   'windSpeed',         {}, ... Wind speed [m/s]   'ambientPressure',   {}, ... Local ambient pressure [Pa]   'ambientTemperature' {}, ... Local ambient temperature [C]   'gravity'            {}, ... Gravitational acceleration [m/s2]);</code></pre><ul><li>may contain BSP specific fields (see Notes)</li></ul><h3 id="other-fields">Other Fields:</h3><ul><li><p>double <code>timeOffset</code>: time axis offset for this dataset (relative to a Master set specified in the App)</p></li><li><p>char <code>created[]</code>: time and date of fds struct creation</p></li><li><p>char <code>boardSupportPackage[]</code>: identifier of data acquisition system, enables BSP specific functionalities</p></li><li><p>float <code>fdsVersion</code>: version of FDS format definition</p></li></ul><h2 id="notes">Notes</h2><ul><li><p>FDS can contain BSP specific fields, as long as they do not interfere with this specification. No KSID baseline function may require a non standard FDS field. Access to BSP specific fields must only be done through a BSP function.</p></li><li><p>Sensor location fields??</p></li></ul></body></html>

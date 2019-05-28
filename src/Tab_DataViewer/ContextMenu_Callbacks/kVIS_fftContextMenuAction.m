@@ -18,29 +18,47 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_setDataRange(hObject, select, value)
+function kVIS_fftContextMenuAction(hObject, ~, ax)
 
-h = guidata(hObject);
-
-switch select
+switch hObject.Label
     
-    case 'XLim'
-        
-        h.uiDataRange.Xmin.String = num2str(value(1),'%.2f');
-        h.uiDataRange.Xmax.String = num2str(value(2),'%.2f');
-        
-    case 'YLim'
-        
-        if isempty(value) || any(isnan(value))
-            h.uiDataRange.Ymin.String = 'auto';
-            h.uiDataRange.Ymax.String = 'auto';
-        else
-            h.uiDataRange.Ymin.String = num2str(value(1),'%g');
-            h.uiDataRange.Ymax.String = num2str(value(2),'%g');
-        end
-end
+    case 'Force Update'
 
-guidata(hObject, h);
+        kVIS_fftUpdate([], []);
+    
+    case 'linear'
+        
+        ax.XScale = 'linear';
+        ax.YScale = 'linear';
+        
+    case 'log x'
+        
+        ax.XScale = 'log';
+        ax.YScale = 'linear';
+        
+            case 'log y'
+        
+        ax.XScale = 'linear';
+        ax.YScale = 'log';
+        
+    case 'loglog'
+        
+        ax.XScale = 'log';
+        ax.YScale = 'log';
+        
+    case 'Set Frequency Range'
+        
+        answ = inputdlg({'Min. Freq. [Hz]', 'Max. Freq. [Hz]'}, 'PSD Frequency Range', 1, {num2str(0.01), num2str(5)});
+        
+        if isempty(answ)
+            return
+        else
+            ax.UserData.fmin = str2double(answ(1));
+            ax.UserData.fmax = str2double(answ(2));
+            kVIS_fftUpdate([], []);
+        end
+        
+end
 
 end
 

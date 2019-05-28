@@ -18,25 +18,21 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_updateMap(hObject, h)
+function kVIS_prePan_Callback(~, ~)
 %
-% update map track colouring with data from selected channel
+% save pre pan axes limits into panel data structure for later
+% retrieval.
 %
-[signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+h = kVIS_dataViewerGetActivePanel;
 
-% get limits and prep data
-xlim = kVIS_getDataRange(hObject, 'XLim');
-locs = find(signalMeta.timeVec > xlim(1) & signalMeta.timeVec < xlim(2));
+selectedAxes = gca;
 
-signal = kVIS_downSample(signal(locs), 5);
+if h.axesHandle ~= selectedAxes
+    kVIS_dataViewerSwitchElement(selectedAxes.Parent, [])
+    h = kVIS_dataViewerGetActivePanel;
+end
 
-% update plot
-h.CData = signal;
-
-caxis(h.Parent,'auto')
-
-
-title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 18)
-
+h.xLimOld = h.axesHandle.XLim;
+h.yLimOld = h.axesHandle.YLim;
 end
 

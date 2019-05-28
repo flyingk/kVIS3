@@ -29,20 +29,10 @@ switch select
         value(1) = str2double(h.uiDataRange.Xmin.String);
         value(2) = str2double(h.uiDataRange.Xmax.String);
         
-    case 'YlLim'
+    case 'YLim'
         
-        value(1) = str2double(h.uiDataRange.YLmin.String);
-        value(2) = str2double(h.uiDataRange.YLmax.String);
-        
-    case 'YrLim'
-        
-        value(1) = str2double(h.uiDataRange.YRmin.String);
-        value(2) = str2double(h.uiDataRange.YRmax.String);
-        
-    case 'YtLim'
-        
-        value(1) = str2double(h.uiDataRange.YTmin.String);
-        value(2) = str2double(h.uiDataRange.YTmax.String);
+        value(1) = str2double(h.uiDataRange.Ymin.String);
+        value(2) = str2double(h.uiDataRange.Ymax.String);
         
 end
 

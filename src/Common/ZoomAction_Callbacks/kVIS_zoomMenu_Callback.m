@@ -46,7 +46,7 @@ switch select
         
         handles.uiFramework.zcmXY.Checked = 'on';
         handles.uiFramework.zcmX.Checked = 'off';
-        handles.uiFramework.zcmYL.Checked = 'off';
+        handles.uiFramework.zcmY.Checked = 'off';
         
         zoomHandle.Motion = 'both';
         
@@ -54,19 +54,17 @@ switch select
         
         handles.uiFramework.zcmXY.Checked = 'off';
         handles.uiFramework.zcmX.Checked = 'on';
-        handles.uiFramework.zcmYL.Checked = 'off';
+        handles.uiFramework.zcmY.Checked = 'off';
         
         zoomHandle.Motion = 'horizontal';
         
-    case 'yl'
+    case 'y'
         
         handles.uiFramework.zcmXY.Checked = 'off';
         handles.uiFramework.zcmX.Checked = 'off';
-        handles.uiFramework.zcmYL.Checked = 'on';
+        handles.uiFramework.zcmY.Checked = 'on';
         
         zoomHandle.Motion = 'vertical';
-        
-    case 'yr'
         
 end
 

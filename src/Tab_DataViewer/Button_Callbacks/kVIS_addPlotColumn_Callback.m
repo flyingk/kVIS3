@@ -18,14 +18,22 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_postZoom_Callback(hObject, ~)
+function kVIS_addPlotColumn_Callback(hObject, ~)
+%
+% add a column to the grid and create first panel
+%
+handles = guidata(hObject);
 
-h = kVIS_dataViewerGetActivePanel;
+% new column
+cols = handles.uiTabDataViewer.DividerH.Contents;
+nextCol = size(cols,1) + 1;
 
-% update data range fields with zoom results
-kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
-kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
+handles.uiTabDataViewer.Divider(nextCol) = uix.VBoxFlex('Parent',handles.uiTabDataViewer.DividerH,'Spacing',2);
 
-h.plotChanged = randi(10000);
+guidata(hObject, handles);
+
+% first panel
+kVIS_dataViewerAddElement(hObject, [], nextCol);
+
 end
 

@@ -20,15 +20,17 @@
 
 function kVIS_undoZoom_Callback(hObject, ~)
 %
-% restore axes limits from saved data in user data structure and update the
+% restore axes limits from saved data in panel structure and update the
 % plot
 %
-h = gca;
+h = kVIS_dataViewerGetActivePanel;
 
-kVIS_setDataRange(hObject, 'XLim', h.UserData.xLimOld)
+kVIS_setDataRange(hObject, 'XLim', h.xLimOld)
 kVIS_dataRangeUpdate_Callback(hObject, [], 'XLim')
 
-kVIS_setDataRange(hObject, 'YlLim', h.UserData.yLimOld)
-kVIS_dataRangeUpdate_Callback(hObject, [], 'YlLim')
+kVIS_setDataRange(hObject, 'YLim', h.yLimOld)
+kVIS_dataRangeUpdate_Callback(hObject, [], 'YLim')
+
+h.plotChanged = randi(10000);
 end
 

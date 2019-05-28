@@ -22,14 +22,17 @@ function kVIS_clearPlot_Callback(hObject, ~)
 
 handles = guidata(hObject);
 %
-% clear and reset axes (removes y right if active)
+% clear and reset axes
 %
-cla(handles.uiTabDataViewer.axesTop, 'reset');
-cla(handles.uiTabDataViewer.axesBot, 'reset');
+l = kVIS_dataViewerGetActivePanel();
+cla(l.axesHandle);
 
-% tab sig proc - move to tab fcn later
-cla(handles.uiTabSigProc.axesLeft, 'reset');
-cla(handles.uiTabSigProc.axesRight, 'reset');
+kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
+kVIS_axesResizeToContainer(l.axesHandle);
+%
+% reset y axes limits
+%
+kVIS_setDataRange(hObject, 'YLim', []);
 %
 % reset button states
 %
@@ -38,18 +41,10 @@ kVIS_zoomButton_Callback(findobj('Tag','DefaultRibbonGroupZoomToggle'), [], 1);
 kVIS_cursorButton_Callback(findobj('Tag','DefaultRibbonGroupCursorToggle'), [], 1);
 kVIS_panButton_Callback(findobj('Tag','DefaultRibbonGroupPanToggle'), [], 1);
 %
-% reset to default axes
-%
-kVIS_dataViewerAxesSelect_Callback(hObject, [], 0)
-%
 % update plot callbacks (get modified by map view...)
 %
 handles.uiFramework.zoomHandle.ActionPreCallback = @kVIS_preZoom_Callback;
 handles.uiFramework.zoomHandle.ActionPostCallback = @kVIS_postZoom_Callback;
 handles.uiFramework.panHandle.ActionPostCallback = @kVIS_postPan_Callback;
-%
-% restore top axes to default
-%
-handles.uiTabDataViewer.Divider.Heights = [60 -1];
 
 end

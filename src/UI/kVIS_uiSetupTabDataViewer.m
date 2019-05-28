@@ -25,35 +25,24 @@ if ~nargin
     kVIS3;
     return;
 end
-
+%
+% add button group
+%
 handles = kVIS_uiSetupDataViewerRibbonGroup(handles, handles.uiFramework.uiRibbonRight);
-
-handles.uiTabDataViewer.tabHandle = uitab(uiTabGroupLeft,'Title','Data Viewer');
-handles.uiFramework.listOfTabs = [handles.uiTabDataViewer.tabHandle];
-handles.uiFramework.listOfTabsPlotFcn = @kVIS_dataViewerChannelListAction;
-
-handles.uiTabDataViewer.Divider = uix.VBoxFlex('Parent',handles.uiTabDataViewer.tabHandle);
-
-tabDataViewerTop = uipanel('Parent',handles.uiTabDataViewer.Divider,'Backgroundcolor',handles.preferences.uiBackgroundColour);
-tabDataViewerBot = uipanel('Parent',handles.uiTabDataViewer.Divider,'Backgroundcolor',handles.preferences.uiBackgroundColour);
-
-handles.uiTabDataViewer.Divider.Heights = [60 -1];
-
-%% axes
-handles.uiTabDataViewer.axesTop = axes('Parent', tabDataViewerTop, 'Units','normalized', 'Position',[0.05 0.05 0.9 0.9]);
-handles.uiTabDataViewer.axesBot = axes('Parent', tabDataViewerBot, 'Units','normalized', 'Position',[0.05 0.06 0.9 0.9]);
-
-linkaxes([handles.uiTabDataViewer.axesTop, handles.uiTabDataViewer.axesBot], 'x');
-
+%
+% add tab, register handle and event fcn
+%
+handles.uiTabDataViewer.tabHandle     = uitab(uiTabGroupLeft,'Title','Data Viewer');
+handles.uiFramework.listOfTabs        = [handles.uiTabDataViewer.tabHandle];
+handles.uiFramework.listOfTabsPlotFcn = {@kVIS_dataViewerChannelListAction};
+%
+% horizontal box
+%
+handles.uiTabDataViewer.DividerH = uix.HBoxFlex('Parent',handles.uiTabDataViewer.tabHandle,'Spacing',2);
 %
 % plot style definitions
 %
-plotStyles = data_viewer_options(handles.preferences);
-handles.uiTabDataViewer.plotStyles = plotStyles;
-
-
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesTop, plotStyles.AxesT);
-kVIS_setGraphicsStyle(handles.uiTabDataViewer.axesBot, plotStyles.AxesB);
+handles.uiTabDataViewer.plotStyles = data_viewer_options(handles.preferences);
 end
 
 function Style = data_viewer_options(preferences)
@@ -76,7 +65,7 @@ Style.AxesT.YColor = 'w';
 Style.AxesT.GridColor = 'k';
 Style.AxesT.MinorGridColor = 'k';
 Style.AxesT.XMinorGrid  = 'on';
-Style.AxesT.YMinorGrid  = 'off';
+Style.AxesT.YMinorGrid  = 'on';
 Style.AxesT.XGrid  = 'on';
 Style.AxesT.YGrid  = 'on';
 
