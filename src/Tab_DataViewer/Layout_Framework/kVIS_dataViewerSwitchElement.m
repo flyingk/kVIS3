@@ -77,6 +77,11 @@ else
         
     else
         %
+        % save limits
+        %
+        previousPanel.xLim = kVIS_getDataRange(selectedPanel, 'XLim');
+        previousPanel.yLim = kVIS_getDataRange(selectedPanel, 'YLim');
+        %
         % set selected panel active, previous panel inactive
         %
         selectedPanel.HighlightColor = 'c';
