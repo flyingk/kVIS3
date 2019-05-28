@@ -93,7 +93,10 @@ if et.Value == 1
     
     ylim = kVIS_getDataRange(hObject, 'YLim');
     if isnan(ylim)
-        ylim = axes_handle.YLim;
+        current_lines = kVIS_findValidPlotLines(axes_handle);
+        
+        ylim(1) = min(arrayfun(@(x) x.UserData.yMin, current_lines));
+        ylim(2) = max(arrayfun(@(x) x.UserData.yMax, current_lines));
     end
     
     fds = kVIS_getCurrentFds(hObject);
