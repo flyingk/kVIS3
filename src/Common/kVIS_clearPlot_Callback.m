@@ -26,6 +26,7 @@ handles = guidata(hObject);
 %
 l = kVIS_dataViewerGetActivePanel();
 cla(l.axesHandle);
+delete(findobj(l, 'Type', 'legend'));
 
 kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
 kVIS_axesResizeToContainer(l.axesHandle);
