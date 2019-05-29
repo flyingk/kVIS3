@@ -86,7 +86,7 @@ eList(rowNew).plotDef='';
 
 fds.eventList = eList;
 
-fds = kVIS_eventTimeSeries(hObject, fds);
+% fds = kVIS_eventTimeSeries(hObject, fds);
 
 kVIS_updateDataSet(hObject, fds, name)
 end

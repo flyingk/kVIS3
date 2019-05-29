@@ -54,7 +54,7 @@ eList(startE).end = eList(stopE).end;
 %
 fds.eventList = eList;
 
-fds = kVIS_eventTimeSeries(hObject, fds);
+% fds = kVIS_eventTimeSeries(hObject, fds);
 
 kVIS_updateDataSet(hObject, fds, name)
 
