@@ -51,8 +51,19 @@ for I = 1 : size(fds.fdata, 2)
     %
     t = fds.fdata{fds.fdataRows.data, I}(:,1);
 
+    % start point - use first available sample if data is shorter
     in = find(t <= TimeRange(1), 1, 'last' );
+    
+    if isempty(in)
+        in = 1;
+    end
+    
+    % end point - use last available sample if data is shorter
     out= find(t >= TimeRange(2), 1, 'first');
+    
+    if isempty(out)
+        out = length(t);
+    end
     
     %
     % update data length
@@ -62,56 +73,59 @@ for I = 1 : size(fds.fdata, 2)
     fds.fdata{fds.fdataRows.data, I} = data(in:out,:);
 end
 
-kVIS_updateDataSet(hObject, fds, name)
+% edit event list to remove events outside new time range
+eList = fds.eventList;
 
-msgbox('Dataset trimming complete.')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%
-% update UI
-%
-% updateDataSet();
+EventID = [];
+for i = 1:length(eList)
+    
+    if eList(i).start < TimeRange(1) || eList(i).start > TimeRange(2)
+        EventID = [EventID; i];
+    end
 
 end
 
+if ~isempty(EventID)
+    fds.eventList = ev(EventID, eList);
+    msg='Dataset trimming complete. Event list was adjusted.';
+else
+    msg='Dataset trimming complete';
+end
+
+kVIS_updateDataSet(hObject, fds, name)
+
+msgbox(msg)
+
+end
+
+
+function eList = ev(EventID, eList)
+
+% need to delete later event first
+EventID = flipud(EventID);
+
+%
+% remove entries from list
+%
+for j = 1:size(EventID,1)
+    
+    % first event
+    if EventID(j) == 1
+        
+        eList = eList(2:end);
+    
+    % last event
+    elseif EventID(j) == length(eList)
+        
+        eList = eList(1:end-1);
+     
+    % in the middle
+    else
+        
+        eList = eList([1:EventID(j)-1, EventID(j)+1:end]);
+        
+    end
+    
+end
+
+end

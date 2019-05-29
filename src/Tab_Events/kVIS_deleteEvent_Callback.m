@@ -42,14 +42,17 @@ eList = fds.eventList;
 %
 for j = 1:size(EventID,1)
     
+    % first event
     if EventID(j) == 1
         
         eList = eList(2:end);
-        
+    
+    % last event
     elseif EventID(j) == size(eventList.Data, 1)
         
         eList = eList(1:end-1);
-        
+     
+    % in the middle
     else
         
         eList = eList([1:EventID(j)-1, EventID(j)+1:end]);
