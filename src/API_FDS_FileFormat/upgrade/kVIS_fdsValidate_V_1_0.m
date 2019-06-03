@@ -96,7 +96,6 @@ function kVIS_fdsValidate_V_1_0(fds)
     fields = {
        'date'
        'startTime'
-       'stopTime'
        'description'
        'pilot'
        'location'
