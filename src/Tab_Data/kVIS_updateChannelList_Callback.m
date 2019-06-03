@@ -96,12 +96,13 @@ varlist = {};
 %     warning('Too many var names/units loaded, probably means you''re running an out-of-date UAVmainframe')
 % end
 
+varlist = cell(fds.fdataAttributes.nChnls(fileNo), 1);
+
 for i=1:fds.fdataAttributes.nChnls(fileNo)
     
-    if isfloat(fds.fdata{fds.fdataRows.data, fileNo}(:,i))
-        if norm(fds.fdata{fds.fdataRows.data, fileNo}(:,i))~=0
-            vars = mrk_chnl(vars,i);
-        end
+    % mark non-zero channels
+    if any(fds.fdata{fds.fdataRows.data, fileNo}(:,i)) ~= 0
+        vars = mrk_chnl(vars,i);
     end
     
     %
@@ -110,33 +111,34 @@ for i=1:fds.fdataAttributes.nChnls(fileNo)
     if nameSelect == 0
         if isempty(char(frames(i)))
             if i < 10
-                varlist(end+1)=cellstr([num2str(i),'  ',char(vars(i)),' (',char(units(i)),')']);
+                varlist(i)=cellstr([num2str(i),'  ',char(vars(i)),' (',char(units(i)),')']);
             elseif i < 100
-                varlist(end+1)=cellstr([num2str(i),' ',char(vars(i)),' (',char(units(i)),')']);
+                varlist(i)=cellstr([num2str(i),' ',char(vars(i)),' (',char(units(i)),')']);
             else
-                varlist(end+1)=cellstr([num2str(i),'',char(vars(i)),' (',char(units(i)),')']);
+                varlist(i)=cellstr([num2str(i),'',char(vars(i)),' (',char(units(i)),')']);
             end
             
         else
             if i < 10
-                varlist(end+1)=cellstr([num2str(i),'  ',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
+                varlist(i)=cellstr([num2str(i),'  ',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
             elseif i < 100
-                varlist(end+1)=cellstr([num2str(i),' ',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
+                varlist(i)=cellstr([num2str(i),' ',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
             else
-                varlist(end+1)=cellstr([num2str(i),'',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
+                varlist(i)=cellstr([num2str(i),'',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
             end
         end
     else
-            if i < 10
-                varlist(end+1)=cellstr([num2str(i),'  ',char(vars(i))]);
-            elseif i < 100
-                varlist(end+1)=cellstr([num2str(i),' ',char(vars(i))]);
-            else
-                varlist(end+1)=cellstr([num2str(i),'',char(vars(i))]);
-            end
+        if i < 10
+            varlist(i)=cellstr([num2str(i),'  ',char(vars(i))]);
+        elseif i < 100
+            varlist(i)=cellstr([num2str(i),' ',char(vars(i))]);
+        else
+            varlist(i)=cellstr([num2str(i),'',char(vars(i))]);
+        end
         
     end
 end
+
 %
 %  Update the listbox.
 %
