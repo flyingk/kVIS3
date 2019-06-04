@@ -146,7 +146,7 @@ switch source.Label
             line.LineStyle = '-';
 %             line.Color = 'm';
             
-            line.DisplayName = [line.DisplayName '_Filt_(' answ{1} ' Hz)'];
+            line.DisplayName = [line.DisplayName '_Int(t)'];
                
         else
             % do nothing
