@@ -41,14 +41,122 @@ switch source.Label
             if ~isempty(answ)
                 line.Color = answ{1};
             end
-            line.LineWidth = 2.5;
+            line.LineWidth = 2.0;
             line.UserData.HighlightState = true;
+        end
+    %
+    % apply filter to line data
+    %
+    case 'Apply Filter' 
+        % get line data as column vector
+        y = line.YData';
+        fs = line.UserData.signalMeta.sampleRate;
+        
+        % ask for desired operation
+        answ = inputdlg({'Cut-off Frequency [Hz]:','Low/Highpass [0/1]:'},...
+            'Filter settings', 1, {'2','0'});
+        
+        if ~isempty(answ)
+            
+            % save state to restore
+            line.UserData.dataBackup = y';
+            line.UserData.nameBackup = line.DisplayName;
+            line.UserData.colorBackup = line.Color;
+            line.UserData.modState = true;
+   
+            %
+            % evaluate requested expression
+            %
+            res = fdfilt(y, str2double(answ(1)), 1/fs, str2double(answ(2)));
+            
+            %
+            % update line - change color and name to indicate modifcation
+            %
+            line.YData = res;
+            line.LineStyle = '-';
+%             line.Color = 'm';
+            
+            line.DisplayName = [line.DisplayName '_Filt_(' answ{1} ' Hz)'];
+               
+        else
+            % do nothing
+            return
         end
         
     %
+    % differentiate line data
+    %
+    case 'Differentiate' 
+        % get line data as column vector
+        y = line.YData';
+        fs = line.UserData.signalMeta.sampleRate;
+        
+        
+        % save state to restore
+        line.UserData.dataBackup = y';
+        line.UserData.nameBackup = line.DisplayName;
+        line.UserData.colorBackup = line.Color;
+        line.UserData.modState = true;
+        
+        %
+        % evaluate requested expression
+        %
+        res = deriv(y, 1/fs);
+        
+        %
+        % update line - change color and name to indicate modifcation
+        %
+        line.YData = res;
+        line.LineStyle = '-';
+        
+        line.DisplayName = [line.DisplayName '_dot'];   
+        
+    %
+    % integrate line data
+    %
+    case 'Integrate' 
+        % get line data as column vector
+        y = line.YData';
+        fs = line.UserData.signalMeta.sampleRate;
+        
+        % ask for desired operation
+        answ = inputdlg({'Initial Value:'},...
+            'Euler Integration', 1, {'0'});
+        
+        if ~isempty(answ)
+            
+            % save state to restore
+            line.UserData.dataBackup = y';
+            line.UserData.nameBackup = line.DisplayName;
+            line.UserData.colorBackup = line.Color;
+            line.UserData.modState = true;
+   
+            %
+            % evaluate requested expression
+            %
+            res = zeros(length(y),1);
+            res(1) = str2double(answ(1));
+            for j = 1:length(y)-1
+                res(j+1) = res(j) + y(j)*(1/fs); 
+            end
+            %
+            % update line - change color and name to indicate modifcation
+            %
+            line.YData = res;
+            line.LineStyle = '-';
+%             line.Color = 'm';
+            
+            line.DisplayName = [line.DisplayName '_Filt_(' answ{1} ' Hz)'];
+               
+        else
+            % do nothing
+            return
+        end
+         
+    %
     % apply a math operation to the line data
     %
-    case 'Modify'
+    case 'Apply Custom Operation'
         
         % get line data as column vector
         y = line.YData';
@@ -108,14 +216,23 @@ switch source.Label
             line.Color = line.UserData.colorBackup;
             line.UserData.modState = false;
         end
-        
+
+    %
+    % Export line to workspace
+    %
     case 'Export to workspace'
         
         y = line.YData;
         
-        answ = inputdlg('Variable name:')
+        answ = inputdlg('Variable name:');
         
         assignin('base', answ{1}, y)
+        
+    %
+    % Send line back in stack
+    %
+    case 'Send Back'
+        uistack(line, 'down');
         
     %
     % delete the line
