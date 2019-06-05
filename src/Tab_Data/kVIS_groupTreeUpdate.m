@@ -60,10 +60,12 @@ for idx = 1 : size(fdata, 2)
     n_vars = fds.fdataAttributes.nChnls(idx);
     smplRate = fds.fdataAttributes.sampleRates(idx);
     switch n_vars
+        case 0
+            tooltip = sprintf('%d Channels', n_vars);
         case 1
-            tooltip = sprintf('1 variable - Sample rate: %.1f Hz', smplRate);
+            tooltip = sprintf('1 Channel - Sample rate: %.1f Hz', smplRate);
         otherwise
-            tooltip = sprintf('%d variables - Sample rate: %.1f Hz', n_vars, smplRate);
+            tooltip = sprintf('%d Channels - Sample rate: %.1f Hz', n_vars, smplRate);
     end
     
     % Create the node.
