@@ -64,7 +64,7 @@ for k = 2 : numel(dataNames) - skipLast % first entry is time vector, last entry
     Path = Path(1:end-1);
     
     if isempty(Path)
-        Path = {'Misc_Channels'}; % put in default group
+        Path = {'Unsorted'}; % put in default group
     end
     
     % Find or create group
@@ -146,7 +146,7 @@ for k = 2 : numel(dataNames) - skipLast % first entry is time vector, last entry
     Path = Path(1:end-1);
     
     if isempty(Path)
-        Path = {'Misc_Channels'}; % put in default group
+        Path = {'Unsorted'}; % put in default group
     end
     
     for P = 1 : numel(Path)
