@@ -20,7 +20,7 @@
 
 function kVIS_fftUpdate(~, ~)
 
-% active panel
+% active time panel
 sourcePanel = kVIS_dataViewerGetActivePanel();
 % link target
 targetPanel = sourcePanel.linkTo;
@@ -30,11 +30,12 @@ if isempty(targetPanel)
     return
 end
 
+% plot axes
 ax = targetPanel.axesHandle;
 
-if ~isfield(ax.UserData, 'fmin')
-    ax.UserData.fmin = 0.01;
-    ax.UserData.fmax = 10;
+% has frequency range been set?
+if isempty(targetPanel.fftRange)
+    targetPanel.fftRange = [0.01 10];
 end
 
 lines = findobj(sourcePanel, 'Type', 'Line');
@@ -60,8 +61,8 @@ if ~isempty(lines)
         hold(ax, 'off');
     end
     
-    fmin = ax.UserData.fmin;
-    fmax = ax.UserData.fmax;
+    fmin = targetPanel.fftRange(1);
+    fmax = targetPanel.fftRange(2);
     
     for i=1:ll
         % generate psd - needs to be done one by one to account for

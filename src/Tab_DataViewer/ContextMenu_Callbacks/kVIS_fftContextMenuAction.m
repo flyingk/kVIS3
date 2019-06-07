@@ -53,8 +53,9 @@ switch hObject.Label
         if isempty(answ)
             return
         else
-            ax.UserData.fmin = str2double(answ(1));
-            ax.UserData.fmax = str2double(answ(2));
+            % set fft range in panel property
+            ax.Parent.fftRange(1) = str2double(answ(1));
+            ax.Parent.fftRange(2) = str2double(answ(2));
             kVIS_fftUpdate([], []);
         end
         

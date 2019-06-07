@@ -104,6 +104,7 @@ addprop(np, 'yLimOld');
 p0 = addprop(np, 'plotChanged');
 p0.SetObservable = true;
 addprop(np, 'plotChangedListener');
+addprop(np, 'fftRange');    % custom range for fft plot
 
 %
 % create panel context menu
