@@ -2,6 +2,8 @@
 
 ## Management and visualisation of time sampled experimental data with emphasis on flight test data
 
+![kVIS UI](./docs/img/1.jpeg "kVIS UserInterface")
+
 *kVIS3 is released under the GPL V3 license.*
 
 Inspired by the SIDPAC GUI by E.A. Morelli.
