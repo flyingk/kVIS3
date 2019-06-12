@@ -1,6 +1,6 @@
 # kVIS3 -- Kai's Data visualisation and manipulation tool (3rd edition)
 
-## Management and visualisation of time sampled experimental data with emphasis on flight test data
+## Management and visualisation of time sampled experimental data with emphasis on flight test data in Matlab
 
 ![kVIS UI](./docs/img/1.jpeg "kVIS UserInterface")
 
