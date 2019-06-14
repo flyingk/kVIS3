@@ -76,7 +76,7 @@ switch source.Label
             line.LineStyle = '-';
 %             line.Color = 'm';
             
-            line.DisplayName = [line.DisplayName '_Filt_(' answ{1} ' Hz)'];
+            line.DisplayName = [line.DisplayName ' Filt (' answ{1} ' Hz)'];
                
         else
             % do nothing
@@ -109,7 +109,7 @@ switch source.Label
         line.YData = res;
         line.LineStyle = '-';
         
-        line.DisplayName = [line.DisplayName '_dot'];   
+        line.DisplayName = [line.DisplayName ' dot'];   
         
     %
     % integrate line data
@@ -146,7 +146,7 @@ switch source.Label
             line.LineStyle = '-';
 %             line.Color = 'm';
             
-            line.DisplayName = [line.DisplayName '_Int(t)'];
+            line.DisplayName = [line.DisplayName ' Int(t)'];
                
         else
             % do nothing
@@ -197,7 +197,7 @@ switch source.Label
             line.LineStyle = '-';
 %             line.Color = 'm';
             
-            line.DisplayName = [line.DisplayName '_MOD_(' answ{1} ')'];
+            line.DisplayName = [line.DisplayName ' MOD (' answ{1} ')'];
                
         else
             % do nothing
