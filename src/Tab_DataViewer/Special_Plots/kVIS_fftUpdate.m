@@ -33,9 +33,10 @@ end
 % plot axes
 ax = targetPanel.axesHandle;
 
-% has frequency range been set?
+% has frequency range been set? New panel?
 if isempty(targetPanel.fftRange)
     targetPanel.fftRange = [0.01 10];
+    ax.YLim = [-inf inf];
 end
 
 lines = findobj(sourcePanel, 'Type', 'Line');
@@ -43,13 +44,15 @@ lines = findobj(sourcePanel, 'Type', 'Line');
 % generate psd
 if ~isempty(lines)
     
+    targetPanel.fftYLim = ax.YLim;
+    
     % clear plot
     cla(ax);
     
     % get selected range
     xRange = kVIS_getDataRange(gcf, 'XLim');
         
-    % save axes style
+    % save axes style (lin/log)
     xScale = ax.XScale;
     yScale = ax.YScale;
     
@@ -92,6 +95,7 @@ if ~isempty(lines)
     ax.UIContextMenu = kVIS_createFFTContextMenu(ax);
     ax.XScale = xScale;
     ax.YScale = yScale;
+    ax.YLim = targetPanel.fftYLim;
     
     xlabel(ax, 'Frequency [Hz]');
     ylabel(ax, 'Power Spectral Density (PSD)');
@@ -147,6 +151,11 @@ uimenu( ...
 uimenu( ...
     'Parent', m, ...
     'Label', 'Set Frequency Range', ...
+    'Callback', {@kVIS_fftContextMenuAction, ax} ...
+    );
+uimenu( ...
+    'Parent', m, ...
+    'Label', 'Reset Y Limit', ...
     'Callback', {@kVIS_fftContextMenuAction, ax} ...
     );
 
