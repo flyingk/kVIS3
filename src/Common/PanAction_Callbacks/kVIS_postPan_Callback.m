@@ -26,6 +26,10 @@ h = kVIS_dataViewerGetActivePanel;
 kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
 kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
 
-h.plotChanged = randi(10000);
+% indicate timeplot pan to update linked special plots
+ax = gca;
+if strcmp(ax.Parent.Tag, 'timeplot')
+    h.plotChanged = randi(10000);
+end
 end
 
