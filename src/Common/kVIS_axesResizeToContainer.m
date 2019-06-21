@@ -40,7 +40,7 @@ if strcmp(pt, 'timeplot') || strcmp(pt, 'fftplot')
     left   = max([0.04 ti(1)]);
     bottom = ti(2);
     ax_width = outerpos(3) - left - max([0.03 ti(3)]);
-    ax_height = outerpos(4) - bottom - 0.015;
+    ax_height = outerpos(4) - bottom - max([0.015 ti(4)]);
     
 elseif strcmp(pt, 'mapplot')
     
