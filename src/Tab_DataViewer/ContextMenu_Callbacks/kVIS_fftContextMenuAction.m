@@ -59,8 +59,9 @@ switch hObject.Label
             kVIS_fftUpdate([], []);
         end
         
-    case 'Reset Y Limit'
+    case 'Reset Limits'
         
+        ax.XLim = [-inf inf];
         ax.YLim = [-inf inf];
         
 end
