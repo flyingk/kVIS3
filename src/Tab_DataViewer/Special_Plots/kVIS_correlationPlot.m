@@ -75,7 +75,7 @@ if ll >= 2
         locs = find(timeVec >= xRange(1) & timeVec <= xRange(2));
         signal  = signal(locs);
         
-        plot(ax, signal0, signal, 'Color', colour)
+        plot(ax, signal0, signal, 'Color', colour, 'Linestyle','none','Marker','+')
         
     end
     
