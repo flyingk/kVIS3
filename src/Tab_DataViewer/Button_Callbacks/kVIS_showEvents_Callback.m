@@ -20,9 +20,12 @@
 
 function kVIS_showEvents_Callback(hObject, eventdata)
 
-handles = guidata(hObject);
 
-
+if hObject.Value == 0
+    hObject.CData = imread('show_events.png');
+else
+    hObject.CData = imread('show_events.png') - 30;
+end
 
 
 

@@ -45,6 +45,8 @@ if handles.uiTabExports.editExportDefBtn == 1
         system(cmdstr);
     end
     
+    kVIS_editExportDefBtn_Callback(findobj('Tag','editExportDefBtn'), [], 1)
+    
     return
 end
 

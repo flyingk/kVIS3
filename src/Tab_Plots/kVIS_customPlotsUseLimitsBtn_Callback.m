@@ -18,25 +18,18 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_exportsSnapshotsBtn_Callback(hObject, ~, reset)
+function kVIS_customPlotsUseLimitsBtn_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-if reset == 1
-    hObject.Value = 0;
-end
-
 if hObject.Value == 0
-    handles.uiTabExports.exportsSnapshotsBtn = 0;
-    hObject.CData = imread('icons8-target-36.png');
-    guidata(hObject, handles)
+    handles.uiTabPlots.editPlotDefBtn = 0;
+    hObject.CData = imread('use_limits.png');
 else
-    handles.uiTabExports.exportsSnapshotsBtn = 1;
-    hObject.CData = imread('icons8-target-36.png') - 30;
-    guidata(hObject, handles)
-    kVIS_exportsUseLimitsBtn_Callback(findobj('Tag','exportsUseLimitsBtn'), [], 1)
-    kVIS_editExportDefBtn_Callback(findobj('Tag','editExportDefBtn'), [], 1)
+    handles.uiTabPlots.editPlotDefBtn = 1;
+     hObject.CData = imread('use_limits.png') - 30;
 end
 
+guidata(hObject, handles)
 end
 

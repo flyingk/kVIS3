@@ -45,6 +45,8 @@ if isempty(plotName)
             system(cmdstr);
         end
         
+        kVIS_editExportDefBtn_Callback(findobj('Tag','editPlotDefBtn'), [], 1)
+        
         return
     end
 end
