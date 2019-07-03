@@ -27,7 +27,7 @@ if reset == 1
 end
 
 if hObject.Value == 1
-    hObject.CData = imread('icons8-search-36.png')-25;
+    hObject.CData = imread('icons8-search-36_p.png')-10;
     handles.uiFramework.zoomHandle.Enable = 'on';
         
     kVIS_panButton_Callback(findobj('Tag','DefaultRibbonGroupPanToggle'), [], 1);

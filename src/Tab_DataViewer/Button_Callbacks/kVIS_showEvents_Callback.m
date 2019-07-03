@@ -24,7 +24,7 @@ function kVIS_showEvents_Callback(hObject, eventdata)
 if hObject.Value == 0
     hObject.CData = imread('show_events.png');
 else
-    hObject.CData = imread('show_events.png') - 30;
+    hObject.CData = imread('show_events_p.png')-10;
 end
 
 

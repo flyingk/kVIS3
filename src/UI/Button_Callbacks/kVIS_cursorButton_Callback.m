@@ -25,7 +25,7 @@ if reset == 1
 end
 
 if hObject.Value == 1
-    hObject.CData = imread('icons8-target-36.png')-25;
+    hObject.CData = imread('icons8-target-36_p.png')-10;
     dcm = datacursormode(gcf);
     dcm.Enable = 'on';
     dcm.UpdateFcn = @kVIS_dataCursor_Callback;

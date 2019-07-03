@@ -27,7 +27,7 @@ if hObject.Value == 0
     hObject.CData = imread('icons8-edit-36.png');
 else
     handles.uiTabPlots.editPlotDefBtn = 1;
-     hObject.CData = imread('icons8-edit-36.png') - 30;
+     hObject.CData = imread('icons8-edit-36_p.png') - 10;
 end
 
 guidata(hObject, handles)

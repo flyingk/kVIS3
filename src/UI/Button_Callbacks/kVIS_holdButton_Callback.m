@@ -27,7 +27,7 @@ if reset == 1
 end
 
 if hObject.Value == 1
-    hObject.CData = imread('icon_hold.png')-25;
+    hObject.CData = imread('icon_hold_p.png')-10;
     handles.uiFramework.holdToggle = 1;
 elseif hObject.Value == 0
     hObject.CData = imread('icon_hold.png');

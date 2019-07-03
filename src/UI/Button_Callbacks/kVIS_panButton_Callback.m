@@ -25,7 +25,7 @@ if reset == 1
 end
 
 if hObject.Value == 1
-    hObject.CData = imread('icons8-four-fingers-36.png')-25;
+    hObject.CData = imread('icons8-four-fingers-36_p.png')-10;
     pan on
     
     kVIS_zoomButton_Callback(findobj('Tag','DefaultRibbonGroupZoomToggle'), [], 1);

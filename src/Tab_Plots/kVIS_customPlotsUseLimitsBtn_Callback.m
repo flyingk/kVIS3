@@ -27,7 +27,7 @@ if hObject.Value == 0
     hObject.CData = imread('use_limits.png');
 else
     handles.uiTabPlots.editPlotDefBtn = 1;
-     hObject.CData = imread('use_limits.png') - 30;
+     hObject.CData = imread('use_limits_p.png') - 10;
 end
 
 guidata(hObject, handles)

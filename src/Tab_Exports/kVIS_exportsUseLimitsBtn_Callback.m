@@ -32,7 +32,7 @@ if hObject.Value == 0
     guidata(hObject, handles)
 else
     handles.uiTabExports.exportsUseLimitsBtn = 1;
-    hObject.CData = imread('use_limits.png') - 30;
+    hObject.CData = imread('use_limits_p.png') - 10;
     guidata(hObject, handles)
     kVIS_exportsSnapshotsBtn_Callback(findobj('Tag','exportsSnapshotsBtn'), [], 1)
     kVIS_editExportDefBtn_Callback(findobj('Tag','editExportDefBtn'), [], 1)
