@@ -44,7 +44,7 @@ elseif previousPanel == selectedPanel
     %
     return
     
-elseif strcmp(selectedPanel.Tag, 'fftplot')
+elseif strcmp(selectedPanel.Tag, 'fftplot') || strcmp(selectedPanel.Tag, 'corrplot')
     %
     % don't select special plots
     %
@@ -60,11 +60,6 @@ else
         selectedPanel.linkTo = previousPanel;
         previousPanel.linkPending = false;
         
-        % install listener on linked timeplot
-        % save listener handle in link target
-        previousPanel.plotChangedListener = addlistener(selectedPanel,...
-            'plotChanged','PostSet',@kVIS_fftUpdate);
-        
         % indicate link
         rn = 1;%rand;
         selectedPanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
@@ -73,7 +68,22 @@ else
         previousPanel.HighlightColor = handles.preferences.uiBackgroundColour;
         selectedPanel.HighlightColor = 'c';
         
-        kVIS_fftUpdate([],[])
+        % install listener on linked timeplot
+        if strcmp(previousPanel.Tag, 'fftplot')
+            % save listener handle in link target
+            previousPanel.plotChangedListener = addlistener(selectedPanel,...
+                'plotChanged','PostSet',@kVIS_fftUpdate);
+            
+            kVIS_fftUpdate([],[])
+            
+        elseif strcmp(previousPanel.Tag, 'corrplot')
+            
+            previousPanel.plotChangedListener = addlistener(selectedPanel,...
+                'plotChanged','PostSet',@kVIS_correlationPlot);
+            
+            kVIS_correlationPlot([],[])
+            
+        end
         
     else
         %

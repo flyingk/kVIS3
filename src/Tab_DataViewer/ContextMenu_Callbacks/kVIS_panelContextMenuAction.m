@@ -70,6 +70,20 @@ switch hObject.Label
         
         kVIS_createMap_Callback(hObject, []);
         
+    case 'Correlation plot'
+        
+        kVIS_dataViewerLinkTimeAxes(handles, 'off');
+        
+        panel.Tag = 'corrplot';
+        panel.linkPending = true;
+        panel.linkTo = [];
+        panel.linkFrom = [];
+        
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        
+        hObject.Checked = 'on';
+        
     case 'Delete panel'
         
         kVIS_dataViewerDelElement(handles, []);

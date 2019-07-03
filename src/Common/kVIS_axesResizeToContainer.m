@@ -34,7 +34,7 @@ ti = ax.TightInset;
 % panel type
 pt = ax.Parent.Tag;
 
-if strcmp(pt, 'timeplot') || strcmp(pt, 'fftplot')
+if strcmp(pt, 'timeplot') || strcmp(pt, 'fftplot') || strcmp(pt, 'corrplot')
     
     % format axes - keep some minimum margins
     left   = max([0.04 ti(1)]);
