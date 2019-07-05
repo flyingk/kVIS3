@@ -64,7 +64,7 @@ PlotDefinition = handles.uiTabPlots.CustomPlots.(BSP_Name).(plotName);
 
 
 % % plot full data length
-if isempty(plotName) && handles.uiTabPlots.plotsUseLimitsBtn.Value == 0
+if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0
     
     xlim = kVIS_fdsGetGlobalDataRange(hObject);
     

@@ -23,11 +23,9 @@ function kVIS_customPlotsUseLimitsBtn_Callback(hObject, ~)
 handles = guidata(hObject);
 
 if hObject.Value == 0
-    handles.uiTabPlots.editPlotDefBtn = 0;
     hObject.CData = imread('use_limits.png');
 else
-    handles.uiTabPlots.editPlotDefBtn = 1;
-     hObject.CData = imread('use_limits_p.png') - 10;
+    hObject.CData = imread('use_limits_p.png') - 10;
 end
 
 guidata(hObject, handles)
