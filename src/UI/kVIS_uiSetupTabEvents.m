@@ -144,10 +144,10 @@ if reset == 1
 end
 
 if hObject.Value == 1
-%     hObject.CData = imread('icon_hold.png')-25;
+    hObject.CData = imread('icons8-edit-36.png')-35;
     handles.uiTabEvents.eventEditToggle = 1;
 elseif hObject.Value == 0
-%     hObject.CData = imread('icon_hold.png');
+    hObject.CData = imread('icons8-edit-36.png');
     handles.uiTabEvents.eventEditToggle = 0;
 end
 
