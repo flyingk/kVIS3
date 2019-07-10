@@ -18,9 +18,13 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_editCustomPlotDefBtn_Callback(hObject, ~)
+function kVIS_editCustomPlotDefBtn_Callback(hObject, ~, reset)
 
 handles = guidata(hObject);
+
+if reset == 1
+    hObject.Value = 0;
+end
 
 if hObject.Value == 0
     handles.uiTabPlots.editPlotDefBtn = 0;
