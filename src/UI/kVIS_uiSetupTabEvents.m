@@ -59,7 +59,6 @@ uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
 
 uix.Empty('Parent', rbn_event_pane);
 
-uix.Empty('Parent', rbn_event_pane);
 
 uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
     'CData',imread('icons8-plus-36.png'),...
@@ -81,7 +80,7 @@ uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
     'TooltipString','Delete Event(s)',...
     'Callback',@kVIS_deleteEvent_Callback);
 
-
+% uix.Empty('Parent', rbn_event_pane);
 
 % uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
 %     'String','Plot E',...
@@ -89,6 +88,11 @@ uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
 %     'Enable', 'off');
 
 rbn_event_pane.ButtonSize = [50 50];
+
+uicontrol(rbn_event_pane, 'Style', 'pushbutton',...
+    'CData',imread('icons8-export-36.png'),...
+    'TooltipString','Export Event(s) as FDS file',...
+    'Callback',[],'Enable','off');
 
 %
 % event table
@@ -144,7 +148,7 @@ if reset == 1
 end
 
 if hObject.Value == 1
-    hObject.CData = imread('icons8-edit-36.png')-35;
+    hObject.CData = imread('icons8-edit-36_p.png')-20;
     handles.uiTabEvents.eventEditToggle = 1;
 elseif hObject.Value == 0
     hObject.CData = imread('icons8-edit-36.png');
