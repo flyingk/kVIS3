@@ -85,9 +85,20 @@ if ~isempty(lines)
             return
         end
         
-        [p, f] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
+        [p, f, ~] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
 
         plot(ax, f, p, 'Color', colour)
+
+%         L = length(timeVec);
+%         Fs= 100;
+%         
+%         n = 2^nextpow2(L);
+%         Y = fft(signal,n);
+%         
+%         f = Fs*(0:(n/2))/n;
+%         P = abs(Y/n);
+%         
+%         plot(ax, f, P(1:n/2+1))
         
     end
     
