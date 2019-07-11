@@ -85,21 +85,16 @@ if ~isempty(lines)
             return
         end
         
-        [p, f, ~] = spect(signal-mean(signal), timeVec, [fmin:0.01:fmax]*2*pi, 10, 0, 0);
+        w = [fmin:0.01:fmax]*2*pi;
+        
+        [p, f, Y] = spect(signal-mean(signal), timeVec, w, 10, 0, 0);
 
         plot(ax, f, p, 'Color', colour)
 
-%         L = length(timeVec);
-%         Fs= 100;
-%         
-%         n = 2^nextpow2(L);
-%         Y = fft(signal,n);
-%         
-%         f = Fs*(0:(n/2))/n;
-%         P = abs(Y/n);
-%         
-%         plot(ax, f, P(1:n/2+1))
-        
+%         [Y, f] = DFT(signal-mean(signal), timeVec, w, 10);
+% 
+%         plot(ax, f, abs(Y), 'Color', colour)
+
     end
     
     grid(ax, 'on');
@@ -107,7 +102,9 @@ if ~isempty(lines)
     ax.UIContextMenu = kVIS_createFFTContextMenu(ax);
     ax.XScale = xScale;
     ax.YScale = yScale;
+    
     ax.YLim = targetPanel.fftYLim;
+    ax.XLim = [fmin, fmax];
     
     xlabel(ax, 'Frequency [Hz]');
     ylabel(ax, 'Power Spectral Density (PSD)');
@@ -170,5 +167,157 @@ uimenu( ...
     'Label', 'Reset Limits', ...
     'Callback', {@kVIS_fftContextMenuAction, ax} ...
     );
+
+end
+
+
+function [Y, ff] = DFT(y,t,w,navg)
+%
+%  SPECT  Computes power spectral density estimates for measured time series.  
+%
+%  Usage: [P,f,Y,wdw] = spect(y,t,w,navg,ldw,lplot);
+%
+%  Description:
+%
+%    Estimates the one-sided auto spectral density 
+%    using data windowing in the time domain to reduce 
+%    leakage, and averaging in the frequency domain to 
+%    reduce random error.  The power spectral density 
+%    is computed using frequency vector f=w/(2*pi).  The 
+%    Fourier transform Y is computed on a fine frequency 
+%    grid with navg values inserted between each frequency 
+%    point specified in the w vector.  Input navg is 
+%    the number of averages used to generate each value 
+%    of P at the frequency points specified in the 
+%    w vector.  The variance of the power spectral  
+%    density estimates = (1/navg)*100 percent
+%    of the spectral density estimates.  Inputs w,  
+%    navg, and lplot are optional.  The defaults 
+%    give the same number of auto spectral density 
+%    estimates as time domain points, with variance equal to 
+%    10 percent of the estimated auto spectral densities, 
+%    with the plot included.  
+%
+%  Input:
+%    
+%        y = matrix of time series column vectors.
+%        t = time vector.
+%        w = frequency vector, rad/sec.
+%     navg = number of averages in the frequency domain.  
+%      ldw = data windowing flag:
+%            = 1 for data windowing (default).
+%            = 0 to omit the data windowing. 
+%    lplot = plot flag:
+%            = 1 for auto spectral density plot (default).
+%            = 0 to skip the plot. 
+%
+%  Output:
+%
+%    P    = auto spectral density.
+%    f    = vector of frequencies corresponding to the elements of P, Hz.
+%    Y    = discrete Fourier transform of y on a fine frequency grid.  
+%    wdw  = time-domain windowing function.
+%
+
+%
+%    Calls:
+%      cvec.m
+%      czts.m
+%
+%    Author:  Eugene A. Morelli
+%
+%    History:  
+%      28 Oct 2004 - Created and debugged, EAM.
+%      11 Nov 2004 - Modified inputs, EAM.
+%      03 Oct 2005 - Corrected frequency vector endpoint treatment, EAM.
+%
+%  Copyright (C) 2006  Eugene A. Morelli
+%
+%  This program carries no warranty, not even the implied 
+%  warranty of merchantability or fitness for a particular purpose.  
+%
+%  Please email bug reports or suggestions for improvements to:
+%
+%      e.a.morelli@nasa.gov
+%
+
+[npts,n]=size(y);
+%
+%  Time vector information used for frequency scaling.
+%
+t=cvec(t);
+npts=length(t);
+dt=(t(end)-t(1))/length(t);
+fs=1/dt;
+%
+%  Default inputs.
+%
+if nargin < 4
+  navg=10;
+end
+if any(size(navg)~=1)
+	error('Input navg must be a scalar.')
+end
+%
+%  Assemble the frequency vector.
+%
+if nargin < 3
+  df=1/(npts*dt);
+  f=[0:df:fs/2]';
+  w=2*pi*f;
+else
+  w=cvec(w);
+  f=w/(2*pi);
+  df=f(2)-f(1);
+end
+nf=length(f);
+f1=max(min(f),0);
+f2=min(max(f),fs/2);
+%
+%  Assemble the fine grid frequency vector.
+%
+%  Make the number of averages odd, 
+%  so that the original frequency grid 
+%  can be maintained easily. 
+%
+if mod(navg,2)==0
+  navg=navg+1;
+end
+dff=df/navg;
+ff=[f1:dff:f2]';
+%
+%  If lower limit of the frequency range 
+%  is not zero, extend the fine grid 
+%  frequency vector, to get full accuracy 
+%  at the endpoint frequency f1.  
+%
+if f1 > 0
+  ff=[f1-fix(navg/2)*dff:dff:f2]';
+end
+%
+%  Similarly for the upper limit of the 
+%  frequency range f2.  
+%
+if f2 < fs/2
+  ff=[min(ff):dff:f2+fix(navg/2)*dff]';
+end
+M=length(ff);
+
+wdw=ones(npts,1);
+%
+%  Complex step for the chirp z-transform.
+%
+jay=sqrt(-1);
+W=exp(-jay*2*pi*dff*dt);
+%
+%  Stay on the unit circle in the z-plane,
+%  and start at the initial frequency min(ff).  
+%
+A=1*exp(jay*2*pi*min(ff)*dt);
+%
+%  Compute the chirp z-transform 
+%  for the fine frequency grid.
+%
+Y=czts(y.*wdw(:,ones(1,n)),M,W,A);
 
 end
