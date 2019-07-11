@@ -85,7 +85,10 @@ fds.testInfo = struct( ...
    'windSpeed',         '', ... Wind speed [m/s]
    'ambientPressure',   '', ... Local ambient pressure [Pa]
    'ambientTemperature','', ... Local ambient temperature [C]
-   'gravity',           ''  ... gravitational acceleration [m/s2]
+   'gravity',           '', ... gravitational acceleration [m/s2]
+   'magRef N',          '', ... magnetic reference vector N component [Gauss]
+   'magRef E',          '', ... magnetic reference vector E component [Gauss]
+   'magRef D',          ''  ... magnetic reference vector D component [Gauss]
 );
 
 fds.BoardSupportPackage = 'generic';
