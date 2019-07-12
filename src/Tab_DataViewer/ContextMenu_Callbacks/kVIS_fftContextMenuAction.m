@@ -22,6 +22,30 @@ function kVIS_fftContextMenuAction(hObject, ~, ax)
 
 switch hObject.Label
     
+    case 'FFT plot'
+        
+        % find the checked menu item
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        % check on for selection
+        hObject.Checked = 'on';
+        
+        ax.Parent.fftType = 'FFT';
+        
+        kVIS_fftUpdate([], []);
+        
+    case 'PSD plot'
+        
+        % find the checked menu item
+        oldM = findobj(hObject.Parent, 'Checked', 'on');
+        oldM.Checked = 'off';
+        % check on for selection
+        hObject.Checked = 'on';
+        
+        ax.Parent.fftType = 'PSD';
+        
+        kVIS_fftUpdate([], []);
+    
     case 'Force Update'
 
         kVIS_fftUpdate([], []);

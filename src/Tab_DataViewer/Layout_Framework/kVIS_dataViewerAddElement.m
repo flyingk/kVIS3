@@ -104,6 +104,7 @@ addprop(np, 'yLimOld');
 p0 = addprop(np, 'plotChanged');
 p0.SetObservable = true;
 addprop(np, 'plotChangedListener');
+addprop(np, 'fftType');     % select frequency plot style
 addprop(np, 'fftRange');    % custom range for fft plot
 addprop(np, 'fftYLim');     % save ylim if set
 

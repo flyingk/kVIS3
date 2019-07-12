@@ -40,6 +40,10 @@ if isempty(targetPanel.fftRange)
     ax.YLim = [-inf inf];
 end
 
+if isempty(targetPanel.fftType)
+    targetPanel.fftType = 'PSD';
+end
+
 lines = findobj(sourcePanel, 'Type', 'Line');
 
 % generate psd
@@ -87,13 +91,19 @@ if ~isempty(lines)
         
         w = [fmin:0.01:fmax]*2*pi;
         
-        [p, f, Y] = spect(signal-mean(signal), timeVec, w, 10, 0, 0);
-
-        plot(ax, f, p, 'Color', colour)
-
-%         [Y, f] = DFT(signal-mean(signal), timeVec, w, 10);
-% 
-%         plot(ax, f, abs(Y), 'Color', colour)
+        if strcmp(targetPanel.fftType, 'PSD')
+                        
+            [p, f] = spect(signal-mean(signal), timeVec, w, 10, 0, 0);
+            
+            plot(ax, f, p, 'Color', colour)
+            
+        elseif strcmp(targetPanel.fftType, 'FFT')
+            
+            [Y, f] = DFT(signal-mean(signal), timeVec, w, 10);
+            
+            plot(ax, f, abs(Y), 'Color', colour)
+            
+        end
 
     end
     
@@ -107,7 +117,16 @@ if ~isempty(lines)
     ax.XLim = [fmin, fmax];
     
     xlabel(ax, 'Frequency [Hz]');
-    ylabel(ax, 'Power Spectral Density (PSD)');
+
+    if strcmp(targetPanel.fftType, 'PSD')
+        ylabel(ax, 'Power Spectral Density (PSD)');
+        oldM = findobj(ax.UIContextMenu, 'Text', 'PSD plot');
+        oldM.Checked = 'on';
+    elseif strcmp(targetPanel.fftType, 'FFT')
+        ylabel(ax, 'FFT Magnitude');   
+        oldM = findobj(ax.UIContextMenu, 'Text', 'FFT plot');
+        oldM.Checked = 'on';
+    end
     
     handles = guidata(gcf);
     kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
@@ -134,7 +153,18 @@ m = uicontextmenu();
 
 uimenu( ...
     'Parent', m, ...
+    'Label', 'FFT plot', ...
+    'Callback', {@kVIS_fftContextMenuAction, ax} ...
+    );
+uimenu( ...
+    'Parent', m, ...
+    'Label', 'PSD plot', ...
+    'Callback', {@kVIS_fftContextMenuAction, ax} ...
+    );
+uimenu( ...
+    'Parent', m, ...
     'Label', 'Force Update', ...
+    'Separator','on',...
     'Callback', {@kVIS_fftContextMenuAction, ax} ...
     );
 uimenu( ...
