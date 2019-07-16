@@ -59,7 +59,7 @@ end
 
 % Update Matlab path
 addpath(genpath('src'));
-addpath(genpath('Contributed'));
+addpath(genpath('contributed'));
 addpath(genpath(kVIS_prefs.bsp_dir));
 addpath(kVIS_prefs.sidpac_path);
 
