@@ -22,13 +22,10 @@ function [kVIS_prefs] = kVIS_preferences_template()
 % kVIS Preferences Template
 %
 % Rename to kVIS_preferences.m and save so it will be used. Add the
-% paths to the BSP (mandatory) and the SIDPAC toolbox (optional for full
-% functionality).
+% paths to the BSP (mandatory).
+%
 % kVIS_preferences.m itself is not tracked by GIT, since it may contain
 % sensitive information not intended to be publicly available.
-
-%% SIDPAC PATH
-kVIS_prefs.sidpac_path = '';
 
 %% External Board Support Packages (BSPs)
 kVIS_prefs.bsp_dir = '';

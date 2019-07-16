@@ -61,7 +61,6 @@ end
 addpath(genpath('src'));
 addpath(genpath('contributed'));
 addpath(genpath(kVIS_prefs.bsp_dir));
-addpath(kVIS_prefs.sidpac_path);
 
 % Read BSP info
 try
