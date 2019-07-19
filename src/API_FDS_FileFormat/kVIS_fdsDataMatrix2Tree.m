@@ -185,7 +185,7 @@ function [ fds ] = kVIS_fdsFillTreeLeafItemLocal(fds, group, var, data)
 findChannel = strcmp(fds.fdata{fds.fdataRows.varNames, group}, var);
 
 if sum(findChannel) > 1
-    disp('Duplicate channel name found in group. Skipping.')
+    disp(['Duplicate channel name found in group. Skipping. <' var '>'])
     return
 end
 
