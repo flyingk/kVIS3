@@ -91,6 +91,20 @@ fds.testInfo = struct( ...
    'magRef_D',          ''  ... magnetic reference vector D component [Gauss]
 );
 
+ftiSensorProperties = struct( ...
+   'identifier',        '', ... Sensor ID
+   'type',              '', ... Sensor ID
+   'description',       '', ... Sensor ID
+   'xCoord',            '', ... Sensor ID
+   'yCoord',            '', ... Sensor ID
+   'zCoord',            ''  ... Sensor ID
+);
+
+fds.ftiSensors = struct( ...
+    'airdata',    ftiSensorProperties, ...
+    'gpsAntenna', ftiSensorProperties  ...
+);
+
 fds.BoardSupportPackage = 'generic';
 
 fds.timeOffset = 0;
