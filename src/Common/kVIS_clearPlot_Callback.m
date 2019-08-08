@@ -25,8 +25,7 @@ handles = guidata(hObject);
 % clear and reset axes
 %
 l = kVIS_dataViewerGetActivePanel();
-cla(l.axesHandle);
-delete(findobj(l, 'Type', 'legend'));
+cla(l.axesHandle, 'reset');
 
 kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
 kVIS_axesResizeToContainer(l.axesHandle);
