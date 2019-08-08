@@ -86,7 +86,9 @@ switch hObject.Label
         
     case 'Delete panel'
         
-        kVIS_dataViewerDelElement(handles, []);
+        % current object to delete (required for linked plots)
+        selectedPanel = gco;
+        kVIS_dataViewerDelElement(handles, selectedPanel);
         
 end
 

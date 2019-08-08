@@ -24,7 +24,7 @@ handles = guidata(hObject);
 
 panels = findobj(handles.uiTabDataViewer.DividerH, 'Type', 'uipanel');
 
-for i = 1:size(panels,1)
+for i = 1:size(panels,1)-1
     kVIS_dataViewerDelElement(handles, panels(i))
 end
 
