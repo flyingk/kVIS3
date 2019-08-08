@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [] = kVIS_dataSetListUpdate(hObject, select, name)
+function [] = kVIS_dataSetListUpdate(hObject, select, name, ID)
 
 h = guidata(hObject);
 
@@ -37,6 +37,14 @@ switch select
         list.Value  = size(list.String, 1);
         
     case 'delete'
+        
+        if ID == 1
+            list.String = list.String(ID+1:end);
+        else
+            list.String = [list.String(1:ID-1) list.String(ID+1:end)];
+        end
+        
+        list.Value = 1;
         
     case 'clear'
         

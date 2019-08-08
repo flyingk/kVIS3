@@ -18,18 +18,18 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_menuCloseAllFiles_Callback(hObject, ~)
+function kVIS_menuCloseFiles_Callback(hObject, ~, opt)
 
-[~, name, noOfEntries, nameList] = kVIS_dataSetListState(hObject);
+[currentVal, CurrentName, noOfEntries, nameList] = kVIS_dataSetListState(hObject);
 
-if isempty(name)
+if isempty(CurrentName)
     disp('Nothing to clear. Abort.')
     return;
 end
 
 action = questdlg( ...
     sprintf('Delete flight data from the workspace?'), ...
-    sprintf('Close all flights'), ...
+    sprintf('Close flight(s)'), ...
     'Close and keep data', 'Close and delete data', 'Cancel', ...
     'Close and keep data' ...
     );
@@ -41,15 +41,29 @@ end
 % delete files in base workspace
 if strcmp(action, 'Close and delete data')
     
-    for k = 1 : noOfEntries
-        name = nameList{k};
+    if opt == 0
+        
+        for k = 1 : noOfEntries
+            name = nameList{k};
+            evalin('base', sprintf('clear %s;', name));
+        end
+               
+    elseif opt == 1
+        
+        name = CurrentName;
         evalin('base', sprintf('clear %s;', name));
+               
     end
     
 end
 
-% reset app
-kVIS_dataSetListUpdate(hObject, 'clear', []);
+if opt == 0
+    % reset app
+    kVIS_dataSetListUpdate(hObject, 'clear', [], []);
+    
+elseif opt == 1
+    kVIS_dataSetListUpdate(hObject, 'delete', [], currentVal);
+end
 
 kVIS_groupTreeUpdate(hObject, []);
 kVIS_updateChannelList_Callback(hObject, []);

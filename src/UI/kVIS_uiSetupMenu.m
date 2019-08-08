@@ -39,8 +39,8 @@ uimenu(m1,'Text','Open FDS file (.mat)','Callback',@kVIS_menuFileOpen_Callback);
 uimenu(m1,'Text','Save Current Dataset As','Callback',@kVIS_menuSaveCurrentFile_Callback);
 % uimenu(m1,'Text','Save Current As','Callback',@file_save_current_as_Callback);
 % uimenu(m1,'Text','Save All As','Callback',@file_save_all_Callback);
-% uimenu(m1,'Text','Close Current','Callback',@file_close_current_Callback);
-uimenu(m1,'Text','Close All Dataset(s)','Callback',@kVIS_menuCloseAllFiles_Callback);
+uimenu(m1,'Text','Close Current Dataset','Callback',{@kVIS_menuCloseFiles_Callback,1});
+uimenu(m1,'Text','Close All Dataset(s)','Callback',{@kVIS_menuCloseFiles_Callback,0});
 uimenu(m1,'Text','Quit','Callback',@kVIS_menuQuitButton_Callback);
 
 m2 = uimenu(handles.appWindow,'Text','Edit');
