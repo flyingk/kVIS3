@@ -25,6 +25,12 @@ handles = guidata(hObject);
 % clear and reset axes
 %
 l = kVIS_dataViewerGetActivePanel();
+
+if isempty(l)
+    errordlg('No panel selected...')
+    return
+end
+
 cla(l.axesHandle, 'reset');
 
 kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
