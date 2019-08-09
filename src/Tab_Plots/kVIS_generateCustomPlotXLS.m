@@ -126,9 +126,9 @@ for i = 1:size(plotDef, 1)
     
     oldpltindex = pltindex;
     
-    %% Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    % get data
+    % get y data
     yChanID = strsplit(plotDef{i, yChannel}, '/');
     [yp, yMeta] = kVIS_fdsGetChannel(fds, yChanID{1}, yChanID{2});
     
@@ -137,43 +137,6 @@ for i = 1:size(plotDef, 1)
         k=k-1;
         continue;
     end
-    
-    % apply scale factor
-    yp = yp * plotDef{i,ScaleFactor};
-    
-    % apply function to data
-    if ~isnan(plotDef{i,fcnHandle})
-        % check if operator is numeric constant or channel name
-        if ~isnumeric(plotDef{i, fcnChannel})
-            ccF = strsplit(plotDef{i, fcnChannel}, '/');
-            [fcnData] = kVIS_fdsGetChannel(fds, ccF{1}, ccF{2});
-            
-            if fcnData == -1
-                disp('Function channel not found... Ignoring.')
-                k=k-1;
-                continue;
-            end
-        else
-            fcnData = ones(length(yp),1) * plotDef{i, fcnChannel};
-        end
-        
-        try
-            yp = feval(plotDef{i,fcnHandle}, yp, fcnData);
-        catch
-            disp('Function handle invalid... Ignoring.')
-            k=k-1;
-            continue;
-        end
-    end
-    
-    % ensure data is not complex
-    if ~isreal(yp)
-        disp('complex magic :( converting to real...')
-        yp = real(yp);
-    end
-    
-        
-    %% X-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % get x vector (default: time)
     if ~isnan(plotDef{i,xChannel})
@@ -190,9 +153,42 @@ for i = 1:size(plotDef, 1)
         xMeta.texName = '$time$ $(sec)$';
     end
     
+    
     % constrain to xlim
     pts = find(yMeta.timeVec > lims(1) & yMeta.timeVec < lims(2));
+    xp = xp(pts);
+    yp = yp(pts);
     
+    %% Y-axis data proc / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % apply scale factor
+    yp = yp * plotDef{i,ScaleFactor};
+    
+    % apply function to data - fcnData content is given to function as
+    % string to be processed inside fcn.
+    if ~isnan(plotDef{i,fcnHandle})
+
+        try
+            [yp, xp2] = feval(plotDef{i,fcnHandle}, yp, fds, pts, plotDef{i,fcnChannel});
+            if ~isempty(xp2)
+                xp = xp2;
+                xMeta.texName = '$frequency$ $(Hz)$';
+            end
+        catch
+            disp('Function eval error... Ignoring.')
+            k=k-1;
+            continue;
+        end
+    else
+        xp2 = [];
+    end
+    
+    % ensure data is not complex
+    if ~isreal(yp)
+        disp('complex magic :( converting to real...')
+        yp = real(yp);
+    end
+        
     %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % axes style
@@ -216,11 +212,11 @@ for i = 1:size(plotDef, 1)
             col = ones(size(xp)); 
         end
         
-        p = scatter(ax(pltindex), xp(pts), yp(pts), 2, col(pts));
+        p = scatter(ax(pltindex), xp, yp, 2, col(pts));
         
     else
         
-        p = plot(ax(pltindex), xp(pts), yp(pts)); 
+        p = plot(ax(pltindex), xp, yp); 
         
         hold(ax(pltindex), 'on');
         p.LineWidth = 2.0;
@@ -281,7 +277,8 @@ for i = 1:size(plotDef, 1)
     
     grid(ax(pltindex), 'on');
     
-    if ~isnan(plotDef{i,xChannel})
+    % specific x vector - don't link
+    if any(~isnan(plotDef{i,xChannel})) || ~isempty(xp2)
         Style.Axes.Tag = 'noXaxislink';
     else
         Style.Axes.Tag = 'Xaxislink';
