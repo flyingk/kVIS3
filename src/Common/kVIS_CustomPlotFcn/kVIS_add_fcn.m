@@ -1,4 +1,4 @@
-function [y, x] = add_fcn(data, varargin)
+function [y, x] = kVIS_add_fcn(data, varargin)
 
 x = [];
 

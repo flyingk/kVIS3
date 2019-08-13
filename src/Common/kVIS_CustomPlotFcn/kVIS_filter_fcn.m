@@ -1,4 +1,4 @@
-function [y,x] = filter_fcn(data, varargin)
+function [y,x] = kVIS_filter_fcn(data, varargin)
 
 x = [];
 

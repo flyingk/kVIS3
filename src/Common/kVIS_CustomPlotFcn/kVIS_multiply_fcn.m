@@ -1,4 +1,4 @@
-function [y, x] = multiply_fcn(data, varargin)
+function [y, x] = kVIS_multiply_fcn(data, varargin)
 
 x = [];
 

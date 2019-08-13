@@ -6,7 +6,7 @@
 %
 % Copyright Lilium GmbH 2018
 %*************************************************************************%
-function [ SignalInfo ] = ExtractInfoFromSignalName(Name)
+function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
 
     SignalInfo = struct();
 

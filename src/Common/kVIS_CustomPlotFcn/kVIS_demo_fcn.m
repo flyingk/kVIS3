@@ -1,4 +1,4 @@
-function y = demo_fcn(data, varargin)
+function y = kVIS_demo_fcn(data, varargin)
 
 % first argument is the data structure
 fds  = varargin{1};

@@ -1,4 +1,4 @@
-function [y, x] = psd_fcn(data, varargin)
+function [y, x] = kVIS_psd_fcn(data, varargin)
 
 x = [];
 

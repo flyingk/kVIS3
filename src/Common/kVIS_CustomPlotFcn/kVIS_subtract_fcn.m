@@ -1,4 +1,4 @@
-function [y, x] = subtract_fcn(data, varargin)
+function [y, x] = kVIS_subtract_fcn(data, varargin)
 
 x = [];
 
