@@ -82,7 +82,7 @@ if exist(BSP_CustomPlots_Path, 'dir')
         
         script_file = fullfile(BSP_CustomPlot_Scripts_xls(s).folder, BSP_CustomPlot_Scripts_xls(s).name);
         
-        [~,~,plot_definition] = xlsread(script_file);
+        [~,~,plot_definition] = xlsread(script_file,'','','basic');
         
         plt_name = plot_definition{3,2};
         CUSTOM_PLOTS.(BSP_NAME).(plt_name) = plot_definition;

@@ -69,7 +69,7 @@ if exist(BSP_Exports_Path, 'dir')
         
         script_file = fullfile(BSP_Export_Scripts_xls(s).folder, BSP_Export_Scripts_xls(s).name);
         
-        [~,~,export_definition] = xlsread(script_file);
+        [~,~,export_definition] = xlsread(script_file,'','','basic');
         
         plt_name = export_definition{3,2};
         EXPORTS.(BSP_NAME).(plt_name) = export_definition;
