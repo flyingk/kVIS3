@@ -37,6 +37,11 @@ if strcmp(targetPanel.Tag, 'mapplot')
     
     h = findobj(targetPanel.axesHandle, 'Type', 'Scatter');
     
+    if isempty(h)
+        errordlg('Map has been cleared. Select ''timeplot'' to plot data or re-create map.')
+        return
+    end
+    
     kVIS_updateMap(hObject, h)
     
 elseif strcmp(targetPanel.Tag, 'timeplot')
