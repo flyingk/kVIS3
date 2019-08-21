@@ -20,16 +20,25 @@
 
 function [ ] = kVIS_generateCustomPlotXLS(figure_handle, fds, plotDef, lims, Style)
 
+warning('on','verbose')
+% warning('off', 'MATLAB:gui:latexsup:UnableToInterpretLaTeXString')
+% warning('off', 'MATLAB:gui:latexsup:UnsupportedFont')
+warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
+
 DefaultStyle = struct();
 DefaultStyle.Figure = struct();
 DefaultStyle.Figure.Color = [0.3,0.4,0.58];
+
 DefaultStyle.Axes = struct();
 DefaultStyle.Axes.XColor = 'w';
 DefaultStyle.Axes.YColor = 'w';
 DefaultStyle.Axes.GridColor = 'k';
 DefaultStyle.Axes.MinorGridColor = 'k';
-DefaultStyle.Legend.FontSize = 12;
+
+DefaultStyle.Legend.FontSize = 10;
 DefaultStyle.Legend.Location = 'northeast';
+DefaultStyle.Legend.Orientation = 'horizontal';
+DefaultStyle.Legend.Interpreter = 'latex';
 
 if isempty(Style)
     Style = DefaultStyle;
@@ -117,8 +126,10 @@ for i = 1:size(plotDef, 1)
         clear p labelstr mm ma
         
         hh(pltindex) = uipanel('Parent', columnIDX(plotDef{i,Col}), 'Backgroundcolor', [0.3,0.4,0.58]);
-        hh(pltindex).Tag = 'timeplot';
+        hh(pltindex).Tag = 'cpTimeplot';
+        
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
+        hh(pltindex).SizeChangedFcn = @kVIS_panelSizeChanged_Callback;
     else
         % continue in current axes
         k=k+1;
@@ -150,7 +161,7 @@ for i = 1:size(plotDef, 1)
         end
     else
         xp = yMeta.timeVec;
-        xMeta.texName = '$time$ $(sec)$';
+        xMeta.texName = 'time \; [sec]';
     end
     
     
@@ -172,7 +183,7 @@ for i = 1:size(plotDef, 1)
             [yp, xp2] = feval(plotDef{i,fcnHandle}, yp, fds, pts, plotDef{i,fcnChannel});
             if ~isempty(xp2)
                 xp = xp2;
-                xMeta.texName = '$frequency$ $(Hz)$';
+                xMeta.texName = 'frequency \; [Hz]';
             end
         catch
             disp('Function eval error... Ignoring.')
@@ -226,9 +237,9 @@ for i = 1:size(plotDef, 1)
     
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~isnan(plotDef{i, xAxisLabel})
-        xlabel(plotDef{i, xAxisLabel},'Interpreter','none')
+        xlabel(plotDef{i, xAxisLabel},'Interpreter','latex','FontSize',13)
     else
-        xlabel(xMeta.texName,'Interpreter','latex','FontSize',14)
+        xlabel(['$\mathsf{' xMeta.texName '}$'],'Interpreter','latex','FontSize',13)
     end
     
     % LabelOverride
@@ -239,20 +250,20 @@ for i = 1:size(plotDef, 1)
     end
     
     % collect labels for legend/ylabel
-    labelstr{k} = yLabel;
+    labelstr{k} = ['$\mathsf{' yLabel '}$'];
    
     if k == 1 % this doesn't work with yyaxis...
-        ylabel(labelstr{k},'Interpreter','none')
+        ylabel(labelstr{k},'Interpreter','latex', 'FontSize', 13);
     else
         
         if ~isnan(plotDef{i, yAxisLabel})
-            ylabel(plotDef{i, yAxisLabel},'Interpreter','latex');
+            ylabel(['$\mathsf{' plotDef{i, yAxisLabel} '}$'],'Interpreter','latex', 'FontSize', 13);
         else
             ylabel([])
         end
         
         
-        legend_handle = legend(ax(pltindex), labelstr, 'Interpreter', 'latex');
+        legend_handle = legend(ax(pltindex), labelstr);
         
         if ~isnan(plotDef{i,LegendLocation})
             Style.Legend.Location = plotDef{i,LegendLocation};
@@ -292,8 +303,6 @@ end
 % maximise plot size - work required for yy plot
 %
 for k = 1:pltindex
-    
-    kVIS_axesResizeToContainer(ax(k));
     
     ax(k).XRuler.Exponent = 0; % no exp in time stamps
     

@@ -37,7 +37,7 @@ pt = ax.Parent.Tag;
 if strcmp(pt, 'timeplot') || strcmp(pt, 'fftplot') || strcmp(pt, 'corrplot')
     
     % format axes - keep some minimum margins
-    left   = max([0.04 ti(1)]);
+    left   = max([0.045 ti(1)]);
     bottom = ti(2);
     ax_width = outerpos(3) - left - max([0.03 ti(3)]);
     ax_height = outerpos(4) - bottom - max([0.015 ti(4)]);
@@ -48,6 +48,15 @@ elseif strcmp(pt, 'mapplot')
     bottom = ti(2);
     ax_width = outerpos(3) - left - max([0.03 ti(3)]);
     ax_height = outerpos(4) - bottom - max([0.04 ti(4)]);
+    
+% custom plot axes
+elseif strcmp(pt, 'cpTimeplot')
+    
+    % format axes - keep some minimum margins
+    left   = max([0.07 ti(1)]);
+    bottom = ti(2);
+    ax_width = outerpos(3) - left - max([0.03 ti(3)]);
+    ax_height = outerpos(4) - bottom - max([0.015 ti(4)]);
     
 end
 
