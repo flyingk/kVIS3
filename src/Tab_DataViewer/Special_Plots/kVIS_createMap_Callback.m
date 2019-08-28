@@ -114,4 +114,30 @@ cb.Color = 'w';
 
 kVIS_axesResizeToContainer(axes_handle);
 
+axes_handle.UIContextMenu = kVIS_createMapContextMenu(axes_handle);
+
+end
+
+function [ m ] = kVIS_createMapContextMenu(ax)
+% This function creates a context menu for a given Line object.
+% The menu displays some metadata helping to identify the line, and
+% provides some callback actions.
+
+m = uicontextmenu();
+
+% metadata section
+%     uimenu('Parent', m, 'Label', sprintf('Type: %s', panel.UserData.PlotType), 'Enable', 'off');
+%     uimenu('Parent', m, 'Label', sprintf('Units: %s' , strip(line.UserData.signalMeta.unit))       , 'Enable', 'off');
+%     uimenu('Parent', m, 'Label', sprintf('Data Set: %s', strip(line.UserData.signalMeta.dataSet)), 'Enable', 'off');
+%     if isstruct(line.UserData) && isfield(line.UserData, 'yyaxis')
+%         uimenu('Parent', m, 'Label', sprintf('Y Axis: %s', line.UserData.yyaxis), 'Enable', 'off');
+%     end
+
+uimenu( ...
+    'Parent', m, ...
+    'Label', 'Show BSP data', ...
+    'Checked', 'off', ...
+    'Callback', @tmp_Callback ...
+    );
+
 end
