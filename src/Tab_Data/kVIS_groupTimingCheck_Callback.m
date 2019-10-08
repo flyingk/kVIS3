@@ -10,26 +10,25 @@ groupNo = handles.uiTabData.groupTree.SelectedNodes.Value;
 groupName = fds.fdata{fds.fdataRows.groupLabel, groupNo};
 
 [t, ~] = kVIS_fdsGetChannel(fds, groupName, 'Time');
+t = t - t(1);
 
-%time step
-dt = (t(end)-t(1))/length(t);
-t=t-t(1);
-t1=t;
+difft = diff(t);
+dt = mean(difft);
 
+% expected time vector
 x = 1:length(t);
-base = 0:0.01:length(t)/100;
+base = 0:dt:length(t)*dt;
 base = base(1:end-1);
 
-difft=diff(t);
 
 bad=find(difft>0.011);
 badno = size(bad,1);
 
-f1 = figure();
+figure();
 ax_l = subplot(1,2,1);
 ax_r = subplot(1,2,2);
 
-plot(ax_l,x/100,t'-base)
+plot(ax_l,x*dt,t'-base)
 xlabel(ax_l,'sec','Color','k')
 ylabel(ax_l,'\int\Delta t','Color','k')
 title(ax_l,'Overall timing accuracy','Color','k')
@@ -48,3 +47,4 @@ grid(ax_r,'on')
 % set(ax_r,'YColor','w');
 % set(ax_r,'GridColor','k');
 % set(ax_r,'MinorGridColor','k');
+ylim(ax_r,[min(difft)-0.005 max(difft)+0.005])
