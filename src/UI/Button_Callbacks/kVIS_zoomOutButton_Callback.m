@@ -18,28 +18,26 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_postZoom_Callback(hObject, events)
+function kVIS_zoomOutButton_Callback(hObject, ~, reset)
+
+% handles = guidata(hObject);
+
+if reset == 1
+    hObject.Value = 0;
+end
 
 h = kVIS_dataViewerGetActivePanel;
 
 if strcmp(h.Tag, 'mapplot')
     
-    update_google_map(hObject, events);
+    % do nothing for now
     
 else
     
-    % update data range fields with zoom results
-    kVIS_setDataRange(hObject, 'XLim', h.axesHandle.XLim)
-    kVIS_setDataRange(hObject, 'YLim', h.axesHandle.YLim)
+    kVIS_clearPlotLim_Callback(hObject, [], 'all');
     
 end
 
-% indicate timeplot zoom to update linked special plots
-ax = gca;
-
-if strcmp(ax.Parent.Tag, 'timeplot')
-    h.plotChanged = randi(10000);
-end
 
 end
 

@@ -541,15 +541,15 @@ if nargout <= 1 % plot map
         figHandle = get(figHandle, 'Parent');
     end
     
-    zoomHandle = zoom(axHandle);   
-    panHandle = pan(figHandle); % This isn't ideal, doesn't work for contained axis    
-    if autoRefresh        
-        set(zoomHandle,'ActionPostCallback',@update_google_map);          
-        set(panHandle, 'ActionPostCallback', @update_google_map);        
-    else % disable zoom override
-        set(zoomHandle,'ActionPostCallback',[]);
-        set(panHandle, 'ActionPostCallback',[]);
-    end
+%     zoomHandle = zoom(axHandle);   
+%     panHandle = pan(figHandle); % This isn't ideal, doesn't work for contained axis    
+%     if autoRefresh        
+%         set(zoomHandle,'ActionPostCallback',@update_google_map);          
+%         set(panHandle, 'ActionPostCallback', @update_google_map);        
+%     else % disable zoom override
+%         set(zoomHandle,'ActionPostCallback',[]);
+%         set(panHandle, 'ActionPostCallback',[]);
+%     end
     
     % set callback for figure resize function, to update extents if figure
     % is streched.
@@ -635,43 +635,6 @@ for idx = 1:length(yiPos)
 end
 ZI = Z(yiPos,xiPos,:);
 
-
-function update_google_map(obj,evd)
-% callback function for auto-refresh
-drawnow;
-try
-    axHandle = evd.Axes;
-catch ex
-    % Event doesn't contain the correct axes. Panic!
-    axHandle = gca;
-end
-ud = get(axHandle, 'UserData');
-if isfield(ud, 'gmap_params')
-    params = ud.gmap_params;
-    plot_google_map(params{:});
-end
-
-
-function update_google_map_fig(obj,evd)
-% callback function for auto-refresh
-drawnow;
-axes_objs = findobj(get(gcf,'children'),'type','axes');
-for idx = 1:length(axes_objs)
-    if ~isempty(findobj(get(axes_objs(idx),'children'),'tag','gmap'));
-        ud = get(axes_objs(idx), 'UserData');
-        if isfield(ud, 'gmap_params')
-            params = ud.gmap_params;
-        else
-            params = {};
-        end
-        
-        % Add axes to inputs if needed
-        if ~sum(strcmpi(params, 'Axis'))
-            params = [params, {'Axis', axes_objs(idx)}];
-        end
-        plot_google_map(params{:});
-    end
-end
 
 function cleanupFunc(h)
 ud = get(h, 'UserData');

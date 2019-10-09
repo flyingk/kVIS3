@@ -34,6 +34,10 @@ for i = 1 : fds.fdataAttributes.nFiles
     
     if ~isempty(fds.fdata{fds.fdataRows.varLabelsTeX,i}) && (size(fds.fdata{fds.fdataRows.varLabelsTeX,i},2) == size(fds.fdata{fds.fdataRows.varNames,i},2))
         
+                names = fds.fdata{fds.fdataRows.varNames,i};
+        
+        fds.fdata{fds.fdataRows.varLabelsTeX,i} = names;
+        
         % keep existing
     else
         names = fds.fdata{fds.fdataRows.varNames,i};
