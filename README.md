@@ -21,9 +21,10 @@ Inspired by the SIDPAC GUI by E.A. Morelli.
 
 kVIS3 requires a *Board Support Package (BSP)*, specified in the preferences file, to import and process data from the user's data acquisition system. This split allows for kVIS to be open source, while potentially dealing with propriatry data. All data specific functionality is provided by the BSP, and therefore kVIS3 by itself will not launch (or be able to do anything).
 
-Freely available BSP's are:
+Freely available BSP's are (work in progress):
 
 - [ArduPilot](https://github.com/flyingk/kVIS3_bsp_ardupilot)
+- [PX4](https://github.com/flyingk/kVIS3_bsp_px4)
 - tbd.
 
 Run 'kVIS3.m' after installing the two toolboxes in the `Contributed` folder and creating a `kVIS_preferences.m` file from the provided template. In the `kVIS_preferences.m` file specify the path to the BSP folder containing the `BSP_ID.m` file.
@@ -45,4 +46,4 @@ kVIS3 relies on the following external contributions:
 
 Thanks for sharing!
 
-## Created and copyright by Matt Anderson Ph.D. and Kai Lehmkühler Ph.D.
+## Created and copyright by Kai Lehmkühler Ph.D. and Matt Anderson Ph.D.
