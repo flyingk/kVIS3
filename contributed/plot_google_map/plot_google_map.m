@@ -521,6 +521,8 @@ if nargout <= 1 % plot map
     set(axHandle,'YDir','Normal')
     set(h,'tag','gmap')
     set(h,'AlphaData',alphaData)
+    % to show context menu
+    h.HitTest = 'off';
     
     % add a dummy image to allow pan/zoom out to x2 of the image extent
     h_tmp = image(lonVect([1 end]),latVect([1 end]),zeros(2),'Visible','off', 'Parent', axHandle, 'CDataMapping', 'scaled');
@@ -532,6 +534,7 @@ if nargout <= 1 % plot map
         varargout{1} = h;
     end
     set(h, 'UserData', onCleanup(@() cleanupFunc(axHandle)));
+    h_tmp.HitTest = 'off';
     
 %     % if auto-refresh mode - override zoom callback to allow autumatic 
 %     % refresh of map upon zoom actions.
@@ -558,8 +561,8 @@ if nargout <= 1 % plot map
 %         set(figHandle, 'ResizeFcn', @update_google_map_fig);       
 %     end    
     
-    % set callback properties 
-    set(h,'ButtonDownFcn',bd_callback);
+%     % set callback properties 
+%     set(h,'ButtonDownFcn',bd_callback);
     
     if mapScale
        makescale(axHandle, 'set_callbacks', 0, 'units', scaleUnits, ...

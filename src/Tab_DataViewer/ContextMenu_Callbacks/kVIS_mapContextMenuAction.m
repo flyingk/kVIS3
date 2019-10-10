@@ -18,77 +18,19 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_mapContextMenuAction(hObject, ~)
+function kVIS_mapContextMenuAction(hObject, events)
 
 handles = guidata(hObject);
 
 switch hObject.Label
     
-    case 'Timeplot'
+    case 'Show BSP data'
         
-        panel.Tag = 'timeplot';
-        panel.linkPending = false;
-        panel.linkTo = [];
-        panel.linkFrom = [];
+        h = kVIS_dataViewerGetActivePanel;
         
-        % find the checked menu item
-        oldM = findobj(hObject.Parent, 'Checked', 'on');
-        oldM.Checked = 'off';
-        % check on for selection
-        hObject.Checked = 'on';
+        ax = findobj(h, 'Type', 'axes');
         
-    case 'Frequency plot'
-        
-        kVIS_dataViewerLinkTimeAxes(handles, 'off');
-        
-        panel.Tag = 'fftplot';
-        panel.linkPending = true;
-        panel.linkTo = [];
-        panel.linkFrom = [];
-        
-        oldM = findobj(hObject.Parent, 'Checked', 'on');
-        oldM.Checked = 'off';
-        
-        hObject.Checked = 'on';
-        
-        % this needs more work
-        %         kVIS_dataViewerLinkTimeAxes(handles, 'x');
-        
-    case 'Map plot'
-        
-        kVIS_dataViewerLinkTimeAxes(handles, 'off');
-        
-        panel.Tag = 'mapplot';
-        panel.linkPending = false;
-        panel.linkTo = [];
-        panel.linkFrom = [];
-        
-        oldM = findobj(hObject.Parent, 'Checked', 'on');
-        oldM.Checked = 'off';
-        
-        hObject.Checked = 'on';
-        
-        kVIS_createMap_Callback(hObject, []);
-        
-    case 'Correlation plot'
-        
-        kVIS_dataViewerLinkTimeAxes(handles, 'off');
-        
-        panel.Tag = 'corrplot';
-        panel.linkPending = true;
-        panel.linkTo = [];
-        panel.linkFrom = [];
-        
-        oldM = findobj(hObject.Parent, 'Checked', 'on');
-        oldM.Checked = 'off';
-        
-        hObject.Checked = 'on';
-        
-    case 'Delete panel'
-        
-        % current object to delete (required for linked plots)
-        selectedPanel = gco;
-        kVIS_dataViewerDelElement(handles, selectedPanel);
+        BSP_mapObjectsFcn(ax);
         
 end
 
