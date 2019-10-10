@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_panelSizeChanged_Callback(hObject, ~)
+function kVIS_panelSizeChanged_Callback(hObject, events)
 
 ax = findobj(hObject, 'Type', 'axes');
 
@@ -28,5 +28,11 @@ if ~isempty(ax)
     
 end
 
+h = hObject.Tag;
+
+if strcmp(h, 'mapplot')
+    
+    update_google_map_fig(hObject, events);
+    
 end
 

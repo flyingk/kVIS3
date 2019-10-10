@@ -25,6 +25,11 @@ function kVIS_preZoom_Callback(~, ~)
 %
 h = kVIS_dataViewerGetActivePanel;
 
+if isempty(h)
+    errordlg('No panel selected')
+    return
+end
+
 selectedAxes = gca;
 
 if h.axesHandle ~= selectedAxes

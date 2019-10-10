@@ -22,6 +22,12 @@ function kVIS_postPan_Callback(hObject, events)
 
 h = kVIS_dataViewerGetActivePanel;
 
+if isempty(h)
+    errordlg('No panel selected')
+    return
+end
+    
+
 if strcmp(h.Tag, 'mapplot')
     
     update_google_map(hObject, events);

@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_zoomOutButton_Callback(hObject, ~, reset)
+function kVIS_zoomOutButton_Callback(hObject, events, reset)
 
 % handles = guidata(hObject);
 
@@ -30,7 +30,11 @@ h = kVIS_dataViewerGetActivePanel;
 
 if strcmp(h.Tag, 'mapplot')
     
-    % do nothing for now
+    ax = findobj(h, 'Type', 'axes');
+    track = findobj(ax, 'Type', 'Scatter');
+    xlim(ax, [min(track.XData)-abs(min(track.XData))*0.000005 max(track.XData)+abs(max(track.XData))*0.000005])
+    ylim(ax, [min(track.YData)-abs(min(track.YData))*0.000005 max(track.YData)+abs(max(track.YData))*0.000005])
+    update_google_map(hObject, events);
     
 else
     

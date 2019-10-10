@@ -533,13 +533,13 @@ if nargout <= 1 % plot map
     end
     set(h, 'UserData', onCleanup(@() cleanupFunc(axHandle)));
     
-    % if auto-refresh mode - override zoom callback to allow autumatic 
-    % refresh of map upon zoom actions.
-    figHandle = axHandle;
-    while ~strcmpi(get(figHandle, 'Type'), 'figure')
-        % Recursively search for parent figure in case axes are in a panel
-        figHandle = get(figHandle, 'Parent');
-    end
+%     % if auto-refresh mode - override zoom callback to allow autumatic 
+%     % refresh of map upon zoom actions.
+%     figHandle = axHandle;
+%     while ~strcmpi(get(figHandle, 'Type'), 'figure')
+%         % Recursively search for parent figure in case axes are in a panel
+%         figHandle = get(figHandle, 'Parent');
+%     end
     
 %     zoomHandle = zoom(axHandle);   
 %     panHandle = pan(figHandle); % This isn't ideal, doesn't work for contained axis    
@@ -551,12 +551,12 @@ if nargout <= 1 % plot map
 %         set(panHandle, 'ActionPostCallback',[]);
 %     end
     
-    % set callback for figure resize function, to update extents if figure
-    % is streched.
-    if figureResizeUpdate &&isempty(get(figHandle, 'ResizeFcn'))
-        % set only if not already set by someone else
-        set(figHandle, 'ResizeFcn', @update_google_map_fig);       
-    end    
+%     % set callback for figure resize function, to update extents if figure
+%     % is streched.
+%     if figureResizeUpdate &&isempty(get(figHandle, 'ResizeFcn'))
+%         % set only if not already set by someone else
+%         set(figHandle, 'ResizeFcn', @update_google_map_fig);       
+%     end    
     
     % set callback properties 
     set(h,'ButtonDownFcn',bd_callback);
