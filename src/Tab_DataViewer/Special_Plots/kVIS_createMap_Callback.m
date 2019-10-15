@@ -34,15 +34,20 @@ if ~isstruct(fds)
     return
 end
 
-% Get the track co-ords
+% Get the track co-ords - assumed on a common time vector
 [lat, lon, alt, t] = BSP_mapCoordsFcn(fds);
 
+% get selected time limits
 xlim = kVIS_getDataRange(hObject, 'XLim');
+% find corresponding samples
 locs = find(t>xlim(1) & t<xlim(2));
 
-lon = kVIS_downSample(lon(locs), 5);
-lat = kVIS_downSample(lat(locs), 5);
-alt = kVIS_downSample(alt(locs), 5);
+% create time vector for map plot @ 10 Hz
+tNew = t(locs(1)):1/10:t(locs(end));
+
+lon = kVIS_reSample(lon, t, tNew);
+lat = kVIS_reSample(lat, t, tNew);
+alt = kVIS_reSample(alt, t, tNew);
 
 % track colouring
 try
@@ -50,7 +55,7 @@ try
     
     chan_name = [signalMeta.name ' ' signalMeta.unit];
     
-    c = kVIS_downSample(c(locs), 5);
+    c = kVIS_reSample(c, t, tNew);
 catch
     c = zeros(size(lon));
     chan_name = [];
@@ -66,6 +71,7 @@ hold on
 
 h = scatter3(axes_handle, lon, lat, alt, 4, c);
 h.Tag = 'MapPlot';
+h.UserData.timeVec = tNew;
 
 
 if (xlim(1)-0.2 <= min(t))
@@ -84,11 +90,6 @@ else
     text(axes_handle, lon(end),lat(end),'OUT','color','w','HorizontalAlignment','center','FontWeight','bold');
 end
 
-
-% % Fix up the axes
-% dxlims = (max(lon)-min(lon))*0.1; dxlim = max(abs(dxlims));
-% dylims = (max(lat)-min(lat))*0.1; dylim = max(abs(dylims));
-% xlim([min(lon) max(lon)]+dxlim*[-1 1]);  ylim([min(lat) max(lat)]+dylim*[-1 1]);
 
 % Add google map underlay
 plot_google_map( ...
@@ -131,6 +132,13 @@ m = uicontextmenu();
 %     if isstruct(line.UserData) && isfield(line.UserData, 'yyaxis')
 %         uimenu('Parent', m, 'Label', sprintf('Y Axis: %s', line.UserData.yyaxis), 'Enable', 'off');
 %     end
+
+uimenu( ...
+    'Parent', m, ...
+    'Label', 'Refresh Map', ...
+    'Checked', 'off', ...
+    'Callback', @kVIS_mapContextMenuAction ...
+    );
 
 uimenu( ...
     'Parent', m, ...

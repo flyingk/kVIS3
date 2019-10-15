@@ -46,11 +46,11 @@ kVIS_holdButton_Callback(findobj('Tag', 'DefaultRibbonGroupHoldToggle'), [], 1);
 kVIS_zoomButton_Callback(findobj('Tag','DefaultRibbonGroupZoomToggle'), [], 1);
 kVIS_cursorButton_Callback(findobj('Tag','DefaultRibbonGroupCursorToggle'), [], 1);
 kVIS_panButton_Callback(findobj('Tag','DefaultRibbonGroupPanToggle'), [], 1);
-%
-% update plot callbacks (get modified by map view...)
-%
-handles.uiFramework.zoomHandle.ActionPreCallback = @kVIS_preZoom_Callback;
-handles.uiFramework.zoomHandle.ActionPostCallback = @kVIS_postZoom_Callback;
-handles.uiFramework.panHandle.ActionPostCallback = @kVIS_postPan_Callback;
+% %
+% % update plot callbacks (get modified by map view...)
+% %
+% handles.uiFramework.zoomHandle.ActionPreCallback = @kVIS_preZoom_Callback;
+% handles.uiFramework.zoomHandle.ActionPostCallback = @kVIS_postZoom_Callback;
+% handles.uiFramework.panHandle.ActionPostCallback = @kVIS_postPan_Callback;
 
 end

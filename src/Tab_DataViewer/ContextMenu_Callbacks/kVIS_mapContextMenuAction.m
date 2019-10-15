@@ -24,6 +24,12 @@ handles = guidata(hObject);
 
 switch hObject.Label
     
+    case 'Refresh Map'
+        
+        kVIS_clearPlot_Callback(hObject, [])
+        
+        kVIS_createMap_Callback(hObject, [])
+    
     case 'Show BSP data'
         
         h = kVIS_dataViewerGetActivePanel;

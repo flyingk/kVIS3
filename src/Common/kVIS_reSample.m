@@ -18,22 +18,10 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_updateMap(hObject, h)
+function y = kVIS_reSample(x, tOrig, tNew)
 %
-% update map track colouring with data from selected channel
+% re-sample data onto new time vector
 %
-[signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
-
-% re-sample signal on scatter plot time vector
-signal = kVIS_reSample(signal, signalMeta.timeVec, h.UserData.timeVec);
-
-% update plot
-h.CData = signal;
-
-caxis(h.Parent,'auto')
-
-
-title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 14)
-
+y = interp1(tOrig, x, tNew);
 end
 
