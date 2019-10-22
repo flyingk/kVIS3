@@ -227,7 +227,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
             TeX = ['(', TeX, ')_{', TeX_escape(Data.Frame), '}'];
         end
 
-        TeX = ['$ ', TeX, ' $']; % add whitespace to avoid '$$'
+        TeX = ['$ \mathsf{', TeX, '} $']; % add whitespace to avoid '$$'
 
     end
 

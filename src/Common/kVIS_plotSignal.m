@@ -19,29 +19,15 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function kVIS_plotSignal(hObject, signal, signalMeta, hold_mode, axes_handle, plotFcn)
+%
 % Add a signal to the DataViewer plot.
 % The UserData field of every line is filled with metadata that allows to
 % identify the data source.
 % Additionally, a context menu is setup to provide editing features.
+%
+warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
 
 handles=guidata(hObject);
-
-% current_lines = kVIS_findValidPlotLines(axes_handle);
-
-% if ~isempty(current_lines)
-%     
-%     plot_idx = ...
-%         arrayfun(@(x) x.UserData.flight_idx , current_lines) == flight_idx  & ...
-%         arrayfun(@(x) x.UserData.var_idx    , current_lines) == var_idx     & ...
-%         arrayfun(@(x) x.UserData.channel_idx, current_lines) == channel_idx;
-%     plot_exists = any(plot_idx);
-%     
-%     if plot_exists
-%         delete(current_lines(plot_idx));
-%         return;
-%     end
-%     
-% end
 
 %
 % Hold mode
@@ -58,7 +44,7 @@ newLine = feval(plotFcn, axes_handle, signalMeta.timeVec, signal);
 %
 % save meta data
 %
-newLine.DisplayName               = signalMeta.texName;
+newLine.DisplayName               = kVIS_generateLabels(signalMeta, []);
 
 newLine.UserData                  = struct();
 newLine.UserData.signalMeta       = signalMeta;
@@ -110,13 +96,11 @@ end
 xlabel(axes_handle, 'Time [sec]')
     
 if size(current_lines) == 1
-    lbl = [signalMeta.dispName ' (' signalMeta.unit ') (' signalMeta.frame ')'];
-    ylabel(axes_handle, lbl, 'Interpreter','none');
-    %         lbl = ['$ \mathsf{' signalMeta.texName(2:end-1) '} $']
-    %         ylabel(axes_handle, lbl, 'Interpreter','latex', 'FontSize', 16);
+    [ labelStr ] = current_lines.DisplayName;
+    ylabel(axes_handle, labelStr, 'Interpreter', 'latex', 'FontSize', 13)
 else
     ylabel(axes_handle, []);
-    lg = legend(axes_handle, current_lines, {},'Interpreter','latex');
+    lg = legend(axes_handle, current_lines, {}, 'Interpreter', 'latex');
     kVIS_setGraphicsStyle(lg, handles.uiTabDataViewer.plotStyles.Legend);
 end
 
