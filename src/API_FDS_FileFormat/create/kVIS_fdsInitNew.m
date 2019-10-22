@@ -39,7 +39,7 @@ fds.fdataRows = struct( ...
     'varUnits'          , 3, ... list of channel units
     'varFrames'         , 4, ... reference frame of channel
     'varNamesDisp'      , 5, ... display name of variable - the BSP may provide this separate field and it shall take precedence over the 'vars' field entry for generating channel names.
-    'varLabelsTeX'      , 6, ... assembled TeX version channel label ([Label (or 'varNamesDisp', if available) Unit Frame])
+    'tbd'               , 6, ... currently unused
     'data'              , 7, ... channel data - group sample time vector as channel 1 (all channels in group have common time vector)
     'treeParent'        , 8, ... group parent in tree
     'treeGroupExpanded' , 9, ... group node expanded

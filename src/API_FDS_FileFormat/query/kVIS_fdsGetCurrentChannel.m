@@ -46,7 +46,6 @@ signalMeta.name      = fds.fdata{fds.fdataRows.varNames, var_idx}{channel_idx};
 signalMeta.unit      = fds.fdata{fds.fdataRows.varUnits, var_idx}{channel_idx};
 signalMeta.frame     = fds.fdata{fds.fdataRows.varFrames, var_idx}{channel_idx};
 signalMeta.dispName  = fds.fdata{fds.fdataRows.varNamesDisp, var_idx}{channel_idx};
-signalMeta.texName   = fds.fdata{fds.fdataRows.varLabelsTeX, var_idx}{channel_idx};
 signalMeta.dataSet   = fdsName;
 signalMeta.dataGroup = fds.fdata{fds.fdataRows.groupLabel, var_idx};
 signalMeta.timeVec   = fds.fdata{fds.fdataRows.data, var_idx}(:, 1);
