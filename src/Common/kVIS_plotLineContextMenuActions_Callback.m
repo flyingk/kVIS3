@@ -44,10 +44,10 @@ switch source.Label
             line.LineWidth = 2.0;
             line.UserData.HighlightState = true;
         end
-    %
-    % apply filter to line data
-    %
-    case 'Apply Filter' 
+        %
+        % apply filter to line data
+        %
+    case 'Apply Filter'
         % get line data as column vector
         y = line.YData';
         fs = line.UserData.signalMeta.sampleRate;
@@ -63,7 +63,7 @@ switch source.Label
             line.UserData.nameBackup = line.DisplayName;
             line.UserData.colorBackup = line.Color;
             line.UserData.modState = true;
-   
+            
             %
             % evaluate requested expression
             %
@@ -74,19 +74,22 @@ switch source.Label
             %
             line.YData = res;
             line.LineStyle = '-';
-%             line.Color = 'm';
+            %             line.Color = 'm';
             
             line.DisplayName = [line.DisplayName ' Filt (' answ{1} ' Hz)'];
-               
+            if ~isempty(line.Parent.YLabel.String)
+                line.Parent.YLabel.String = line.DisplayName;
+            end
+            
         else
             % do nothing
             return
         end
         
-    %
-    % differentiate line data
-    %
-    case 'Differentiate' 
+        %
+        % differentiate line data
+        %
+    case 'Differentiate'
         % get line data as column vector
         y = line.YData';
         fs = line.UserData.signalMeta.sampleRate;
@@ -109,12 +112,15 @@ switch source.Label
         line.YData = res;
         line.LineStyle = '-';
         
-        line.DisplayName = [line.DisplayName ' dot'];   
+        line.DisplayName = [line.DisplayName ' dot'];
+        if ~isempty(line.Parent.YLabel.String)
+            line.Parent.YLabel.String = line.DisplayName;
+        end
         
-    %
-    % integrate line data
-    %
-    case 'Integrate' 
+        %
+        % integrate line data
+        %
+    case 'Integrate'
         % get line data as column vector
         y = line.YData';
         fs = line.UserData.signalMeta.sampleRate;
@@ -130,32 +136,35 @@ switch source.Label
             line.UserData.nameBackup = line.DisplayName;
             line.UserData.colorBackup = line.Color;
             line.UserData.modState = true;
-   
+            
             %
             % evaluate requested expression
             %
             res = zeros(length(y),1);
             res(1) = str2double(answ(1));
             for j = 1:length(y)-1
-                res(j+1) = res(j) + y(j)*(1/fs); 
+                res(j+1) = res(j) + y(j)*(1/fs);
             end
             %
             % update line - change color and name to indicate modifcation
             %
             line.YData = res;
             line.LineStyle = '-';
-%             line.Color = 'm';
+            %             line.Color = 'm';
             
             line.DisplayName = [line.DisplayName ' Int(t)'];
-               
+            if ~isempty(line.Parent.YLabel.String)
+                line.Parent.YLabel.String = line.DisplayName;
+            end
+            
         else
             % do nothing
             return
         end
-         
-    %
-    % apply a math operation to the line data
-    %
+        
+        %
+        % apply a math operation to the line data
+        %
     case 'Apply Custom Operation'
         
         % get line data as column vector
@@ -195,31 +204,37 @@ switch source.Label
             %
             line.YData = res;
             line.LineStyle = '-';
-%             line.Color = 'm';
+            %             line.Color = 'm';
             
             line.DisplayName = [line.DisplayName ' MOD (' answ{1} ')'];
-               
+            if ~isempty(line.Parent.YLabel.String)
+                line.Parent.YLabel.String = line.DisplayName;
+            end
+            
         else
             % do nothing
             return
         end
-    
-    %
-    % undo line math operation
-    %
+        
+        %
+        % undo line math operation
+        %
     case 'Undo modify'
         
         if line.UserData.modState == true
-        
+            
             line.YData = line.UserData.dataBackup;
             line.DisplayName = line.UserData.nameBackup;
             line.Color = line.UserData.colorBackup;
             line.UserData.modState = false;
+            if ~isempty(line.Parent.YLabel.String)
+                line.Parent.YLabel.String = line.DisplayName;
+            end
         end
-
-    %
-    % Export line to workspace
-    %
+        
+        %
+        % Export line to workspace
+        %
     case 'Export to workspace'
         
         y = line.YData;
@@ -228,15 +243,15 @@ switch source.Label
         
         assignin('base', answ{1}, y)
         
-    %
-    % Send line back in stack
-    %
+        %
+        % Send line back in stack
+        %
     case 'Send Back'
         uistack(line, 'down');
         
-    %
-    % delete the line
-    %
+        %
+        % delete the line
+        %
     case 'Delete'
         delete(line);
     otherwise
