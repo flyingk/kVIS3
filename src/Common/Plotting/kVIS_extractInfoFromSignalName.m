@@ -234,7 +234,10 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
 
     end
 
-    TeX_Unit = ['$ \mathsf{[' Data.Unit ']} $']; % TODO
+    TeX_Unit = ['$ \mathsf{[\, ' Data.Unit ' \,]} $']; % TODO
+    
+    % fix percent sign
+    TeX_Unit = strrep(TeX_Unit, '%', '\%');
 
     %% Output struct
     SignalInfo.TeX_Name = TeX;
