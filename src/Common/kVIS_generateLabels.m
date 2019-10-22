@@ -56,11 +56,6 @@ end
 [ SignalInfo ] = kVIS_extractInfoFromSignalName( NameStr );
 
 %
-% Replace space with math space
-%
-SignalInfo.TeX_Name = strrep(SignalInfo.TeX_Name, ' ', '\;');
-
-%
 % Assemble output
 %
-labelStr = [SignalInfo.TeX_Name ' [$ \mathsf{' SignalInfo.TeX_Unit '} $]'];
+labelStr = [SignalInfo.TeX_Name ' ' SignalInfo.TeX_Unit];
