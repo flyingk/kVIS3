@@ -212,7 +212,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
             for I = 1 : numel(Data.Subscripts)
                 Sub = Data.Subscripts{I};
                 if any(strcmp(GreekLetters, Sub))
-                    Sub = ['\', TeX_escape(Sub)]; %#ok<AGROW>
+                    Sub = ['\', TeX_escape(Sub)]; 
                 end
                 TeX_Sub{I} = TeX_escape(Sub);
             end
@@ -227,11 +227,14 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
             TeX = ['(', TeX, ')_{', TeX_escape(Data.Frame), '}'];
         end
 
-        TeX = ['$ ', TeX, ' $']; % add whitespace to avoid '$$'
+        TeX = ['$ \mathsf{', TeX, '} $']; % add whitespace to avoid '$$'
+        
+        % Replace space with math space
+        TeX = strrep(TeX, ' ', '\;');
 
     end
 
-    TeX_Unit = Data.Unit; % TODO
+    TeX_Unit = ['$ \mathsf{[' Data.Unit ']} $']; % TODO
 
     %% Output struct
     SignalInfo.TeX_Name = TeX;
