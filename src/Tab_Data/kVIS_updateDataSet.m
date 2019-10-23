@@ -25,7 +25,6 @@ function kVIS_updateDataSet(hObject, fds, flightVar)
 
 fds = kVIS_fdsUpdateAttributes(fds);
 
-fds = kVIS_fdsGenerateTexLabels(fds);
 %
 % save fds to workspace
 %

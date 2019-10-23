@@ -237,14 +237,14 @@ for i = 1:size(plotDef, 1)
     
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~isnan(plotDef{i, xAxisLabel})
-        xlabel(['$\mathsf{' plotDef{i, xAxisLabel} '}$'],'Interpreter','latex','FontSize',13)
+        xlabel(kVIS_generateLabels(plotDef{i, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
     else
         xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
     end
     
     % LabelOverride
     if ~isnan(plotDef{i, LabelOverride})
-        yLabel = plotDef{i, LabelOverride};
+        yLabel = kVIS_generateLabels(plotDef{i, LabelOverride}, []);
     else
         yLabel = kVIS_generateLabels(yMeta, []);
     end
@@ -257,7 +257,7 @@ for i = 1:size(plotDef, 1)
     else
         
         if ~isnan(plotDef{i, yAxisLabel})
-            ylabel(['$\mathsf{' plotDef{i, yAxisLabel} '}$'],'Interpreter','latex', 'FontSize', 13);
+            ylabel(kVIS_generateLabels(plotDef{i, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
         else
             ylabel([])
         end
