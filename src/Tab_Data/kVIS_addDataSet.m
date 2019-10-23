@@ -41,10 +41,6 @@ end
 
 kVIS_dataSetListUpdate(hObject, 'add', flightVar);
 %
-% process signal descriptions
-%
-fds = kVIS_fdsGenerateTexLabels(fds);
-%
 % save fds to workspace
 %
 assignin('base', flightVar, fds);

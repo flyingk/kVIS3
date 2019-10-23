@@ -161,7 +161,7 @@ for i = 1:size(plotDef, 1)
         end
     else
         xp = yMeta.timeVec;
-        xMeta.texName = 'time \; [sec]';
+        xMeta.name = 'Time_UNIT_sec';
     end
     
     
@@ -237,27 +237,27 @@ for i = 1:size(plotDef, 1)
     
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~isnan(plotDef{i, xAxisLabel})
-        xlabel(plotDef{i, xAxisLabel},'Interpreter','latex','FontSize',13)
+        xlabel(kVIS_generateLabels(plotDef{i, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
     else
-        xlabel(['$\mathsf{' xMeta.texName '}$'],'Interpreter','latex','FontSize',13)
+        xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
     end
     
     % LabelOverride
     if ~isnan(plotDef{i, LabelOverride})
-        yLabel = plotDef{i, LabelOverride};
+        yLabel = kVIS_generateLabels(plotDef{i, LabelOverride}, []);
     else
-        yLabel = yMeta.texName;
+        yLabel = kVIS_generateLabels(yMeta, []);
     end
     
     % collect labels for legend/ylabel
-    labelstr{k} = ['$\mathsf{' yLabel '}$'];
+    labelstr{k} = yLabel; %#ok<AGROW>
    
     if k == 1 % this doesn't work with yyaxis...
         ylabel(labelstr{k},'Interpreter','latex', 'FontSize', 13);
     else
         
         if ~isnan(plotDef{i, yAxisLabel})
-            ylabel(['$\mathsf{' plotDef{i, yAxisLabel} '}$'],'Interpreter','latex', 'FontSize', 13);
+            ylabel(kVIS_generateLabels(plotDef{i, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
         else
             ylabel([])
         end

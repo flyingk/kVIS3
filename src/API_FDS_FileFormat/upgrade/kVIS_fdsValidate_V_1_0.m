@@ -41,7 +41,6 @@ function kVIS_fdsValidate_V_1_0(fds)
         'varUnits'
         'varFrames'
         'varNamesDisp'
-        'varLabelsTeX'
         'data'
         'treeParent'
         'treeGroupExpanded'

@@ -51,6 +51,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
     Flags.HasTilde = false;
     Flags.HasHat   = false;
     Flags.HasDot   = false;
+    Flags.HasBar   = false;
     Flags.HasSubscripts = false;
     Flags.HasUnit  = false;
     Flags.HasFrame = false;
@@ -114,6 +115,8 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
                 Flags.HasHat = true;
             case 'dot'
                 Flags.HasDot = true;
+            case 'bar'
+                Flags.HasBar = true;
             otherwise
                 Flags.HasSubscripts = true;
                 Data.Subscripts{end+1} = Item;
@@ -169,6 +172,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
     % code for rendering in plots.
     % Since symbol, modifiers like 'dot' and subscripts are recorded
     % separately, the code can be assembled easily.
+    TeXfont = '\mathsf';
 
     GreekLetters = { ...
         'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', ...
@@ -200,9 +204,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
         if Flags.HasHat
             TeX = ['\hat{', TeX, '}'];
         end
-        if Flags.HasDot
-            TeX = ['\dot{', TeX, '}']; % not supported by Matlab
-        end
+
         if Flags.HasAxis
             TeX = [TeX, '_{', TeX_escape(Data.Axis), '}'];
         end
@@ -212,7 +214,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
             for I = 1 : numel(Data.Subscripts)
                 Sub = Data.Subscripts{I};
                 if any(strcmp(GreekLetters, Sub))
-                    Sub = ['\', TeX_escape(Sub)]; %#ok<AGROW>
+                    Sub = ['\', TeX_escape(Sub)]; 
                 end
                 TeX_Sub{I} = TeX_escape(Sub);
             end
@@ -222,16 +224,29 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
                 TeX = ['{', TeX, '}_{', strjoin(TeX_Sub, ','), '}'];
             end
         end
+        
+        if Flags.HasDot
+            TeX = ['\dot{', TeX, '}']; % not supported by \mathsf
+            TeXfont = '\mathbf';
+        end
+        
+        if Flags.HasBar
+            TeX = ['\bar{', TeX, '}'];
+        end
 
         if Flags.HasFrame
             TeX = ['(', TeX, ')_{', TeX_escape(Data.Frame), '}'];
         end
 
-        TeX = ['$ ', TeX, ' $']; % add whitespace to avoid '$$'
+        TeX = ['$ ' TeXfont '{', TeX, '} $']; % add whitespace to avoid '$$'
 
     end
 
-    TeX_Unit = Data.Unit; % TODO
+    if isempty(Data.Unit)
+        TeX_Unit = [];
+    else
+        TeX_Unit = ['$ ' TeXfont '{[\, ' Data.Unit ' \,]} $']; % TODO
+    end
 
     %% Output struct
     SignalInfo.TeX_Name = TeX;
@@ -244,5 +259,6 @@ function [escaped_text] = TeX_escape(text)
     escaped_text = text;
     escaped_text = strrep(escaped_text, '_', '\_');
     escaped_text = strrep(escaped_text, '#', '\#');
-
+    escaped_text = strrep(escaped_text, '%', '\%');
+    escaped_text = strrep(escaped_text, ' ', '\;');
 end
