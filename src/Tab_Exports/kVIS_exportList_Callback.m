@@ -125,10 +125,14 @@ for I = 1: nExports
 
     exportData(:,I) = yp;
     
-    if ~isempty(yMeta.frame)
+    if ~isempty(yMeta.frame) && ~isempty(yMeta.unit)
         exportLabels{:,I} = [yMeta.dispName ' (' yMeta.unit ') (F_' yMeta.frame ')'];
-    else
+    
+    elseif ~isempty(yMeta.unit)
         exportLabels{:,I} = [yMeta.dispName ' (' yMeta.unit ')'];
+    
+    else
+        exportLabels{:,I} = yMeta.dispName;
     end
 end
 
