@@ -35,7 +35,7 @@ function [ fds ] = kVIS_fdsUpgrade_V_0_V_1_0(fdsOld)
     fds.fdata(fdataRows.varUnits, :)        = fdsOld.fdata(fdataRowsOld.Units, :);
     fds.fdata(fdataRows.varFrames, :)       = ''; % TODO
     fds.fdata(fdataRows.varNamesDisp, :)    = fds.fdata(fdataRows.varNames, :);
-    fds.fdata(fdataRows.varLabelsTeX, :)    = fdsOld.fdata(fdataRowsOld.VarLabels_TeX, :);
+%     fds.fdata(fdataRows.varLabelsTeX, :)    = fdsOld.fdata(fdataRowsOld.VarLabels_TeX, :);
     fds.fdata(fdataRows.data, :)            = fdsOld.fdata(fdataRowsOld.Data, :); % TODO
     fds.fdata(fdataRows.treeParent, :)      = fdsOld.fdata(fdataRowsOld.Parent, :);
     fds.fdata(fdataRows.treeGroupExpanded, :) = {false};
@@ -57,7 +57,7 @@ function [ fds ] = kVIS_fdsUpgrade_V_0_V_1_0(fdsOld)
                 fds.fdata{fdataRows.varUnits    , k} = ['s'       , fds.fdata{fdataRows.varUnits    , k}];
                 fds.fdata{fdataRows.varFrames   , k} = [''        , fds.fdata{fdataRows.varFrames   , k}];
                 fds.fdata{fdataRows.varNamesDisp, k} = ['t'       , fds.fdata{fdataRows.varNamesDisp, k}];
-                fds.fdata{fdataRows.varLabelsTeX, k} = ['$$ t $$' , fds.fdata{fdataRows.varLabelsTeX, k}];
+%                 fds.fdata{fdataRows.varLabelsTeX, k} = ['$$ t $$' , fds.fdata{fdataRows.varLabelsTeX, k}];
                 fds.fdata{fdataRows.data        , k} = [timeGlobal, fds.fdata{fdataRows.data        , k}];
             else
                 % move time channel to idx 1
@@ -67,7 +67,7 @@ function [ fds ] = kVIS_fdsUpgrade_V_0_V_1_0(fdsOld)
                 fds.fdata(fdataRows.varUnits    , idx) = fds.fdata(fdataRows.varUnits    , flipIdx);
                 fds.fdata(fdataRows.varFrames   , idx) = fds.fdata(fdataRows.varFrames   , flipIdx);
                 fds.fdata(fdataRows.varNamesDisp, idx) = fds.fdata(fdataRows.varNamesDisp, flipIdx);
-                fds.fdata(fdataRows.varLabelsTeX, idx) = fds.fdata(fdataRows.varLabelsTeX, flipIdx);
+%                 fds.fdata(fdataRows.varLabelsTeX, idx) = fds.fdata(fdataRows.varLabelsTeX, flipIdx);
                 fds.fdata(fdataRows.data        , idx) = fds.fdata(fdataRows.data        , flipIdx);
             end
         end
