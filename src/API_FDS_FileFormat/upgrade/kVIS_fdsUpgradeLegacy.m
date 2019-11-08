@@ -152,10 +152,6 @@ function [ fds ] = kVIS_fdsUpgradeLegacy(fds)
     if ~isfield(fds, 'BoardSupportPackage')
         fds.BoardSupportPackage = '';
     end
-    
-    if strcmp(fds.BoardSupportPackage, 'Lilium_Simulink')
-        fds.BoardSupportPackage = 'Lilium_Phoenix';
-    end
 
     fds.fdsVersion = 0;
 
