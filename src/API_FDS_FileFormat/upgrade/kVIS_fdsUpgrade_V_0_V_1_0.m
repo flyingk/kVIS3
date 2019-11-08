@@ -35,7 +35,7 @@ function [ fds ] = kVIS_fdsUpgrade_V_0_V_1_0(fdsOld)
     fds.fdata(fdataRows.varUnits, :)        = fdsOld.fdata(fdataRowsOld.Units, :);
     
     % fill 'frames' fields with empty arrays of correct dimensions
-    fds.fdata(fdataRows.varFrames, :)       = cellfun(@(x) erase(x, '\w*'), fdsOld.fdata(fdataRowsOld.Vars, :), 'UniformOutput', false);
+    fds.fdata(fdataRows.varFrames, :)       = cellfun(@(x) regexprep(x,'\w*',''), fdsOld.fdata(fdataRowsOld.Vars, :), 'UniformOutput', false);
     
     fds.fdata(fdataRows.varNamesDisp, :)    = fds.fdata(fdataRows.varNames, :);
     fds.fdata(fdataRows.data, :)            = fdsOld.fdata(fdataRowsOld.Data, :); % TODO
