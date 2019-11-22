@@ -52,7 +52,7 @@ if isempty(plotName)
 end
 
 try
-    fds = kVIS_getCurrentFds(hObject);
+    [fds, fds_name] = kVIS_getCurrentFds(hObject);
 catch
     disp('No fds loaded. Abort.')
     return;
@@ -76,7 +76,6 @@ end
 tic
 
 hh = msgbox('Creating Plot...');
-[~, fds_name, ~] = kVIS_dataSetListState(hObject);
 
 if size(PlotDefinition, 2) < 19
     % Create a new figure and format it
@@ -87,7 +86,8 @@ if size(PlotDefinition, 2) < 19
 else
     % Create a new figure and format it
     finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
-        'Units','normalized','Name',[PlotDefinition{3,2},' - ',fds_name],...
+        'Units','normalized','Name',[fds_name ': ' PlotDefinition{3,2}],...
+        'NumberTitle','off',...
         'Visible','off');
     
     kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
