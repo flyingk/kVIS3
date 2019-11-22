@@ -76,6 +76,7 @@ end
 tic
 
 hh = msgbox('Creating Plot...');
+[~, fds_name, ~] = kVIS_dataSetListState(hObject);
 
 if size(PlotDefinition, 2) < 19
     % Create a new figure and format it
@@ -86,7 +87,7 @@ if size(PlotDefinition, 2) < 19
 else
     % Create a new figure and format it
     finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
-        'Units','normalized','Name',PlotDefinition{3,2},...
+        'Units','normalized','Name',[PlotDefinition{3,2},' - ',fds_name],...
         'Visible','off');
     
     kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
