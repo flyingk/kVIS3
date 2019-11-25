@@ -29,12 +29,14 @@ fds = kVIS_fdsUpdateAttributes(fds);
 % save fds to workspace
 %
 assignin('base', flightVar, fds);
+
 %
 % update UI
 %
 kVIS_groupTreeUpdate(hObject, fds);
+
 %
-% Fill event table
+% update event table
 %
 kVIS_updateEventList(hObject, fds.eventList, false);
 

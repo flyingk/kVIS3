@@ -18,37 +18,38 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_deleteEvent_Callback(hObject, ~)
+function eList = kVIS_trimEventList(EventID, eList)
 %
-% delete event(s) from list
+% Deletes one or more events from the event list
 %
 
-handles = guidata(hObject);
-
-eventList = handles.uiTabEvents.eventTable;
-
 %
-% get selected row(s) from user data field
+% need to delete later event first
 %
-EventID = eventList.UserData.rowSelected;
-
-%
-% get current event list
-%
-[fds, name] = kVIS_getCurrentFds(hObject);
+EventID = flipud(EventID);
 
 %
 % remove entries from list
 %
-eList = kVIS_trimEventList(EventID, fds.eventList);
-
-%
-% save modified list and update UI
-%
-fds.eventList = eList;
-
-% fds = kVIS_eventTimeSeries(hObject, fds);
-
-kVIS_updateDataSet(hObject, fds, name)
+for j = 1:size(EventID,1)
+    
+    % first event
+    if EventID(j) == 1
+        
+        eList = eList(2:end);
+    
+    % last event
+    elseif EventID(j) == length(eList)
+        
+        eList = eList(1:end-1);
+     
+    % in the middle
+    else
+        
+        eList = eList([1:EventID(j)-1, EventID(j)+1:end]);
+        
+    end
+    
 end
 
+end
