@@ -75,14 +75,14 @@ n_events = numel(fds.eventList);
 %
 if strcmp(button, 'Selected')
     
-    n_events = EventSelected;
+    n_events = EventSelected';
 else
     
     n_events = 1:n_events;
 end
 
 % Loop through each of the events
-for ii = n_events(1):n_events(end)
+for ii = n_events
     %
     % Get time limits
     %
