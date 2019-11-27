@@ -29,7 +29,7 @@ if isempty(name)
 end
 
 DAT = kVIS_fdsGetGroup(fds, 'SIDPAC_fdata');
-Time = DAT(:,1);
+
 
 lat = kVIS_fdsGetChannel(fds, 'Default_Group','PhiGeo_INS3');
 lon = kVIS_fdsGetChannel(fds, 'Default_Group','LambdaGeo_INS3');
@@ -41,76 +41,39 @@ cr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Canard R');
 wl   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap L');
 wr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap R');
 
+%
+% Open UDP connection
+%
 kVIS_dataReplayMex('UDP_Init')
 
-for i=1:10:500 %length(Time)
-    
-    if mod(i,11) == 0
-        kVIS_dataReplayMex('ML_Heartbeat')
-    end
-    
-    VS = getDataVS(DAT(i,:), [lat(i), lon(i), h(i)]);
-    kVIS_dataReplayMex('ML_VehicleState', VS)
-    
-    F = zeros(14,1);
-    F(1) = VS(1);
-    F(2) = cl(i);
-    F(3) = cl(i);
-    F(4) = cr(i);
-    F(5) = cr(i);
-    F(6) = wl(i);
-    F(7) = wl(i);
-    F(8) = wl(i);
-    F(9) = wl(i);
-    F(10) = wr(i);
-    F(11) = wr(i);
-    F(12) = wr(i);
-    F(13) = wr(i);
-    kVIS_dataReplayMex('ML_FlapFeedback', F)
-    
-    pause(0.1)
-end
+%
+% heartbeat message @ 1Hz
+%
+t = timer('Period', 1, 'TasksToExecute', Inf, ...
+          'ExecutionMode', 'fixedRate', 'Tag', 'HeartbeatTimer');
 
-kVIS_dataReplayMex('UDP_Close')
+t.TimerFcn = @kVIS_heartbeatTimerFcn;
+
+start(t)
+
+%
+% data messages @ 10Hz
+%
+t2 = timer('Period', 1/10, 'TasksToExecute', Inf, ...
+          'ExecutionMode', 'fixedRate', 'Tag', 'DataTimer');
+
+t2.TimerFcn = @kVIS_dataTimerFcn;
+
+% provide data to TX
+Data.DAT = DAT;
+Data.LLA = [lat, lon, h];
+Data.CTRL= [cl, cr, wl, wr];
+Data.currentStep = 1;
+
+t2.UserData = Data;
+
+start(t2)
 
 end
 
 
-function VS = getDataVS(DAT,lla)
-
-% mavlink_vehicle_state_t packet;
-% packet.time_boot_ms = VS[0];
-% packet.Lat = VS[1];
-% packet.Lon = VS[2];
-% packet.Alt_msl = VS[3];
-% packet.Alt_agl = VS[4];
-% packet.Pn = VS[5];
-% packet.Pe = VS[6];
-% packet.Pd = VS[7];
-% packet.Vn = VS[8];
-% packet.Ve = VS[9];
-% packet.Vd = VS[10];
-% packet.p = VS[11];
-% packet.q = VS[12];
-% packet.r = VS[13];
-% packet.Roll = VS[14];
-% packet.Pitch = VS[15];
-% packet.Yaw = VS[16];
-% packet.Vair = VS[17];
-% packet.AoA = VS[18];
-% packet.AoS = VS[19];
-% packet.Nz = VS[20];
-
-VS = zeros(21,1);
-
-VS(1) = DAT(1);
-
-VS(2) = lla(1);
-VS(3) = lla(2);
-VS(4) = lla(3);
-
-VS(15) = DAT(8);
-VS(16) = DAT(9);
-VS(17) = DAT(10);
-
-end

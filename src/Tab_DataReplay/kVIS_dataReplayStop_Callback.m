@@ -21,5 +21,16 @@
 
 function kVIS_dataReplayStop_Callback(hObject, ~)
 
+t = timerfind('Tag','HeartbeatTimer');
+
+stop(t)
+delete(t)
+
+t2 = timerfind('Tag','DataTimer');
+
+stop(t2)
+delete(t2)
+
+kVIS_dataReplayMex('UDP_Close')
 end
 
