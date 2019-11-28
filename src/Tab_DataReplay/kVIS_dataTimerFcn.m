@@ -1,4 +1,4 @@
-function kVIS_dataTimerFcn(obj, event)
+function kVIS_dataTimerFcn(hObject, event)
 
 % txt1 = ' event occurred at ';
 % 
@@ -8,7 +8,7 @@ function kVIS_dataTimerFcn(obj, event)
 % msg = [event_type txt1 event_time];
 % disp(msg)
 
-Data = obj.UserData;
+Data = hObject.UserData;
 
 i = Data.currentStep;
 
@@ -32,9 +32,27 @@ F(12) = Data.CTRL(i,4);
 F(13) = Data.CTRL(i,4);
 kVIS_dataReplayMex('ML_FlapFeedback', F)
 
+%
+% Update time indicator line
+%
+Data.lineHandle.XData = [VS(1) VS(1)];
+
+%
+% Next timestep
+%
 Data.currentStep = Data.currentStep + 10;
 
-obj.UserData = Data;
+%
+% Stop playback at end of data
+%
+if Data.currentStep >= size(Data.DAT,1)
+    kVIS_dataReplayStop_Callback(hObject, []);
+    msgbox('End of Data Playback.')
+    return
+end
+
+% https://de.mathworks.com/matlabcentral/answers/302939-accessing-timer-userdata-fields
+hObject.UserData = Data;
 end
 
 

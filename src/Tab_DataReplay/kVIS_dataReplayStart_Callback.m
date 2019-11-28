@@ -22,7 +22,7 @@
 function kVIS_dataReplayStart_Callback(hObject, ~)
 
 %
-% Restart playback?
+% Restart playback from pause?
 %
 t  = timerfind('Tag','HeartbeatTimer');
 t2 = timerfind('Tag','DataTimer');
@@ -31,6 +31,9 @@ if ~isempty(t)
     
     start(t)
     start(t2)
+    
+    pauseBtn = findobj('Tag','pausePlaybackToggle');
+    pauseBtn. Value = 0;
     
     disp('Restart')
     return
@@ -43,6 +46,8 @@ end
 
 if isempty(name)
     errordlg('Nothing loaded...')
+    % reset toggle button
+    hObject.Value = 0;
     return
 end
 
@@ -58,6 +63,30 @@ cl   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Canard L');
 cr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Canard R');
 wl   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap L');
 wr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap R');
+
+
+
+%
+% Create time indicator line
+%
+targetPanel = kVIS_dataViewerGetActivePanel();
+
+axesHandle = targetPanel.axesHandle;
+
+hold(axesHandle, 'on');
+
+xlim = kVIS_getDataRange(hObject, 'XLim');
+ylim = kVIS_getDataRange(hObject, 'YLim');
+
+if isnan(ylim)
+    current_lines = kVIS_findValidPlotLines(axesHandle);
+    
+    ylim(1) = min(arrayfun(@(x) x.UserData.yMin, current_lines));
+    ylim(2) = max(arrayfun(@(x) x.UserData.yMax, current_lines));
+end
+
+lineHandle = line(axesHandle, xlim, ylim, 'Color', 'r', 'LineWidth', 2.0);
+
 
 %
 % Open UDP connection
@@ -82,13 +111,16 @@ t2 = timer('Period', 1/10, 'TasksToExecute', Inf, ...
 
 t2.TimerFcn = @kVIS_dataTimerFcn;
 
-% provide data to TX
+% save data in timer user data
 Data.DAT = DAT;
 Data.LLA = [lat, lon, h];
 Data.CTRL= [cl, cr, wl, wr];
 Data.currentStep = 1;
+Data.lineHandle = lineHandle;
 
 t2.UserData = Data;
+
+t2.UserData
 
 start(t2)
 
