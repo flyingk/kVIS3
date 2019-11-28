@@ -21,6 +21,24 @@
 
 function kVIS_dataReplayStart_Callback(hObject, ~)
 
+%
+% Restart playback?
+%
+t  = timerfind('Tag','HeartbeatTimer');
+t2 = timerfind('Tag','DataTimer');
+
+if ~isempty(t)
+    
+    start(t)
+    start(t2)
+    
+    disp('Restart')
+    return
+end
+
+%
+% Start from scratch
+%
 [fds, name] = kVIS_getCurrentFds(hObject);
 
 if isempty(name)
