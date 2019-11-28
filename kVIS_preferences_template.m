@@ -42,3 +42,6 @@ kVIS_prefs.fdsCurrentVersion = 1.0;
 
 kVIS_prefs.defaultGroupTreeFontSize = 6;
 kVIS_prefs.defaultLegendFontSize = 12;
+
+kVIS_prefs.dataReplayFeature = 'on'; % on/off
+kVIS_prefs.dataReplayTargetIP = '127.0.0.1';
