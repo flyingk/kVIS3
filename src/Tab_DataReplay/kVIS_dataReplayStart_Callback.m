@@ -120,8 +120,6 @@ Data.lineHandle = lineHandle;
 
 t2.UserData = Data;
 
-t2.UserData
-
 start(t2)
 
 end
