@@ -53,6 +53,6 @@ playBtn. Value = 0;
 %
 % Close network interface
 %
-kVIS_dataReplayMex('UDP_Close')
+BSP_dataReplayMex('UDP_Close')
 end
 

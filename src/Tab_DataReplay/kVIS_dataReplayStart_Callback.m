@@ -51,21 +51,6 @@ if isempty(name)
     return
 end
 
-DAT = kVIS_fdsGetGroup(fds, 'SIDPAC_fdata');
-
-
-lat = kVIS_fdsGetChannel(fds, 'Default_Group','PhiGeo_INS3');
-lon = kVIS_fdsGetChannel(fds, 'Default_Group','LambdaGeo_INS3');
-h   = kVIS_fdsGetChannel(fds, 'Default_Group','HGeo_INS3');
-h = h - 3.5;
-
-cl   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Canard L');
-cr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Canard R');
-wl   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap L');
-wr   = kVIS_fdsGetChannel(fds, 'SIDPAC_fdata','Flap R');
-
-
-
 %
 % Create time indicator line
 %
@@ -91,7 +76,7 @@ lineHandle = line(axesHandle, xlim, ylim, 'Color', 'r', 'LineWidth', 2.0);
 %
 % Open UDP connection
 %
-kVIS_dataReplayMex('UDP_Init')
+BSP_dataReplayMex('UDP_Init')
 
 %
 % heartbeat message @ 1Hz
@@ -106,17 +91,20 @@ start(t)
 %
 % data messages @ 10Hz
 %
-t2 = timer('Period', 1/10, 'TasksToExecute', Inf, ...
+updateFrequency = 10;
+
+t2 = timer('Period', 1/updateFrequency, 'TasksToExecute', Inf, ...
           'ExecutionMode', 'fixedRate', 'Tag', 'DataTimer');
 
 t2.TimerFcn = @kVIS_dataTimerFcn;
 
+%
 % save data in timer user data
-Data.DAT = DAT;
-Data.LLA = [lat, lon, h];
-Data.CTRL= [cl, cr, wl, wr];
+%
+Data = BSP_replayDataPrepareFcn(fds);
 Data.currentStep = 1;
 Data.lineHandle = lineHandle;
+Data.updateFrequency = updateFrequency;
 
 t2.UserData = Data;
 
