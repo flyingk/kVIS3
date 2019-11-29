@@ -52,7 +52,8 @@ uimenu(m2,'Text','Edit Test Information', 'Callback', @kVIS_menuEditTestInfo_Cal
 % m213 = uimenu(m21,'Text','Mark Armed Region','Callback',@cut_mark_armed_Callback);
 uimenu(m2,'Text','Rename Current Dataset','Callback',@kVIS_menuRenameDataSet_Callback);
 % m23= uimenu(m2,'Text','Set Time Offset','Callback',@data_range_offset_Callback);
-uimenu(m2,'Text','Preferences','Callback',@kVIS_preferencesEdit);
+uimenu(m2,'Text','Edit Preferences','Callback',@kVIS_preferencesEdit);
+uimenu(m2,'Text','Clear Preferences','Callback',@kVIS_preferencesClear);
 
 m3 = uimenu(handles.appWindow,'Text','View');
 % uimenu(m3,'Text','Legend');
