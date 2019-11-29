@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_uiSetupFramework(kVIS_Prefs)
+function kVIS_uiSetupFramework(BSP_Info)
 
 if ~nargin
     close all;
@@ -26,6 +26,8 @@ if ~nargin
     kVIS3;
     return;
 end
+
+kVIS_Prefs = getpref('kVIS_prefs');
 
 %
 % create app window
@@ -41,7 +43,7 @@ appWindow = figure( ...
 %
 % Assign the a name to appear in the window title.
 %
-set(appWindow,'name',['kVIS3 beta 004 - BSP: ' kVIS_Prefs.BSP_Info.Name ' build ' kVIS_Prefs.BSP_Info.Version]);
+set(appWindow,'name',['kVIS3 beta 004 - BSP: ' BSP_Info.Name ' build ' BSP_Info.Version]);
 
 %
 % get handle structure
@@ -56,7 +58,7 @@ handles.preferences = kVIS_Prefs;
 
 
 %% set up menu
-handles = kVIS_uiSetupMenu(handles, kVIS_Prefs);
+handles = kVIS_uiSetupMenu(handles, BSP_Info);
 
 %% UI framework layout
 
@@ -79,7 +81,7 @@ handles.uiFramework.uiTabGroupLeft = uitabgroup('Parent', uiMainHorizontalDivide
 
 uiBoxRight = uix.VBox('Parent', uiMainHorizontalDivider);
 
-uiMainHorizontalDivider.Widths = [-2.5 -1];
+uiMainHorizontalDivider.Widths = [kVIS_Prefs.uiPlotWidthFraction -1];
 
 %
 % divide right panel vertically
@@ -129,9 +131,9 @@ handles = kVIS_uiSetupTabDataViewer(handles, handles.uiFramework.uiTabGroupLeft)
 % handles = kVIS_uiSetupTabSigProc(handles, handles.uiFramework.uiTabGroupLeft);
 
 % BSP provided tabs
-for i = 1:size(kVIS_Prefs.BSP_Info.customTabs,1)
+for i = 1:size(BSP_Info.customTabs,1)
     
-    tabFun = str2func(kVIS_Prefs.BSP_Info.customTabs{i,2});
+    tabFun = str2func(BSP_Info.customTabs{i,2});
     handles = feval(tabFun, handles);
 end
 

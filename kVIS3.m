@@ -50,27 +50,40 @@ if wTB == false || gTB == false
 end
 
 % run prefs file
-kVIS_prefs = kVIS_preferences;
+kVIS_preferencesInit();
 
-if isempty(kVIS_prefs.bsp_dir)
-    errordlg('No Board Support Package specified - Abort.')
-    return
+if isempty(getpref('kVIS_prefs','bspDir'))
+    
+    hdl = warndlg('Select BSP_ID.m file location.');
+    
+    pause(3)
+    
+    bspDir = uigetdir();
+    
+    delete(hdl)
+    
+    if bspDir == 0
+        errordlg('No Board Support Package specified - Abort.')
+        return
+    end
+    
+    setpref('kVIS_prefs', 'bspDir', bspDir)
 end
 
 % Update Matlab path
 addpath(genpath('src'));
 addpath(genpath('contributed'));
-addpath(genpath(kVIS_prefs.bsp_dir));
+addpath(genpath(getpref('kVIS_prefs','bspDir')));
 
 % Read BSP info
 try
-    kVIS_prefs.BSP_Info = BSP_ID();
+    BSP_Info = BSP_ID();
 catch
     errordlg('No valid Board Support Package found...')
     return
 end
 
 % Initialize GUI.
-kVIS_uiSetupFramework(kVIS_prefs);
+kVIS_uiSetupFramework(BSP_Info);
 
 end
