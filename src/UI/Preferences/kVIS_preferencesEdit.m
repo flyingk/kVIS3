@@ -28,7 +28,7 @@ for i = 1:length(n)
     d{i} = num2str(prefs.(n{i}));
 end
 
-res = inputdlg(n,'Test Information', 1, d, 'on')
+res = inputdlg(n,'Preferences', 1, d, 'on')
 
 if isempty(res)
     return

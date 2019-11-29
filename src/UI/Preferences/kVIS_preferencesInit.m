@@ -35,10 +35,6 @@ if ~ispref('kVIS_prefs','uiPlotWidthFraction')
     addpref('kVIS_prefs','uiPlotWidthFraction', -2.0)
 end
 
-if ~ispref('kVIS_prefs','uiBackgroundColour')
-    addpref('kVIS_prefs','uiBackgroundColour',[0.3,0.4,0.58])
-end
-
 if ~ispref('kVIS_prefs','defaultGroupTreeFontSize')
     addpref('kVIS_prefs','defaultGroupTreeFontSize',16)
 end

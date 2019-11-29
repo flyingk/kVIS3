@@ -49,6 +49,10 @@ if wTB == false || gTB == false
     return
 end
 
+% Update Matlab path
+addpath(genpath('src'));
+addpath(genpath('contributed'));
+
 % run prefs file
 kVIS_preferencesInit();
 
@@ -71,8 +75,6 @@ if isempty(getpref('kVIS_prefs','bspDir'))
 end
 
 % Update Matlab path
-addpath(genpath('src'));
-addpath(genpath('contributed'));
 addpath(genpath(getpref('kVIS_prefs','bspDir')));
 
 % Read BSP info
