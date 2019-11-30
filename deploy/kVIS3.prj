@@ -1,11 +1,15 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="1135337093" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="567043016" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
     <param.appname>kVIS3</param.appname>
     <param.authnamewatermark />
     <param.email />
     <param.company />
-    <param.icon />
-    <param.icons />
+    <param.icon>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_48.png</file>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</file>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_16.png</file>
+    </param.icons>
     <param.summary />
     <param.description />
     <param.screenshot />
@@ -26,8 +30,6 @@
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.icon />
-      <param.icons />
       <param.summary />
       <param.description />
       <param.screenshot />
