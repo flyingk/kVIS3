@@ -27,7 +27,7 @@ warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
 
 DefaultStyle = struct();
 DefaultStyle.Figure = struct();
-DefaultStyle.Figure.Color = [0.3,0.4,0.58];
+DefaultStyle.Figure.Color = getpref('kVIS_prefs','uiBackgroundColour');
 
 DefaultStyle.Axes = struct();
 DefaultStyle.Axes.XColor = 'w';
@@ -53,7 +53,7 @@ main_div = uix.VBox('Parent', figure_handle);
 plts = uix.HBox('Parent', main_div);
 
 ctrls= uix.HButtonBox('Parent', main_div, ...
-    'Backgroundcolor', [0.3,0.4,0.58], ...
+    'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'), ...
     'Spacing', 50, ...
     'HorizontalAlignment', 'right');
 
@@ -125,7 +125,7 @@ for i = 1:size(plotDef, 1)
         k=1;
         clear p labelstr mm ma
         
-        hh(pltindex) = uipanel('Parent', columnIDX(plotDef{i,Col}), 'Backgroundcolor', [0.3,0.4,0.58]);
+        hh(pltindex) = uipanel('Parent', columnIDX(plotDef{i,Col}), 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'));
         hh(pltindex).Tag = 'cpTimeplot';
         
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
@@ -310,7 +310,9 @@ end
 
 % find all axes handle of type 'axes' and tag for linking
 all_ha = findobj( figure_handle, 'type', 'axes', 'Tag', 'Xaxislink' );
-all_ha.Tag;
-linkaxes( all_ha, 'x' );
+
+if ~isempty(all_ha)
+    linkaxes( all_ha, 'x' );
+end
 
 end

@@ -22,7 +22,7 @@ function [] = kVIS_updateCustomPlotList_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-handles.uiTabPlots.CustomPlots = LoadPlotDefinitions(handles.preferences);
+handles.uiTabPlots.CustomPlots = LoadPlotDefinitions(handles.bspInfo);
 
 
 
@@ -40,7 +40,7 @@ guidata(hObject, handles);
 end
 
 
-function [ CUSTOM_PLOTS ] = LoadPlotDefinitions(preferences)
+function [ CUSTOM_PLOTS ] = LoadPlotDefinitions(bspInfo)
 %
 % Load custom plot definitions provided by the BSP.
 %
@@ -51,8 +51,8 @@ CUSTOM_PLOTS = struct();
 % Find custom plot definitions in each BoardSupportPackage and add them to the list as
 % CUSTOM_PLOTS.(BSP_Name).(PlotName)
 
-BSP_NAME = preferences.BSP_Info.Name;
-BSP_Path = preferences.bsp_dir;
+BSP_NAME = bspInfo.Name;
+BSP_Path = getpref('kVIS_prefs','bspDir');
 BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
 
 

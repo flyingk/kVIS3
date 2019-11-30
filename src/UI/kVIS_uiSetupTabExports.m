@@ -35,20 +35,20 @@ handles.uiTabExports.tabHandle = uitab('Parent', uiTabGroupRight, 'Title', 'Expo
 % split tab in vertical strips
 %
 export_tab_vbox = uix.VBox ('Parent', handles.uiTabExports.tabHandle,...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour,'Padding',8);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),'Padding',8);
 %
 % tab label string
 %
 uicontrol(export_tab_vbox,'Style','text',...
     'String','Data Exports',...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour,...
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),...
     'Foregroundcolor','w','FontSize',16);
 %
 % button strip
 %
 rbn_exports_pane = uix.HButtonBox('Parent', export_tab_vbox,...
     'HorizontalAlignment','right',...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'));
 %
 % buttons
 %

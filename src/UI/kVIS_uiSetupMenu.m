@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function handles = kVIS_uiSetupMenu(handles, kVIS_Data)
+function handles = kVIS_uiSetupMenu(handles, BSP_Info)
 
 
 % custom menu
@@ -31,8 +31,8 @@ uimenu(m11,'Text','Existing Workspace FDS','Callback', @kVIS_menuImportWorkspace
 uimenu(m11,'Text','Add Data Group from File','Callback', @kVIS_fdsImportDataGroup);
 % add BSP import function(s)
 uimenu(m11,'Text','BSP functions:','Enable','off','Separator','on');
-for i=1:size(kVIS_Data.BSP_Info.importFcn,1)
-    uimenu(m11,'Text',kVIS_Data.BSP_Info.importFcn{i,1},'Callback',str2func(kVIS_Data.BSP_Info.importFcn{i,2}));
+for i=1:size(BSP_Info.importFcn,1)
+    uimenu(m11,'Text',BSP_Info.importFcn{i,1},'Callback',str2func(BSP_Info.importFcn{i,2}));
 end
 
 uimenu(m1,'Text','Open FDS file (.mat)','Callback',@kVIS_menuFileOpen_Callback);
@@ -52,6 +52,8 @@ uimenu(m2,'Text','Edit Test Information', 'Callback', @kVIS_menuEditTestInfo_Cal
 % m213 = uimenu(m21,'Text','Mark Armed Region','Callback',@cut_mark_armed_Callback);
 uimenu(m2,'Text','Rename Current Dataset','Callback',@kVIS_menuRenameDataSet_Callback);
 % m23= uimenu(m2,'Text','Set Time Offset','Callback',@data_range_offset_Callback);
+uimenu(m2,'Text','Edit Preferences','Callback',@kVIS_preferencesEdit);
+uimenu(m2,'Text','Clear Preferences','Callback',@kVIS_preferencesClear);
 
 m3 = uimenu(handles.appWindow,'Text','View');
 % uimenu(m3,'Text','Legend');
@@ -88,8 +90,8 @@ m6 = uimenu(handles.appWindow,'Text','Exports');
 
 m7 = uimenu(handles.appWindow,'Text','BSP Add-Ons');
 % menu entries from BSP Info
-for i=1:size(kVIS_Data.BSP_Info.addOns,1)
-    uimenu(m7,'Text',kVIS_Data.BSP_Info.addOns{i,1},'Callback',str2func(kVIS_Data.BSP_Info.addOns{i,2}));
+for i=1:size(BSP_Info.addOns,1)
+    uimenu(m7,'Text',BSP_Info.addOns{i,1},'Callback',str2func(BSP_Info.addOns{i,2}));
 end
 
 m8 = uimenu(handles.appWindow,'Text','Help');

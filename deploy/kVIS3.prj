@@ -1,0 +1,73 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="661753263" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+    <param.appname>kVIS3</param.appname>
+    <param.authnamewatermark>Kai</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_48.png</file>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</file>
+      <file>${PROJECT_ROOT}/kVIS3_resources/icon_16.png</file>
+    </param.icons>
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+    </param.products.name>
+    <param.products.id>
+      <item>1</item>
+    </param.products.id>
+    <param.products.version>
+      <item>9.3</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>/Users/kai/Desktop</param.output>
+    <param.guid>7cf7fda3-0ebe-4d2f-a990-1d0c43f4b562</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>/Users/kai/Projects/kVIS3/kVIS3/kVIS3.m</file>
+    </fileset.main>
+    <fileset.depfun />
+    <fileset.resources>
+      <file>/Users/kai/Projects/kVIS3/kVIS3/contributed/icons</file>
+      <file>/Users/kai/Projects/kVIS3/kVIS3/contributed/plot_google_map</file>
+      <file>/Users/kai/Projects/kVIS3/kVIS3/docs</file>
+      <file>/Users/kai/Projects/kVIS3/kVIS3/src</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="/Users/kai" name="Desktop" optional="false">/Users/kai/Desktop</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/Applications/MATLAB_R2017b.app</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>true</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.14.6</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>maci64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
