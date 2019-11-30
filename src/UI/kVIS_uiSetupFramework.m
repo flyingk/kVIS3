@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_uiSetupFramework(BSP_Info)
+function appWindow = kVIS_uiSetupFramework(BSP_Info)
 
 if ~nargin
     close all;
@@ -38,7 +38,8 @@ appWindow = figure( ...
     'MenuBar','none',...
     'Toolbar','none',...
     'NumberTitle','off',...
-    'Tag', 'appWindow');
+    'Tag', 'appWindow',...
+    'DeleteFcn', @kVIS_appDeleteFcn);
 
 %
 % Assign the a name to appear in the window title.
@@ -51,11 +52,10 @@ set(appWindow,'name',['kVIS3 beta 004 - BSP: ' BSP_Info.Name ' build ' BSP_Info.
 handles = guihandles(appWindow);
 
 %
-% save figure handle/preferences
+% save figure handle/bsp info
 %
 handles.appWindow = appWindow;
-handles.preferences = kVIS_Prefs;
-
+handles.bspInfo = BSP_Info;
 
 %% set up menu
 handles = kVIS_uiSetupMenu(handles, BSP_Info);
@@ -81,7 +81,7 @@ handles.uiFramework.uiTabGroupLeft = uitabgroup('Parent', uiMainHorizontalDivide
 
 uiBoxRight = uix.VBox('Parent', uiMainHorizontalDivider);
 
-uiMainHorizontalDivider.Widths = [kVIS_Prefs.uiPlotWidthFraction -1];
+uiMainHorizontalDivider.Widths = [-kVIS_Prefs.uiPlotWidthFraction -1];
 
 %
 % divide right panel vertically

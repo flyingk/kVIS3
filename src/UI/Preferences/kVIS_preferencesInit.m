@@ -32,7 +32,7 @@ if ~ispref('kVIS_prefs','uiBackgroundColour')
 end
 
 if ~ispref('kVIS_prefs','uiPlotWidthFraction')
-    addpref('kVIS_prefs','uiPlotWidthFraction', -2.0)
+    addpref('kVIS_prefs','uiPlotWidthFraction', 2.0)
 end
 
 if ~ispref('kVIS_prefs','defaultGroupTreeFontSize')

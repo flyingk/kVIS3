@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS3()
+function appWindowHandle = kVIS3()
 
 clc
 
@@ -49,12 +49,15 @@ if wTB == false || gTB == false
     return
 end
 
-% Update Matlab path
-addpath(genpath('src'));
-addpath(genpath('contributed'));
-
 % run prefs file
-kVIS_preferencesInit();
+try
+    kVIS_preferencesInit();
+catch
+    % Update Matlab path
+    addpath(genpath('src'));
+    addpath(genpath('contributed'));
+    kVIS_preferencesInit();
+end
 
 if isempty(getpref('kVIS_prefs','bspDir'))
     
@@ -86,6 +89,6 @@ catch
 end
 
 % Initialize GUI.
-kVIS_uiSetupFramework(BSP_Info);
+appWindowHandle = kVIS_uiSetupFramework(BSP_Info);
 
 end

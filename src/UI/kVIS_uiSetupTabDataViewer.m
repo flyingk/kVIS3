@@ -42,10 +42,10 @@ handles.uiTabDataViewer.DividerH = uix.HBoxFlex('Parent',handles.uiTabDataViewer
 %
 % plot style definitions
 %
-handles.uiTabDataViewer.plotStyles = data_viewer_options(handles.preferences);
+handles.uiTabDataViewer.plotStyles = data_viewer_options();
 end
 
-function Style = data_viewer_options(preferences)
+function Style = data_viewer_options()
 
 % DataViewer options
 Style = struct();
@@ -86,6 +86,6 @@ Style.Signal.LineWidth = 0.5;
 
 % Legend style (any attributes understood by set(legend_handle, ...))
 %DV.Style.Legend.Interpreter = 'latex';
-Style.Legend.FontSize = preferences.defaultLegendFontSize;
+Style.Legend.FontSize = getpref('kVIS_prefs','defaultLegendFontSize');
 
 end

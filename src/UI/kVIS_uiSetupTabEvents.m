@@ -35,20 +35,20 @@ handles.uiTabEvents.tabHandle = uitab('Parent', uiTabGroupRight, 'Title', 'Event
 % split tab in vertical strips
 %
 event_tab_vbox = uix.VBox ('Parent', handles.uiTabEvents.tabHandle,...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour,'Padding',8);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),'Padding',8);
 %
 % tab label string
 %
 uicontrol(event_tab_vbox,'Style','text',...
     'String','Events',...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour,...
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),...
     'Foregroundcolor','w','FontSize',16);
 %
 % button strip
 %
 rbn_event_pane = uix.HButtonBox('Parent', event_tab_vbox,...
     'HorizontalAlignment','left',...
-    'Backgroundcolor',handles.preferences.uiBackgroundColour);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'));
 %
 % buttons
 %

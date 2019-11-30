@@ -22,7 +22,7 @@ function [] = kVIS_updateExportList_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-handles.uiTabExports.Exports = LoadPlotDefinitions(handles.preferences);
+handles.uiTabExports.Exports = LoadPlotDefinitions(handles.bspInfo);
 
 
 
@@ -40,7 +40,7 @@ guidata(hObject, handles);
 end
 
 
-function [ EXPORTS ] = LoadPlotDefinitions(preferences)
+function [ EXPORTS ] = LoadPlotDefinitions(bspInfo)
 %
 % Load custom plot definitions provided by the BSP.
 %
@@ -51,8 +51,8 @@ EXPORTS = struct();
 % Find custom plot definitions in each BoardSupportPackage and add them to the list as
 % CUSTOM_PLOTS.(BSP_Name).(PlotName)
 
-BSP_NAME = preferences.BSP_Info.Name;
-BSP_Path = preferences.bsp_dir;
+BSP_NAME = bspInfo.Name;
+BSP_Path = getpref('kVIS_prefs','bspDir');
 BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
 
 
