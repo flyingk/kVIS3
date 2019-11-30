@@ -20,7 +20,7 @@
 
 function kVIS_preferencesEdit(hObject, ~)
 
-prefs = getpref('kVIS_prefs')
+prefs = getpref('kVIS_prefs');
 
 n = fieldnames(prefs);
 
@@ -28,7 +28,7 @@ for i = 1:length(n)
     d{i} = num2str(prefs.(n{i}));
 end
 
-res = inputdlg(n,'Preferences', 1, d, 'on')
+res = inputdlg(n,'Preferences', 1, d, 'on');
 
 if isempty(res)
     return
@@ -46,7 +46,7 @@ for i = 1:length(n)
 
 end
 
-prefs = getpref('kVIS_prefs')
+prefs = getpref('kVIS_prefs');
 
 end
 

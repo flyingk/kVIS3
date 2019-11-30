@@ -1,7 +1,7 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="567043016" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="661753263" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
     <param.appname>kVIS3</param.appname>
-    <param.authnamewatermark />
+    <param.authnamewatermark>Kai</param.authnamewatermark>
     <param.email />
     <param.company />
     <param.icon>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</param.icon>
@@ -24,10 +24,9 @@
       <item>9.3</item>
     </param.products.version>
     <param.platforms />
-    <param.output>/Users/kai/Projects/kVIS3/kVIS3/deploy</param.output>
+    <param.output>/Users/kai/Desktop</param.output>
     <param.guid>7cf7fda3-0ebe-4d2f-a990-1d0c43f4b562</param.guid>
     <unset>
-      <param.authnamewatermark />
       <param.email />
       <param.company />
       <param.summary />
@@ -35,7 +34,6 @@
       <param.screenshot />
       <param.version />
       <param.platforms />
-      <param.output />
     </unset>
     <fileset.main>
       <file>/Users/kai/Projects/kVIS3/kVIS3/kVIS3.m</file>
@@ -49,7 +47,7 @@
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
-      <file location="/Users/kai/Projects/kVIS3/kVIS3" name="deploy" optional="false">/Users/kai/Projects/kVIS3/kVIS3/deploy</file>
+      <file location="/Users/kai" name="Desktop" optional="false">/Users/kai/Desktop</file>
     </build-deliverables>
     <workflow />
     <matlab>
