@@ -44,7 +44,7 @@ if ~ispref('kVIS_prefs','defaultLegendFontSize')
 end
 
 if ~ispref('kVIS_prefs','dataReplayFeature')
-    addpref('kVIS_prefs','dataReplayFeature','on')
+    addpref('kVIS_prefs','dataReplayFeature','off')
 end
 
 if ~ispref('kVIS_prefs','dataReplayTargetIP')
