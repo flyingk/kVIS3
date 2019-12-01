@@ -27,7 +27,7 @@ kVIS3 requires a *Board Support Package (BSP)*, specified in the preferences, to
 
 Freely available BSP's are (work in progress):
 
-- Generic BSP template for CSV files
+- [Generic BSP template for CSV files](https://github.com/flyingk/kVIS3_bsp_generic_demo)
 - [ArduPilot](https://github.com/flyingk/kVIS3_bsp_ardupilot)
 - [PX4](https://github.com/flyingk/kVIS3_bsp_px4)
 - tbd.
