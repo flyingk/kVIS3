@@ -23,7 +23,7 @@ Inspired by the SIDPAC GUI by E.A. Morelli.
 
 ## How to run:
 
-kVIS3 requires a *Board Support Package (BSP)*, specified in the preferences file, to import and process data from the user's data acquisition system. This split allows for kVIS3 to be open source, while potentially dealing with propriatry data. All data specific functionality is provided by the BSP, and therefore kVIS3 without a BSP will not launch (or be able to do anything).
+kVIS3 requires a *Board Support Package (BSP)*, specified in the preferences, to import and process data from the user's data acquisition system. This split allows for kVIS3 to be open source, while potentially dealing with propriatry data. All data specific functionality is provided by the BSP, and therefore kVIS3 without a BSP will not launch (or be able to do anything).
 
 Freely available BSP's are (work in progress):
 
