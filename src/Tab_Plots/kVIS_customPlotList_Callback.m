@@ -32,7 +32,7 @@ if isempty(plotName)
     % edit the plot definition file, if selected
     if handles.uiTabPlots.editPlotDefBtn == 1
         
-        BSP_Path = handles.preferences.bsp_dir;
+        BSP_Path = getpref('kVIS_prefs','bspDir');
         BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
         
         cmdstr = ['open ' BSP_CustomPlots_Path '/' plotName '_Plot_Def.xlsx'];
