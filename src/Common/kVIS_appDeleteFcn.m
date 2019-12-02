@@ -23,7 +23,10 @@ function kVIS_appDeleteFcn(hObject, ~)
 rmpath(genpath('src'));
 rmpath(genpath('contributed'));
 
-rmpath(genpath(getpref('kVIS_prefs','bspDir')));
+
+if ispref('kVIS_prefs','bspDir')
+    rmpath(genpath(getpref('kVIS_prefs','bspDir')));
+end
 
 disp('Cleanup complete. Bye')
 
