@@ -41,6 +41,10 @@ for i = 1:length(n)
     if isnan(val)
         val = res{i};
     end
+
+    if strcmp(n{i}, 'uiBackgroundColour')
+        val = sscanf(res{i}, '%f %f %f')';
+    end
     
     setpref('kVIS_prefs',n{i}, val);
 

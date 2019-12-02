@@ -62,10 +62,10 @@ else
         
         % indicate link
         rn = 1;%rand;
-        selectedPanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
-        previousPanel.BackgroundColor = handles.preferences.uiBackgroundColour + 0.2*rn;
+        selectedPanel.BackgroundColor = getpref('kVIS_prefs','uiBackgroundColour') + 0.2*rn;
+        previousPanel.BackgroundColor = getpref('kVIS_prefs','uiBackgroundColour') + 0.2*rn;
         
-        previousPanel.HighlightColor = handles.preferences.uiBackgroundColour;
+        previousPanel.HighlightColor = getpref('kVIS_prefs','uiBackgroundColour');
         selectedPanel.HighlightColor = 'c';
         
         % install listener on linked timeplot
@@ -96,7 +96,7 @@ else
         %
         selectedPanel.HighlightColor = 'c';
         
-        previousPanel.HighlightColor = handles.preferences.uiBackgroundColour;
+        previousPanel.HighlightColor = getpref('kVIS_prefs','uiBackgroundColour');
         
 %         kVIS_setDataRange(selectedPanel, 'XLim', selectedPanel.xLim);
         kVIS_setDataRange(selectedPanel, 'YLim', selectedPanel.yLim);

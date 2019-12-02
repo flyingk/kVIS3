@@ -33,7 +33,7 @@ delete(panel.plotChangedListener);
 % if link target, break link
 if ~isempty(panel.linkFrom)
     delete(panel.linkFrom.plotChangedListener);
-    panel.linkFrom.BackgroundColor = handles.preferences.uiBackgroundColour;
+    panel.linkFrom.BackgroundColor = getpref('kVIS_prefs','uiBackgroundColour');
     panel.linkFrom.linkTo = [];
     panel.linkFrom = [];
     
