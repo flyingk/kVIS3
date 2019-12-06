@@ -76,7 +76,14 @@ lineHandle = line(axesHandle, xlim, ylim, 'Color', 'r', 'LineWidth', 2.0);
 %
 % Open UDP connection
 %
-BSP_dataReplayMex('UDP_Init')
+ip = getpref('kVIS_prefs','dataReplayTargetIP');
+
+if ~isempty(ip)
+    BSP_dataReplayMex('UDP_Init', ip)
+else
+    errordlg('Replay IP address invalid...')
+    return
+end
 
 %
 % heartbeat message @ 1Hz

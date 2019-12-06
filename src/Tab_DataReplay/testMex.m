@@ -1,7 +1,7 @@
 clc
 
-kVIS_dataReplayMex('UDP_Init')
+BSP_dataReplayMex('UDP_Init', '127.0.0.1')
 
-kVIS_dataReplayMex('UDP_Transmit')
+% kVIS_dataReplayMex('UDP_Transmit')
 
-kVIS_dataReplayMex('UDP_Close')
+BSP_dataReplayMex('UDP_Close')

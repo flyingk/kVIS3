@@ -32,7 +32,7 @@ exportName = hObject.String{val};
 % edit the plot definition file, if selected
 if handles.uiTabExports.editExportDefBtn == 1
     
-    BSP_Path = handles.preferences.bsp_dir;
+    BSP_Path = getpref('kVIS_prefs','bspDir');
     BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
     
     cmdstr = ['open ' BSP_Exports_Path '/' exportName '_Export_Def.xlsx'];
