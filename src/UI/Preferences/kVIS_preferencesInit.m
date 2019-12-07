@@ -62,3 +62,10 @@ end
 % prefs = getpref('kVIS_prefs')
 end
 
+%% todo:
+% Preferences data structure:
+% 
+% Value
+% Value data type
+% Restart flag
+% Update fcn handle
