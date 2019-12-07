@@ -1,0 +1,26 @@
+site_name: kVIS3 Documentation
+
+nav:
+    - Home: 'index.md'
+    - User Interface: 
+        - dataViewer.md
+        - timePlot.md
+        - freqPlot.md
+        - corrPlot.md
+        - mapPlot.md
+        - dataTab.md
+        - eventTab.md
+        - plotTab.md
+        - exportTab.md
+        
+        
+    - Developer Information:
+        - fdsFormat.md
+        
+        
+        
+theme: readthedocs
+
+use_directory_urls: false
+
+site_dir: ../docs

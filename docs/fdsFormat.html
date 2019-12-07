@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>FDS file format - kVIS3 Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "FDS file format";
+    var mkdocs_page_input_path = "fdsFormat.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> kVIS3 Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Interface</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="dataViewer.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="timePlot.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="freqPlot.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="corrPlot.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="mapPlot.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="dataTab.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="eventTab.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="plotTab.html">template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="exportTab.html">template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Information</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="fdsFormat.html">FDS file format</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#fds-file-format">FDS file format</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#list-of-fields">List of Fields</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">kVIS3 Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Developer Information &raquo;</li>
+        
+      
+    
+    <li>FDS file format</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="fds-file-format">FDS file format</h1>
+<p>The FDS ( Flight Data Structure ) file is a structure containing a cell array with the actual data, and some supporting fields that describe or ease the interpretation of the data:</p>
+<h2 id="list-of-fields">List of Fields</h2>
+<h3 id="cell-array-fdata">Cell Array <code>fdata</code>:</h3>
+<p>Array holding data and associate information (labels, units, tree state) - Row content of the array defined by the fields of the structure fdataRows. - Each column of the cell array represents a (logical/functional) group of data channels. The composition of each group is defined by the BSP. - All groups must have a common time vector as the first channel, the BSP shall re-sample individual channels of a group to comply with this requirement.</p>
+<h3 id="struct-fdatarows">Struct <code>fdataRows</code>:</h3>
+<p>Relates row number of the fdata cell array with an identifier. This avoids hard-coded addressing for compatibility with older files.</p>
+<pre><code>struct( ...
+    'groupLabel'        , 1, ... group name
+    'varNames'          , 2, ... list of channel names
+    'varUnits'          , 3, ... list of channel units
+    'varFrames'         , 4, ... reference frame of channel
+    'varNamesDisp'      , 5, ... display name of variable - the BSP may provide this separate field and it shall take precedence over the 'vars' field entry for generating channel names.
+    'tbd'               , 6, ... for future use
+    'data'              , 7, ... channel data - group sample time vector as channel 1 (all channels in group have common time vector)
+    'treeParent'        , 8, ... group parent in tree
+    'treeGroupExpanded' , 9, ... group node expanded
+    'treeGroupSelected' ,10  ... group node selected
+);
+</code></pre>
+
+<h3 id="struct-fdataattributes">Struct <code>fdataAttributes</code>:</h3>
+<p>Store attributes of fdata for easy access without loading the potentially large cell array. All fields, except nfiles, are arrays of size [nfiles].</p>
+<pre><code>struct( ...
+    'nFiles'    , {}, ... number of data groups in fdata
+    'nChnls'    , {}, ... number of channels for each group
+    'nPoints'   , {}, ... number of samples for each group
+    'sampleRates', {}, ... sample rate for each group
+    'startTimes' , {}, ... start time value for each group, relative to the `startTime` field in `testInfo`
+    'stopTimes'  , {}  ... stop time value for each group, relative to the `startTime` field in `testInfo`
+);
+</code></pre>
+
+<h3 id="struct-eventlist">Struct <code>eventList</code>:</h3>
+<p>Store event data</p>
+<pre><code>struct( ...
+     'type'       , {}, ... event type/identifier (potentially non-unique)
+     'start'      , {}, ... start time, relative to the `startTime` field in `testInfo`
+     'end'        , {}, ... end time, relative to the `startTime` field in `testInfo`
+     'description', {}, ... optional description
+     'plotDef'    , {}  ... linked custom plot definition provided by the BSP
+);
+</code></pre>
+
+<h3 id="array-eventtypes">Array <code>eventTypes</code>:</h3>
+<p>List of event types - to be updated by BSP during import</p>
+<p>Should provide some generic types and an ‘unspecified’ default type.</p>
+<p>eventTypes = {'unspecified', 'armed'};</p>
+<h3 id="struct-aircaftdata">Struct <code>aircaftData</code>:</h3>
+<p>Store information about the aircraft (mass, inertias…)</p>
+<ul>
+<li>mass, inertia and CG at take-off. If variable, these need to be provided as data channels</li>
+<li>body axes frame: X forward, Y right, Z down</li>
+<li>may contain BSP specific fields (see Notes)</li>
+</ul>
+<pre><code>fds.aircraftData = struct( ...
+   'acIdentifier', '', ... aircraft name/identifier
+   'sRef', '', ... Full aircraft coefficient reference area
+   'cRef', '', ... Full aircraft moment coefficient reference chord length
+   'bRef', '', ... Full aircraft moment coefficient reference span
+   'mass', '', ... Take off mass
+   'ixx',  '', ... Take off Inertia around X body axis
+   'iyy',  '', ... Take off Inertia around Y body axis
+   'izz',  '', ... Take off Inertia around Z body axis
+   'ixz',  '', ... Take off Inertia around XZ body axis
+   'xCG',  '', ... Take off CG location along X body axis
+   'yCG',  '', ... Take off CG location along Y body axis
+   'zCG',  ''  ... Take off CG location along Z body axis
+);
+</code></pre>
+
+<h3 id="struct-testinfo">Struct <code>testInfo</code>:</h3>
+<p>Store information about the flight test (pilot, weather, location…)</p>
+<ul>
+<li>may contain BSP specific fields (see Notes)</li>
+</ul>
+<pre><code>fds.testInfo = struct( ...
+   'date',              '', ... Test date
+   'startTime',         '', ... UTC time of test start
+   'description',       '', ... Short description of data content
+   'pilot',             '', ... Pilot name
+   'location',          '', ... Airfield designation
+   'airfieldElevation', '', ... Airfield elevation above MSL [m]
+   'weather',           '', ... Local weather description string
+   'windDir',           '', ... Wind direction [deg]
+   'windSpeed',         '', ... Wind speed [m/s]
+   'ambientPressure',   '', ... Local ambient pressure [Pa]
+   'ambientTemperature','', ... Local ambient temperature [C]
+   'gravity',           '', ... gravitational acceleration [m/s2]
+   'magRef_N',          '', ... magnetic reference vector N component [Gauss]
+   'magRef_E',          '', ... magnetic reference vector E component [Gauss]
+   'magRef_D',          ''  ... magnetic reference vector D component [Gauss]
+);
+</code></pre>
+
+<h3 id="struct-ftisensorproperties">Struct <code>ftiSensorProperties</code>:</h3>
+<p>Information/location of a sensor</p>
+<pre><code>ftiSensorProperties = struct( ...
+   'identifier',        '', ... Sensor ID
+   'type',              '', ... Sensor ID
+   'description',       '', ... Sensor ID
+   'xCoord',            '', ... Sensor ID
+   'yCoord',            '', ... Sensor ID
+   'zCoord',            ''  ... Sensor ID
+);
+</code></pre>
+
+<h3 id="struct-ftisensors">Struct <code>ftiSensors</code>:</h3>
+<p>Structure containing one ftiSensorProperties struct for each installed sensor. Filled by BSP.</p>
+<pre><code>fds.ftiSensors = struct( ...
+    'airdata',    ftiSensorProperties, ...
+    'gpsAntenna', ftiSensorProperties  ...
+);
+</code></pre>
+
+<h3 id="other-fields">Other Fields:</h3>
+<ul>
+<li>
+<p>double timeOffset: time axis offset for this dataset (relative to a Master set specified in the App)</p>
+</li>
+<li>
+<p>char created[]: time and date of fds struct creation</p>
+</li>
+<li>
+<p>char boardSupportPackage[]: identifier of data acquisition system, enables BSP specific functionalities</p>
+</li>
+<li>
+<p>float fdsVersion: version of FDS format definition</p>
+</li>
+</ul>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>FDS can contain BSP specific fields, as long as they do not interfere with this specification. No kVIS3 baseline function may require a non standard FDS field. Access to BSP specific fields must only be done through a BSP function.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="exportTab.html" class="btn btn-neutral" title="template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="exportTab.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
