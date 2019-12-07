@@ -34,7 +34,7 @@ data_tab_hbox = uix.HBoxFlex('Parent', handles.uiTabData.tabHandle);
 data_tab_left = uix.VBox('Parent',data_tab_hbox,'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),'Padding',8);
 data_tab_right = uix.VBox('Parent', data_tab_hbox,'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'),'Padding',8);
 
-data_tab_hbox.Widths = [150 -1];
+data_tab_hbox.Widths = [getpref('kVIS_prefs','uiDataChannelBoxWidth') -1];
 
 % left panel - data channels
 uicontrol(data_tab_left,'Style','text',...
