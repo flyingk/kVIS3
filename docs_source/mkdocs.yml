@@ -11,11 +11,13 @@ nav:
         - dataTab.md
         - eventTab.md
         - plotTab.md
+        - plotFormat.md
         - exportTab.md
         
         
     - Developer Information:
         - fdsFormat.md
+        
         
         
         
