@@ -41,3 +41,5 @@ kVIS3 is based on a generic file format for the test data, which arranges the da
 - BSP requirements
 
 - Custom functionality
+
+- [Code docs (doxygen - experimental)](doxygen/files.html)
