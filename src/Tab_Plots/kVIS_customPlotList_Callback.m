@@ -35,14 +35,19 @@ if isempty(plotName)
         BSP_Path = getpref('kVIS_prefs','bspDir');
         BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
         
-        cmdstr = ['open ' BSP_CustomPlots_Path '/' plotName '_Plot_Def.xlsx'];
-        
-        rc = system(cmdstr);
-        
-        if rc ~= 0
-            disp('Plot definition file (.xlsx) not found. Opening folder instead...')
-            cmdstr = ['open ' BSP_CustomPlots_Path];
-            system(cmdstr);
+        if ismac
+            cmdstr = ['open ' BSP_CustomPlots_Path '/' plotName '_Plot_Def.xlsx'];
+            
+            rc = system(cmdstr);
+            
+            if rc ~= 0
+                disp('Plot definition file (.xlsx) not found. Opening folder instead...')
+                cmdstr = ['open ' BSP_CustomPlots_Path];
+                system(cmdstr);
+            end
+            
+        elseif ispc
+            
         end
         
         kVIS_editCustomPlotDefBtn_Callback(findobj('Tag','editPlotDefBtn'), [], 1)
