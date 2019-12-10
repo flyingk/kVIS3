@@ -18,6 +18,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%> @brief Creates the application framework for kVIS3
+%>
+%> @param BSP_Info structure read from BSP_ID file
+%>
+%> @retval Handle to application figure
+
 function appWindow = kVIS_uiSetupFramework(BSP_Info)
 
 if ~nargin
