@@ -34,8 +34,20 @@ if isempty(plotName)
         
         BSP_Path = getpref('kVIS_prefs','bspDir');
         BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
+        plot_def_full = [BSP_CustomPlots_Path '/' plotName '_Plot_Def.xlsx'];
         
-        cmdstr = ['open ' BSP_CustomPlots_Path '/' plotName '_Plot_Def.xlsx'];
+        % Platform specific command
+        if (ismac)
+            cmdstr = ['open ' plot_def_full];
+        elseif (ispc)
+            cmdstr = ['',plot_def_full,'',' &']; % Open in background
+            %cmdstr = ['',plot_def_full,''];      % Open in foreground
+        elseif (isunix)
+            disp('Platform not yet supported!');
+        else
+            disp('Platform not supported!');
+            return
+        end
         
         rc = system(cmdstr);
         

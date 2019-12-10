@@ -34,16 +34,6 @@ else
      hObject.CData = imread('icons8-edit-36_p.png') - 10;
 end
 
-% Open Excel plot def file.
-plot_def_path = [getpref('kVIS_prefs', 'bspDir'),'\CustomPlots\'];
-plot_def_file = [handles.uiTabPlots.customPlotListBox.String{handles.uiTabPlots.customPlotListBox.Value},'.xlsx'];
-plot_def_full = ['"',plot_def_path,plot_def_file,'"'];
-
-% ToDo: Put a check in here to make sure the files are named correctly as
-% the plot name sanitiser might have changed something...
-fprintf('Opening file %s\n',plot_def_full);
-system(['',plot_def_full,'',' &']);
-
 guidata(hObject, handles)
 end
 
