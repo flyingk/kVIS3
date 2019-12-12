@@ -30,6 +30,7 @@ Freely available BSP's are (work in progress):
 - [Generic BSP template for CSV files](https://github.com/flyingk/kVIS3_bsp_generic_demo)
 - [ArduPilot](https://github.com/flyingk/kVIS3_bsp_ardupilot)
 - [PX4](https://github.com/flyingk/kVIS3_bsp_px4)
+- [Betaflight](https://github.com/flyingk/kVIS3_bsp_betaflight)
 - tbd.
 
 Run 'kVIS3.m' after installing the two toolboxes mentioned below (included in the `Contributed` folder). On first launch you will be asked to specify the path to the BSP folder containing the `BSP_ID.m` file.
