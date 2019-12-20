@@ -28,7 +28,7 @@ if ~ispref('kVIS_prefs','bspDir')
 end
 
 if ~ispref('kVIS_prefs','uiBackgroundColour')
-    addpref('kVIS_prefs','uiBackgroundColour',[0.3,0.4,0.58])
+    addpref('kVIS_prefs','uiBackgroundColour', [0.3,0.4,0.58])
 end
 
 if ~ispref('kVIS_prefs','uiPlotWidthFraction')
@@ -40,23 +40,27 @@ if ~ispref('kVIS_prefs','uiDataChannelBoxWidth')
 end
 
 if ~ispref('kVIS_prefs','defaultGroupTreeFontSize')
-    addpref('kVIS_prefs','defaultGroupTreeFontSize',16)
+    addpref('kVIS_prefs','defaultGroupTreeFontSize', 10)
 end
 
 if ~ispref('kVIS_prefs','defaultLegendFontSize')
-    addpref('kVIS_prefs','defaultLegendFontSize',12)
+    addpref('kVIS_prefs','defaultLegendFontSize', 12)
 end
 
 if ~ispref('kVIS_prefs','dataReplayFeature')
-    addpref('kVIS_prefs','dataReplayFeature','off')
+    addpref('kVIS_prefs','dataReplayFeature', 'off')
 end
 
 if ~ispref('kVIS_prefs','dataReplayTargetIP')
-    addpref('kVIS_prefs','dataReplayTargetIP','127.0.0.1')
+    addpref('kVIS_prefs','dataReplayTargetIP', '127.0.0.1')
+end
+
+if ~ispref('kVIS_prefs','dataReplaySpeed')
+    addpref('kVIS_prefs','dataReplaySpeed', 10)
 end
 
 if ~ispref('kVIS_prefs','google_maps_api_key')
-    addpref('kVIS_prefs','google_maps_api_key','')
+    addpref('kVIS_prefs','google_maps_api_key', '')
 end
 
 % prefs = getpref('kVIS_prefs')

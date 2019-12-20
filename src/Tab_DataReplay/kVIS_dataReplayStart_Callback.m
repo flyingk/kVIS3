@@ -104,7 +104,7 @@ start(t)
 %
 % data messages @ 10Hz
 %
-updateFrequency = 10;
+updateFrequency = getpref('kVIS_prefs','dataReplaySpeed');
 
 t2 = timer('Period', 1/updateFrequency, 'TasksToExecute', Inf, ...
           'ExecutionMode', 'fixedRate', 'Tag', 'DataTimer');
@@ -118,6 +118,7 @@ Data = BSP_replayDataPrepareFcn(fds);
 Data.currentStep = 1;
 Data.lineHandle = lineHandle;
 Data.updateFrequency = updateFrequency;
+Data.sampleRate = mean(diff(Data.Time));
 
 t2.UserData = Data;
 

@@ -21,7 +21,7 @@ Data.lineHandle.XData = [currentTime currentTime];
 %
 % Next timestep
 %
-Data.currentStep = Data.currentStep + Data.updateFrequency;
+Data.currentStep = Data.currentStep + round(1 / (Data.updateFrequency * Data.sampleRate));
 
 %
 % Stop playback at end of data
@@ -31,7 +31,6 @@ if Data.currentStep >= sampleNo
     msgbox('End of Data Playback.')
     return
 end
-
 
 hObject.UserData = Data;
 end
