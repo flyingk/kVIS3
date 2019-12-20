@@ -66,11 +66,17 @@ ylim = kVIS_getDataRange(hObject, 'YLim');
 if isnan(ylim)
     current_lines = kVIS_findValidPlotLines(axesHandle);
     
-    ylim(1) = min(arrayfun(@(x) x.UserData.yMin, current_lines));
-    ylim(2) = max(arrayfun(@(x) x.UserData.yMax, current_lines));
+    if ~isempty(current_lines)
+        ylim(1) = min(arrayfun(@(x) x.UserData.yMin, current_lines));
+        ylim(2) = max(arrayfun(@(x) x.UserData.yMax, current_lines));
+    else
+        % nothing plotted, so create empty time indicator plot
+        ylim = [0 1];
+        axesHandle.XLim = xlim;
+    end
 end
 
-lineHandle = line(axesHandle, xlim, ylim, 'Color', 'r', 'LineWidth', 2.0);
+lineHandle = line(axesHandle, [xlim(1) xlim(1)], ylim, 'Color', 'r', 'LineWidth', 2.0);
 
 
 %
