@@ -43,13 +43,31 @@ if nameSelect == 0
     handles.uiTabData.channelListBoxMenu1.Checked = 'on';
     handles.uiTabData.channelListBoxMenu2.Checked = 'off';
     vars = fds.fdata{fds.fdataRows.varNamesDisp, fileNo};
+    
+    units = fds.fdata{fds.fdataRows.varUnits, fileNo};
+    frames = fds.fdata{fds.fdataRows.varFrames, fileNo};
+    
+    %
+    % decode channel name string if appropriate
+    % 
+    for k=1:length(units)
+        if units{k} == '-'
+            [ SignalInfo ] = kVIS_extractInfoFromSignalName( vars{k} );
+            vars{k} = [SignalInfo.Data.Symbol '_' SignalInfo.Data.Axis];
+            units{k} = SignalInfo.Data.Unit;
+            frames{k} = SignalInfo.Data.Frame;
+        else
+        end
+    end
+    
 else
     handles.uiTabData.channelListBoxMenu1.Checked = 'off';
     handles.uiTabData.channelListBoxMenu2.Checked = 'on';
     vars = fds.fdata{fds.fdataRows.varNames, fileNo};
+    units = fds.fdata{fds.fdataRows.varUnits, fileNo};
+    frames = fds.fdata{fds.fdataRows.varFrames, fileNo};
 end
-units = fds.fdata{fds.fdataRows.varUnits, fileNo};
-frames = fds.fdata{fds.fdataRows.varFrames, fileNo};
+
 
 if ~isempty(vars)
     vars = cellfun(@(x) sprintf('  %s', x), vars, 'UniformOutput', false);
