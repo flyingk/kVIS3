@@ -53,8 +53,8 @@ if nameSelect == 0
     for k=1:length(units)
         if units{k} == '-'
             [ SignalInfo ] = kVIS_extractInfoFromSignalName( vars{k} );
-            vars{k} = [SignalInfo.Data.Symbol '_' SignalInfo.Data.Axis];
-            units{k} = SignalInfo.Data.Unit;
+            vars{k}   = SignalInfo.DispName;
+            units{k}  = SignalInfo.Data.Unit;
             frames{k} = SignalInfo.Data.Frame;
         else
         end

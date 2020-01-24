@@ -42,6 +42,26 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
     Name = strip(Name);
     Name = strip(Name, '<');
     Name = strip(Name, '>');
+    
+    % Display name generation ( just cut off the UNIT/FRAME tokens )
+    k1 = strfind(Name, 'UNIT');
+    k2 = strfind(Name, 'FRAME');
+    
+    if ~isempty(k1) || ~isempty(k2)
+        
+        if k1 > k2
+            DispName = Name(1:k2-2);
+        else
+            DispName = Name(1:k1-2);
+        end
+        
+    else
+        
+        DispName = Name;
+        
+    end
+    
+    % Tex string generation
     Tokens = strsplit(Name, '_');
 
     assert(numel(Tokens) > 0);
@@ -188,7 +208,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
 
         % Escape special characters
         TeX = TeX_escape(Name);
-
+        
     else
 
         if any(strcmp(GreekLetters, Data.Symbol))
@@ -210,7 +230,9 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
         end
 
         if Flags.HasSubscripts
+            
             TeX_Sub = cell(size(Data.Subscripts));
+            
             for I = 1 : numel(Data.Subscripts)
                 Sub = Data.Subscripts{I};
                 if any(strcmp(GreekLetters, Sub))
@@ -218,6 +240,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
                 end
                 TeX_Sub{I} = TeX_escape(Sub);
             end
+            
             if Flags.HasAxis
                 TeX = ['{(', TeX, ')}_{', strjoin(TeX_Sub, ','), '}'];
             else
@@ -251,6 +274,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
     %% Output struct
     SignalInfo.TeX_Name = TeX;
     SignalInfo.TeX_Unit = TeX_Unit;
+    SignalInfo.DispName = DispName;
 
 end
 
