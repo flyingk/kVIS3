@@ -23,11 +23,13 @@ function kVIS_customPlotList_Callback(hObject, ~, plotName)
 % get GUI data
 handles = guidata(hObject);
 
+% get menu entry - plot selection
+val = hObject.Value;
+
+plotName = hObject.String{val};
+
+
 if isempty(plotName)
-    % get menu entry - plot selection
-    val = hObject.Value;
-        
-    plotName = hObject.String{val};
     
     % edit the plot definition file, if selected
     if handles.uiTabPlots.editPlotDefBtn == 1
@@ -70,9 +72,14 @@ catch
     return;
 end
 
-BSP_Name = fds.BoardSupportPackage;
+%
+% Read plot definition
+%
+PlotDefinition = handles.uiTabPlots.CustomPlots;
 
-PlotDefinition = handles.uiTabPlots.CustomPlots.(BSP_Name).(plotName);
+file = [PlotDefinition.BSP_CustomPlots_Path '/' plotName];
+
+[~,~,PlotDefinition] = xlsread(file,'','','basic');
 
 
 % % plot full data length

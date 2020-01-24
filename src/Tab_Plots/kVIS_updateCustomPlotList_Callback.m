@@ -25,15 +25,15 @@ handles = guidata(hObject);
 handles.uiTabPlots.CustomPlots = LoadPlotDefinitions(handles.bspInfo);
 
 
-
-BSP_Name = fieldnames(handles.uiTabPlots.CustomPlots);
-
-custom_plot_list = fieldnames(handles.uiTabPlots.CustomPlots.(BSP_Name{1}));
-
+% 
+% BSP_Name = fieldnames(handles.uiTabPlots.CustomPlots);
+% 
+% custom_plot_list = fieldnames(handles.uiTabPlots.CustomPlots.(BSP_Name{1}));
+% 
 
 
 handles.uiTabPlots.customPlotListBox.Value = 1;
-handles.uiTabPlots.customPlotListBox.String = custom_plot_list;
+handles.uiTabPlots.customPlotListBox.String = handles.uiTabPlots.CustomPlots.names;
 
 
 guidata(hObject, handles);
@@ -48,13 +48,21 @@ function [ CUSTOM_PLOTS ] = LoadPlotDefinitions(bspInfo)
 % Plot list to be filled in by plot definition scripts
 CUSTOM_PLOTS = struct();
 
-% Find custom plot definitions in each BoardSupportPackage and add them to the list as
-% CUSTOM_PLOTS.(BSP_Name).(PlotName)
-
 BSP_NAME = bspInfo.Name;
 BSP_Path = getpref('kVIS_prefs','bspDir');
 BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
 
+list = dir(BSP_CustomPlots_Path);
+ll = struct2cell(list);
+
+CUSTOM_PLOTS.names = ll(1,:);
+CUSTOM_PLOTS.BSP_CustomPlots_Path = BSP_CustomPlots_Path;
+
+return
+
+
+% Find custom plot definitions in each BoardSupportPackage and add them to the list as
+% CUSTOM_PLOTS.(BSP_Name).(PlotName)
 
 if exist(BSP_CustomPlots_Path, 'dir')
     
