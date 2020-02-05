@@ -235,6 +235,13 @@ switch source.Label
             line.UserData.colorBackup = line.Color;
             line.UserData.modState = true;
             
+            if isfield(line.UserData,'timeOffset')
+                line.UserData.timeOffset = line.UserData.timeOffset + str2double(answ);
+            else
+                line.UserData.timeOffset = str2double(answ);
+            end
+            
+            line.DisplayName = [line.DisplayName ' dT (' num2str(line.UserData.timeOffset) 's)'];
             line.XData = t + str2double(answ);
             
         end
