@@ -217,13 +217,43 @@ switch source.Label
         end
         
         %
+        % apply time shift
+        %
+    case 'Apply time offset'
+        
+        % get line data as column vector
+        t = line.XData';
+        
+        % ask for desired operation
+        answ = inputdlg({'Time offset:'},'Apply time offset [sec]', 1, {'0.0'});
+        
+        if ~isempty(answ)
+            
+            % save state to restore
+            line.UserData.timeBackup = t';
+            line.UserData.nameBackup = line.DisplayName;
+            line.UserData.colorBackup = line.Color;
+            line.UserData.modState = true;
+            
+            line.XData = t + str2double(answ);
+            
+        end
+        
+        %
         % undo line math operation
         %
     case 'Undo modify'
         
         if line.UserData.modState == true
             
-            line.YData = line.UserData.dataBackup;
+            if isfield(line.UserData,'timeBackup')
+                line.XData = line.UserData.timeBackup;
+            end
+            
+            if isfield(line.UserData,'dataBackup')
+                line.YData = line.UserData.dataBackup;
+            end
+            
             line.DisplayName = line.UserData.nameBackup;
             line.Color = line.UserData.colorBackup;
             line.UserData.modState = false;
