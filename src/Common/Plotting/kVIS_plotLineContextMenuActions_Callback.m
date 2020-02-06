@@ -287,6 +287,27 @@ switch source.Label
         uistack(line, 'down');
         
         %
+        % Display signal statistics
+        %
+    case 'Signal statistics'
+        
+        t = line.XData;
+        y = line.YData;
+        
+        ax = line.Parent;
+        hold(ax, 'on');
+        
+        m = mean(y);
+        sd= std(y);
+        
+        plot(ax, t, ones(length(t),1)*m)
+        plot(ax, t, ones(length(t),1)*m+sd)
+        plot(ax, t, ones(length(t),1)*m-sd)
+        title(ax,['Mean: ' num2str(m) ' Std Dev: ' num2str(sd)], 'Color', 'w')
+        
+        kVIS_axesResizeToContainer(ax);
+                
+        %
         % delete the line
         %
     case 'Delete'
