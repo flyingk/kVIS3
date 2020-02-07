@@ -58,9 +58,16 @@ catch
     return;
 end
 
-BSP_Name = fds.BoardSupportPackage;
+%
+% Read export definition
+%
+ExportDefinition = handles.uiTabExports.Exports;
 
-ExportDefinition = handles.uiTabExports.Exports.(BSP_Name).(exportName);
+file = [ExportDefinition.BSP_Exports_Path '/' exportName];
+
+if endsWith(file,".xlsx")
+    [~,~,ExportDefinition] = xlsread(file,'','','basic');
+end
 
 ExportDef = ExportDefinition(6:end,:);
 

@@ -22,64 +22,32 @@ function [] = kVIS_updateExportList_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-handles.uiTabExports.Exports = LoadPlotDefinitions(handles.bspInfo);
-
-
-
-BSP_Name = fieldnames(handles.uiTabExports.Exports);
-
-export_list = fieldnames(handles.uiTabExports.Exports.(BSP_Name{1}));
-
-
-
-handles.uiTabExports.exportListBox.Value = 1;
-handles.uiTabExports.exportListBox.String = export_list;
-
-
-guidata(hObject, handles);
-end
-
-
-function [ EXPORTS ] = LoadPlotDefinitions(bspInfo)
-%
-% Load custom plot definitions provided by the BSP.
-%
-
-% Plot list to be filled in by plot definition scripts
 EXPORTS = struct();
 
-% Find custom plot definitions in each BoardSupportPackage and add them to the list as
-% CUSTOM_PLOTS.(BSP_Name).(PlotName)
-
-BSP_NAME = bspInfo.Name;
+BSP_NAME = handles.bspInfo.Name;
 BSP_Path = getpref('kVIS_prefs','bspDir');
 BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
 
-
 if exist(BSP_Exports_Path, 'dir')
     
-    BSP_Export_Scripts = dir(BSP_Exports_Path);
-    BSP_Export_Scripts = BSP_Export_Scripts(~[BSP_Export_Scripts(:).isdir]);
+    list = dir(BSP_Exports_Path);
+    ll = struct2cell(list);
     
-    % new spreadsheet based definition - exclude excel temp files
-    BSP_Export_Scripts_xls = BSP_Export_Scripts(endsWith({BSP_Export_Scripts(:).name}, '.xlsx') & ...
-        ~startsWith({BSP_Export_Scripts(:).name}, '~$'));
+    % get valid plot names
+    aa = endsWith(ll(1,:), ".xlsx");
     
-    for s = 1 : numel(BSP_Export_Scripts_xls)
-        
-        script_file = fullfile(BSP_Export_Scripts_xls(s).folder, BSP_Export_Scripts_xls(s).name);
-        
-        [~,~,export_definition] = xlsread(script_file,'','','basic');
-        
-        plt_name = export_definition{3,2};
-        EXPORTS.(BSP_NAME).(plt_name) = export_definition;
-    end
+    EXPORTS.names = ll(1,aa);
+    EXPORTS.BSP_Exports_Path = BSP_Exports_Path;
     
 else
-    disp('Export folder not found...')
+    disp('Exports folder not found...')
+    return
 end
 
+handles.uiTabExports.Exports = EXPORTS;
 
+handles.uiTabExports.exportListBox.Value = 1;
+handles.uiTabExports.exportListBox.String = handles.uiTabExports.Exports.names;
 
-
+guidata(hObject, handles);
 end
