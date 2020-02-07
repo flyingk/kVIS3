@@ -111,8 +111,6 @@ for i = 1:size(Ch, 1)
     label = meta.name;
     unit = meta.unit;
 
-    label = meta.texName;
-
     % apply scale factor
     yp(:,i) = yp(:,i) * Ch{i,8};
     

@@ -79,7 +79,12 @@ PlotDefinition = handles.uiTabPlots.CustomPlots;
 
 file = [PlotDefinition.BSP_CustomPlots_Path '/' plotName];
 
-[~,~,PlotDefinition] = xlsread(file,'','','basic');
+if endsWith(file,".xlsx")
+    [~,~,PlotDefinition] = xlsread(file,'','','basic');
+elseif endsWith(file,".m")
+    BSP_NAME = 'none';
+    run(file)
+end
 
 
 % % plot full data length
@@ -101,7 +106,7 @@ if size(PlotDefinition, 2) < 19
     finp = figure('Position',[100,100,1000,800],'Units','normalized',...
         'Visible','off');
         
-    kVIS_generateCustomPlotM(finp, fds, PlotDefinition, xlim, []);
+    kVIS_generateCustomPlotM(finp, fds, plot_definition, xlim, []);
 else
     % Create a new figure and format it
     finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...

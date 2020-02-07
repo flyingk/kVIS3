@@ -22,85 +22,32 @@ function [] = kVIS_updateCustomPlotList_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-handles.uiTabPlots.CustomPlots = LoadPlotDefinitions(handles.bspInfo);
+CUSTOM_PLOTS = struct();
 
+BSP_NAME = handles.bspInfo.Name;
+BSP_Path = getpref('kVIS_prefs','bspDir');
+BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
 
-% 
-% BSP_Name = fieldnames(handles.uiTabPlots.CustomPlots);
-% 
-% custom_plot_list = fieldnames(handles.uiTabPlots.CustomPlots.(BSP_Name{1}));
-% 
+if exist(BSP_CustomPlots_Path, 'dir')
+    
+    list = dir(BSP_CustomPlots_Path);
+    ll = struct2cell(list);
+    
+    % get valid plot names
+    aa = endsWith(ll(1,:), [".xlsx",".m"]);
+    
+    CUSTOM_PLOTS.names = ll(1,aa);
+    CUSTOM_PLOTS.BSP_CustomPlots_Path = BSP_CustomPlots_Path;
+    
+else
+    disp('Custom plot folder not found...')
+    return
+end
 
+handles.uiTabPlots.CustomPlots = CUSTOM_PLOTS;
 
 handles.uiTabPlots.customPlotListBox.Value = 1;
 handles.uiTabPlots.customPlotListBox.String = handles.uiTabPlots.CustomPlots.names;
 
-
 guidata(hObject, handles);
-end
-
-
-function [ CUSTOM_PLOTS ] = LoadPlotDefinitions(bspInfo)
-%
-% Load custom plot definitions provided by the BSP.
-%
-
-% Plot list to be filled in by plot definition scripts
-CUSTOM_PLOTS = struct();
-
-BSP_NAME = bspInfo.Name;
-BSP_Path = getpref('kVIS_prefs','bspDir');
-BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
-
-list = dir(BSP_CustomPlots_Path);
-ll = struct2cell(list);
-
-CUSTOM_PLOTS.names = ll(1,:);
-CUSTOM_PLOTS.BSP_CustomPlots_Path = BSP_CustomPlots_Path;
-
-return
-
-
-% Find custom plot definitions in each BoardSupportPackage and add them to the list as
-% CUSTOM_PLOTS.(BSP_Name).(PlotName)
-
-if exist(BSP_CustomPlots_Path, 'dir')
-    
-    BSP_CustomPlot_Scripts = dir(BSP_CustomPlots_Path);
-    BSP_CustomPlot_Scripts = BSP_CustomPlot_Scripts(~[BSP_CustomPlot_Scripts(:).isdir]);
-    
-    % legacy m-code format
-    BSP_CustomPlot_Scripts_m = BSP_CustomPlot_Scripts(endsWith({BSP_CustomPlot_Scripts(:).name}, '.m'));
-    
-    for s = 1 : numel(BSP_CustomPlot_Scripts_m)
-        
-        script_file = fullfile(BSP_CustomPlot_Scripts_m(s).folder, BSP_CustomPlot_Scripts_m(s).name);
-        % A custom plot definition script can generate one or more plot
-        % definitions and add them to CUSTOM_PLOTS:
-        %   CUSTOM_PLOTS.(BSP_NAME).NewPlotName = NewPlotDefinition;
-        % The script is executed in the current local workspace.
-        run(script_file);
-    end
-    
-    % new spreadsheet based definition - exclude excel temp files
-    BSP_CustomPlot_Scripts_xls = BSP_CustomPlot_Scripts(endsWith({BSP_CustomPlot_Scripts(:).name}, '.xlsx') & ...
-        ~startsWith({BSP_CustomPlot_Scripts(:).name}, '~$'));
-    
-    for s = 1 : numel(BSP_CustomPlot_Scripts_xls)
-        
-        script_file = fullfile(BSP_CustomPlot_Scripts_xls(s).folder, BSP_CustomPlot_Scripts_xls(s).name);
-        
-        [~,~,plot_definition] = xlsread(script_file,'','','basic');
-        
-        plt_name = matlab.lang.makeValidName(plot_definition{3,2});
-        CUSTOM_PLOTS.(BSP_NAME).(plt_name) = plot_definition;
-    end
-    
-else
-    disp('Custom plot folder not found...')
-end
-
-
-
-
 end
