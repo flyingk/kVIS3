@@ -23,11 +23,13 @@ function kVIS_customPlotList_Callback(hObject, ~, plotName)
 % get GUI data
 handles = guidata(hObject);
 
+% get menu entry - plot selection
+val = hObject.Value;
+
+plotName = hObject.String{val};
+
+
 if isempty(plotName)
-    % get menu entry - plot selection
-    val = hObject.Value;
-        
-    plotName = hObject.String{val};
     
     % edit the plot definition file, if selected
     if handles.uiTabPlots.editPlotDefBtn == 1
@@ -70,9 +72,19 @@ catch
     return;
 end
 
-BSP_Name = fds.BoardSupportPackage;
+%
+% Read plot definition
+%
+PlotDefinition = handles.uiTabPlots.CustomPlots;
 
-PlotDefinition = handles.uiTabPlots.CustomPlots.(BSP_Name).(plotName);
+file = [PlotDefinition.BSP_CustomPlots_Path '/' plotName];
+
+if endsWith(file,".xlsx")
+    [~,~,PlotDefinition] = xlsread(file,'','','basic');
+elseif endsWith(file,".m")
+    BSP_NAME = 'none';
+    run(file)
+end
 
 
 % % plot full data length
@@ -94,7 +106,7 @@ if size(PlotDefinition, 2) < 19
     finp = figure('Position',[100,100,1000,800],'Units','normalized',...
         'Visible','off');
         
-    kVIS_generateCustomPlotM(finp, fds, PlotDefinition, xlim, []);
+    kVIS_generateCustomPlotM(finp, fds, plot_definition, xlim, []);
 else
     % Create a new figure and format it
     finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
