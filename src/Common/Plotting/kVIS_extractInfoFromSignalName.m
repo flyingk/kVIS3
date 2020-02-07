@@ -212,7 +212,7 @@ function [ SignalInfo ] = kVIS_extractInfoFromSignalName(Name)
     else
 
         if any(strcmp(GreekLetters, Data.Symbol))
-            TeX = ['\', TeX_escape(Data.Symbol)];
+            TeX = ['\', TeX_escape(lower(Data.Symbol))];
         else
             TeX = TeX_escape(Data.Symbol);
         end
