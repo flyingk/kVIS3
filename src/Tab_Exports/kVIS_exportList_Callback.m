@@ -35,7 +35,7 @@ if handles.uiTabExports.editExportDefBtn == 1
     BSP_Path = getpref('kVIS_prefs','bspDir');
     BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
     
-    cmdstr = ['open ' BSP_Exports_Path '/' exportName '_Export_Def.xlsx'];
+    cmdstr = ['open ' BSP_Exports_Path '/' exportName];
     
     rc = system(cmdstr);
     
