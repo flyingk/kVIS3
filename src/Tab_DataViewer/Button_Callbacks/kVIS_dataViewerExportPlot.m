@@ -18,9 +18,16 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_dataViewerExportPlot(~, ~)
+function kVIS_dataViewerExportPlot(hObject, ~)
 
-% handles=guidata(hObject);
+answ = questdlg('What to export: ','What to export?','Selected Plot','All Plots','Cancel','Selected Plot');
+
+if strcmp(answ,'Cancel')
+    return
+elseif strcmp(answ,'All Plots')
+    kVIS_dataViewerExportAllPlots(hObject,[]);
+    return
+end
 
 l = kVIS_dataViewerGetActivePanel();
 
