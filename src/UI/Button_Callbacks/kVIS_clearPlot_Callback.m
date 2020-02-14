@@ -31,14 +31,30 @@ if isempty(l)
     return
 end
 
+%
+% save current x limits
+%
+xlim = l.axesHandle.XLim;
+%
+% clear plot
+%
 cla(l.axesHandle, 'reset');
-
-kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
-kVIS_axesResizeToContainer(l.axesHandle);
+%
+% restore x limits, if multiple timeplots (linked) exist
+%
+panels = findobj('Tag','timeplot');
+if size(panels,1) > 1
+    l.axesHandle.XLim = xlim;
+end
 %
 % reset y axes limits
 %
 kVIS_setDataRange(hObject, 'YLim', []);
+%
+% format plot
+%
+kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
+kVIS_axesResizeToContainer(l.axesHandle);
 %
 % reset button states
 %
