@@ -23,14 +23,15 @@ function kVIS_createMap_Callback(hObject, ~)
 %
 % matt & kai
 
-% Work out which locs to plot (only plot what's zoomed in on)
-handles = guidata(hObject);
-
-
 fds = kVIS_getCurrentFds(hObject);
 
 if ~isstruct(fds)
     errordlg('Nothing loaded...')
+    return
+end
+
+if isempty(getpref('kVIS_prefs','google_maps_api_key'))
+    errordlg('The map plot requires a valid Google Maps Static API key. Enter key in preferences menu.');
     return
 end
 
@@ -89,7 +90,6 @@ else
     % Plot out marker
     text(axes_handle, lon(end),lat(end),'OUT','color','w','HorizontalAlignment','center','FontWeight','bold');
 end
-
 
 % Add google map underlay
 plot_google_map( ...
