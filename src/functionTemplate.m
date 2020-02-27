@@ -1,3 +1,8 @@
+%
+%> @file functionTemplate.m
+%> @brief Template for new files, including Doxygen fields
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,11 +23,17 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Function stub for kVIS3
+%>
+%> @param Input1
+%> @param Input2
+%>
+%> @retval Output1
+%> @retval Output2
+%
 function [outputArg1,outputArg2] = functionTemplate(inputArg1,inputArg2)
-%	Summary of this function goes here
-%
-%   Detailed explanation goes here
-%
+
 outputArg1 = inputArg1;
 outputArg2 = inputArg2;
 end
