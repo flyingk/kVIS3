@@ -43,7 +43,7 @@ tree = handles.uiTabPlots.customPlotListBox;
 % Clear the tree.
 delete(tree.Root.Children);
 
-node = tree.Root;
+parent_node = tree.Root;
 
 % build tree (currently one level only)
 for I = find(aa==true)
@@ -79,10 +79,10 @@ for I = find(aa==true)
         end
         
     else
-        parent_node = node;
+        parent_node = tree.Root;
         
         % Create the node.
-        node = uiw.widget.TreeNode( ...
+        uiw.widget.TreeNode( ...
             'Name', ll{1,I}, ...
             'Value', I, ...
             'TooltipString', [], ...
