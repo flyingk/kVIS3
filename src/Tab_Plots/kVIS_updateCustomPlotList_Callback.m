@@ -22,9 +22,6 @@ function [] = kVIS_updateCustomPlotList_Callback(hObject, ~)
 
 handles = guidata(hObject);
 
-CUSTOM_PLOTS = struct();
-
-BSP_NAME = handles.bspInfo.Name;
 BSP_Path = getpref('kVIS_prefs','bspDir');
 BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
 
@@ -34,20 +31,88 @@ if exist(BSP_CustomPlots_Path, 'dir')
     ll = struct2cell(list);
     
     % get valid plot names
-    aa = endsWith(ll(1,:), [".xlsx",".m"]);
-    
-    CUSTOM_PLOTS.names = ll(1,aa);
-    CUSTOM_PLOTS.BSP_CustomPlots_Path = BSP_CustomPlots_Path;
+    aa = ~startsWith(ll(1,:), ".");
     
 else
     disp('Custom plot folder not found...')
     return
 end
 
-handles.uiTabPlots.CustomPlots = CUSTOM_PLOTS;
+tree = handles.uiTabPlots.customPlotListBox;
 
-handles.uiTabPlots.customPlotListBox.Value = 1;
-handles.uiTabPlots.customPlotListBox.String = handles.uiTabPlots.CustomPlots.names;
+% Clear the tree.
+delete(tree.Root.Children);
+
+node = tree.Root;
+
+% build tree (currently one level only)
+for I = find(aa==true)
+    
+    if ll{5,I} == true % new dir
+        parent_node = tree.Root;
+        
+        % Create the directory node.
+        pnode = uiw.widget.TreeNode( ...
+            'Name', ll{1,I}, ...
+            'Value', I, ...
+            'TooltipString', [], ...
+            'Parent', parent_node ...
+            );
+        
+        % directory contents
+        dlist = dir(fullfile(BSP_CustomPlots_Path, ll{1,I}));
+        lll = struct2cell(dlist);
+        
+        % get valid plot names
+        bb = ~startsWith(lll(1,:), ".");
+        
+        for M = find(bb==true)
+            
+            node = uiw.widget.TreeNode( ...
+                'Name', lll{1,M}, ...
+                'Value', M, ...
+                'TooltipString', [], ...
+                'Parent', pnode, ...
+                'UserData',fullfile(BSP_CustomPlots_Path, ll{1,I}, lll{1,M}) ...
+                );
+            
+        end
+        
+    else
+        parent_node = node;
+        
+        % Create the node.
+        node = uiw.widget.TreeNode( ...
+            'Name', ll{1,I}, ...
+            'Value', I, ...
+            'TooltipString', [], ...
+            'Parent', parent_node, ...
+            'UserData',fullfile(BSP_CustomPlots_Path, ll{1,I}) ...
+            );
+    end
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 guidata(hObject, handles);
 end

@@ -23,44 +23,55 @@ function kVIS_customPlotList_Callback(hObject, ~, plotName)
 % get GUI data
 handles = guidata(hObject);
 
-% get menu entry - plot selection
-val = hObject.Value;
-
 if isempty(plotName)
-    plotName = hObject.String{val};
+    handles.uiTabPlots.customPlotListBox.SelectedNodes;
+    if ~isempty(handles.uiTabPlots.customPlotListBox.SelectedNodes) && ...
+            ~isempty(handles.uiTabPlots.customPlotListBox.SelectedNodes.UserData)
+        
+        plotName = handles.uiTabPlots.customPlotListBox.SelectedNodes.UserData;
+    else
+        return;
+    end
 end
     
 % edit the plot definition file, if selected
 if handles.uiTabPlots.editPlotDefBtn == 1
     
-    BSP_Path = getpref('kVIS_prefs','bspDir');
-    BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
-    plot_def_full = [BSP_CustomPlots_Path '/' plotName];
-    
-    % Platform specific command
-    if (ismac)
-        cmdstr = ['open ' plot_def_full];
-    elseif (ispc)
-        cmdstr = ['',plot_def_full,'',' &']; % Open in background
-        %cmdstr = ['',plot_def_full,''];      % Open in foreground
-    elseif (isunix)
-        disp('Platform not yet supported!');
-    else
-        disp('Platform not supported!');
+    if endsWith(plotName,".xlsx")
+        
+        % Platform specific command
+        if (ismac)
+            cmdstr = ['open ' plotName];
+        elseif (ispc)
+            cmdstr = ['',plotName,'',' &']; % Open in background
+            %cmdstr = ['',plot_def_full,''];      % Open in foreground
+        elseif (isunix)
+            disp('Platform not yet supported!');
+        else
+            disp('Platform not supported!');
+            return
+        end
+        
+        rc = system(cmdstr);
+        
+        if rc ~= 0
+            disp('Plot definition file (.xlsx) not found. Opening folder instead...')
+            cmdstr = ['open ' BSP_CustomPlots_Path];
+            system(cmdstr);
+        end
+        
+        kVIS_editCustomPlotDefBtn_Callback(findobj('Tag','editPlotDefBtn'), [], 1)
+        
         return
+        
+    else
+        
+        kVIS_editCustomPlotDefBtn_Callback(findobj('Tag','editPlotDefBtn'), [], 1)
+        
+        return
+        
     end
     
-    rc = system(cmdstr);
-    
-    if rc ~= 0
-        disp('Plot definition file (.xlsx) not found. Opening folder instead...')
-        cmdstr = ['open ' BSP_CustomPlots_Path];
-        system(cmdstr);
-    end
-    
-    kVIS_editCustomPlotDefBtn_Callback(findobj('Tag','editPlotDefBtn'), [], 1)
-    
-    return
 end
 
 
@@ -74,15 +85,13 @@ end
 %
 % Read plot definition
 %
-PlotDefinition = handles.uiTabPlots.CustomPlots;
 
-file = [PlotDefinition.BSP_CustomPlots_Path '/' plotName];
-
-if endsWith(file,".xlsx")
-    [~,~,PlotDefinition] = xlsread(file,'','','basic');
-elseif endsWith(file,".m")
-    BSP_NAME = 'none';
-    run(file)
+if endsWith(plotName,".xlsx")
+    [~,~,PlotDefinition] = xlsread(plotName,'','','basic');
+elseif endsWith(plotName,".m")
+    BSP_NAME = 'none'; % required for legacy plot definitions
+    run(plotName)
+    PlotDefinition = plot_definition;
 end
 
 
