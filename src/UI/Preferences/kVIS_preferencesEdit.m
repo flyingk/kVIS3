@@ -43,12 +43,20 @@ if isempty(res)
     return
 end
 
+error = 0;
+
 for i = 1:length(n)
     
     val = str2double(res{i});
     
     if isnan(val)
         val = res{i};
+    end
+    
+    if strcmp(n{i}, 'bspDir')
+        errordlg('Please use the dedicated menu option to change the BSP.')
+        error = 1;
+        break;
     end
 
     if strcmp(n{i}, 'uiBackgroundColour')
@@ -61,7 +69,9 @@ end
 
 prefs = getpref('kVIS_prefs');
 
-msgbox('Changes take effect after restart.')
+if error == 0
+    msgbox('Changes take effect after restart.')
+end
 
 end
 
