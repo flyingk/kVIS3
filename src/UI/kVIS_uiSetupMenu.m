@@ -1,3 +1,8 @@
+%
+%> @file kVIS_uiSetupMenu.m
+%> @brief Create the app menus, including the entries specified by the BSP
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,14 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Create the app menus, including the entries specified by the BSP
+%>
+%> @param GUI handle structure
+%> @param BSP info structure
+%>
+%> @retval GUI handle structure
+%
 function handles = kVIS_uiSetupMenu(handles, BSP_Info)
 
 
@@ -90,9 +103,24 @@ m6 = uimenu(handles.appWindow,'Text','Exports');
 % m64= uimenu(m6,'Text','Event Auto Cutdown','Callback',@event_cutdown_Callback);
 
 m7 = uimenu(handles.appWindow,'Text','BSP Add-Ons');
+
 % menu entries from BSP Info
+submOld = '';
+mm = m7;
+
 for i=1:size(BSP_Info.addOns,1)
-    uimenu(m7,'Text',BSP_Info.addOns{i,1},'Callback',str2func(BSP_Info.addOns{i,2}));
+    
+    if strcmp(BSP_Info.addOns{i,2}, submOld)
+        % add entry to current sub menu
+        uimenu(mm,'Text',BSP_Info.addOns{i,1},'Callback',str2func(BSP_Info.addOns{i,3}))
+    else
+        % add new sub menu entry
+        mm = uimenu(m7,'Text',BSP_Info.addOns{i,2});
+        % add first entry
+        uimenu(mm,'Text',BSP_Info.addOns{i,1},'Callback',str2func(BSP_Info.addOns{i,3}))
+        % update current submenu pointer
+        submOld = BSP_Info.addOns{i,2};
+    end
 end
 
 m8 = uimenu(handles.appWindow,'Text','Help');
