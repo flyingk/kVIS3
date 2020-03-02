@@ -1,3 +1,8 @@
+%
+%> @file kVIS_preferencesEdit.m
+%> @brief Display window to change preferences
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,7 +23,11 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_preferencesEdit(hObject, ~)
+%
+%> @brief Display window to change preferences
+%>
+%
+function kVIS_preferencesEdit(~, ~)
 
 prefs = getpref('kVIS_prefs');
 
@@ -51,6 +60,8 @@ for i = 1:length(n)
 end
 
 prefs = getpref('kVIS_prefs');
+
+msgbox('Changes take effect after restart.')
 
 end
 

@@ -1,3 +1,8 @@
+%
+%> @file kVIS_preferencesBspChange.m
+%> @brief Display window to change the BSP path
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,7 +23,11 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_preferencesBspChange(hObject, ~)
+%
+%> @brief Display window to change the BSP path
+%>
+%
+function kVIS_preferencesBspChange(~, ~)
 %
 % change BSP directory
 %
@@ -38,6 +47,6 @@ setpref('kVIS_prefs', 'bspDir', bspDir)
 addpath(genpath(getpref('kVIS_prefs','bspDir')));
 
 
-msgbox('BSP path updated. Restart kVIS3 required.')
+msgbox('BSP path updated. Restart required.')
 end
 
