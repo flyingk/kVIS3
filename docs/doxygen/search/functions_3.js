@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['generate_5fall_5fcustom_5fplots_5fcallback_506',['generate_all_custom_plots_Callback',['../generate__all__custom__plots___callback_8m.html#aee7cfd8bf3315bbabe4f34bf8893ae61',1,'generate_all_custom_plots_Callback.m']]]
+  ['file_5fclose_5fcurrent_5fcallback_516',['file_close_current_Callback',['../file__close__current___callback_8m.html#aa18d58bc5ad66ff6cb2d1723d38dd978',1,'file_close_current_Callback.m']]],
+  ['functiontemplate_517',['functionTemplate',['../function_template_8m.html#a93ca0388ce442cf8d83288405e5a299d',1,'functionTemplate.m']]]
 ];

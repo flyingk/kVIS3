@@ -8,6 +8,7 @@ var dir_4f3721e6d7aba6b990e963905108e3e8 =
     [ "kVIS_dataSetList_Callback.m", "k_v_i_s__data_set_list___callback_8m.html", "k_v_i_s__data_set_list___callback_8m" ],
     [ "kVIS_dataSetListState.m", "k_v_i_s__data_set_list_state_8m.html", "k_v_i_s__data_set_list_state_8m" ],
     [ "kVIS_dataSetListUpdate.m", "k_v_i_s__data_set_list_update_8m.html", "k_v_i_s__data_set_list_update_8m" ],
+    [ "kVIS_groupTimeOffset_Callback.m", "k_v_i_s__group_time_offset___callback_8m.html", "k_v_i_s__group_time_offset___callback_8m" ],
     [ "kVIS_groupTimingCheck_Callback.m", "k_v_i_s__group_timing_check___callback_8m.html", "k_v_i_s__group_timing_check___callback_8m" ],
     [ "kVIS_groupTreeUpdate.m", "k_v_i_s__group_tree_update_8m.html", "k_v_i_s__group_tree_update_8m" ],
     [ "kVIS_searchBtn_Callback.m", "k_v_i_s__search_btn___callback_8m.html", "k_v_i_s__search_btn___callback_8m" ],

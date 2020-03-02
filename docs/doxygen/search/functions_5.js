@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['import_5fcsv_5fcallback_508',['import_CSV_Callback',['../import___c_s_v___callback_8m.html#a2496271c3a2dc84b964e5ecd0c16b831',1,'import_CSV_Callback.m']]]
+  ['hide_5fall_5flegends_5fcallback_519',['hide_all_legends_Callback',['../hide__all__legends___callback_8m.html#a46dbc7a17761e3fd51a2c5954e5eb8a6',1,'hide_all_legends_Callback.m']]]
 ];
