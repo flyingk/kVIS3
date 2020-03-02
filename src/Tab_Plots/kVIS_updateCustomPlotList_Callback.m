@@ -1,3 +1,8 @@
+%
+%> @file kVIS_updateCustomPlotList_Callback.m
+%> @brief Builds a tree structure from the contents of the CustomPlots directory inside the BSP
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Builds a tree structure from the contents of the CustomPlots dir inside the BSP
+%>
+%> @param Standard GUI handles
+%> @param Standard GUI events
+%
 function [] = kVIS_updateCustomPlotList_Callback(hObject, ~)
 
 handles = guidata(hObject);
@@ -27,92 +38,71 @@ BSP_CustomPlots_Path = fullfile(BSP_Path, 'CustomPlots');
 
 if exist(BSP_CustomPlots_Path, 'dir')
     
-    list = dir(BSP_CustomPlots_Path);
-    ll = struct2cell(list);
+    fileList = dir(BSP_CustomPlots_Path);
+    fileListCell = struct2cell(fileList);
     
     % get valid plot names
-    aa = ~startsWith(ll(1,:), ".");
+    fileNames = ~startsWith(fileListCell(1,:), ".");
     
 else
-    disp('Custom plot folder not found...')
+    errordlg('Custom plot folder not found...')
     return
 end
 
-tree = handles.uiTabPlots.customPlotListBox;
+% tree handle
+tree = handles.uiTabPlots.customPlotTree;
 
 % Clear the tree.
 delete(tree.Root.Children);
 
-parent_node = tree.Root;
-
-% build tree (currently one level only)
-for I = find(aa==true)
+% build tree (currently one level of subdirs only)
+for I = find(fileNames==true)
     
-    if ll{5,I} == true % new dir
+    % new directory
+    if fileListCell{5,I} == true
         parent_node = tree.Root;
         
         % Create the directory node.
         pnode = uiw.widget.TreeNode( ...
-            'Name', ll{1,I}, ...
+            'Name', fileListCell{1,I}, ...
             'Value', I, ...
             'TooltipString', [], ...
             'Parent', parent_node ...
             );
         
         % directory contents
-        dlist = dir(fullfile(BSP_CustomPlots_Path, ll{1,I}));
-        lll = struct2cell(dlist);
+        dirFileList = dir(fullfile(BSP_CustomPlots_Path, fileListCell{1,I}));
+        dirFileListCell = struct2cell(dirFileList);
         
         % get valid plot names
-        bb = ~startsWith(lll(1,:), ".");
+        dirFileNames = ~startsWith(dirFileListCell(1,:), ".");
         
-        for M = find(bb==true)
+        for M = find(dirFileNames==true)
             
-            node = uiw.widget.TreeNode( ...
-                'Name', lll{1,M}, ...
+            uiw.widget.TreeNode( ...
+                'Name', dirFileListCell{1,M}, ...
                 'Value', M, ...
                 'TooltipString', [], ...
                 'Parent', pnode, ...
-                'UserData',fullfile(BSP_CustomPlots_Path, ll{1,I}, lll{1,M}) ...
-                );
-            
+                'UserData',fullfile(BSP_CustomPlots_Path, fileListCell{1,I}, dirFileListCell{1,M}) ...
+                );            
         end
         
     else
+        % top level files
         parent_node = tree.Root;
         
         % Create the node.
         uiw.widget.TreeNode( ...
-            'Name', ll{1,I}, ...
+            'Name', fileListCell{1,I}, ...
             'Value', I, ...
             'TooltipString', [], ...
             'Parent', parent_node, ...
-            'UserData',fullfile(BSP_CustomPlots_Path, ll{1,I}) ...
+            'UserData',fullfile(BSP_CustomPlots_Path, fileListCell{1,I}) ...
             );
     end
     
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 guidata(hObject, handles);
 end

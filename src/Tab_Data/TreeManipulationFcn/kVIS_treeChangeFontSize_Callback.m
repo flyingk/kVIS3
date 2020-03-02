@@ -1,3 +1,8 @@
+%
+%> @file kVIS_treeChangeFontSize_Callback.m
+%> @brief Changes the font size of all trees in kVIS3 (required for HighDPI screens)
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,13 +23,19 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Changes the font size of all trees in kVIS3 (required for HighDPI screens)
+%>
+%> @param Standard GUI handles
+%> @param Standard GUI events
+%
 function kVIS_treeChangeFontSize_Callback(hObject, ~)
-%
-% update tree font size (useful for HiDPI screens, where the font scaling
-% does not work properly...)
-%
+
 handles = guidata(hObject);
 
-s = inputdlg({'Tree font size:'}, 'Input', 1, {num2str(handles.uiTabData.groupTree.FontSize)});
+s = inputdlg({'Tree font size:'}, 'Input', 1,...
+    {num2str(handles.uiTabData.groupTree.FontSize)});
 
 handles.uiTabData.groupTree.FontSize = str2double(s);
+
+handles.uiTabPlots.customPlotTree.FontSize = str2double(s);

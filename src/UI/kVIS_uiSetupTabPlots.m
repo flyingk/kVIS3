@@ -1,3 +1,8 @@
+%
+%> @file kVIS_uiSetupTabPlots.m
+%> @brief Builds the custom plot GUI tab
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Builds the custom plot GUI tab
+%>
+%> @param Standard GUI handles
+%> @param Parent tab group handle
+%
 function [handles] = kVIS_uiSetupTabPlots(handles, uiTabGroupRight)
 
 if ~nargin
@@ -89,7 +100,7 @@ rbn_plots_pane.ButtonSize = [50 50];
 %
 % plot list tree
 %
-handles.uiTabPlots.customPlotListBox = uiw.widget.Tree( ...
+handles.uiTabPlots.customPlotTree = uiw.widget.Tree( ...
     'Parent', plot_tab_vbox, ...
     'Units', 'normalized', ...
     'BackgroundColor', getpref('kVIS_prefs','uiBackgroundColour'), ...

@@ -1,3 +1,8 @@
+%
+%> @file kVIS_customPlotList_Callback.m
+%> @brief Creates the selected custom plot
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,17 +23,24 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Creates the selected custom plot
+%>
+%> @param Standard GUI handles
+%> @param Standard GUI events
+%> @param File name of plot to be created (if called from Events or elsewhere)
+%
 function kVIS_customPlotList_Callback(hObject, ~, plotName)
 
 % get GUI data
 handles = guidata(hObject);
 
 if isempty(plotName)
-    handles.uiTabPlots.customPlotListBox.SelectedNodes;
-    if ~isempty(handles.uiTabPlots.customPlotListBox.SelectedNodes) && ...
-            ~isempty(handles.uiTabPlots.customPlotListBox.SelectedNodes.UserData)
+    handles.uiTabPlots.customPlotTree.SelectedNodes;
+    if ~isempty(handles.uiTabPlots.customPlotTree.SelectedNodes) && ...
+            ~isempty(handles.uiTabPlots.customPlotTree.SelectedNodes.UserData)
         
-        plotName = handles.uiTabPlots.customPlotListBox.SelectedNodes.UserData;
+        plotName = handles.uiTabPlots.customPlotTree.SelectedNodes.UserData;
     else
         return;
     end
