@@ -1,3 +1,8 @@
+%
+%> @file kVIS_fdsAddTreeLeafItem.m
+%> @brief Add new data to an existing tree leaf.
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,16 +23,26 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [ fds ] = kVIS_fdsAddTreeLeafItem(fds, group, var, varDisp, unit, frame, data)
+%
+%> @brief Add new data to an existing tree leaf.
+%>
+%> @param fds structure
+%> @param Name of group to update
+%> @param Cell array of channel names
+%> @param Cell array of channel display names
+%> @param Cell array of channel units
+%> @param Cell array of channel frames
+%> @param Array of channel data (time as first cannel)
+%>
+%> @retval Modified fds structure
+%
+function [ fds ] = kVIS_fdsAddTreeLeafItem(fds, groupName, var, varDisp, unit, frame, data)
 
-%
-% Add new data to a tree leaf.
-%
-fds.fdata{fds.fdataRows.varNames, group}     = [fds.fdata{fds.fdataRows.varNames, group}; {var}];
-fds.fdata{fds.fdataRows.varUnits, group}     = [fds.fdata{fds.fdataRows.varUnits, group}; unit];
-fds.fdata{fds.fdataRows.varFrames, group}    = [fds.fdata{fds.fdataRows.varFrames, group}; frame];
-fds.fdata{fds.fdataRows.varNamesDisp, group} = [fds.fdata{fds.fdataRows.varNamesDisp, group}; {varDisp}];
-fds.fdata{fds.fdataRows.data, group}         = [fds.fdata{fds.fdataRows.data, group}  data];
+fds.fdata{fds.fdataRows.varNames, groupName}     = [fds.fdata{fds.fdataRows.varNames, groupName}; {var}];
+fds.fdata{fds.fdataRows.varUnits, groupName}     = [fds.fdata{fds.fdataRows.varUnits, groupName}; unit];
+fds.fdata{fds.fdataRows.varFrames, groupName}    = [fds.fdata{fds.fdataRows.varFrames, groupName}; frame];
+fds.fdata{fds.fdataRows.varNamesDisp, groupName} = [fds.fdata{fds.fdataRows.varNamesDisp, groupName}; {varDisp}];
+fds.fdata{fds.fdataRows.data, groupName}         = [fds.fdata{fds.fdataRows.data, groupName}  data];
 
 end
 

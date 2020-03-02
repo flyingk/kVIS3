@@ -1,28 +1,39 @@
+%
+%> @file kVIS_fdsAddTreeBranch.m
+%> @brief Add new branch to fdata tree. Branches have name and level only, no data
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-%
+% 
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-%
+% 
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-%
+% 
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [ fds, node ] = kVIS_fdsAddTreeBranch(fds, level, name)
 %
-% Add new branch to fdata tree. Branches have name and level only, no data
+%> @brief Add new branch to fdata tree. Branches have name and level only, no data
+%>
+%> @param fds structure
+%> @param Name of parent node
+%> @param Name of new group
+%>
+%> @retval Modified fds structure
+%> @retval New node index
 %
-
+function [ fds, node ] = kVIS_fdsAddTreeBranch(fds, parent, name)
 %
 % Check if group exists
 %
@@ -45,7 +56,7 @@ if node <= 0
         fds.fdata = [fds.fdata cell(10,1)];
         
         fds.fdata{fds.fdataRows.groupLabel, end} = name;
-        fds.fdata{fds.fdataRows.treeParent, end} = level;
+        fds.fdata{fds.fdataRows.treeParent, end} = parent;
         fds.fdata{fds.fdataRows.treeGroupSelected, end} = false;
     end
     

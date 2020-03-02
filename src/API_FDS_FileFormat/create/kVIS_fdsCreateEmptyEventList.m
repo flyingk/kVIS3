@@ -1,3 +1,8 @@
+%
+%> @file kVIS_fdsCreateEmptyEventList.m
+%> @brief Create an empty event list structure
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,13 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Create an empty event list structure
+%>
+%>
+%> @retval event list structure
+%> @retval cell array of default event types
+%
 function [ eventList, eventTypes ] = kVIS_fdsCreateEmptyEventList()
 
 eventList = struct( ...

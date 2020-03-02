@@ -1,3 +1,8 @@
+%
+%> @file kVIS_fdsDataMatrix2Tree.m
+%> @brief Creates a FDS tree from a data matrix and corresponding data names.
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,13 +23,23 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [fds] = kVIS_fdsDataMatrix2Tree(bspName, dataName, delimiter, dataNames, data, skipLast)
-% 
-% Creates a FDS tree from a data matrix and corresponding data names. 
-% If name string can be split in to groups, the function will attempt to 
-% identify common groups using the delimiter. The sample time is assumed 
-% to be the first channel of the matrix and assumed common to all data.
-% 
+%
+%> @brief Creates a FDS tree from a data matrix and corresponding data names.
+%>
+%> Creates a FDS tree from a data matrix and corresponding data names. 
+%> If name string can be split in to groups, the function will attempt to 
+%> identify common groups using the delimiter. The sample time is assumed 
+%> to be the first channel of the matrix and assumed common to all data.
+%>
+%> @param Name of BSP
+%> @param Name of root node
+%> @param Delimiter used in name list
+%> @param Array of data channels in columns with time vector as column 1
+%> @param Flag to skip last column - useful for CSV files with corrupt row endings
+%>
+%> @retval Created fds structure
+%
+function [fds] = kVIS_fdsDataMatrix2Tree(bspName, rootName, delimiter, dataNames, data, skipLast)
 
 %
 % init new fds
@@ -37,7 +52,7 @@ fds.BoardSupportPackage = bspName;
 %
 % add root node
 %
-[fds, parentNode0] = kVIS_fdsAddTreeBranch(fds, 0, dataName);
+[fds, parentNode0] = kVIS_fdsAddTreeBranch(fds, 0, rootName);
 
 
 waitb = waitbar(0,'Building FDS structure. Please wait...');

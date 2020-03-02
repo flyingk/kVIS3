@@ -1,3 +1,8 @@
+%
+%> @file kVIS_fdsInitNew.m
+%> @brief Create a new FDS structure as per specification V 1.0 for BSP 'generic'
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,13 +23,15 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Create a new FDS structure as per specification V 1.0 for BSP 'generic'
+%>
+%>
+%> @retval New fds structure
+%
 function fds = kVIS_fdsInitNew()
-%
-% Create a new FDS structure as per specification V 1.0 for BSP 'generic'
-%
 
 fds = struct;
-
 
 fds.fdsVersion = 1.0;
 
