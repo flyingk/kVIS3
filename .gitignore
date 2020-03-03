@@ -6,3 +6,4 @@
 *.bak
 *.html.bak
 *.out
+/doxTemp
