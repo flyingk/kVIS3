@@ -4,17 +4,17 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -49,9 +49,9 @@ if nameSelect == 0
     
     %
     % decode channel name string if appropriate
-    % 
+    %
     for k=1:length(units)
-        if units{k} == '-'
+        if contains(vars{k}, 'UNIT') || contains(vars{k}, 'FRAME')
             [ SignalInfo ] = kVIS_extractInfoFromSignalName( vars{k} );
             vars{k}   = SignalInfo.DispName;
             units{k}  = SignalInfo.Data.Unit;
@@ -83,12 +83,12 @@ end
 varlist = {};
 
 % % Print error message if not enough var name/unit fields available
-% data_type = evalin('base',['fds.fdata(1,',num2str(ff,'%.d'),');']); 
+% data_type = evalin('base',['fds.fdata(1,',num2str(ff,'%.d'),');']);
 % data_type = data_type{1};
 % expected_fields = n(ff);
 % loaded_var_names = length(vars);
 % loaded_var_units = length(units);
-% 
+%
 % if (expected_fields > loaded_var_names)
 %     clc
 %     fprintf('\n\nIn %s data type - have %d of %d variable name fields.  Filling it out so it still works...\n',data_type,loaded_var_names,expected_fields);
@@ -107,7 +107,7 @@ varlist = {};
 %         units{end+1,1} = '  FIX ME UNITS!';
 %         end
 % end
-% 
+%
 % % Check for too many fields, means running out of data software...
 % if (expected_fields<max(loaded_var_names,loaded_var_units))
 %     fprintf('\n\n%s data type\n',data_type);
@@ -127,7 +127,16 @@ for i=1:fds.fdataAttributes.nChnls(fileNo)
     %  Include SIDPAC channel numbers, and line up the display.
     %
     if nameSelect == 0
-        if isempty(char(frames(i)))
+        
+        if isempty(char(units(i)))
+            if i < 10
+                varlist(i)=cellstr([num2str(i),'  ',char(vars(i))]);
+            elseif i < 100
+                varlist(i)=cellstr([num2str(i),' ',char(vars(i))]);
+            else
+                varlist(i)=cellstr([num2str(i),'',char(vars(i))]);
+            end
+        elseif isempty(char(frames(i)))
             if i < 10
                 varlist(i)=cellstr([num2str(i),'  ',char(vars(i)),' (',char(units(i)),')']);
             elseif i < 100
@@ -145,6 +154,7 @@ for i=1:fds.fdataAttributes.nChnls(fileNo)
                 varlist(i)=cellstr([num2str(i),'',char(vars(i)),' (',char(units(i)),') (',char(frames(i)),')']);
             end
         end
+        
     else
         if i < 10
             varlist(i)=cellstr([num2str(i),'  ',char(vars(i))]);
@@ -171,13 +181,13 @@ function mlab = mrk_chnl(lab,n)
 %
 mlab=lab;
 if n > 0
-  name=char(lab(n));
-  name(1)='*';
-  mlab(n)=cellstr(name);
+    name=char(lab(n));
+    name(1)='*';
+    mlab(n)=cellstr(name);
 else
-  n=abs(n);
-  name(1)=' ';
-  mlab(n)=cellstr(name);
+    n=abs(n);
+    name(1)=' ';
+    mlab(n)=cellstr(name);
 end
 return
 
