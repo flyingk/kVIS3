@@ -27,14 +27,29 @@ handles=guidata(hObject);
 % selected data set
 %
 [ fds, fdsName ] = kVIS_getCurrentFds(hObject);
-%
-% data group
-%
-var_idx = handles.uiTabData.groupTree.SelectedNodes.Value;
-%
-% data channel
-%
-channel_idx = handles.uiTabData.channelListbox.Value;
+sigName = handles.uiTabData.channelListbox.String{handles.uiTabData.channelListbox.Value};
+
+% Check if channel came from a search request or data group request
+if regexp(sigName, '\d*/\d*/') == 1
+    sep = strfind(sigName, '/');
+    %
+    % data group
+    %
+    var_idx = str2double(sigName(1:sep(1)-1));
+    %
+    % data channel
+    %
+    channel_idx = str2double(sigName((sep(1)+1):(sep(2)-1)));
+else
+    %
+    % data group
+    %
+    var_idx = handles.uiTabData.groupTree.SelectedNodes.Value;
+    %
+    % data channel
+    %
+    channel_idx = handles.uiTabData.channelListbox.Value;
+end
 %
 % signal data as vector
 %
