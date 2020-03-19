@@ -1,3 +1,8 @@
+%
+%> @file kVIS_uiSetupTabData.m
+%> @brief Create UI for Data Tab
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,14 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Create UI for Data Tab
+%>
+%> @param GUI handle structure
+%> @param Parent handle
+%>
+%> @retval GUI handle structure
+%
 function handles = kVIS_uiSetupTabData(handles, uiTabGroupRight)
 
 if ~nargin
@@ -113,9 +126,9 @@ search_bar_field = uix.HBox('Parent', data_tab_right,'Backgroundcolor', getpref(
 
 data_tab_right.Heights = [30 -1 30 -3 5 30];
 
-handles.uiTabData.groupSearchString = uicontrol(search_bar_field, 'Style', 'edit',...
-    'String', 'Search', 'HorizontalAlignment', 'left',...
-    'Callback', @kVIS_searchField_Callback);
+handles.uiTabData.groupSearchString = uicontrol(search_bar_field,...
+    'Style', 'edit', 'String', 'Search', 'HorizontalAlignment', 'left',...
+    'KeyReleaseFcn', @kVIS_searchField_Callback);
 
 uicontrol(search_bar_field, 'Style', 'pushbutton', 'String', 'Search',...
     'Callback', @kVIS_searchBtn_Callback);
