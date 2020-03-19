@@ -1,8 +1,3 @@
-%
-%> @file kVIS_searchField_Callback.m
-%> @brief Response to search field event
-%
-%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -23,15 +18,15 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%
-%> @brief Response to search field event
-%>
-%> @param Default GUI arguments
-%
 function kVIS_searchField_Callback(hObject, event)
+
+
+% on return press, reset search process
+hObject.String;
 
 if strcmpi(event.Key, 'return')
     kVIS_searchBtn_Callback(hObject)
 end
 
 end
+
