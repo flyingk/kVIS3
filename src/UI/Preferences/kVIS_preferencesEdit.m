@@ -53,11 +53,11 @@ for i = 1:length(n)
         val = res{i};
     end
     
-    if strcmp(n{i}, 'bspDir')
-        errordlg('Please use the dedicated menu option to change the BSP.')
-        error = 1;
-        break;
-    end
+%     if strcmp(n{i}, 'bspDir')
+%         errordlg('Please use the dedicated menu option to change the BSP.')
+%         error = 1;
+%         break;
+%     end
 
     if strcmp(n{i}, 'uiBackgroundColour')
         val = sscanf(res{i}, '%f %f %f')';
