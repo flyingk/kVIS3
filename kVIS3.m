@@ -89,6 +89,10 @@ catch
 end
 
 % Initialize GUI.
+
+% widget toolbox warning from 2019b
+warning('off','MATLAB:ui:javacomponent:FunctionToBeRemoved')
+
 appWindowHandle = kVIS_uiSetupFramework(BSP_Info);
 
 end
