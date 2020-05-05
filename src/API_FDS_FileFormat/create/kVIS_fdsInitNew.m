@@ -66,36 +66,36 @@ fds.fdataAttributes = struct( ...
 [fds.eventList, fds.eventTypes] = kVIS_fdsCreateEmptyEventList();
 
 fds.aircraftData = struct( ...
-   'acIdentifier', '', ... aircraft name/identifier
-   'sRef', '', ... Full aircraft coefficient reference area
-   'cRef', '', ... Full aircraft moment coefficient reference chord length
-   'bRef', '', ... Full aircraft moment coefficient reference span
-   'mass', '', ... Take off mass
-   'ixx',  '', ... Take off Inertia around X body axis
-   'iyy',  '', ... Take off Inertia around Y body axis
-   'izz',  '', ... Take off Inertia around Z body axis
-   'ixz',  '', ... Take off Inertia around XZ body axis
-   'xCG',  '', ... Take off CG location along X body axis
-   'yCG',  '', ... Take off CG location along Y body axis
-   'zCG',  ''  ... Take off CG location along Z body axis
+   'acIdentifier',   '', ... aircraft name/identifier
+   'sRef_UNIT_none', '', ... Full aircraft coefficient reference area
+   'cRef_UNIT_none', '', ... Full aircraft moment coefficient reference chord length
+   'bRef_UNIT_none', '', ... Full aircraft moment coefficient reference span
+   'mass_UNIT_kg',   '', ... Take off mass
+   'ixx_UNIT_kgm2',  '', ... Take off Inertia around X body axis
+   'iyy_UNIT_kgm2',  '', ... Take off Inertia around Y body axis
+   'izz_UNIT_kgm2',  '', ... Take off Inertia around Z body axis
+   'ixz_UNIT_kgm2',  '', ... Take off Inertia around XZ body axis
+   'xCG_UNIT_m',     '', ... Take off CG location along X body axis
+   'yCG_UNIT_m',     '', ... Take off CG location along Y body axis
+   'zCG_UNIT_m',     ''  ... Take off CG location along Z body axis
 );
 
 fds.testInfo = struct( ...
-   'date',              '', ... Test date
-   'startTime',         '', ... UTC time of test start
-   'description',       '', ... Short description of data content
-   'pilot',             '', ... Pilot name
-   'location',          '', ... Airfield designation
-   'airfieldElevation', '', ... Airfield elevation above MSL [m]
-   'weather',           '', ... Local weather description string
-   'windDir',           '', ... Wind direction [deg]
-   'windSpeed',         '', ... Wind speed [m/s]
-   'ambientPressure',   '', ... Local ambient pressure [Pa]
-   'ambientTemperature','', ... Local ambient temperature [C]
-   'gravity',           '', ... gravitational acceleration [m/s2]
-   'magRef_N',          '', ... magnetic reference vector N component [Gauss]
-   'magRef_E',          '', ... magnetic reference vector E component [Gauss]
-   'magRef_D',          ''  ... magnetic reference vector D component [Gauss]
+   'date',                     '', ... Test date
+   'startTime',                '', ... UTC time of test start
+   'description',              '', ... Short description of data content
+   'pilot',                    '', ... Pilot name
+   'location',                 '', ... Airfield designation
+   'airfieldElevation_UNIT_m', '', ... Airfield elevation above MSL [m]
+   'weather',                  '', ... Local weather description string
+   'windDir_UNIT_deg',         '', ... Wind direction [deg]
+   'windSpeed_UNIT_m_d_s',     '', ... Wind speed [m/s]
+   'ambientPressure_UNIT_Pa',  '', ... Local ambient pressure [Pa]
+   'ambientTemperature_UNIT_C','', ... Local ambient temperature [C]
+   'gravity_UNIT_m_d_s2',      '', ... gravitational acceleration [m/s2]
+   'magRef_N_UNIT_Gauss',      '', ... magnetic reference vector N component [Gauss]
+   'magRef_E_UNIT_Gauss',      '', ... magnetic reference vector E component [Gauss]
+   'magRef_D_UNIT_Gauss',      ''  ... magnetic reference vector D component [Gauss]
 );
 
 ftiSensorProperties = struct( ...
