@@ -147,7 +147,7 @@ handles = kVIS_uiSetupTabDataViewer(handles, handles.uiFramework.uiTabGroupLeft)
 for i = 1:size(BSP_Info.customTabs,1)
     
     tabFun = str2func(BSP_Info.customTabs{i,2});
-    handles = feval(tabFun, handles);
+    handles = feval(tabFun, handles, handles.uiFramework.uiTabGroupLeft);
 end
 
 

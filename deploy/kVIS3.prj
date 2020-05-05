@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="1520663190" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="1734861136" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
     <param.appname>kVIS3</param.appname>
     <param.authnamewatermark>Kai</param.authnamewatermark>
     <param.email />
@@ -21,7 +21,7 @@
       <item>1</item>
     </param.products.id>
     <param.products.version>
-      <item>9.3</item>
+      <item>9.8</item>
     </param.products.version>
     <param.platforms />
     <param.output>/Users/kai/Desktop</param.output>
@@ -49,7 +49,7 @@
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>/Applications/MATLAB_R2017b.app</root>
+      <root>/Applications/MATLAB_R2020a.app</root>
       <toolboxes />
     </matlab>
     <platform>
