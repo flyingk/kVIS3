@@ -74,17 +74,17 @@ function kVIS_fdsValidate_V_1_0(fds)
     assert(isstruct(fds.aircraftData), 'fds.aircraftData: invalid type, must be struct');
     fields = {
         'acIdentifier'
-        'sRef'
-        'cRef'
-        'bRef'
-        'mass'
-        'ixx'
-        'iyy'
-        'izz'
-        'ixz'
-        'xCG'
-        'yCG'
-        'zCG'
+        'sRef_UNIT_none'
+        'cRef_UNIT_none'
+        'bRef_UNIT_none'
+        'mass_UNIT_kg'
+        'ixx_UNIT_kgm2'
+        'iyy_UNIT_kgm2'
+        'izz_UNIT_kgm2'
+        'ixz_UNIT_kgm2'
+        'xCG_UNIT_m'
+        'yCG_UNIT_m'
+        'zCG_UNIT_m'
     };
     missingFields = setdiff(fields, fieldnames(fds.aircraftData));
     assert(isempty(missingFields), 'fds.aircraftData: missing fields: %s', strjoin(missingFields, ', '));
@@ -99,10 +99,11 @@ function kVIS_fdsValidate_V_1_0(fds)
        'pilot'
        'location'
        'weather'
-       'windDir'
-       'windSpeed'
-       'ambientPressure'
-       'ambientTemperature'
+       'windDir_UNIT_deg'
+       'windSpeed_UNIT_m_d_s'
+       'ambientPressure_UNIT_Pa'
+       'ambientTemperature_UNIT_C'
+       'gravity_UNIT_m_d_s2'
     };
     missingFields = setdiff(fields, fieldnames(fds.testInfo));
     assert(isempty(missingFields), 'fds.testInfo: missing fields: %s', strjoin(missingFields, ', '));
