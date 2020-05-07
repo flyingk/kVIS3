@@ -230,6 +230,8 @@ for i = 1:size(plotDef, 1)
         p = plot(ax(pltindex), xp, yp); 
         
         hold(ax(pltindex), 'on');
+        axis(ax(pltindex), 'tight');
+        
         p.LineWidth = 2.0;
 
     end
