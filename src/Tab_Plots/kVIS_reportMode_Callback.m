@@ -71,7 +71,16 @@ if ~isempty(axHandles)
     
     for i=1:length(axHandles)
         kVIS_setGraphicsStyle(axHandles(i), DefaultStyle.Axes);
-        kVIS_setGraphicsStyle(axHandles(i), DefaultStyle.Axes);
+    end
+    
+end
+
+axHandles = findobj(f3, 'Type', 'legend');
+
+if ~isempty(axHandles)
+    
+    for i=1:length(axHandles)
+        kVIS_setGraphicsStyle(axHandles(i), DefaultStyle.Legend);
     end
     
 end
