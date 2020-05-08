@@ -59,6 +59,7 @@ if handles.uiTabPlots.editPlotDefBtn == 1
 %             cmdstr = ['',plotName,'',' &']; % Open in background
             %cmdstr = ['',plot_def_full,''];      % Open in foreground
             winopen(plotName);
+            rc = 0;
         elseif (isunix)
             disp('Platform not yet supported!');
         else

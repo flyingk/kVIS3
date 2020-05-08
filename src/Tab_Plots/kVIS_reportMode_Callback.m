@@ -97,7 +97,7 @@ if ismac
     end
     
 elseif ispc
-    [f,p]=uiputfile('kVIS plot.jpg',[],'C:\kVIS plot.jpg');
+    [f,p]=uiputfile('kVIS plot.jpg',[],['C:\Users\' getenv('Username') '\Desktop\kVIS plot.jpg']);
     
     if f ~= 0
         fileN = fullfile(p,f);
