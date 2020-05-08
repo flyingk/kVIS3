@@ -54,9 +54,11 @@ if handles.uiTabPlots.editPlotDefBtn == 1
         % Platform specific command
         if (ismac)
             cmdstr = ['open ' plotName];
+            rc = system(cmdstr);
         elseif (ispc)
-            cmdstr = ['',plotName,'',' &']; % Open in background
+%             cmdstr = ['',plotName,'',' &']; % Open in background
             %cmdstr = ['',plot_def_full,''];      % Open in foreground
+            winopen(plotName);
         elseif (isunix)
             disp('Platform not yet supported!');
         else
@@ -64,7 +66,7 @@ if handles.uiTabPlots.editPlotDefBtn == 1
             return
         end
         
-        rc = system(cmdstr);
+        
         
         if rc ~= 0
             disp('Plot definition file (.xlsx) not found. Opening folder instead...')
