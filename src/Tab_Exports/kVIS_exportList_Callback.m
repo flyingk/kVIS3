@@ -35,9 +35,17 @@ if handles.uiTabExports.editExportDefBtn == 1
     BSP_Path = getpref('kVIS_prefs','bspDir');
     BSP_Exports_Path = fullfile(BSP_Path, 'Exports');
     
-    cmdstr = ['open ' BSP_Exports_Path '/' exportName];
-    
-    rc = system(cmdstr);
+    if (ismac)
+        cmdstr = ['open ' BSP_Exports_Path '/' exportName];
+        
+        rc = system(cmdstr);
+    elseif (ispc)
+        winopen([BSP_Exports_Path '\' exportName]);
+        rc = 0;
+    else
+        disp('Platform not supported!');
+        return
+    end
     
     if rc ~= 0
         disp('Export definition file (.xlsx) not found. Opening folder instead...')
