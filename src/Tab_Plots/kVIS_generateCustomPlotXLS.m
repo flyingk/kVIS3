@@ -36,7 +36,7 @@ DefaultStyle.Axes.GridColor = 'k';
 DefaultStyle.Axes.MinorGridColor = 'k';
 
 DefaultStyle.Legend.FontSize = 10;
-DefaultStyle.Legend.Location = 'northeast';
+DefaultStyle.Legend.Location = 'best';
 DefaultStyle.Legend.Orientation = 'horizontal';
 DefaultStyle.Legend.Interpreter = 'latex';
 
@@ -248,7 +248,10 @@ for i = 1:size(plotDef, 1)
     
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~isnan(plotDef{i, xAxisLabel})
-        xlabel(kVIS_generateLabels(plotDef{i, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
+        % generate (or ignore) custom x axis label
+        if ~strcmp(plotDef{i, xAxisLabel},'none')
+            xlabel(kVIS_generateLabels(plotDef{i, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
+        end
     else
         xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
     end
