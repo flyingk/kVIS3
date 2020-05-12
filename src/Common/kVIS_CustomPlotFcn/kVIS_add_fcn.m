@@ -1,6 +1,7 @@
-function [y, x] = kVIS_add_fcn(data, varargin)
+function [y, x, c] = kVIS_add_fcn(data, varargin)
 
 x = [];
+c = [];
 
 % first argument is the data structure
 fds  = varargin{1};

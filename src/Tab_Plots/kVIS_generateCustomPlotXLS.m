@@ -125,6 +125,9 @@ end
 
 oldpltindex = 0;
 
+% line coloring provided by custom plot fcn
+plotFcnColors=[];
+
 for i = 1:size(plotDef, 1)
     %% plot setup
     pltindex = plotDef{i,plotNo};
@@ -189,12 +192,13 @@ for i = 1:size(plotDef, 1)
     if ~isnan(plotDef{i,fcnHandle})
 
         try
-            [yp, xp2] = feval(plotDef{i,fcnHandle}, yp, fds, pts, plotDef{i,fcnChannel});
+            [yp, xp2, plotFcnColors] = feval(plotDef{i,fcnHandle}, yp, fds, pts, plotDef{i,fcnChannel});
             if ~isempty(xp2)
                 xp = xp2;
                 xMeta.texName = 'frequency \; [Hz]';
             end
-        catch
+        catch ME
+            ME.identifier
             disp('Function eval error... Ignoring.')
             k=k-1;
             continue;
@@ -229,10 +233,18 @@ for i = 1:size(plotDef, 1)
         
         if col == -1
             disp('Colour channel not available...')
-            col = ones(size(xp)); 
+            col = ones(size(xp));
         end
         
         p = scatter(ax(pltindex), xp, yp, 2, col(pts));
+        axis(ax(pltindex), 'tight');
+        
+    elseif ~isempty(plotFcnColors)
+        
+        p = scatter(ax(pltindex), xp, yp, 2, plotFcnColors);
+        map = [0.2 0.8 0.2; 0.8 0 0];
+        colormap(ax(pltindex),map);
+        axis(ax(pltindex), 'tight');
         
     else
         
