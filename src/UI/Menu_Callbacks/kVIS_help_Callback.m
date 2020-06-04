@@ -20,7 +20,7 @@
 
 function kVIS_help_Callback(hObject, ~)
 
-path = fullfile(pwd, 'docs/index.html');
+path = fullfile('docs','index.html');
 
 web(path)
 
