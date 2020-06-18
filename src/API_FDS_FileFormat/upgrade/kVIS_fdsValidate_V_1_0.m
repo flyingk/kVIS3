@@ -74,9 +74,9 @@ function kVIS_fdsValidate_V_1_0(fds)
     assert(isstruct(fds.aircraftData), 'fds.aircraftData: invalid type, must be struct');
     fields = {
         'acIdentifier'
-        'sRef_UNIT_none'
-        'cRef_UNIT_none'
-        'bRef_UNIT_none'
+        'sRef_UNIT_m2'
+        'cRef_UNIT_m'
+        'bRef_UNIT_m'
         'mass_UNIT_kg'
         'ixx_UNIT_kgm2'
         'iyy_UNIT_kgm2'

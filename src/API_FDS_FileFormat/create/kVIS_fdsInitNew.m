@@ -46,7 +46,7 @@ fds.fdataRows = struct( ...
     'varUnits'          , 3, ... list of channel units
     'varFrames'         , 4, ... reference frame of channel
     'varNamesDisp'      , 5, ... display name of variable - the BSP may provide this separate field and it shall take precedence over the 'vars' field entry for generating channel names.
-    'tbd'               , 6, ... currently unused
+    'dataSource'        , 6, ... encode data source (m=measured, c=calculated, s=simulated, tbd.)
     'data'              , 7, ... channel data - group sample time vector as channel 1 (all channels in group have common time vector)
     'treeParent'        , 8, ... group parent in tree
     'treeGroupExpanded' , 9, ... group node expanded
@@ -66,10 +66,10 @@ fds.fdataAttributes = struct( ...
 [fds.eventList, fds.eventTypes] = kVIS_fdsCreateEmptyEventList();
 
 fds.aircraftData = struct( ...
-   'acIdentifier',   '', ... aircraft name/identifier
-   'sRef_UNIT_none', '', ... Full aircraft coefficient reference area
-   'cRef_UNIT_none', '', ... Full aircraft moment coefficient reference chord length
-   'bRef_UNIT_none', '', ... Full aircraft moment coefficient reference span
+   'acIdentifier',   '', ... aircraft name/identifier string
+   'sRef_UNIT_m2',   '', ... Full aircraft coefficient reference area
+   'cRef_UNIT_m',    '', ... Full aircraft moment coefficient reference chord length
+   'bRef_UNIT_m',    '', ... Full aircraft moment coefficient reference span
    'mass_UNIT_kg',   '', ... Take off mass
    'ixx_UNIT_kgm2',  '', ... Take off Inertia around X body axis
    'iyy_UNIT_kgm2',  '', ... Take off Inertia around Y body axis
@@ -87,6 +87,7 @@ fds.testInfo = struct( ...
    'pilot',                    '', ... Pilot name
    'location',                 '', ... Airfield designation
    'airfieldElevation_UNIT_m', '', ... Airfield elevation above MSL [m]
+   'wgs84Undulation_UNIT_m',   '', ... Local WGS84 undulation (difference between geoid and msl altitude) (valid here only for small distance flights)
    'weather',                  '', ... Local weather description string
    'windDir_UNIT_deg',         '', ... Wind direction [deg]
    'windSpeed_UNIT_m_d_s',     '', ... Wind speed [m/s]

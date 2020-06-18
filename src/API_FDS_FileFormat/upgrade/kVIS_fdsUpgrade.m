@@ -57,9 +57,9 @@ function fds = UpgradeInfoStructs(fds)
 if isfield(fds.aircraftData, 'sRef')
     
     aircraftData                = fds.aircraftData;
-    aircraftData.sRef_UNIT_none = fds.aircraftData.sRef;
-    aircraftData.cRef_UNIT_none = fds.aircraftData.cRef;
-    aircraftData.bRef_UNIT_none = fds.aircraftData.bRef;
+    aircraftData.sRef_UNIT_m2   = fds.aircraftData.sRef;
+    aircraftData.cRef_UNIT_m    = fds.aircraftData.cRef;
+    aircraftData.bRef_UNIT_m    = fds.aircraftData.bRef;
     aircraftData.mass_UNIT_kg   = fds.aircraftData.mass;
     aircraftData.ixx_UNIT_kgm2  = fds.aircraftData.ixx;
     aircraftData.iyy_UNIT_kgm2  = fds.aircraftData.iyy;
