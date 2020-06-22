@@ -84,7 +84,9 @@ addpath(genpath(getpref('kVIS_prefs','bspDir')));
 try
     BSP_Info = BSP_ID();
 catch
-    errordlg('No valid Board Support Package found...')
+    errordlg('No valid Board Support Package found... Please restart to select a valid BSP')
+    setpref('kVIS_prefs','bspDir', []);
+    appWindowHandle = -1;
     return
 end
 
