@@ -71,5 +71,29 @@ ax.Title.Color = 'k';
 ax.Parent.Tag = l.Tag;
 
 kVIS_axesResizeToContainer(ax)
+
+m = uimenu(f2,'Text','kVIS3');
+uimenu(m, 'Text', 'Print Figure', 'Callback', @printcallback)
 end
 
+function printcallback(h,e)
+
+if ismac
+    [f,p]=uiputfile('kVIS plot.jpg',[],'~/Desktop/kVIS plot.jpg');
+    
+    if f ~= 0
+        fileN = fullfile(p,f);
+        print(gcf,'-noui',fileN,'-djpeg','-r200')
+    end
+    
+elseif ispc
+    [f,p]=uiputfile('kVIS plot.jpg',[],['C:\Users\' getenv('Username') '\Desktop\kVIS plot.jpg']);
+    
+    if f ~= 0
+        fileN = fullfile(p,f);
+        print(gcf,'-noui',fileN,'-djpeg','-r200')
+    end
+
+end
+
+end
