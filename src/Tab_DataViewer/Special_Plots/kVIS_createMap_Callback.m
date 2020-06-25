@@ -54,7 +54,7 @@ alt = kVIS_reSample(alt, t, tNew);
 try
     [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
     
-    chan_name = [signalMeta.name ' ' signalMeta.unit];
+    chan_name = [signalMeta.name ' [' signalMeta.unit ']'];
     
     c = kVIS_reSample(c, t, tNew);
 catch
@@ -101,7 +101,9 @@ plot_google_map( ...
     );
 
 % pretty run
-title(['Track color: ' chan_name], 'Color','w', 'FontSize', 14)
+lbl = kVIS_generateLabels(signalMeta, []);
+
+title(h.Parent,['Track color: ' lbl], 'Color','w', 'FontSize', 14, 'Interpreter', 'latex')
 
 axes_handle.XColor = 'w';
 axes_handle.YColor = 'w';
@@ -110,7 +112,7 @@ axes_handle.ZColor = 'w';
 view(axes_handle, 2)
 
 colormap(axes_handle, 'jet')
-cb = colorbar(axes_handle,'Location','east');
+cb = colorbar(axes_handle,'Location','west');
 cb.Color = 'w';
 
 kVIS_axesResizeToContainer(axes_handle);

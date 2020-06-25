@@ -65,6 +65,9 @@ ax = findobj(h, 'Type', 'axes');
 ax.XColor = 'k';
 ax.YColor = 'k';
 
+% for map plot
+ax.Title.Color = 'k';
+
 ax.Parent.Tag = l.Tag;
 
 kVIS_axesResizeToContainer(ax)

@@ -32,8 +32,9 @@ h.CData = signal;
 
 caxis(h.Parent,'auto')
 
+lbl = kVIS_generateLabels(signalMeta, []);
 
-title(h.Parent,['Track color: ' [signalMeta.name ' ' signalMeta.unit]], 'Color','w', 'FontSize', 14)
+title(h.Parent,['Track color: ' lbl], 'Color','w', 'FontSize', 14, 'Interpreter', 'latex')
 
 end
 
