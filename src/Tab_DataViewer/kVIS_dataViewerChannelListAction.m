@@ -123,8 +123,7 @@ if et.Value == 1
         pg = polyshape([in out out in],[ylim(1) ylim(1) ylim(2) ylim(2)]);
         
         pp(j) = plot(axes_handle, pg, ...
-            'EdgeColor','r',...
-            'Facecolor','r',...
+            'EdgeAlpha',0.4,...
             'FaceAlpha',0.2);
         
         % use context menu for labels
@@ -132,6 +131,8 @@ if et.Value == 1
         uimenu('Parent', m, 'Label', sprintf('%s: %s', eventList(j).type, eventList(j).description), 'Enable', 'off');
         
         pp(j).UIContextMenu = m;
+        pp(j).DisplayName = eventList(j).type;
+%         pp(j).Annotation.LegendInformation.IconDisplayStyle = 'off';
     end
     
     handles.uiTabDataViewer.showEvents = pp;
