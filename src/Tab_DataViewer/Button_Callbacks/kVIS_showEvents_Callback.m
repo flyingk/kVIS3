@@ -25,6 +25,7 @@ if hObject.Value == 0
     hObject.CData = imread('show_events.png');
 else
     hObject.CData = imread('show_events_p.png')-10;
+    kVIS_eventPlot(hObject);
 end
 
 
