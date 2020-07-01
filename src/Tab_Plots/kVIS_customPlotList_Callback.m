@@ -9,17 +9,17 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -42,10 +42,12 @@ if isempty(plotName)
         
         plotName = handles.uiTabPlots.customPlotTree.SelectedNodes.UserData;
     else
+        % clear selection
+        handles.uiTabPlots.customPlotTree.SelectedNodes = [];
         return;
     end
 end
-    
+
 % edit the plot definition file, if selected
 if handles.uiTabPlots.editPlotDefBtn == 1
     
@@ -56,7 +58,7 @@ if handles.uiTabPlots.editPlotDefBtn == 1
             cmdstr = ['open ' plotName];
             rc = system(cmdstr);
         elseif (ispc)
-%             cmdstr = ['',plotName,'',' &']; % Open in background
+            %             cmdstr = ['',plotName,'',' &']; % Open in background
             %cmdstr = ['',plot_def_full,''];      % Open in foreground
             winopen(plotName);
             rc = 0;
@@ -128,7 +130,7 @@ if size(PlotDefinition, 2) < 19
     % Create a new figure and format it
     finp = figure('Position',[100,100,1000,800],'Units','normalized',...
         'Visible','off');
-        
+    
     kVIS_generateCustomPlotM(finp, fds, plot_definition, xlim, []);
 else
     % Create a new figure and format it
@@ -146,5 +148,7 @@ toc
 finp.Visible = 'on';
 delete(hh);
 
+% clear selection so same entry can be selected again
+handles.uiTabPlots.customPlotTree.SelectedNodes = [];
 end
 
