@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{hyperref}
+
+\author{Dr Kai Lehmkuehler}
+\title{kVIS report trial\\ V1.0}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+
+\section{Introduction}
+hghalflgkahflgksdjfghdlkfjhgdfg
+
+%__kVIS_test_info
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Date & Test &  Pilot  &  FTE  &  Location & ARQ No. \\ 
+\hline
+20/09/2019 & Block 1 - 30kts 25deg AoB &  Markus Scherdel  &  Wouter Plaetinck  &  EDMO & ARQ-0105 \\ 
+\hline
+ Weather & Pressure &  Temperature  &  Wind Dir.   & Wind Speed  & Airfield Elevation \\ 
+\hline
+ CAVOK & 95600 &  1 &  60   & 0.7  & 582 \\ 
+\hline
+\end{tabular} 
+\end{center}
+\caption{Test Information}
+\end{table}
+
+%__kVIS_aircraft_properties % table with ac data
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Aircraft & $Mass\; [kg]$ &  $I_{xx}\; [kgm^2]$  &  $I_{yy}\; [kgm^2]$   &  $I_{zz}\; [kgm^2]$ & $I_{xz}\; [kgm^2]$ \\ 
+\hline
+L4P-001 & 1191.00 &  2324.47  &  2278.87  &  4517.07 & 0.00 \\ 
+\hline
+  & $X_{CG}\;[m]$ &  $Y_{CG}\;[m]$  &  $Z_{CG}\;[m]$   & FCC Version  & FCL Version \\ 
+\hline
+  & 2.580 &  0.001  &  0.905   & 1.9.0  & 0.12.1 \\ 
+\hline
+\end{tabular} 
+\end{center}
+\caption{Aircraft Properties}
+\end{table}
+
+
+\section{Flight Logs}
+hghalflgkahflgksdjfghdlkfjhgdfg
+
+%__kVIS_plot{MS_FlightOverview} % Extra data: caption/title, label
+
+\begin{figure}[!ht]
+\center
+\includegraphics[width=\textwidth]{img/EKF_Wind_8}
+\caption{example plot}
+\label{flowchart}
+\end{figure}
+
+\begin{figure}[!ht]
+\center
+\includegraphics[width=\textwidth]{img/EKF_Wind_9}
+\caption{example plot}
+\label{flowchart}
+\end{figure}
+
+\begin{figure}[!ht]
+\center
+\includegraphics[width=\textwidth]{img/EKF_Wind_10}
+\caption{example plot}
+\label{flowchart}
+\end{figure}
+
+\end{document}
