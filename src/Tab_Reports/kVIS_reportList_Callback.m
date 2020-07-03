@@ -33,7 +33,7 @@ reportName = hObject.String{val};
 if handles.uiTabReports.editReportDefBtn == 1
     
     BSP_Path = getpref('kVIS_prefs','bspDir');
-    BSP_Reports_Path = fullfile(BSP_Path, 'Reports');
+    BSP_Reports_Path = fullfile(BSP_Path, 'ReportGeneration');
     
     if (ismac)
         cmdstr = ['open ' BSP_Reports_Path '/' reportName];

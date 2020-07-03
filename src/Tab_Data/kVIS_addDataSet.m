@@ -57,7 +57,7 @@ kVIS_updateEventList(hObject, fds.eventList, false);
 %
 kVIS_updateCustomPlotList_Callback(hObject, []);
 kVIS_updateExportList_Callback(hObject, []);
-
+kVIS_updateReportList_Callback(hObject, []);
 %
 % set limit boxes to new values
 %
