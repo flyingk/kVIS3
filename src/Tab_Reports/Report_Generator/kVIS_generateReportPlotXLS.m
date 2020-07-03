@@ -285,6 +285,9 @@ for i = 1:size(plotDef, 1)
     %% save image(s) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     fileNames{pltindex} = fullfile(outFolder, 'img', [pltName '_' num2str(pltindex) '.jpeg']);
     print(hh,'-noui',fileNames{pltindex}, '-djpeg', '-r200')
+    
+    % relative path
+    fileNames{pltindex} = ['./img/' pltName '_' num2str(pltindex) '.jpeg'];
 end
 
 end
