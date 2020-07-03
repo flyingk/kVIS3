@@ -1,8 +1,15 @@
-function kVIS_generateReport()
+function kVIS_generateReport(file)
 
-fidIN = fopen('kVIS_report_def.txt','r');
+% open report definition file
+fidIN = fopen(file,'r');
 
-fidOUT = fopen('kVIS_report_trial_2.tex','w');
+% select destination folder
+outFolder = uigetdir();
+
+% create plot directory
+mkdir(fullfile(outFolder,'img'))
+
+fidOUT = fopen(fullfile(outFolder,'kVIS_report_trial_2.tex'),'w');
 
 
 while ~feof(fidIN)
@@ -20,7 +27,7 @@ while ~feof(fidIN)
         
         % generate plots
         pltName = strsplit(l,{'{','}'});
-        fileNames = plotting(pltName{2});
+        fileNames = plotting(pltName{2},outFolder);
         
         % generate tex with plot names
         for I = 1:length(fileNames)
@@ -38,7 +45,7 @@ fclose(fidOUT);
 
 end
 
-function fileNames = plotting(plotName)
+function fileNames = plotting(plotName, outFolder)
 % 
 % % get GUI data
 % handles = guidata(hObject);
@@ -75,7 +82,7 @@ xlim = [fds.fdataAttributes.startTimes(2) fds.fdataAttributes.stopTimes(2)];
 
 tic
 
-fileNames = kVIS_generateReportPlotXLS(fds, PlotDefinition, xlim, []);
+fileNames = kVIS_generateReportPlotXLS(fds, PlotDefinition, xlim, [], outFolder);
 
 toc
 

@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [ fileNames ] = kVIS_generateReportPlotXLS(fds, plotDef, lims, Style)
+function [ fileNames ] = kVIS_generateReportPlotXLS(fds, plotDef, lims, Style, outFolder)
 
 warning('on','verbose')
 % warning('off', 'MATLAB:gui:latexsup:UnableToInterpretLaTeXString')
@@ -283,7 +283,7 @@ for i = 1:size(plotDef, 1)
     kVIS_setGraphicsStyle(ax, Style.Axes);
     
     %% save image(s) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    fileNames{pltindex} = [pltName '_' num2str(pltindex) '.jpeg'];
+    fileNames{pltindex} = fullfile(outFolder, 'img', [pltName '_' num2str(pltindex) '.jpeg']);
     print(hh,'-noui',fileNames{pltindex}, '-djpeg', '-r200')
 end
 
