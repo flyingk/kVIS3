@@ -52,7 +52,7 @@ kVIS_updateDataSet(hObject, fds, name)
 %
 % confirmation message
 %
-msgbox(msg)
+kVIS_terminalMsg(msg)
 end
 
 

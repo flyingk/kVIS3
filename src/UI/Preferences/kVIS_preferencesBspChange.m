@@ -47,6 +47,6 @@ setpref('kVIS_prefs', 'bspDir', bspDir)
 addpath(genpath(getpref('kVIS_prefs','bspDir')));
 
 
-msgbox('BSP path updated. Restart required.')
+warndlg('BSP path updated. Restart required.')
 end
 

@@ -93,7 +93,7 @@ if ismac
     if f ~= 0
         fileN = fullfile(p,f);
         print(f3,'-noui',fileN,'-djpeg','-r200')
-        msgbox('Print complete.')
+        kVIS_terminalMsg('Print complete.')
     end
     
 elseif ispc
@@ -102,7 +102,7 @@ elseif ispc
     if f ~= 0
         fileN = fullfile(p,f);
         print(f3,'-noui',fileN,'-djpeg','-r200')
-        msgbox('Print complete.')
+        kVIS_terminalMsg('Print complete.')
     end
 
 end

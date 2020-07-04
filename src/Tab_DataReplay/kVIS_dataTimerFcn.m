@@ -28,7 +28,7 @@ Data.currentStep = Data.currentStep + round(1 / (Data.updateFrequency * Data.sam
 %
 if Data.currentStep >= sampleNo
     kVIS_dataReplayStop_Callback(hObject, []);
-    msgbox('End of Data Playback.')
+    kVIS_terminalMsg('End of Data Playback.')
     return
 end
 

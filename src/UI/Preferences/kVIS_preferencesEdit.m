@@ -37,7 +37,7 @@ for i = 1:length(n)
     d{i} = num2str(prefs.(n{i}));
 end
 
-res = inputdlg(n,'Preferences', 1, d, 'on');
+res = kVIS_inputdlg(n,'Preferences', 1, d, 'on');
 
 if isempty(res)
     return
@@ -70,7 +70,7 @@ end
 prefs = getpref('kVIS_prefs');
 
 if error == 0
-    msgbox('Changes take effect after restart.')
+    warndlg('Changes take effect after app restart.')
 end
 
 end

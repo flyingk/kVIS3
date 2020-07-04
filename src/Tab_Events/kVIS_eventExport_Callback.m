@@ -106,5 +106,5 @@ for ii = n_events
     
 end
 
-msgbox('Export Complete.');
+kVIS_terminalMsg('Export Complete.');
 end

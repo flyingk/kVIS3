@@ -70,6 +70,6 @@ kVIS_setDataRange(hObject, 'XLim', kVIS_fdsGetGlobalDataRange(hObject));
 kVIS_setDataRange(hObject, 'YlLim', []);
 
 
-msgbox('Time offset successful.')
+kVIS_terminalMsg('Time offset successful.')
 end
 

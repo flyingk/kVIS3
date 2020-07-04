@@ -86,6 +86,6 @@ h.uiTabData.dataSetList.String{currentVal} = newName{1};
 str = sprintf('clear %s;', currentName);
 evalin('base', str);
 
-msgbox('Rename successful.')
+kVIS_terminalMsg('Rename successful.')
 end
 

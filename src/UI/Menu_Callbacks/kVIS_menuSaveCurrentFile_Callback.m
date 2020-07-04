@@ -34,11 +34,11 @@ if filename == 0
     return
 end
 
-hdl = msgbox('Writing file...');
+kVIS_terminalMsg('Writing file...');
 
 cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
 evalin('base', cmd)
 
-delete(hdl)
+kVIS_terminalMsg('Writing file... Complete');
 
 end
