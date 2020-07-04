@@ -124,7 +124,8 @@ else % use X-Limits (if button pressed or for events)
 end
 tic
 
-hh = msgbox('Creating Plot...');
+pltName = strsplit(plotName,'/');
+kVIS_terminalMsg(['Creating Plot >' pltName{end} '<']);
 
 if size(PlotDefinition, 2) < 19
     % Create a new figure and format it
@@ -141,14 +142,17 @@ else
     
     kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
 end
-toc
+elapsed = toc;
 %
-% show plot figure
+% show plot figure at screen center
 %
+movegui(finp,'center');
 finp.Visible = 'on';
-delete(hh);
 
 % clear selection so same entry can be selected again
 handles.uiTabPlots.customPlotTree.SelectedNodes = [];
+
+% success msg
+kVIS_terminalMsg(['Creating Plot... Complete (' num2str(elapsed,2) ' sec)']);
 end
 
