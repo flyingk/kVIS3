@@ -33,7 +33,7 @@ for i = 1:length(n)
     d{i} = num2str(fds.testInfo.(n{i}));
 end
 
-res = inputdlg(n,'Test Information', 1, d);
+res = kVIS_inputdlg(n,'Test Information', 1, d);
 
 if isempty(res)
     return

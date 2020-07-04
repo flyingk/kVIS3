@@ -33,7 +33,7 @@ for i = 1:length(n)
     d{i} = num2str(fds.aircraftData.(n{i}));
 end
 
-res = inputdlg(n,'Aircraft Data', 1, d);
+res = kVIS_inputdlg(n,'Aircraft Data', 1, d);
 
 
 if isempty(res)
