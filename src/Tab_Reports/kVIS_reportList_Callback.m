@@ -48,7 +48,7 @@ if handles.uiTabReports.editReportDefBtn == 1
     end
     
     if rc ~= 0
-        disp('Report definition file (.txt) not found. Opening folder instead...')
+        disp('Report definition file (.tex) not found. Opening folder instead...')
         cmdstr = ['open ' BSP_Reports_Path];
         system(cmdstr);
     end
@@ -73,9 +73,9 @@ ReportDefinition = handles.uiTabReports.Reports;
 
 file = [ReportDefinition.BSP_Reports_Path '/' reportName];
 
-if ~endsWith(file,".txt")
+if ~endsWith(file,".tex")
     errordlg('Invalid report definition file type.')
     return
 end
 
-kVIS_generateReport(file)
+kVIS_generateReport(hObject, file)

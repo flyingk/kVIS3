@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [ fileNames ] = kVIS_generateReportPlotXLS(fds, plotDef, lims, Style, outFolder)
+function [ fileNames ] = kVIS_generateReportPlotXLS(fds, plotDef, plotSel, lims, Style, outFolder)
 
 warning('on','verbose')
 % warning('off', 'MATLAB:gui:latexsup:UnableToInterpretLaTeXString')
@@ -36,7 +36,7 @@ DefaultStyle.Axes.GridColor = 'k';
 DefaultStyle.Axes.MinorGridColor = 'k';
 
 DefaultStyle.Legend.FontSize = 10;
-DefaultStyle.Legend.Location = 'best';
+DefaultStyle.Legend.Location = 'northOutside';
 DefaultStyle.Legend.Orientation = 'horizontal';
 DefaultStyle.Legend.Interpreter = 'latex';
 
@@ -61,6 +61,7 @@ xAxisLabel = 5;
 yAxisLabel = 6;
 LegendStyle= 7;
 LegendLocation=8;
+ReportCaption=9;
 xChannel = 10;
 yChannel = 11;
 cChannel = 12;
@@ -91,6 +92,13 @@ for i = 1:size(plotDef, 1)
     %% plot setup
     pltindex = plotDef{i,plotNo};
     
+    % generate only selected plots
+    if ~isempty(plotSel)
+        if isempty(find(plotSel==pltindex,1))
+            continue;
+        end
+    end
+    
     if pltindex ~= oldpltindex
         
         if ~isempty(hh)
@@ -101,7 +109,7 @@ for i = 1:size(plotDef, 1)
         k=1;
         clear p labelstr mm ma
         
-        hh = figure('Position',[0 0 750 375],'Color','w','Visible','off');
+        hh = figure('Position',[0 0 750 325],'Color','w','Visible','off');
         hh.Tag = 'cpTimeplot';
         
         ax = axes(hh, 'Units', 'normalized');
@@ -255,13 +263,13 @@ for i = 1:size(plotDef, 1)
         
         legend_handle = legend(ax, labelstr);
         
-        if ~isnan(plotDef{i,LegendLocation})
-            Style.Legend.Location = plotDef{i,LegendLocation};
-        end
-        
-        if ~isnan(plotDef{i,LegendStyle})
-            Style.Legend.Orientation = plotDef{i,LegendStyle};
-        end
+%         if ~isnan(plotDef{i,LegendLocation})
+%             Style.Legend.Location = plotDef{i,LegendLocation};
+%         end
+%         
+%         if ~isnan(plotDef{i,LegendStyle})
+%             Style.Legend.Orientation = plotDef{i,LegendStyle};
+%         end
         
         kVIS_setGraphicsStyle(legend_handle, Style.Legend);
     end
@@ -283,11 +291,12 @@ for i = 1:size(plotDef, 1)
     kVIS_setGraphicsStyle(ax, Style.Axes);
     
     %% save image(s) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    fileNames{pltindex} = fullfile(outFolder, 'img', [pltName '_' num2str(pltindex) '.jpeg']);
-    print(hh,'-noui',fileNames{pltindex}, '-djpeg', '-r200')
+    fileNames{1,pltindex} = fullfile(outFolder, 'img', [pltName '_' num2str(pltindex) '.jpeg']);
+    print(hh,'-noui',fileNames{1,pltindex}, '-djpeg', '-r200')
     
     % relative path
-    fileNames{pltindex} = ['./img/' pltName '_' num2str(pltindex) '.jpeg'];
+    fileNames{1,pltindex} = ['./img/' pltName '_' num2str(pltindex) '.jpeg'];
+    fileNames{2,pltindex} = plotDef{i, ReportCaption};
 end
 
 end
