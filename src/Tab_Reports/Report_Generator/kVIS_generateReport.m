@@ -16,13 +16,13 @@ while ~feof(fidIN)
     
     l = strip(fgetl(fidIN));
     
-    if contains(l, '__kVIS_aircraft_properties')
+    if contains(l, '%_kVIS_aircraft_properties')
         kVIS_writeAcDataTable(fidOUT);
         
-    elseif contains(l, '__kVIS_test_info')
+    elseif contains(l, '%_kVIS_test_info')
         kVIS_writeTestInfoTable(fidOUT);
         
-    elseif contains(l, '__kVIS_plot')
+    elseif contains(l, '%_kVIS_plot')
         disp('plots')
         
         % generate plots

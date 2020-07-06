@@ -34,7 +34,7 @@ if exist(BSP_Reports_Path, 'dir')
     ll = struct2cell(list);
     
     % get valid plot names
-    aa = endsWith(ll(1,:), ".txt");
+    aa = endsWith(ll(1,:), ".tex");
     
     REPORTS.names = ll(1,aa);
     REPORTS.BSP_Reports_Path = BSP_Reports_Path;
