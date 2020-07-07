@@ -1,0 +1,34 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{hyperref}
+
+\author{Dr Kai Lehmkuehler}
+\title{kVIS report generator test\\ V1.0}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+
+\section{Introduction}
+Add text...
+
+% table with test information
+__kVIS_test_info 
+
+% table with ac data
+__kVIS_aircraft_properties 
+
+\section{Flight Logs}
+Add text...
+
+% Adds a kVIS custom plot with each axes as a single figure
+__kVIS_plot{EKF_Wind.xlsx} % Extra data needed: caption/title, label
+
+\end{document}

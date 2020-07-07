@@ -151,7 +151,7 @@ handles = kVIS_uiSetupTabData(handles, handles.uiFramework.uiTabGroupRight);
 handles = kVIS_uiSetupTabEvents(handles, handles.uiFramework.uiTabGroupRight);
 handles = kVIS_uiSetupTabPlots(handles, handles.uiFramework.uiTabGroupRight);
 handles = kVIS_uiSetupTabExports(handles, handles.uiFramework.uiTabGroupRight);
-
+handles = kVIS_uiSetupTabReports(handles, handles.uiFramework.uiTabGroupRight);
 
 %% left hand tabs
 % built-in:
