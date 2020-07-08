@@ -68,7 +68,7 @@ switch hObject.Label
         
         hObject.Checked = 'on';
         
-        kVIS_createMap_Callback(hObject, []);
+        kVIS_createMap_Callback(hObject, [], []);
         
     case 'Correlation plot'
         

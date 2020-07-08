@@ -103,6 +103,21 @@ while ~feof(fidIN)
             end
         end
         
+    elseif contains(l, '%_kVIS_map_plot')
+        
+        pltCh = strsplit(l,{'{','}'});
+        
+        kVIS_terminalMsg(['Reports: Generating map plot ' pltCh{2}])
+
+        fileNames = kVIS_writeMapPlotElement(hObject, pltCh{2}, outFolder);
+        
+        % generate tex with plot names
+        
+        if ~isempty(fileNames{1})
+            kVIS_writePlotElement(fidOUT, fileNames);
+        end
+        
+        
     else
         fprintf(fidOUT,'%s\n',l);
     end

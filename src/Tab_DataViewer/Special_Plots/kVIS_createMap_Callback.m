@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_createMap_Callback(hObject, ~)
+function varargout = kVIS_createMap_Callback(hObject, ~, pathColorChannel)
 % Function for plotting the flight path using plot_google_map
 %
 % matt & kai
@@ -52,7 +52,14 @@ alt = kVIS_reSample(alt, t, tNew);
 
 % track colouring
 try
-    [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+    if isempty(pathColorChannel)
+        % use currently selected channel
+        [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+    else
+        % use specified channel
+        pcc = strsplit(pathColorChannel,'/');
+        [c, signalMeta] = kVIS_fdsGetChannel(fds, pcc{1}, pcc{2});
+    end
     
     chan_name = [signalMeta.name ' [' signalMeta.unit ']'];
     
@@ -62,11 +69,18 @@ catch
     chan_name = [];
 end
 
+
 %
 % create plot
 %
-targetPanel = kVIS_dataViewerGetActivePanel();
-axes_handle = targetPanel.axesHandle;
+if nargout == 0
+    targetPanel = kVIS_dataViewerGetActivePanel();
+    axes_handle = targetPanel.axesHandle;
+else
+    figHdl = figure('Color','w','Visible','off');
+    axes_handle = axes(figHdl);
+end
+
 cla(axes_handle, 'reset');
 hold on
 
@@ -103,21 +117,26 @@ plot_google_map( ...
 % pretty run
 lbl = kVIS_generateLabels(signalMeta, []);
 
-title(h.Parent,['Track color: ' lbl], 'Color','w', 'FontSize', 14, 'Interpreter', 'latex')
-
-axes_handle.XColor = 'w';
-axes_handle.YColor = 'w';
-axes_handle.ZColor = 'w';
-
 view(axes_handle, 2)
 
 colormap(axes_handle, 'jet')
 cb = colorbar(axes_handle,'Location','west');
 cb.Color = 'w';
 
-kVIS_axesResizeToContainer(axes_handle);
-
-axes_handle.UIContextMenu = kVIS_createMapContextMenu(axes_handle);
+if nargout == 0
+    
+    title(h.Parent,['Track color: ' lbl], 'Color','w', 'FontSize', 14, 'Interpreter', 'latex')
+    axes_handle.XColor = 'w';
+    axes_handle.YColor = 'w';
+    axes_handle.ZColor = 'w';
+    kVIS_axesResizeToContainer(axes_handle);
+    axes_handle.UIContextMenu = kVIS_createMapContextMenu(axes_handle);
+else
+    
+    title(h.Parent,['Track color: ' lbl], 'Color','k', 'FontSize', 14, 'Interpreter', 'latex')
+    figHdl.Name = 'Flight Track';
+    varargout{1} = figHdl;
+end
 end
 
 function [ m ] = kVIS_createMapContextMenu(ax)
