@@ -57,10 +57,10 @@ while ~feof(fidIN)
     l = strip(fgetl(fidIN));
     
     if contains(l, '%_kVIS_aircraft_properties')
-        kVIS_writeAcDataTable(fidOUT);
+        kVIS_writeAcDataTable(hObject, fidOUT);
         
     elseif contains(l, '%_kVIS_test_info')
-        kVIS_writeTestInfoTable(fidOUT);
+        kVIS_writeTestInfoTable(hObject, fidOUT);
         
     elseif contains(l, '%_kVIS_bsp_fcn_eval')
         

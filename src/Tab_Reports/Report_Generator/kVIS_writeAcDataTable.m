@@ -29,9 +29,14 @@
 %> @param File identifier to print to
 %>
 %
-function kVIS_writeAcDataTable(fid)
+function kVIS_writeAcDataTable(hObject, fid)
 
-fds = evalin('base','ARQ_105');
+try
+    [fds, ~] = kVIS_getCurrentFds(hObject);
+catch
+    disp('No fds loaded. Abort.')
+    return;
+end
 
 a = fds.aircraftData;
 

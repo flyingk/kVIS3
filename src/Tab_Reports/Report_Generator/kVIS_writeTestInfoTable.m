@@ -29,9 +29,14 @@
 %> @param File identifier to print to
 %>
 %
-function kVIS_writeTestInfoTable(fid)
+function kVIS_writeTestInfoTable(hObject, fid)
 
-fds = evalin('base','ARQ_105');
+try
+    [fds, ~] = kVIS_getCurrentFds(hObject);
+catch
+    disp('No fds loaded. Abort.')
+    return;
+end
 
 t = fds.testInfo;
 
