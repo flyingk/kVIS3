@@ -56,7 +56,10 @@ while ~feof(fidIN)
     
     l = strip(fgetl(fidIN));
     
-    if contains(l, '%_kVIS_aircraft_properties')
+    if contains(l, '%_kVIS_make_title')
+        kVIS_writeTitle(hObject, fidOUT);
+        
+    elseif contains(l, '%_kVIS_aircraft_properties')
         kVIS_writeAcDataTable(hObject, fidOUT);
         
     elseif contains(l, '%_kVIS_test_info')
@@ -71,7 +74,7 @@ while ~feof(fidIN)
         fileNames = kVIS_writeFcnPlotElement(hObject, fcnName{2}, outFolder);
         
         % generate tex with plot names
-        for I = 1:length(fileNames)
+        for I = 1:size(fileNames,2)
             if ~isempty(fileNames{1,I})
                 kVIS_writePlotElement(fidOUT, fileNames(:,I));
             end
@@ -97,7 +100,7 @@ while ~feof(fidIN)
         end
         
         % generate tex with plot names
-        for I = 1:length(fileNames)
+        for I = 1:size(fileNames,2)
             if ~isempty(fileNames{1,I})
                 kVIS_writePlotElement(fidOUT, fileNames(:,I));
             end
