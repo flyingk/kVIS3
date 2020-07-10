@@ -37,7 +37,7 @@ for i = 1:length(n)
     d{i} = num2str(prefs.(n{i}));
 end
 
-res = kVIS_inputdlg(n,'Preferences', 1, d, 'on');
+res = kVIS_inputdlg(n,'Preferences', 1, d);
 
 if isempty(res)
     return

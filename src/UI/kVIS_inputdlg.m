@@ -1,5 +1,5 @@
 
-function [Answer] = kVIS_inputdlg(Prompt, Title, NumLines, DefAns)
+function [Answer] = kVIS_inputdlg(Prompt, Title, ~, DefAns)
 
 f=figure('Position',[0 0 900 900],...
     'MenuBar','none',...
@@ -7,12 +7,13 @@ f=figure('Position',[0 0 900 900],...
     'NumberTitle','off',...
     'Visible','off',...
     'WindowStyle','modal',...
+    'Name', Title,...
     'KeyPressFcn',@keyP);
 
 
 main_div = uix.VBox('Parent', f, 'Tag', 'vbox');
 
-inputs = uix.Grid('Parent', main_div);
+inputs = uix.Grid('Parent', main_div, 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'));
 inputs.Tag = 'inputs';
 
 ctrls= uix.HButtonBox('Parent', main_div, ...
@@ -21,7 +22,9 @@ ctrls= uix.HButtonBox('Parent', main_div, ...
     'HorizontalAlignment', 'right',...
     'Tag','btnBox');
 
-main_div.Heights = [-1 40];
+buttonStripHeight = 40;
+
+main_div.Heights = [-1 buttonStripHeight];
 
 
 uicontrol( ...
@@ -43,25 +46,28 @@ ctrls.ButtonSize = [100 30];
 %% input fields
 
 for I = 1:length(DefAns)
-    uicontrol('Parent', inputs, 'Style','text', 'String', Prompt{I}, 'FontSize', 14)
+    uicontrol('Parent', inputs, 'Style','text', 'String', Prompt{I},...
+        'Foregroundcolor','w', 'FontSize', 14, 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'))
     answ(I) = uicontrol('Parent', inputs, 'Style', 'edit', 'String', DefAns{I}, 'KeyPressFcn',@keyP);
 end
 
 if I < 10
-    set( inputs, 'Widths', [200], 'Heights', ones(1, I*2)*-1 );
+    set( inputs, 'Widths', [200], 'Heights', ones(1, I*2)* 30 );
 else
     % odd/even number of fields?
     oe = mod(I,2);
-    spc = ones(1, I - oe) * -1;
+    spc = ones(1, I - oe) * 30;
     spc(1:2:length(spc)) = 20;
     if oe == 0
         
         set( inputs, 'Widths', [200 200], 'Heights', spc );
         f.Position(3) = 430;
+        f.Position(4) = sum(spc) + (length(spc)+1) * 10 + buttonStripHeight;
     else
         
         set( inputs, 'Widths', [200 200 200], 'Heights',  spc);
         f.Position(3) = 640;
+        f.Position(4) = sum(spc) + (length(spc)+1) * 10 + buttonStripHeight;
     end
 end
 
