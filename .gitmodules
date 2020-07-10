@@ -1,0 +1,3 @@
+[submodule "src/FDS_FileFormat"]
+	path = src/FDS_FileFormat
+	url = https://github.com/flyingk/kVIS3_fds_file_format_api.git
