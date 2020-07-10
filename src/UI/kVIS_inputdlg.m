@@ -5,7 +5,9 @@ f=figure('Position',[0 0 900 900],...
     'MenuBar','none',...
     'Toolbar','none',...
     'NumberTitle','off',...
-    'Visible','off');
+    'Visible','off',...
+    'WindowStyle','modal',...
+    'KeyPressFcn',@keyP);
 
 
 main_div = uix.VBox('Parent', f, 'Tag', 'vbox');
@@ -42,7 +44,7 @@ ctrls.ButtonSize = [100 30];
 
 for I = 1:length(DefAns)
     uicontrol('Parent', inputs, 'Style','text', 'String', Prompt{I}, 'FontSize', 14)
-    answ(I) = uicontrol('Parent', inputs, 'Style', 'edit', 'String', DefAns{I});
+    answ(I) = uicontrol('Parent', inputs, 'Style', 'edit', 'String', DefAns{I}, 'KeyPressFcn',@keyP);
 end
 
 if I < 10
@@ -71,26 +73,63 @@ movegui(f,'center')
 
 f.Visible = 'on';
 
-
+%% wait for user input
 uiwait(f);
 
-for I = 1:length(DefAns)
-    Answer{I} = answ(I).String;
-end
 
-Answer
+
+%% resume
+if strcmp(f.UserData, 'OK')
+    
+    for I = 1:length(DefAns)
+        Answer{I} = answ(I).String;
+    end
+    
+    Answer;
+    
+else
+    
+    Answer = [];    
+end
 
 delete(f)
 end
 
+% OK button
 function btnP(src, event)
+
+event;
+
+set(gcbf,'UserData','OK');
 
 uiresume(gcbf);
 
 end
 
+% Cancel button
 function btnP2(src, event)
 
-delete(gcbf);
+set(gcbf,'UserData','Cancel');
+
+uiresume(gcbf);
+
+end
+
+% process keyboard entries
+function keyP(src, event)
+
+switch(event.Key)
+    
+    % enter key
+  case {'return'}
+    pause(0.2) % for edit entry to register...
+    
+    btnP(src, event)
+    
+    % esc key
+  case {'escape'}
+      
+    btnP2(src, event)
+end
 
 end
