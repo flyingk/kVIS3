@@ -20,8 +20,9 @@
 
 function kVIS_menuSaveCurrentFile_Callback(hObject, ~)
 %
-% saves current file to user selected destination
+% saves current file to the destination it was loaded from (if available)
 %
+
 % [~, currentName, ~] = kVIS_dataSetListState(hObject);
 % 
 % if isempty(currentName)
