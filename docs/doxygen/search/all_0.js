@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['changeaxes_0',['changeAxes',['../k_v_i_s__data_viewer_export_all_plots_8m.html#a340535c1a9f8214f228dcb38ff897998',1,'kVIS_dataViewerExportAllPlots.m']]],
-  ['changelegend_1',['changeLegend',['../k_v_i_s__data_viewer_export_all_plots_8m.html#a3c56f32fb49526ae4a868e174c5f31d2',1,'kVIS_dataViewerExportAllPlots.m']]]
+  ['btnp_0',['btnP',['../k_v_i_s__inputdlg_8m.html#af12a25e9734a6653206d404799c721a1',1,'kVIS_inputdlg.m']]],
+  ['btnp2_1',['btnP2',['../k_v_i_s__inputdlg_8m.html#aa7f890e1254b1e51ac951d790ed5d330',1,'kVIS_inputdlg.m']]]
 ];

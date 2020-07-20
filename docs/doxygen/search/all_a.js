@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['old_5fevent_5fplot_2em_336',['old_event_plot.m',['../old__event__plot_8m.html',1,'']]]
+  ['newpanel_380',['newPanel',['../k_v_i_s__data_viewer_add_element_8m.html#a232a801edfd3cae82caeb4dbd754894c',1,'kVIS_dataViewerAddElement.m']]]
 ];

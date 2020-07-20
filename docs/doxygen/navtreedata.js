@@ -23,11 +23,12 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "kVIS3", "index.html", [
+    [ "kVIS3_fds_file_format_api", "md___users_kai__projects_k_v_i_s3_k_v_i_s3_src__f_d_s__file_format__r_e_a_d_m_e.html", null ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ]
       ] ]
     ] ]
   ] ]
@@ -35,8 +36,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"dir_23054a6e86c4a9f857ba5f188b9933f6.html",
-"k_v_i_s__menu_save_current_file___callback_8m.html#a2b3e2b393ef1fb5f4f44b94123ae30b2"
+"dir_194d8f224d8d2ac1b72b2dac6a16b720.html",
+"k_v_i_s__generate_custom_plot_m_8m.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

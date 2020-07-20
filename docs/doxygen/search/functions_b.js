@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['samplerate_685',['sampleRate',['../k_v_i_s__fds_update_attributes_8m.html#a7386731c24a0b503e34e8eaba14c6590',1,'kVIS_fdsUpdateAttributes.m']]],
-  ['starttime_686',['startTime',['../k_v_i_s__fds_update_attributes_8m.html#a402d1c0b59da91cf6df2e48f5beb393b',1,'kVIS_fdsUpdateAttributes.m']]],
-  ['stoptime_687',['stopTime',['../k_v_i_s__fds_update_attributes_8m.html#acd5724fdcbe22a05e065d00c369dfef6',1,'kVIS_fdsUpdateAttributes.m']]]
+  ['printcallback_777',['printcallback',['../k_v_i_s__data_viewer_export_plot_8m.html#a3ed1074c43e364fe812229ae911868b7',1,'kVIS_dataViewerExportPlot.m']]]
 ];

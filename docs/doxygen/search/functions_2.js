@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['event_5fplot_512',['event_plot',['../old__event__plot_8m.html#a46a1adc910f856ab7495cde56fac572c',1,'old_event_plot.m']]],
-  ['eventedit_513',['eventEdit',['../k_v_i_s__event_list_cell_select___callback_8m.html#a3cb4b54480a56a6cfee43fe09f183fec',1,'kVIS_eventListCellSelect_Callback.m']]],
-  ['eventfocus_514',['eventFocus',['../k_v_i_s__event_list_cell_select___callback_8m.html#abbf8f5a0598e8fb8615712601a0b96fa',1,'kVIS_eventListCellSelect_Callback.m']]],
-  ['evplot_515',['evplot',['../k_v_i_s__data_viewer_channel_list_action_8m.html#a04c85db6243c0f25d0d9656a1f67be1c',1,'kVIS_dataViewerChannelListAction.m']]]
+  ['data_5fviewer_5foptions_582',['data_viewer_options',['../k_v_i_s__ui_setup_tab_data_viewer_8m.html#adbb8d757cf59821d204c2dacadfc55cc',1,'data_viewer_options():&#160;kVIS_uiSetupTabDataViewer.m'],['../k_v_i_s__ui_setup_tab_sig_proc_8m.html#a7aaedb48d3567b254f0fd4cde88e40d3',1,'data_viewer_options(in preferences):&#160;kVIS_uiSetupTabSigProc.m']]],
+  ['dft_583',['DFT',['../k_v_i_s__fft_update_8m.html#a5506f7a9d163b6651a830c1f39923fb0',1,'kVIS_fftUpdate.m']]]
 ];
