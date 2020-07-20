@@ -18,28 +18,27 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_menuSaveCurrentFile_Callback(hObject, ~)
+function kVIS_menuSaveCurrentFileAs_Callback(hObject, ~)
 %
-% saves current file to the destination it was loaded from (if available)
+% saves current file to user selected destination
 %
+[~, currentName, ~] = kVIS_dataSetListState(hObject);
 
-% [~, currentName, ~] = kVIS_dataSetListState(hObject);
-% 
-% if isempty(currentName)
-%     return;
-% end
-% 
-% [filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
-% 
-% if filename == 0
-%     return
-% end
+if isempty(currentName)
+    return;
+end
 
-kVIS_terminalMsg('Not yet implemented...');
+[filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
 
-% cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
-% evalin('base', cmd)
-% 
-% kVIS_terminalMsg('Writing file... Complete');
+if filename == 0
+    return
+end
+
+kVIS_terminalMsg('Writing file...');
+
+cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
+evalin('base', cmd)
+
+kVIS_terminalMsg('Writing file... Complete');
 
 end

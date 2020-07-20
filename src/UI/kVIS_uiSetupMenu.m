@@ -49,9 +49,8 @@ for i=1:size(BSP_Info.importFcn,1)
 end
 
 uimenu(m1,'Text','Open FDS file (.mat)','Callback',@kVIS_menuFileOpen_Callback);
-uimenu(m1,'Text','Save Current Dataset As','Callback',@kVIS_menuSaveCurrentFile_Callback);
-% uimenu(m1,'Text','Save Current As','Callback',@file_save_current_as_Callback);
-% uimenu(m1,'Text','Save All As','Callback',@file_save_all_Callback);
+uimenu(m1,'Text','Save Current Dataset','Callback',@kVIS_menuSaveCurrentFile_Callback);
+uimenu(m1,'Text','Save Current Dataset As','Callback',@kVIS_menuSaveCurrentFileAs_Callback);
 uimenu(m1,'Text','Close Current Dataset','Callback',{@kVIS_menuCloseFiles_Callback,1});
 uimenu(m1,'Text','Close All Dataset(s)','Callback',{@kVIS_menuCloseFiles_Callback,0});
 uimenu(m1,'Text','Quit','Callback',@kVIS_menuQuitButton_Callback);
