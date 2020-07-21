@@ -27,13 +27,19 @@ if file == 0
     return
 end
 
-data = load(fullfile(pathname,file));
+fileN = fullfile(pathname,file);
+
+data = load(fileN);
 
 fn = fieldnames(data);
 
 if isfield(data.(fn{1}), 'fdata')
 
     fds = kVIS_fdsUpgrade(data.(fn{1}));
+    
+    % save file origin for save function
+    fds.pathOpenedFrom = fileN;
+    
     %
     % BSP provided function for fds processing after loading
     %

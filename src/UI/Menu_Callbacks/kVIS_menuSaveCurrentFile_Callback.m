@@ -23,23 +23,32 @@ function kVIS_menuSaveCurrentFile_Callback(hObject, ~)
 % saves current file to the destination it was loaded from (if available)
 %
 
-% [~, currentName, ~] = kVIS_dataSetListState(hObject);
-% 
-% if isempty(currentName)
-%     return;
-% end
-% 
-% [filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
-% 
-% if filename == 0
-%     return
-% end
+[~, currentName, ~] = kVIS_dataSetListState(hObject);
 
-kVIS_terminalMsg('Not yet implemented...');
+if isempty(currentName)
+    return;
+end
 
-% cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
-% evalin('base', cmd)
-% 
-% kVIS_terminalMsg('Writing file... Complete');
+% retrive file location
+cmd = [currentName '.pathOpenedFrom'];
+
+fileN = evalin('base', cmd);
+
+if isempty(fileN)
+    errordlg('File origin not retrievable.')
+    return;
+end
+
+% % clear field -- clear only in saved version, not in workspace!!
+% cmd = [currentName '.pathOpenedFrom=[];']
+% evalin('base', cmd);
+
+kVIS_terminalMsg(['Saving as ' fileN '...']);
+
+% save file (overwrite)
+cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fileN, currentName);
+evalin('base', cmd)
+
+kVIS_terminalMsg('Writing file... Complete');
 
 end
