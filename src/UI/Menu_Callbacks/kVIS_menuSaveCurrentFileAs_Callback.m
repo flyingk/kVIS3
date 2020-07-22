@@ -31,6 +31,7 @@ end
 [filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
 
 if filename == 0
+    kVIS_terminalMsg('');
     return
 end
 
