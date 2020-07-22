@@ -29,25 +29,33 @@ if isempty(currentName)
     return;
 end
 
-% retrive file location
-cmd = [currentName '.pathOpenedFrom'];
-
-fileN = evalin('base', cmd);
+% retrive file location - call save as if not available
+try
+    cmd = [currentName '.pathOpenedFrom'];
+    fileN = evalin('base', cmd);
+catch
+    kVIS_menuSaveCurrentFileAs_Callback(hObject, [])
+    return
+end
 
 if isempty(fileN)
-    errordlg('File origin not retrievable.')
+    kVIS_menuSaveCurrentFileAs_Callback(hObject, [])
     return;
 end
 
-% % clear field -- clear only in saved version, not in workspace!!
-% cmd = [currentName '.pathOpenedFrom=[];']
-% evalin('base', cmd);
-
 kVIS_terminalMsg(['Saving as ' fileN '...']);
+
+% clear file location field
+cmd = [currentName '.pathOpenedFrom=[];'];
+evalin('base', cmd);
 
 % save file (overwrite)
 cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fileN, currentName);
 evalin('base', cmd)
+
+% restore file location field
+cmd = [currentName '.pathOpenedFrom=''' fileN ''';'];
+evalin('base', cmd);
 
 kVIS_terminalMsg('Writing file... Complete');
 
