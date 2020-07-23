@@ -152,6 +152,8 @@ fds.ftiSensors = struct( ...
 
 - float fdsVersion: version of FDS format definition
 
+- char pathOpenedFrom[]: field to save origin path for save function
+
 ### Notes
 
 - FDS can contain BSP specific fields, as long as they do not interfere with this specification. No kVIS3 baseline function may require a non standard FDS field. Access to BSP specific fields must only be done through a BSP function.
