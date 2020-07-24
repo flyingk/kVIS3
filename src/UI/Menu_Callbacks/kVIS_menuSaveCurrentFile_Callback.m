@@ -43,7 +43,7 @@ if isempty(fileN)
     return;
 end
 
-kVIS_terminalMsg(['Saving as ' fileN '...']);
+kVIS_terminalMsg(['Saving ' fileN '...']);
 
 % clear file location field
 cmd = [currentName '.pathOpenedFrom=[];'];
@@ -57,6 +57,6 @@ evalin('base', cmd)
 cmd = [currentName '.pathOpenedFrom=''' fileN ''';'];
 evalin('base', cmd);
 
-kVIS_terminalMsg('Writing file... Complete');
+kVIS_terminalMsg(['Saving ' fileN ' Complete.']);
 
 end
