@@ -23,23 +23,40 @@ function kVIS_menuSaveCurrentFile_Callback(hObject, ~)
 % saves current file to the destination it was loaded from (if available)
 %
 
-% [~, currentName, ~] = kVIS_dataSetListState(hObject);
-% 
-% if isempty(currentName)
-%     return;
-% end
-% 
-% [filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
-% 
-% if filename == 0
-%     return
-% end
+[~, currentName, ~] = kVIS_dataSetListState(hObject);
 
-kVIS_terminalMsg('Not yet implemented...');
+if isempty(currentName)
+    return;
+end
 
-% cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
-% evalin('base', cmd)
-% 
-% kVIS_terminalMsg('Writing file... Complete');
+% retrive file location - call save as if not available
+try
+    cmd = [currentName '.pathOpenedFrom'];
+    fileN = evalin('base', cmd);
+catch
+    kVIS_menuSaveCurrentFileAs_Callback(hObject, [])
+    return
+end
+
+if isempty(fileN)
+    kVIS_menuSaveCurrentFileAs_Callback(hObject, [])
+    return;
+end
+
+kVIS_terminalMsg(['Saving ' fileN '...']);
+
+% clear file location field
+cmd = [currentName '.pathOpenedFrom=[];'];
+evalin('base', cmd);
+
+% save file (overwrite)
+cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fileN, currentName);
+evalin('base', cmd)
+
+% restore file location field
+cmd = [currentName '.pathOpenedFrom=''' fileN ''';'];
+evalin('base', cmd);
+
+kVIS_terminalMsg(['Saving ' fileN ' Complete.']);
 
 end

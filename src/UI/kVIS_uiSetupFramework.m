@@ -128,7 +128,7 @@ uiBoxRight.Heights = [-1 120];
 handles.uiFramework.uiRibbonLeft  = uix.CardPanel('Parent', uiRibbon);
 handles.uiFramework.uiRibbonRight = uix.CardPanel('Parent', uiRibbon);
 
-uiRibbon.Widths = [600 -1];
+uiRibbon.Widths = [630 -1];
 
 %
 % add default ribbon (file/plot options)

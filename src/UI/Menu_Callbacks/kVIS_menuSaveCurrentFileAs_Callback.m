@@ -31,13 +31,19 @@ end
 [filename, pathname] = uiputfile('*.mat', 'Saving file - select destination:');
 
 if filename == 0
+    kVIS_terminalMsg('');
     return
 end
 
 kVIS_terminalMsg('Writing file...');
 
+% save file
 cmd = sprintf('save(''%s'', ''%s'', ''-v7.3'')', fullfile(pathname, filename), currentName);
-evalin('base', cmd)
+evalin('base', cmd);
+
+% write new save location to the fds
+cmd = [currentName '.pathOpenedFrom=''' fullfile(pathname, filename) ''';'];
+evalin('base', cmd);
 
 kVIS_terminalMsg('Writing file... Complete');
 
