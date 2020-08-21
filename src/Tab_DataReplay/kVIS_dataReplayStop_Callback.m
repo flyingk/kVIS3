@@ -28,18 +28,21 @@ t = timerfind('Tag','HeartbeatTimer');
 
 if ~isempty(t)
     stop(t)
+    delete(timerfind('Tag','HeartbeatTimer'))
 end
 
 t2 = timerfind('Tag','DataTimer');
 
-if ~isempty(t)
+if ~isempty(t2)
     stop(t2)
     
     Data = t2.UserData;
     delete(Data.lineHandle);
+    
+    delete(timerfind('Tag','DataTimer'))
 end
 
-delete(timerfind)
+
 
 %
 % reset button states
