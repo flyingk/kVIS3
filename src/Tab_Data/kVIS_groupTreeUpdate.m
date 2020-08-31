@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_groupTreeUpdate(hObject, fds)
+function kVIS_groupTreeUpdate(hObject, fds, mode)
 % Update the file tree display, e.g. when selecting a flight from the
 % flight list.
 
@@ -91,6 +91,8 @@ if isempty(tree.SelectedNodes)
     tree.SelectedNodes = fdata_nodes(1);
 end
 
-kVIS_updateChannelList_Callback(hObject, [], 0);
+if strcmp(mode,'search') == false
+    kVIS_updateChannelList_Callback(hObject, [], 0);
+end
 
 end

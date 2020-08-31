@@ -31,7 +31,7 @@ end
 %
 % update group tree
 %
-kVIS_groupTreeUpdate(hObject, fds);
+kVIS_groupTreeUpdate(hObject, fds, 'default');
 
 %
 % Fill event table

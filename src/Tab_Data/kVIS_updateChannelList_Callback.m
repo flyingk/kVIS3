@@ -34,6 +34,8 @@ end
 
 kVIS_fdsUpdateSelectionInfo(hObject, []);
 
+handles.uiTabData.channelListboxLabel.String = 'Data Channels';
+
 [ fds, ~ ] = kVIS_getCurrentFds(hObject);
 
 %

@@ -19,46 +19,83 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function kVIS_searchBtn_Callback(hObject, ~)
-clc
+
 handles = guidata(hObject);
 
 fds = kVIS_getCurrentFds(hObject);
 
-disp('Search Results:')
-disp('===============')
-disp(' ')
+% disp('Search Results:')
+% disp('===============')
+% disp(' ')
 
 searchStr = handles.uiTabData.groupSearchString.String;
 
-% search for groups
-findGroups = contains(fds.fdata(fds.fdataRows.groupLabel, :), searchStr, 'IgnoreCase',true);
-
-if ~any(findGroups)
-    disp('No match in group names found...')
-    disp(' ')
-else
-    GroupResults = fds.fdata{fds.fdataRows.groupLabel, findGroups}
-    disp(' ')
-end
+% % search for groups
+% findGroups = contains(fds.fdata(fds.fdataRows.groupLabel, :), searchStr, 'IgnoreCase',true);
+% 
+% if ~any(findGroups)
+%     disp('No match in group names found...')
+%     disp(' ')
+% else
+%     GroupResults = fds.fdata{fds.fdataRows.groupLabel, findGroups}
+%     disp(' ')
+% end
 
 % search for channels
 findChan = {};
+searchStr_split = split (searchStr, ' ');
 
+%% Search engine
+% - Each word separated by a space is separated query
+% - If the word starts with a "-" then channels that contains that word are
+% removed from the filter
+% - Show channels that fulfils all queries (AND of all queries)
+% - If no word is filled in the search box, shows all available channels.
+% - The search considers the name of the group and channel.
 for i = 1:size(fds.fdata,2)
     if ~isempty(fds.fdata{fds.fdataRows.varNames, i})
-        
-        a =  contains(fds.fdata{fds.fdataRows.varNames, i}, searchStr ,'IgnoreCase',true);
+        % Check all filter criterias
+        a = ones(size(fds.fdata{fds.fdataRows.varNames, i},1), size(fds.fdata{fds.fdataRows.varNames, i},2));
+            for iFilt = 1:length(searchStr_split)
+                if isempty(searchStr_split{iFilt})
+                    continue;
+                elseif searchStr_split{iFilt}(1) == '-'
+                    a = (a & ~(...
+                        contains(lower(fds.fdata{fds.fdataRows.varNames, i}),   lower(searchStr_split{iFilt}(2:end))) | ... 
+                        contains(lower(fds.fdata{fds.fdataRows.groupLabel, i}), lower(searchStr_split{iFilt}(2:end))) ) ...
+                        );
+                else
+                    a = (a & (...
+                        contains(lower(fds.fdata{fds.fdataRows.varNames, i}),   lower(searchStr_split{iFilt})) | ... 
+                        contains(lower(fds.fdata{fds.fdataRows.groupLabel, i}), lower(searchStr_split{iFilt})) ) ...
+                        );
+                end
+            end
+        % Consolidate filter results
         if any(a)
-            group = i;
-            channel = find(a==true);
-            
+            channel = find(a==true);            
             for j = 1:length(channel)
-                res = [num2str(i) '/' num2str(channel(j)) '/' fds.fdata{fds.fdataRows.groupLabel, i} '/' fds.fdata{fds.fdataRows.varNames, i}{channel(j)}];
+                res = [num2str(i) '/' ...
+                       num2str(channel(j)) '/' ...
+                       fds.fdata{fds.fdataRows.groupLabel, i} '/' ...
+                       fds.fdata{fds.fdataRows.varNames, i}{channel(j)}];             
                 findChan = [findChan res];
             end
         end
     end
 end
+
+%% Display results
+% Reuse Data Channels box to display filter results.
+if ~isempty(findChan)
+    set(handles.uiTabData.channelListbox,'Value',1);
+    set(handles.uiTabData.channelListbox,'String',findChan);
+    handles.uiTabData.channelListboxLabel.String = 'Search Results';
+else
+    warndlg('No match for search query found...')
+end
+
+return
 
 if ~isempty(findChan)
 %     disp('ChannelResults:')
