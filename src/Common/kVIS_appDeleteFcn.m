@@ -20,10 +20,14 @@
 
 function kVIS_appDeleteFcn(hObject, ~)
 
-rmpath(genpath('src'));
-rmpath(genpath('contributed'));
+% get root folder
+rootFolder = fileparts(which('kVIS3'));
 
+% remove stuff from path below root folder
+rmpath(genpath([rootFolder '/src']));
+rmpath(genpath([rootFolder '/contributed']));
 
+% remove BSP stuff
 if ispref('kVIS_prefs','bspDir')
     rmpath(genpath(getpref('kVIS_prefs','bspDir')));
 end
