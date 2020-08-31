@@ -78,18 +78,18 @@ uimenu(m3,'Text','Tree Font Size','Callback',@kVIS_treeChangeFontSize_Callback);
 % uimenu(m3,'Text','Map', 'Callback',@update_map_Callback);
 % uimenu(m3,'Text','Timing Check','Callback',@time_base_Callback);
 
-m4 = uimenu(handles.appWindow,'Text','Events');
+%m4 = uimenu(handles.appWindow,'Text','Events');
 % m41= uimenu(m4,'Text','Import Event List');
 % m42= uimenu(m4,'Text','New Event','Callback',@event_create_Callback);
 % m43= uimenu(m4,'Text','Edit Event','Callback',@event_edit_Callback);
 % m44= uimenu(m4,'Text','Merge Events','Callback',@event_merge_Callback);
 % m45= uimenu(m4,'Text','Delete Event','Callback',@event_delete_Callback);
 
-m5 = uimenu(handles.appWindow,'Text','Plots');
+%m5 = uimenu(handles.appWindow,'Text','Plots');
 % uimenu(m5,'Text','Reload Custom Plot Definitions','Callback', @reload_custom_plots_Callback);
 % uimenu(m5,'Text','Plot All','Callback', @generate_all_custom_plots_Callback);
 
-m6 = uimenu(handles.appWindow,'Text','Exports');
+%m6 = uimenu(handles.appWindow,'Text','Exports');
 % m61= uimenu(m6,'Text','Export Current Plot','Callback',@export_plot_Callback);
 % uimenu(m6,'Text','Reload Export Definitions','Callback', @reload_exports_Callback);
 % m63= uimenu(m6,'Text','Export Data Format');
