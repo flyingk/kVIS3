@@ -74,10 +74,12 @@ end
 set(inputs, 'Spacing', 10)
 set(inputs, 'Padding', 10)
 
+% set focus to first element
+uicontrol(answ(1))
 
+% slow - jumps around - doesn't work while invisible...
 movegui(f,'center')
 
-f.Visible = 'on';
 
 %% wait for user input
 uiwait(f);
