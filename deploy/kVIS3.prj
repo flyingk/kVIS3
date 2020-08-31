@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="569793126" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="1624059109" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
     <param.appname>kVIS3</param.appname>
     <param.authnamewatermark>Kai</param.authnamewatermark>
     <param.email />
@@ -11,9 +11,9 @@
       <file>${PROJECT_ROOT}/kVIS3_resources/icon_16.png</file>
     </param.icons>
     <param.summary />
-    <param.description>Beta 8 release</param.description>
+    <param.description>Beta 9 release</param.description>
     <param.screenshot />
-    <param.version>1.0.0.8</param.version>
+    <param.version>1.0.0.9</param.version>
     <param.products.name>
       <item>MATLAB</item>
     </param.products.name>
@@ -61,7 +61,7 @@
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>10.14.6</osver>
+      <osver>10.15.6</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>maci64</arch>
