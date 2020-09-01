@@ -33,7 +33,7 @@ assignin('base', flightVar, fds);
 %
 % update UI
 %
-kVIS_groupTreeUpdate(hObject, fds);
+kVIS_groupTreeUpdate(hObject, fds, 'default');
 
 %
 % update event table

@@ -123,7 +123,7 @@ if ~isempty(sel)
     
     fds = kVIS_getCurrentFds(hObject);
     
-    kVIS_groupTreeUpdate(hObject, fds)
+    kVIS_groupTreeUpdate(hObject, fds, 'default')
     
     % set channel list entry
     set(handles.uiTabData.channelListbox,'Value', str2double(str{2}));

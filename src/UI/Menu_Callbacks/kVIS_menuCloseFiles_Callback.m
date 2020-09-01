@@ -65,7 +65,7 @@ elseif opt == 1
     kVIS_dataSetListUpdate(hObject, 'delete', [], currentVal);
 end
 
-kVIS_groupTreeUpdate(hObject, []);
+kVIS_groupTreeUpdate(hObject, [], 'default');
 kVIS_updateChannelList_Callback(hObject, []);
 
 kVIS_clearPlot_Callback(hObject, []);
