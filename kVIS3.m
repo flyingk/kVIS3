@@ -54,8 +54,12 @@ try
     kVIS_preferencesInit();
 catch
     % Update Matlab path
-    addpath(genpath('src'));
-    addpath(genpath('contributed'));
+    % get root folder
+    rootFolder = fileparts(which('kVIS3'));
+    
+    % add stuff from path below root folder
+    addpath(genpath([rootFolder '/src']));
+    addpath(genpath([rootFolder '/contributed']));
     kVIS_preferencesInit();
 end
 
