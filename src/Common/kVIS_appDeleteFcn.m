@@ -20,8 +20,10 @@
 
 function kVIS_appDeleteFcn(hObject, ~)
 
+handles = guidata(hObject);
+
 % get root folder
-rootFolder = fileparts(which('kVIS3'));
+rootFolder = handles.bspInfo.rootFolder;
 
 % remove stuff from path below root folder
 rmpath(genpath([rootFolder '/src']));

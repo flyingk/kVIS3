@@ -49,13 +49,14 @@ if wTB == false || gTB == false
     return
 end
 
+% get root folder
+rootFolder = fileparts(which('kVIS3'));
+
 % run prefs file
 try
     kVIS_preferencesInit();
 catch
     % Update Matlab path
-    % get root folder
-    rootFolder = fileparts(which('kVIS3'));
     
     % add stuff from path below root folder
     addpath(genpath([rootFolder '/src']));
@@ -95,6 +96,7 @@ catch
 end
 
 % Initialize GUI.
+BSP_Info.rootFolder = rootFolder;
 
 % widget toolbox warning from 2019b
 warning('off','MATLAB:ui:javacomponent:FunctionToBeRemoved')

@@ -20,7 +20,12 @@
 
 function kVIS_help_Callback(hObject, ~)
 
-path = fullfile('docs','index.html');
+handles = guidata(hObject);
+
+% get root folder
+rootFolder = handles.bspInfo.rootFolder;
+
+path = fullfile(rootFolder ,'docs', 'index.html');
 
 web(path)
 
