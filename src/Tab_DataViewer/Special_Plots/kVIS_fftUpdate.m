@@ -92,14 +92,36 @@ if ~isempty(lines)
         w = [fmin:0.01:fmax]*2*pi;
         
         if strcmp(targetPanel.fftType, 'PSD')
+            
+            % use bsp function for PSD, if it exists, otherwise basic
+            % builtin method
+            try
                         
-            [p, f] = spect(signal-mean(signal), timeVec, w, 10, 0, 0);
+                [p, f] = BSP_psdFcn(signal, timeVec, w);
+            
+            catch
+                
+                [p, f] = kVIS_fftBasicFcn(signal-mean(signal), timeVec, w);
+                
+            end
             
             plot(ax, f, p, 'Color', colour)
             
         elseif strcmp(targetPanel.fftType, 'FFT')
             
-            [Y, f] = DFT(signal-mean(signal), timeVec, w, 10);
+            % use bsp function for fft, if it exists, otherwise basic
+            % builtin method
+            try
+                        
+                [Y, f] = BSP_fftFcn(signal, timeVec, w);
+            
+            catch
+                
+                [Y, f] = kVIS_fftBasicFcn(signal-mean(signal), timeVec, w, 10, 0, 0);
+                
+            end
+            
+%             [Y, f] = DFT(signal-mean(signal), timeVec, w, 10);
             
             plot(ax, f, abs(Y), 'Color', colour)
             
@@ -197,6 +219,23 @@ uimenu( ...
     'Label', 'Reset Limits', ...
     'Callback', {@kVIS_fftContextMenuAction, ax} ...
     );
+
+end
+
+function [P1, f] = kVIS_fftBasicFcn(signal, timeVec, w)
+% Matlab fft example
+
+L = length(signal);
+
+Fs = 1/mean(diff(timeVec));
+
+Y = fft(signal);
+
+P2 = abs(Y/L);
+P1 = P2(1:round(L/2)+1);
+P1(2:end-1) = 2*P1(2:end-1);
+
+f = Fs*(0:round(L/2))/L;
 
 end
 
