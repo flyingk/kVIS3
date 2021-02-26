@@ -217,6 +217,11 @@ handles.uiFramework.uiRibbonRight.Selection = 1;
 kVIS_addPlotColumn_Callback(appWindow, []);
 
 %
+% center window on screen
+%
+movegui('center');
+
+%
 % Make the window visible.
 %
 set(appWindow,'visible','on');
