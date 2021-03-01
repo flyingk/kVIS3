@@ -40,6 +40,7 @@ fdata = fds.fdata;
 % Create a list of TreeNode objects associated with the fdata entries.
 fdata_nodes = uiw.widget.TreeNode.empty();
 
+
 % Add nodes for all fdata entries.
 for idx = 1 : size(fdata, 2)
     
@@ -48,9 +49,13 @@ for idx = 1 : size(fdata, 2)
     % Find the parent node (data group/subsystem/...); if no parent is
     % specified (parent_idx <= 0), then add the new node at the highest
     % level in the tree.
-    parent_idx = fdata{fds.fdataRows.treeParent, idx};
-    if parent_idx > 0
-        parent_node = fdata_nodes(parent_idx);
+    parent_id = fdata{fds.fdataRows.uniqueParent, idx};
+    
+    if parent_id > 0
+        % find parent based on unique group ID
+        parent_idx= strcmp(fdata(fds.fdataRows.groupID,:),parent_id);
+
+        parent_node = fdata_nodes(find(parent_idx==true)); %#ok<FNDSB>
     else
         parent_node = tree.Root;
     end
@@ -73,7 +78,8 @@ for idx = 1 : size(fdata, 2)
         'Name', node_name, ...
         'Value', idx, ...
         'TooltipString', tooltip, ...
-        'Parent', parent_node ...
+        'Parent', parent_node, ...
+        'UIContextMenu', kVIS_createTreeContextMenu(hObject, fdata{fds.fdataRows.groupID, idx}) ...
         );
     
     fdata_nodes = [ fdata_nodes, node ]; %#ok<AGROW>
@@ -95,4 +101,30 @@ if strcmp(mode,'search') == false
     kVIS_updateChannelList_Callback(hObject, [], 0);
 end
 
+end
+
+function [ m ] = kVIS_createTreeContextMenu(hObject, idx)
+    % This function creates a context menu for a given Line object.
+    % The menu displays some metadata helping to identify the line, and
+    % provides some callback actions.
+
+    m = uicontextmenu();
+
+%     % metadata section
+%     uimenu('Parent', m, 'Label', sprintf('Signal: %s', strip(line.UserData.signalMeta.name)), 'Enable', 'off');
+%     uimenu('Parent', m, 'Label', sprintf('Units: %s' , strip(line.UserData.signalMeta.unit))     , 'Enable', 'off');
+%     uimenu('Parent', m, 'Label', sprintf('Data Set: %s', strip(line.UserData.signalMeta.dataSet)), 'Enable', 'off');
+
+    uimenu( ...
+        'Parent', m, ...
+        'Label', 'Delete', ...
+        'Separator','off',...
+        'Callback', {@kVIS_deleteTreeGroup, hObject, idx} ...
+        );
+%     uimenu( ...
+%         'Parent', m, ...
+%         'Label', 'Apply Filter', ...
+%         'Separator','on',...
+%         'Callback', {@kVIS_plotLineContextMenuActions_Callback, line} ...
+%         );
 end
