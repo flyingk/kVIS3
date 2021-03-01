@@ -22,7 +22,7 @@ function kVIS_menuImportWorkspaceFDS_Callback(hObject, ~)
 
 % register in data set list - how to check for duplicates???
 
-disp('kVIS_menuImportWorkspaceFDS_Callback: WARNING! will override existing data!')
+disp('kVIS_menuImportWorkspaceFDS_Callback: WARNING! will override existing workspace data!')
 
 c = evalin('base','who');
 
@@ -82,12 +82,9 @@ end
 
 fds = evalin('base',c{s});
 
-if ~isfield(fds, 'fdsVersion')
-    % legacy format
-    errordlg('Incompatible file version or not an fds file... Abort (Try OPEN for old fds files to upgrade)')
-    return
-end
-
+% legacy format?
+fds = kVIS_fdsUpgrade(fds);
+    
 kVIS_addDataSet(hObject, fds, newName{1})
 
 end

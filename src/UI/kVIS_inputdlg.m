@@ -74,11 +74,14 @@ end
 set(inputs, 'Spacing', 10)
 set(inputs, 'Padding', 10)
 
+% move to center
+movegui(f,'center')
+
+% show window
+f.Visible = 'on';
+
 % set focus to first element
 uicontrol(answ(1))
-
-% slow - jumps around - doesn't work while invisible...
-movegui(f,'center')
 
 
 %% wait for user input

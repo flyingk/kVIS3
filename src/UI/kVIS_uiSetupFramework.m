@@ -57,7 +57,7 @@ appWindow = figure( ...
 %
 % Assign the a name to appear in the window title.
 %
-set(appWindow,'name',['kVIS3 beta 009 - BSP: ' BSP_Info.Name ' build ' BSP_Info.Version]);
+set(appWindow,'name',['kVIS3 beta 009.1 - BSP: ' BSP_Info.Name ' build ' BSP_Info.Version]);
 
 %
 % get handle structure
@@ -215,6 +215,11 @@ handles.uiFramework.uiRibbonRight.Selection = 1;
 % create first plot panel in data viewer
 %
 kVIS_addPlotColumn_Callback(appWindow, []);
+
+%
+% center window on screen
+%
+movegui('center');
 
 %
 % Make the window visible.

@@ -63,6 +63,10 @@ if ~ispref('kVIS_prefs','google_maps_api_key')
     addpref('kVIS_prefs','google_maps_api_key', '')
 end
 
+if ~ispref('kVIS_prefs','clear_path_on_exit')
+    addpref('kVIS_prefs','clear_path_on_exit', 1)
+end
+
 % prefs = getpref('kVIS_prefs')
 end
 
