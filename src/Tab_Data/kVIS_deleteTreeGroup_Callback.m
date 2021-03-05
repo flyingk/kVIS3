@@ -1,3 +1,8 @@
+%
+%> @file kVIS_deleteTreeGroup_Callback.m
+%> @brief Callback from tree context menu to delete tree item
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,26 +23,36 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_updateDataSet(hObject, fds, flightVar)
+%
+%> @brief Callback from tree context menu to delete tree item
+%>
+%> @param Menu handle
+%> @param ignored
+%> @param App handle
+%> @param Tree item ID to delete
+%>
+%
+function kVIS_deleteTreeGroup_Callback(source, ~, hObject, itemID)
 
-%
-% update existing data set with new data
-%
-fds = kVIS_fdsUpdateAttributes(fds);
+% menu entry - no use
+source;
 
-%
-% save fds to workspace
-%
-assignin('base', flightVar, fds);
+% fetch fds structure
+[fds, name] = kVIS_getCurrentFds(hObject);
 
-%
-% update UI
-%
-kVIS_groupTreeUpdate(hObject, fds, 'default');
+clc
+tp = kVIS_fdsBuildTreePath(fds, itemID)
+C = kVIS_fdsFindTreeChildren(fds, itemID, '')
+return
 
-%
-% update event table
-%
-kVIS_updateEventList(hObject, fds.eventList, false);
+
+% fds api call
+[fds] = kVIS_fdsDeleteTreeItem(fds, itemID);
+
+% update app if fds was modified
+if isstruct(fds)
+    kVIS_updateDataSet(hObject, fds, name);
+end
 
 end
+
