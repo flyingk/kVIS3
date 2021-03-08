@@ -42,7 +42,7 @@ source;
 
 clc
 tp = kVIS_fdsBuildTreePath(fds, itemID)
-C = kVIS_fdsFindTreeChildren(fds, itemID, '')
+C = kVIS_fdsFindTreeChildren(fds, itemID)
 return
 
 

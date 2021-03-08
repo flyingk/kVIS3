@@ -53,7 +53,7 @@ for idx = 1 : size(fdata, 2)
     
     if parent_id > 0
         % find parent based on unique group ID
-        parent_idx= strcmp(fdata(fds.fdataRows.groupID,:), parent_id);
+        parent_idx = strcmp(fdata(fds.fdataRows.groupID,:), parent_id);
 
         parent_node = fdata_nodes(find(parent_idx==true)); %#ok<FNDSB>
     else
@@ -110,8 +110,8 @@ function [ m ] = kVIS_createTreeContextMenu(hObject, idx)
 
     m = uicontextmenu();
 
-%     % metadata section
-%     uimenu('Parent', m, 'Label', sprintf('Signal: %s', strip(line.UserData.signalMeta.name)), 'Enable', 'off');
+    % metadata section
+    uimenu('Parent', m, 'Label', sprintf('Group ID: %s', strip(idx)), 'Enable', 'off');
 %     uimenu('Parent', m, 'Label', sprintf('Units: %s' , strip(line.UserData.signalMeta.unit))     , 'Enable', 'off');
 %     uimenu('Parent', m, 'Label', sprintf('Data Set: %s', strip(line.UserData.signalMeta.dataSet)), 'Enable', 'off');
 
