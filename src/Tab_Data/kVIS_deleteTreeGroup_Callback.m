@@ -40,10 +40,10 @@ source;
 % fetch fds structure
 [fds, name] = kVIS_getCurrentFds(hObject);
 
-clc
-tp = kVIS_fdsBuildTreePath(fds, itemID)
-C = kVIS_fdsFindTreeChildren(fds, itemID)
-return
+% clc
+% tp = kVIS_fdsBuildTreePath(fds, itemID)
+% C = kVIS_fdsFindTreeChildren(fds, itemID)
+% return
 
 
 % fds api call
