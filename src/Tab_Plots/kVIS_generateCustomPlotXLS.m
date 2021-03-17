@@ -94,7 +94,7 @@ AxesLayout = 4;
 xAxisLabel = 5;
 yAxisLabel = 6;
 LegendStyle= 7;
-LegendLocation=8;
+LegendLocation = 8;
 xChannel = 10;
 yChannel = 11;
 cChannel = 12;
@@ -103,7 +103,8 @@ Color = 14;
 ScaleFactor = 15;
 fcnHandle = 16;
 fcnChannel = 17;
-LabelOverride =18;
+LabelOverride = 18;
+UnitOverride = 19;
 
 % assert(iscell(plotDef) & size(plotDef, 2) == 19, 'Invalid plot definition');
 
@@ -119,8 +120,8 @@ nPlots = max(cell2mat(plotDef(:,plotNo)));
 nPlotRows = max(cell2mat(plotDef(:,Row)));
 nPlotCols = max(cell2mat(plotDef(:,Col)));
 
-for k = 1:nPlotCols
-    columnIDX(k) = uix.VBox('Parent', plts);
+for currentPlotLineNo = 1:nPlotCols
+    columnIDX(currentPlotLineNo) = uix.VBox('Parent', plts);
 end
 
 oldpltindex = 0;
@@ -128,23 +129,23 @@ oldpltindex = 0;
 % line coloring provided by custom plot fcn
 plotFcnColors=[];
 
-for i = 1:size(plotDef, 1)
+for plotDefRowNo = 1:size(plotDef, 1)
     %% plot setup
-    pltindex = plotDef{i,plotNo};
+    pltindex = plotDef{plotDefRowNo,plotNo};
     
     if pltindex ~= oldpltindex
         % next plot axes
-        k=1;
+        currentPlotLineNo = 1;
         clear p labelstr mm ma
         
-        hh(pltindex) = uipanel('Parent', columnIDX(plotDef{i,Col}), 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'));
+        hh(pltindex) = uipanel('Parent', columnIDX(plotDef{plotDefRowNo,Col}), 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'));
         hh(pltindex).Tag = 'cpTimeplot';
         
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
         hh(pltindex).SizeChangedFcn = @kVIS_panelSizeChanged_Callback;
     else
         % continue in current axes
-        k=k+1;
+        currentPlotLineNo = currentPlotLineNo + 1;
     end
     
     oldpltindex = pltindex;
@@ -152,23 +153,23 @@ for i = 1:size(plotDef, 1)
     %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % get y data
-    yChanID = strsplit(plotDef{i, yChannel}, '/');
+    yChanID = strsplit(plotDef{plotDefRowNo, yChannel}, '/');
     [yp, yMeta] = kVIS_fdsGetChannel(fds, yChanID{1}, yChanID{2});
     
     if yp == -1
         disp('y channel not found... Skipping.')
-        k=k-1;
+        currentPlotLineNo = currentPlotLineNo - 1;
         continue;
     end
     
     % get x vector (default: time)
-    if ~isnan(plotDef{i,xChannel})
-        xChanID = strsplit(plotDef{i, xChannel}, '/');
+    if ~isnan(plotDef{plotDefRowNo,xChannel})
+        xChanID = strsplit(plotDef{plotDefRowNo, xChannel}, '/');
         [xp, xMeta] = kVIS_fdsGetChannel(fds, xChanID{1}, xChanID{2});
         
         if xp == -1
             disp('x channel not found... Skipping.')
-            k=k-1;
+            currentPlotLineNo = currentPlotLineNo - 1;
             continue;
         end
     else
@@ -185,14 +186,14 @@ for i = 1:size(plotDef, 1)
     %% Y-axis data proc / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % apply scale factor
-    yp = yp * plotDef{i,ScaleFactor};
+    yp = yp * plotDef{plotDefRowNo,ScaleFactor};
     
     % apply function to data - fcnData content is given to function as
     % string to be processed inside fcn.
-    if ~isnan(plotDef{i,fcnHandle})
+    if ~isnan(plotDef{plotDefRowNo,fcnHandle})
 
         try
-            [yp, xp2, plotFcnColors] = feval(plotDef{i,fcnHandle}, yp, fds, pts, plotDef{i,fcnChannel});
+            [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds, pts, plotDef{plotDefRowNo,fcnChannel});
             if ~isempty(xp2)
                 xp = xp2;
                 xMeta.texName = 'frequency \; [Hz]';
@@ -200,7 +201,7 @@ for i = 1:size(plotDef, 1)
         catch ME
             ME.identifier
             disp('Function eval error... Ignoring.')
-            k=k-1;
+            currentPlotLineNo=currentPlotLineNo-1;
             continue;
         end
     else
@@ -216,18 +217,18 @@ for i = 1:size(plotDef, 1)
     %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % axes style
-    if plotDef{i,AxesLayout} == 'L'
+    if plotDef{plotDefRowNo,AxesLayout} == 'L'
         yyaxis(ax(pltindex), 'left')
-    elseif plotDef{i,AxesLayout} == 'R'
+    elseif plotDef{plotDefRowNo,AxesLayout} == 'R'
         yyaxis(ax(pltindex), 'right')
     else
         % single plot
     end
 
     % scatter plot
-    if ~isnan(plotDef{i,cChannel})
+    if ~isnan(plotDef{plotDefRowNo,cChannel})
         
-        ccC = strsplit(plotDef{i, cChannel}, '/');
+        ccC = strsplit(plotDef{plotDefRowNo, cChannel}, '/');
         
         [col] = kVIS_fdsGetChannel(fds, ccC{1}, ccC{2});
         
@@ -259,31 +260,36 @@ for i = 1:size(plotDef, 1)
     
     
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if ~isnan(plotDef{i, xAxisLabel})
+    if ~isnan(plotDef{plotDefRowNo, xAxisLabel})
         % generate (or ignore) custom x axis label
-        if ~strcmp(plotDef{i, xAxisLabel},'none')
-            xlabel(kVIS_generateLabels(plotDef{i, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
+        if ~strcmp(plotDef{plotDefRowNo, xAxisLabel},'none')
+            xlabel(kVIS_generateLabels(plotDef{plotDefRowNo, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
         end
     else
         xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
     end
     
     % LabelOverride
-    if ~isnan(plotDef{i, LabelOverride})
-        yLabel = kVIS_generateLabels(plotDef{i, LabelOverride}, []);
+    if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+        if ~isnan(plotDef{plotDefRowNo, UnitOverride})
+            errordlg('XLS Custom Plots: Unit override not yet implemented. Enter full string in Label Override.')
+            yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
+        else
+            yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
+        end
     else
         yLabel = kVIS_generateLabels(yMeta, []);
     end
     
     % collect labels for legend/ylabel
-    labelstr{k} = yLabel; %#ok<AGROW>
+    labelstr{currentPlotLineNo} = yLabel; %#ok<AGROW>
    
-    if k == 1 % this doesn't work with yyaxis...
-        ylabel(labelstr{k},'Interpreter','latex', 'FontSize', 13);
+    if currentPlotLineNo == 1 % this doesn't work with yyaxis...
+        ylabel(labelstr{currentPlotLineNo},'Interpreter','latex', 'FontSize', 13);
     else
         
-        if ~isnan(plotDef{i, yAxisLabel})
-            ylabel(kVIS_generateLabels(plotDef{i, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
+        if ~isnan(plotDef{plotDefRowNo, yAxisLabel})
+            ylabel(kVIS_generateLabels(plotDef{plotDefRowNo, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
         else
             ylabel([])
         end
@@ -291,12 +297,12 @@ for i = 1:size(plotDef, 1)
         
         legend_handle = legend(ax(pltindex), labelstr);
         
-        if ~isnan(plotDef{i,LegendLocation})
-            Style.Legend.Location = plotDef{i,LegendLocation};
+        if ~isnan(plotDef{plotDefRowNo,LegendLocation})
+            Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
         end
         
-        if ~isnan(plotDef{i,LegendStyle})
-            Style.Legend.Orientation = plotDef{i,LegendStyle};
+        if ~isnan(plotDef{plotDefRowNo,LegendStyle})
+            Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
         end
         
         kVIS_setGraphicsStyle(legend_handle, Style.Legend);
@@ -304,18 +310,18 @@ for i = 1:size(plotDef, 1)
     
     %% formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    if ~isnan(plotDef{i,PlotStyle})
-        p.LineStyle = plotDef{i,PlotStyle};
+    if ~isnan(plotDef{plotDefRowNo,PlotStyle})
+        p.LineStyle = plotDef{plotDefRowNo,PlotStyle};
     end
     
-    if ~isnan(plotDef{i,Color})
-        p.Color = plotDef{i,Color};
+    if ~isnan(plotDef{plotDefRowNo,Color})
+        p.Color = plotDef{plotDefRowNo,Color};
     end
     
     grid(ax(pltindex), 'on');
     
     % specific x vector - don't link
-    if any(~isnan(plotDef{i,xChannel})) || ~isempty(xp2)
+    if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)
         Style.Axes.Tag = 'noXaxislink';
     else
         Style.Axes.Tag = 'Xaxislink';
@@ -328,9 +334,9 @@ end
 %
 % maximise plot size - work required for yy plot
 %
-for k = 1:pltindex
+for currentPlotLineNo = 1:pltindex
     
-    ax(k).XRuler.Exponent = 0; % no exp in time stamps
+    ax(currentPlotLineNo).XRuler.Exponent = 0; % no exponent in time stamps
     
 end
 

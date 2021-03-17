@@ -108,15 +108,21 @@ for i = 1:size(Ch, 1)
         continue
     end
     
-    label = meta.name;
-    unit = meta.unit;
+    label = getfield(ExtractInfoFromSignalName(meta.name), 'TeX_Name');
+    
+    unitstr = getfield(ExtractInfoFromSignalName(meta.name), 'TeX_Unit');
+    if isempty(unitstr)
+        unit = unitstr;
+    else
+        unit = ['[' unitstr ']'];
+    end
 
     % apply scale factor
     yp(:,i) = yp(:,i) * Ch{i,8};
     
     % unit override
     if ~isempty(Ch{i,9})
-        unit(i) = Ch(i,9);
+        unit = ['[' Ch{i,9} ']'];
     end
 
     % LabelOverride
