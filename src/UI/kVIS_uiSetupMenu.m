@@ -42,6 +42,8 @@ m11 = uimenu(m1,'Text','Import');
 uimenu(m11,'Text','Existing Workspace FDS','Callback', @kVIS_menuImportWorkspaceFDS_Callback);
 % generic csv import
 uimenu(m11,'Text','Add Data Group from File','Callback', @kVIS_fdsImportDataGroup);
+% video import
+uimenu(m11,'Text','Add Video (experimental)','Callback', @kVIS_fdsImportVideo);
 % add BSP import function(s)
 uimenu(m11,'Text','BSP functions:','Enable','off','Separator','on');
 for i=1:size(BSP_Info.importFcn,1)
