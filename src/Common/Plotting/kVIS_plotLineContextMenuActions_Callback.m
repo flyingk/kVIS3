@@ -291,22 +291,31 @@ switch source.Label
         %
     case 'Signal statistics'
         
-        t = line.XData;
-        y = line.YData;
-        
+        % Get axes properties
         ax = line.Parent;
         hold(ax, 'on');
+        xlims = ax.XAxis.Limits;
+        a = lines;
+
+        % Extract applicable line data
+        t = line.XData;
+        locs = (t>min(xlims)) & (t<max(xlims));
+        y = line.YData(locs);
         
+        % Get properties
         m = mean(y);
         sd= std(y);
         
-        plot(ax, t, ones(length(t),1)*m)
-        plot(ax, t, ones(length(t),1)*m+sd)
-        plot(ax, t, ones(length(t),1)*m-sd)
-        title(ax,['Mean: ' num2str(m) ' Std Dev: ' num2str(sd)], 'Color', 'w')
+        % Plot data
+        plot(ax, xlims, ones(2,1)*m     ,'-' ,'color',a(2,:),'lineWidth',line.LineWidth*3.0); % mean
+        plot(ax, xlims, ones(2,1)*m+sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0); % 1 sigma
+        plot(ax, xlims, ones(2,1)*m-sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0);
+        plot(ax, xlims, ones(2,1)*m+2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0); % 2 sigma
+        plot(ax, xlims, ones(2,1)*m-2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0);
+        title(ax,['Mean: ' num2str(m) ' Std Dev: ' num2str(sd)], 'Color', 'w');
         
         kVIS_axesResizeToContainer(ax);
-                
+        
         %
         % delete the line
         %
