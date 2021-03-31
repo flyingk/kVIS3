@@ -306,13 +306,22 @@ switch source.Label
         m = mean(y);
         sd= std(y);
         
-        % Plot data
-        plot(ax, xlims, ones(2,1)*m     ,'-' ,'color',a(2,:),'lineWidth',line.LineWidth*3.0); % mean
-        plot(ax, xlims, ones(2,1)*m+sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0); % 1 sigma
-        plot(ax, xlims, ones(2,1)*m-sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0);
-        plot(ax, xlims, ones(2,1)*m+2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0); % 2 sigma
-        plot(ax, xlims, ones(2,1)*m-2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0);
-        title(ax,['Mean: ' num2str(m) ' Std Dev: ' num2str(sd)], 'Color', 'w');
+        % Remove old lines
+        if isfield(line.UserData,'Stats')
+            if isfield(line.UserData.Stats,    'mean'); delete(line.UserData.Stats.mean    ); end
+            if isfield(line.UserData.Stats,'Sigma1Up'); delete(line.UserData.Stats.Sigma1Up); end
+            if isfield(line.UserData.Stats,'Sigma1Dn'); delete(line.UserData.Stats.Sigma1Dn); end
+            if isfield(line.UserData.Stats,'Sigma2Up'); delete(line.UserData.Stats.Sigma2Up); end
+            if isfield(line.UserData.Stats,'Sigma2Dn'); delete(line.UserData.Stats.Sigma2Dn); end
+        end
+        
+        % Plot new data        
+        line.UserData.Stats.mean     = plot(ax, xlims, ones(2,1)*m     ,'-' ,'color',a(2,:),'lineWidth',line.LineWidth*3.0); % mean
+        line.UserData.Stats.Sigma1Up = plot(ax, xlims, ones(2,1)*m+sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0); % 1 sigma
+        line.UserData.Stats.Sigma1Dn = plot(ax, xlims, ones(2,1)*m-sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0);
+        line.UserData.Stats.Sigma2Up = plot(ax, xlims, ones(2,1)*m+2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0); % 2 sigma
+        line.UserData.Stats.Sigma2Dn = plot(ax, xlims, ones(2,1)*m-2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0);
+        title(ax,{['Mean: ' num2str(m)],['Std Dev: ' num2str(sd)]}, 'Color', 'w');
         
         kVIS_axesResizeToContainer(ax);
         
