@@ -315,12 +315,12 @@ switch source.Label
         
         % Plot stats data      
         pg = polyshape([xlims(1) xlims(2) xlims(2) xlims(1)],[m+sd*2 m+sd*2 m-sd*2 m-sd*2]);
-        line.UserData.Stats.Sigma2Up = plot(ax, pg, 'FaceColor', 'yellow', 'EdgeAlpha', 0); % 2 sigma
+        line.UserData.Stats.Sigma2Up = plot(ax, pg, 'FaceColor', 'yellow', 'EdgeColor', 'none'); % 2 sigma
         line.UserData.Stats.Sigma2Up.DisplayName = '2 sigma';
         uistack(line.UserData.Stats.Sigma2Up,'down')
         
         pg = polyshape([xlims(1) xlims(2) xlims(2) xlims(1)],[m+sd m+sd m-sd m-sd]);
-        line.UserData.Stats.Sigma1Up = plot(ax, pg, 'FaceColor', 'green', 'EdgeAlpha', 0); % 1 sigma
+        line.UserData.Stats.Sigma1Up = plot(ax, pg, 'FaceColor', 'green', 'EdgeColor', 'none'); % 1 sigma
         line.UserData.Stats.Sigma1Up.DisplayName = 'sigma';
         uistack(line.UserData.Stats.Sigma1Up,'down')
         
