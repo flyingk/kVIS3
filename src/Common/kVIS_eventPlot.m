@@ -85,6 +85,13 @@ for j = 1:size(eventList,2)
     pp(j).UIContextMenu = m;
     pp(j).DisplayName = eventList(j).type;
     % pp(j).Annotation.LegendInformation.IconDisplayStyle = 'off';
+    
+    % Add a label to each of the plots based on the name of the event
+    eventName = [eventList(j).type,' '];
+    text(out,ylim(2),eventName,'Rotation',90,'FontSize',8, ...
+        'VerticalAlignment','bottom','HorizontalAlignment','right');
+    
+    
 end
 
 handles.uiTabDataViewer.showEvents = pp;
