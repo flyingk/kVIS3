@@ -310,17 +310,24 @@ switch source.Label
         if isfield(line.UserData,'Stats')
             if isfield(line.UserData.Stats,    'mean'); delete(line.UserData.Stats.mean    ); end
             if isfield(line.UserData.Stats,'Sigma1Up'); delete(line.UserData.Stats.Sigma1Up); end
-            if isfield(line.UserData.Stats,'Sigma1Dn'); delete(line.UserData.Stats.Sigma1Dn); end
             if isfield(line.UserData.Stats,'Sigma2Up'); delete(line.UserData.Stats.Sigma2Up); end
-            if isfield(line.UserData.Stats,'Sigma2Dn'); delete(line.UserData.Stats.Sigma2Dn); end
         end
         
-        % Plot new data        
-        line.UserData.Stats.mean     = plot(ax, xlims, ones(2,1)*m     ,'-' ,'color',a(2,:),'lineWidth',line.LineWidth*3.0); % mean
-        line.UserData.Stats.Sigma1Up = plot(ax, xlims, ones(2,1)*m+sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0); % 1 sigma
-        line.UserData.Stats.Sigma1Dn = plot(ax, xlims, ones(2,1)*m-sd  ,'--','color',a(2,:),'lineWidth',line.LineWidth*1.0);
-        line.UserData.Stats.Sigma2Up = plot(ax, xlims, ones(2,1)*m+2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0); % 2 sigma
-        line.UserData.Stats.Sigma2Dn = plot(ax, xlims, ones(2,1)*m-2*sd,':' ,'color',a(2,:),'lineWidth',line.LineWidth*1.0);
+        % Plot stats data      
+        pg = polyshape([xlims(1) xlims(2) xlims(2) xlims(1)],[m+sd*2 m+sd*2 m-sd*2 m-sd*2]);
+        line.UserData.Stats.Sigma2Up = plot(ax, pg, 'FaceColor', 'yellow', 'EdgeAlpha', 0); % 2 sigma
+        line.UserData.Stats.Sigma2Up.DisplayName = '2 sigma';
+        uistack(line.UserData.Stats.Sigma2Up,'down')
+        
+        pg = polyshape([xlims(1) xlims(2) xlims(2) xlims(1)],[m+sd m+sd m-sd m-sd]);
+        line.UserData.Stats.Sigma1Up = plot(ax, pg, 'FaceColor', 'green', 'EdgeAlpha', 0); % 1 sigma
+        line.UserData.Stats.Sigma1Up.DisplayName = 'sigma';
+        uistack(line.UserData.Stats.Sigma1Up,'down')
+        
+        line.UserData.Stats.mean = plot(ax, xlims, ones(2,1)*m     ,'-' ,'color',a(2,:),'lineWidth',line.LineWidth*2.0); % mean
+        line.UserData.Stats.mean.DisplayName = 'mean';
+        uistack(line.UserData.Stats.mean,'down')
+        
         title(ax,{['Mean: ' num2str(m)],['Std Dev: ' num2str(sd)]}, 'Color', 'w');
         
         kVIS_axesResizeToContainer(ax);
