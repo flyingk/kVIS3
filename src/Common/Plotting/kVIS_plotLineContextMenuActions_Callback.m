@@ -333,6 +333,57 @@ switch source.Label
         kVIS_axesResizeToContainer(ax);
         
         %
+        % Signal uncertainty as shaded area
+        % 
+    case 'Signal uncertainty'
+        
+        % Get axes properties
+        ax = line.Parent;
+        hold(ax, 'on');
+%         xlims = ax.XAxis.Limits;
+%         a = lines;
+        
+        % get line data as column vector
+        y = line.YData';
+        
+        % ask for desired operation
+        answ = inputdlg({'Constant uncertainty:','Optional uncertainty channel (group/channel):'},...
+            'Line data uncertainty', 1, {'y',''});
+        
+        if ~isempty(answ)
+            
+            % second channel as operator?
+            if ~isempty(answ{2})
+                fds = kVIS_getCurrentFds(source);
+                zChanID = strsplit(answ{2}, '/');
+                [uncert, meta] = kVIS_fdsGetChannel(fds, zChanID{1}, strip(zChanID{2}));
+                
+                if uncert == -1
+                    disp('y channel not found... Skipping.')
+                    return
+                end
+                
+                t = line.XData; % must account for different t vec later...
+            else
+                t = line.XData;
+                uncert = str2double(answ{1});
+            end
+            
+            x_vector = kVIS_downSample([t'; flipud(t')], 25);
+            y_vector = kVIS_downSample([y+uncert; flipud(y-uncert)], 25);
+            
+            patch = fill(x_vector, y_vector, 'r');
+            set(patch, 'edgecolor', 'none');
+            set(patch, 'FaceAlpha', 0.5);
+            patch.DisplayName = 'Uncertaianty';
+            uistack(patch, 'down')
+            
+        else
+            % do nothing
+            return
+        end
+        
+        %
         % delete the line
         %
     case 'Delete'
