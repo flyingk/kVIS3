@@ -345,10 +345,11 @@ switch source.Label
         
         % get line data as column vector
         y = line.YData';
+        c = line.Color;
         
         % ask for desired operation
         answ = inputdlg({'Constant uncertainty:','Optional uncertainty channel (group/channel):'},...
-            'Line data uncertainty', 1, {'y',''});
+            'Line data uncertainty', 1, {'1',''});
         
         if ~isempty(answ)
             
@@ -369,13 +370,15 @@ switch source.Label
                 uncert = str2double(answ{1});
             end
             
-            x_vector = kVIS_downSample([t'; flipud(t')], 25);
-            y_vector = kVIS_downSample([y+uncert; flipud(y-uncert)], 25);
+            % need to reduce sample numbers, otherwise fill() is very
+            % slow...
+            x_vector = kVIS_downSample([t'; flipud(t')], 10);
+            y_vector = kVIS_downSample([y+uncert; flipud(y-uncert)], 10);
             
-            patch = fill(x_vector, y_vector, 'r');
-            set(patch, 'edgecolor', 'none');
-            set(patch, 'FaceAlpha', 0.5);
-            patch.DisplayName = 'Uncertaianty';
+            patch = fill(x_vector, y_vector, c);
+            set(patch, 'edgecolor', c);
+            set(patch, 'FaceAlpha', 0.3);
+            patch.DisplayName = 'Uncertainty';
             uistack(patch, 'down')
             
         else
