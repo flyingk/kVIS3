@@ -101,6 +101,7 @@ if size(current_lines) == 1
 else
     ylabel(axes_handle, []);
     lg = legend(axes_handle, current_lines, {}, 'Interpreter', 'latex');
+    lg.ItemHitFcn = @legendCallback;
     kVIS_setGraphicsStyle(lg, handles.uiTabDataViewer.plotStyles.Legend);
 end
 
@@ -109,4 +110,17 @@ end
 kVIS_axesResizeToContainer(axes_handle);
 kVIS_setGraphicsStyle(axes_handle, handles.uiTabDataViewer.plotStyles.AxesB);
 axes_handle.XRuler.Exponent = 0; % no exp in time stamps
+end
+
+function legendCallback(h, e)
+h;
+
+%
+% Toggle line visibility when clicking on corresponding legend item
+%
+if strcmp(e.Peer.Visible, 'on')
+    e.Peer.Visible = 'off';
+else
+    e.Peer.Visible = 'on';
+end
 end
