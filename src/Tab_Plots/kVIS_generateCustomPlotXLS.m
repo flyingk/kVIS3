@@ -328,6 +328,15 @@ for plotDefRowNo = 1:size(plotDef, 1)
         xlim([p.XData(1) p.XData(end)])
     end
     
+%     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
+    if ax(pltindex).YLim(1) == 0
+        ax(pltindex).YLim(1) = -0.1;
+    end
+%     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
+    if ax(pltindex).YLim(2) == 0
+        ax(pltindex).YLim(2) = 0.1;
+    end
+    
     kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
     
 end
