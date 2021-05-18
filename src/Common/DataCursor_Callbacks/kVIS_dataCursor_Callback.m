@@ -8,7 +8,7 @@ function output_txt = kVIS_dataCursor_Callback(obj,event_obj)
 pos = get(event_obj,'Position');
 
 % format output
-answ = inputdlg({'Decimals X', 'Decimals Y', 'Number format [dec or hex]'}, 'Data tip format', 1, {'6', '6', 'dec'});
+answ = inputdlg({'Digits X', 'Digits Y', 'Number format [dec or hex]'}, 'Data tip format', 1, {'6', '6', 'dec'});
 
 if strcmp(answ{3}, 'dec')
     
@@ -23,7 +23,7 @@ elseif strcmp(answ{3}, 'hex')
     
     output_txt = {...
         ['X: ',num2str(pos(1), str2double(answ{1}) )],...
-        ['Y: ',hexstr]};
+        ['Y: ',['0x' hexstr]]};
 else
     errordlg('Wrong number format for datatip.')
 end
