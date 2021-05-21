@@ -39,7 +39,8 @@ end
 try
     [lat, lon, alt, t] = BSP_mapCoordsFcn(fds);
 catch
-    errordlg('Map coordinate BSP function not found...')
+    errordlg('Map coordinate BSP function not found or function error.')
+%     keyboard
     return;
 end
 
