@@ -8,13 +8,16 @@ function output_txt = kVIS_dataCursor_Callback(obj,event_obj)
 pos = get(event_obj,'Position');
 
 % format output
-answ = inputdlg({'Digits X', 'Digits Y', 'Number format [dec, hex or bin]'}, 'Data tip format', 1, {'6', '6', 'dec'});
+% answ = inputdlg({'Digits X', 'Digits Y', 'Number format [dec, hex or bin]'}, 'Data tip format', 1, {'6', '6', 'dec'});
+answ{1} = getpref('kVIS_prefs','DataTip_X_digits');
+answ{2} = getpref('kVIS_prefs','DataTip_Y_digits');
+answ{3} = getpref('kVIS_prefs','DataTip_format_dec_hex_bin');
 
 if strcmp(answ{3}, 'dec')
     
     output_txt = {...
-        ['X: ',num2str(pos(1), str2double(answ{1}) )],...
-        ['Y: ',num2str(pos(2), str2double(answ{2}) )]};
+        ['X: ',num2str(pos(1), answ{1} )],...
+        ['Y: ',num2str(pos(2), answ{2} )]};
     
 elseif strcmp(answ{3}, 'hex')
     
@@ -22,7 +25,7 @@ elseif strcmp(answ{3}, 'hex')
     hexstr = dec2hex(round(a));
     
     output_txt = {...
-        ['X: ',num2str(pos(1), str2double(answ{1}) )],...
+        ['X: ',num2str(pos(1), answ{1} )],...
         ['Y: ',['0x' hexstr]]};
     
 elseif strcmp(answ{3}, 'bin')
@@ -31,7 +34,7 @@ elseif strcmp(answ{3}, 'bin')
     binstr = dec2bin(round(a));
     
     output_txt = {...
-        ['X: ',num2str(pos(1), str2double(answ{1}) )],...
+        ['X: ',num2str(pos(1), answ{1} )],...
         ['Y: ',['0b' binstr]]};
     
 else

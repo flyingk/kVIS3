@@ -67,6 +67,18 @@ if ~ispref('kVIS_prefs','clear_path_on_exit')
     addpref('kVIS_prefs','clear_path_on_exit', 1)
 end
 
+if ~ispref('kVIS_prefs','DataTip_X_digits')
+    addpref('kVIS_prefs','DataTip_X_digits', 6)
+end
+
+if ~ispref('kVIS_prefs','DataTip_Y_digits')
+    addpref('kVIS_prefs','DataTip_Y_digits', 6)
+end
+
+if ~ispref('kVIS_prefs','DataTip_format_dec_hex_bin')
+    addpref('kVIS_prefs','DataTip_format_dec_hex_bin', 'dec')
+end
+
 % prefs = getpref('kVIS_prefs')
 end
 
