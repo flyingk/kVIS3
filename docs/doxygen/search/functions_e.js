@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tex_5fescape_782',['TeX_escape',['../k_v_i_s__extract_info_from_signal_name_8m.html#a341748215d45947b1c2baaf3899ee1e1',1,'kVIS_extractInfoFromSignalName.m']]],
-  ['tmp_5fcallback_783',['tmp_Callback',['../tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1',1,'tmp_Callback.m']]]
+  ['samplerate_793',['sampleRate',['../k_v_i_s__fds_update_attributes_8m.html#a7386731c24a0b503e34e8eaba14c6590',1,'kVIS_fdsUpdateAttributes.m']]],
+  ['starttime_794',['startTime',['../k_v_i_s__fds_update_attributes_8m.html#a402d1c0b59da91cf6df2e48f5beb393b',1,'kVIS_fdsUpdateAttributes.m']]],
+  ['stoptime_795',['stopTime',['../k_v_i_s__fds_update_attributes_8m.html#acd5724fdcbe22a05e065d00c369dfef6',1,'kVIS_fdsUpdateAttributes.m']]]
 ];

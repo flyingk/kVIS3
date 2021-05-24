@@ -11,5 +11,6 @@ var dir_23054a6e86c4a9f857ba5f188b9933f6 =
     [ "kVIS_menuImportWorkspaceFDS_Callback.m", "k_v_i_s__menu_import_workspace_f_d_s___callback_8m.html", "k_v_i_s__menu_import_workspace_f_d_s___callback_8m" ],
     [ "kVIS_menuQuitButton_Callback.m", "k_v_i_s__menu_quit_button___callback_8m.html", "k_v_i_s__menu_quit_button___callback_8m" ],
     [ "kVIS_menuRenameDataSet_Callback.m", "k_v_i_s__menu_rename_data_set___callback_8m.html", "k_v_i_s__menu_rename_data_set___callback_8m" ],
-    [ "kVIS_menuSaveCurrentFile_Callback.m", "k_v_i_s__menu_save_current_file___callback_8m.html", "k_v_i_s__menu_save_current_file___callback_8m" ]
+    [ "kVIS_menuSaveCurrentFile_Callback.m", "k_v_i_s__menu_save_current_file___callback_8m.html", "k_v_i_s__menu_save_current_file___callback_8m" ],
+    [ "kVIS_menuSaveCurrentFileAs_Callback.m", "k_v_i_s__menu_save_current_file_as___callback_8m.html", "k_v_i_s__menu_save_current_file_as___callback_8m" ]
 ];
