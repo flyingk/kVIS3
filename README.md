@@ -21,8 +21,27 @@ Inspired by the SIDPAC GUI by E.A. Morelli.
 - data manipulation with filters and freely defined Matlab functions via context menus
 - plug in architecture for custom extensions
 
-## How to run:
+## Installation:
+### kVIS3
+kVIS3 can be cloned using git into your preferred directory, or download the zip file from the github page.
+```
+git clone https://github.com/flyingk/kVIS3.git --recursive
+```
+The `--recursive` flag ensure that the requried submodules are also downloaded with the main repo.
 
+### git submodules
+kVIS3 requires the `FDS File Format` git submodule to be initialised and updated to be able to generate the correct file structures for kVIS3.  If you forgot to clone kVIS3 recursively, these can easily be pulled at any time.
+
+From the kVIS3 directory, run in a terminal
+```
+git submodule init
+git submodule update
+```
+
+### MATLAB toolboxes
+kVIS3 depends upon the `GUI Layout Toolbox` and `Widgets Toolbox` to generate the GUI.  These are easily installed by double clicking the respective `.mltbx` files found in `kVIS3 > contribute`. 
+
+### Board support package (BSP)
 kVIS3 requires a *Board Support Package (BSP)*, specified in the preferences, to import and process data from the user's data acquisition system. This split allows for kVIS3 to be open source, while working with potentially propriatry data. All data specific functionality is provided by the BSP, and therefore **kVIS3 without a BSP will not launch (or be able to do anything).**
 
 Freely available BSP's are (work in progress):
@@ -31,10 +50,11 @@ Freely available BSP's are (work in progress):
 - [ArduPilot](https://github.com/flyingk/kVIS3_bsp_ardupilot)
 - [PX4](https://github.com/flyingk/kVIS3_bsp_px4)
 - [Betaflight](https://github.com/flyingk/kVIS3_bsp_betaflight)
-- tbd.
 
-Run 'kVIS3.m' after installing the two toolboxes mentioned below (included in the `Contributed` folder). On first launch you will be asked to specify the path to the BSP folder containing the `BSP_ID.m` file.
+As many of these BSPs rely on submodules for the log > MATLAB conversion, make sure to `init` and `update` the submodules.
 
+## How to run:
+Run 'kVIS3.m' from the main directory. On first launch you will be asked to specify the path to the BSP folder containing the `BSP_ID.m` file.  Make sure to select the root folder for the BSP and not one of the BSPs sub-folders.
 
 ## Additional information:
 
