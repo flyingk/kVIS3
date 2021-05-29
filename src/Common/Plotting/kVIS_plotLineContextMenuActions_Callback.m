@@ -33,16 +33,25 @@ switch source.Label
     % change line thickness
     %
     case 'Highlight'
-        if isfield(line.UserData, 'HighlightState') && line.UserData.HighlightState
-            line.LineWidth = 0.5;
+        
+        if isfield(line.UserData, 'HighlightState') && length(line.UserData.HighlightState) > 1
+            line.LineWidth = 1;
+            line.Color = line.UserData.HighlightState;
+            line.Marker = 'none';
+            line.LineStyle = '-';
             line.UserData.HighlightState = false;
         else
-            answ = inputdlg('New Line colour ( Matlab letter code )');
+            answ = inputdlg({'Line colour ( Matlab letter codes )','Line Style [-|--|:|-.|none]','Line Width','Marker'},'Format line', 1, {'r','-','2','none'});
             if ~isempty(answ)
+                % save state
+                line.UserData.HighlightState = line.Color;
+                % format line
                 line.Color = answ{1};
+                line.LineStyle = answ{2};
+                line.LineWidth = str2double(answ{3});
+                line.Marker = answ{4};
             end
-            line.LineWidth = 2.0;
-            line.UserData.HighlightState = true;
+            
         end
         %
         % apply filter to line data
