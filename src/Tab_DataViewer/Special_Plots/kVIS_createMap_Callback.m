@@ -60,7 +60,7 @@ alt = kVIS_reSample(alt, t, tNew);
 try
     if isempty(pathColorChannel)
         % use currently selected channel
-        [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+        [c, signalMeta] = kVIS_GetCurrentChannel(hObject);
     else
         % use specified channel
         pcc = strsplit(pathColorChannel,'/');

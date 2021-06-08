@@ -51,7 +51,7 @@ elseif strcmp(targetPanel.Tag, 'timeplot')
     handles=guidata(hObject);
     
     % Load signal data.
-    [signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+    [signal, signalMeta] = kVIS_GetCurrentChannel(hObject);
     
     %
     % plot the signal into the specified axes
