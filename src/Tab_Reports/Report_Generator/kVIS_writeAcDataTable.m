@@ -57,8 +57,13 @@ fprintf(fid,'\\hline\n');
 fprintf(fid,'  & $X_{CG}\\;[m]$ &  $Y_{CG}\\;[m]$  &  $Z_{CG}\\;[m]$   & FCC Version  & FCL Version \\\\ \n');
 fprintf(fid,'\\hline\n');
 
-fprintf(fid,'  & %.3f &  %.3f  &  %.3f   & %s  & %s \\\\ \n',...
-    a.xCG_UNIT_m, a.yCG_UNIT_m, a.zCG_UNIT_m, a.BSP_fccSoftware, a.BSP_fclVersion);
+% fprintf(fid,'  & %.3f &  %.3f  &  %.3f   & %s  & %s \\\\ \n',...
+%     a.xCG_UNIT_m, a.yCG_UNIT_m, a.zCG_UNIT_m, a.BSP_fccSoftware, a.BSP_fclVersion);
+
+%%%% Lorenzo workaround
+fprintf(fid,'  & %.3f &  %.3f  &  %.3f\\\\ \n',...
+    a.xCG_UNIT_m, a.yCG_UNIT_m, a.zCG_UNIT_m);
+%%%%
 fprintf(fid,'\\hline\n');
 
 fprintf(fid,'\\end{tabular} \n');

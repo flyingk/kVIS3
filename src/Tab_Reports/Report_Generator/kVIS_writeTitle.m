@@ -40,9 +40,18 @@ end
 
 t = fds.testInfo;
 
-fprintf(fid,'\n\n');
+test_ID = split(fds.pathOpenedFrom,'\');
+test_ID = test_ID(end);
+test_ID = split(test_ID,'_');
+test_ID = strcat(test_ID(1),'-',test_ID(2),'-',test_ID(3));
 
-fprintf(fid,['\\title{Lilium Phoenix 1 Flight Report\\\\' t.BSP_arqNo '}']);
+% fprintf(fid,'\n\n');
+
+%%%% Lorenzo workaround
+% fprintf(fid,['\\title{Lilium Phoenix 1 Flight Report\\\\' t.BSP_arqNo '}']);
+fprintf(fid,['\\title{Lilium Phoenix II Flight Report\\\\' test_ID{1} '}']);
+% fprintf(fid,['\\title{Lilium Phoenix II Flight Report}\']);
+%%%%
     
 
 

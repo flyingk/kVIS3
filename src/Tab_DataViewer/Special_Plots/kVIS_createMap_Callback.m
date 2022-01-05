@@ -30,10 +30,11 @@ if ~isstruct(fds)
     return
 end
 
-if isempty(getpref('kVIS_prefs','google_maps_api_key'))
-    errordlg('The map plot requires a valid Google Maps Static API key. Enter key in preferences menu.');
-    return
-end
+% Commented out when switching from Google Maps to OpenStreetMap
+% if isempty(getpref('kVIS_prefs','google_maps_api_key'))
+%     errordlg('The map plot requires a valid Google Maps Static API key. Enter key in preferences menu.');
+%     return
+% end
 
 % Get the track co-ords - assumed on a common time vector
 [lat, lon, alt, t] = BSP_mapCoordsFcn(fds);
@@ -105,16 +106,20 @@ else
     text(axes_handle, lon(end),lat(end),'OUT','color','w','HorizontalAlignment','center','FontWeight','bold');
 end
 
-% Add google map underlay
-plot_google_map( ...
-    'mapType','satellite', ...
-    'MapScale',2, ...
-    'Refresh',1, ...
-    'Axis', axes_handle,...
-    'apikey', getpref('kVIS_prefs','google_maps_api_key')...
-    );
+% % Add google map underlay
+% plot_google_map( ...
+%     'mapType','satellite', ...
+%     'MapScale',2, ...
+%     'Refresh',1, ...
+%     'Axis', axes_handle,...
+%     'apikey', getpref('kVIS_prefs','google_maps_api_key')...
+%     );
 
-% pretty run
+% Use OpenStreetMap which not requires a Google API key
+% Add OpenStreetMap underlay
+hBase = plot_openstreetmap('Alpha', 1, 'Scale', 1);
+
+% Pretty run
 lbl = kVIS_generateLabels(signalMeta, []);
 
 view(axes_handle, 2)

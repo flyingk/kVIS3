@@ -49,16 +49,33 @@ fprintf(fid,'\\hline\n');
 fprintf(fid,'Date & Test &  Pilot  &  FTE \\\\ \n');
 fprintf(fid,'\\hline\n');
 
-fprintf(fid,'%s & %s &  %s  &  %s\\\\ \n',...
-    t.date, t.description, t.pilot, t.BSP_FTE);
+% fprintf(fid,'%s & %s &  %s  &  %s\\\\ \n',...
+%     t.date, t.description, t.pilot, t.BSP_FTE);
+%%%% Lorenzo workaround
+fprintf(fid,'%s & %s &  %s\\\\ \n',...
+    t.date, t.description, t.pilot);
+%%%%
 fprintf(fid,'\\hline\n');
 fprintf(fid,'\\hline\n');
 
 fprintf(fid,'Location & ARQ No. & Weather & Airfield Elevation [$m$]\\\\ \n');
 fprintf(fid,'\\hline\n');
 
+% fprintf(fid,'%s & %s &  %s  & %d\\\\ \n',...
+%     t.location, t.BSP_arqNo, t.weather, t.airfieldElevation_UNIT_m);
+
+test_ID = split(fds.pathOpenedFrom,'\');
+test_ID = test_ID(end);
+test_ID = split(test_ID,'_');
+test_ID = strcat(test_ID(1),'-',test_ID(2),'-',test_ID(3));
+
 fprintf(fid,'%s & %s &  %s  & %d\\\\ \n',...
-    t.location, t.BSP_arqNo, t.weather, t.airfieldElevation_UNIT_m);
+    t.location, test_ID{1}, t.weather, t.airfieldElevation_UNIT_m);
+
+% %%%% Lorenzo workaround
+% fprintf(fid,'%s & %s  & %d\\\\ \n',...
+%     t.location, t.weather, t.airfieldElevation_UNIT_m);
+% %%%%
 fprintf(fid,'\\hline\n');
 fprintf(fid,'\\hline\n');
 

@@ -105,7 +105,8 @@ while ~feof(fidIN)
                 kVIS_writePlotElement(fidOUT, fileNames(:,I));
             end
         end
-        
+    
+        %%%% Lorenzo workaround
     elseif contains(l, '%_kVIS_map_plot')
         
         pltCh = strsplit(l,{'{','}'});
@@ -118,9 +119,7 @@ while ~feof(fidIN)
         
         if ~isempty(fileNames{1})
             kVIS_writePlotElement(fidOUT, fileNames);
-        end
-        
-        
+        end        
     else
         fprintf(fidOUT,'%s\n',l);
     end
@@ -138,5 +137,40 @@ if ismac
     end
     system(['open ' outFile]);
 end
+
+try
+    TeX_compile(outFile);
+catch
+    warning('Failed to compile report; debug logs can be found in %s', TexReport.TempDir);
+end
+end
+
+function [ OutFile ] = TeX_compile(Document)
+    OldPWD = pwd();
+    OldPath = getenv('PATH');
+    try
+        cd(fileparts(Document));
+        if isunix()
+            % Ensure that TeX is on the PATH:
+            setenv('PATH', strjoin({OldPath, '/Library/TeX/texbin/'}, ':'));
+        end
+        setenv('TEX_COMPILE_DOCUMENT', Document);
+        % Run LaTeX four times in order to update all references
+        % (BasicTeX does not include `latexmk`).
+        for I = 1 : 4
+            if isunix()
+                system('pdflatex -shell-escape -interaction=batchmode "%TEX_COMPILE_DOCUMENT%" </dev/null >/dev/null');
+            else
+                system('pdflatex -shell-escape -interaction=batchmode "%TEX_COMPILE_DOCUMENT%"');
+            end
+        end
+    catch
+    end
+    OutFile = regexprep(Document, '(\.tex)?$', '.pdf');
+    if ~exist(OutFile, 'file')
+        error('Failed to compile document %s', Document);
+    end
+    cd(OldPWD);
+    setenv('PATH', OldPath);
 end
 
