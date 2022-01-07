@@ -54,17 +54,18 @@ if endsWith(plotName,".xlsx")
 end
 
 
-% % % plot full data length
-% if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0
-%     
-%     xlim = kVIS_fdsGetGlobalDataRange(hObject);
-%     
-% else % use X-Limits (if button pressed or for events)
-%     
-%     xlim = kVIS_getDataRange(hObject, 'XLim');
-%     
-% end
-xlim = [fds.fdataAttributes.startTimes(2) fds.fdataAttributes.stopTimes(2)];
+% % plot full data length
+handles = guidata(hObject);
+
+if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0
+    
+    xlim = kVIS_fdsGetGlobalDataRange(hObject);
+    
+else % use X-Limits (if button pressed or for events)
+    
+    xlim = kVIS_getDataRange(hObject, 'XLim');
+    
+end
 
 tic
 
