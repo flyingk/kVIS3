@@ -90,6 +90,10 @@ switch hObject.Label
         selectedPanel = gco;
         kVIS_dataViewerDelElement(handles, selectedPanel);
         
+        % select an existing panel after delete
+        panels = findobj(handles.uiTabDataViewer.DividerH, 'Type', 'uipanel');
+        kVIS_dataViewerSwitchElement(panels(1), [])
+        
 end
 
 end

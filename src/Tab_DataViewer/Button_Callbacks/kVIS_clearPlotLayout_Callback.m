@@ -29,6 +29,10 @@ for i = 1:size(panels,1)-1
 end
 
 handles.uiTabDataViewer.Divider = handles.uiTabDataViewer.Divider(1);
+%
+% select remaining panel
+%
+kVIS_dataViewerSwitchElement(panels(i+1), [])
 
 guidata(hObject, handles);
 end
