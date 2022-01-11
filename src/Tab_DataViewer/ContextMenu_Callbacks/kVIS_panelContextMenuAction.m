@@ -1,3 +1,7 @@
+%
+%> @file kVIS_panelContextMenuAction.m
+%> @brief Context menu actions for a data viewer panel
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +22,13 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Context menu actions for a data viewer panel
+%>
+%> @param UI handles
+%> @param UI events (unused)
+%> @param Source panel handle
+%
 function kVIS_panelContextMenuAction(hObject, ~, panel)
 
 handles = guidata(hObject);

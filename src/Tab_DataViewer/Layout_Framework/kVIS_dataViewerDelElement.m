@@ -1,5 +1,8 @@
 % kVIS3 Data Visualisation
 %
+%> @file kVIS_dataViewerDelElement.m
+%> @brief Delete a data viewer panel
+%
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
 % contributors
 %
@@ -18,6 +21,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Delete a data viewer panel
+%>
+%> @param UI handles
+%> @param Panel to delete
+%
 function kVIS_dataViewerDelElement(handles, panel)
 
 if isempty(panel)

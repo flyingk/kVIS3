@@ -1,3 +1,7 @@
+%
+%> @file kVIS_clearPlotLayout_Callback.m
+%> @brief Clear all plot panels from layout except the last
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,12 +22,21 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Clear all plot panels from layout except the last
+%>
+%> @param UI handle
+%
 function kVIS_clearPlotLayout_Callback(hObject, ~)
 
 handles = guidata(hObject);
-
+%
+% find all panels in the layout grid
+%
 panels = findobj(handles.uiTabDataViewer.DividerH, 'Type', 'uipanel');
-
+%
+% delete all panels except the last (grid can't be empty)
+%
 for i = 1:size(panels,1)-1
     kVIS_dataViewerDelElement(handles, panels(i))
 end

@@ -1,3 +1,7 @@
+%
+%> @file kVIS_dataViewerSwitchElement.m
+%> @brief Switch active panel
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +22,11 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Switch active panel
+%>
+%> @param Panel handle
+%
 function kVIS_dataViewerSwitchElement(selectedPanel, ~)
 % scenarios
 % - no previous selection: make current panel active
