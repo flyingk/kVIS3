@@ -43,7 +43,10 @@ np = newPanel(handles, column);
 %
 % add axes 
 %
-ax = axes('Parent', np, 'Units','normalized');
+ax = axes('Parent', np,...
+    'Units','normalized',...
+    'NextPlot','replacechildren',...
+    'ButtonDownFcn', @kVIS_dataViewerSwitchElement);
 
 kVIS_axesResizeToContainer(ax)
 

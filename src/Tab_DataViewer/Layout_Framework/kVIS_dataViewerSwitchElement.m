@@ -34,6 +34,14 @@ function kVIS_dataViewerSwitchElement(selectedPanel, ~)
 %   - no link request: make current panel active, previous panel inactive
 %   - link request: link panels, make target active
 
+%
+% if the panel is selcted by the axis button down fcn, get the Parent panel
+% handle
+%
+if isprop(selectedPanel, 'XLim')
+    selectedPanel = selectedPanel.Parent;
+end
+
 handles = guidata(selectedPanel);
 
 %
