@@ -65,10 +65,10 @@ file = fullfile(pathname,file);
 %     
 % end
 
-T = readtable(file, 'Range', 'B1:Z100');
+T = readtable(file, 'Range', 'A1:Z100');
 
 %% fill fds with data
-fds = fds_init_new();
+fds = kVIS_fdsInitNew();
 
 fds.BoardSupportPackage = 'Generic_CSV';
 
