@@ -41,8 +41,8 @@ m11 = uimenu(m1,'Text','Import');
 % import fds already in matlab workspace
 uimenu(m11,'Text','Existing Workspace FDS','Callback', @kVIS_menuImportWorkspaceFDS_Callback);
 % generic csv import
-uimenu(m11,'Text','Import from CSV File','Callback', @kVIS_fdsImportCSV);
-uimenu(m11,'Text','Add Data Group from File','Callback', @kVIS_fdsImportDataGroup);
+uimenu(m11,'Text','CSV File','Callback', @kVIS_fdsImportCSV);
+uimenu(m11,'Text','Add Data Group from CSV File','Callback', @kVIS_fdsImportDataGroup);
 % video import
 uimenu(m11,'Text','Add Video (experimental)','Callback', @kVIS_fdsImportVideo);
 % add BSP import function(s)
