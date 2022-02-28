@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_reportPlotGeneration.m Source File</title>
+<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_reportPlotGeneration.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -141,26 +141,27 @@ $(document).ready(function(){initNavTree('k_v_i_s__report_plot_generation_8m_sou
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;end</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;% % % plot full data length</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;% if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;%     </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;%     xlim = <a class="code" href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a>(hObject);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;%     </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;% else % use X-Limits (if button pressed or for events)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;%     </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;%     xlim = <a class="code" href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a>(hObject, &#39;XLim&#39;);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;%     </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;% end</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;xlim = [fds.fdataAttributes.startTimes(2) fds.fdataAttributes.stopTimes(2)];</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;tic</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;fileNames = <a class="code" href="k_v_i_s__generate_report_plot_x_l_s_8m.html#adbb975d1cc65ca91a825956d85a4f8b9">kVIS_generateReportPlotXLS</a>(fds, PlotDefinition, plotNo, xlim, [], outFolder);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;toc</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;end</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;% % plot full data length</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;handles = guidata(hObject);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    xlim = <a class="code" href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a>(hObject);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;else % use X-Limits (if button pressed or for events)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    xlim = <a class="code" href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a>(hObject, &#39;XLim&#39;);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;end</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;tic</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;fileNames = <a class="code" href="k_v_i_s__generate_report_plot_x_l_s_8m.html#adbb975d1cc65ca91a825956d85a4f8b9">kVIS_generateReportPlotXLS</a>(fds, PlotDefinition, plotNo, xlim, [], outFolder);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;toc</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;end</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="ttc" id="ak_v_i_s__fds_get_global_data_range_8m_html_a3d8dc3a8fa5be234d1a898c8da4c3724"><div class="ttname"><a href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a></div><div class="ttdeci">function kVIS_fdsGetGlobalDataRange(in hObject)</div></div>
 <div class="ttc" id="ak_v_i_s__generate_report_plot_x_l_s_8m_html_adbb975d1cc65ca91a825956d85a4f8b9"><div class="ttname"><a href="k_v_i_s__generate_report_plot_x_l_s_8m.html#adbb975d1cc65ca91a825956d85a4f8b9">kVIS_generateReportPlotXLS</a></div><div class="ttdeci">function kVIS_generateReportPlotXLS(in fds, in plotDef, in plotSel, in lims, in Style, in outFolder)</div></div>
 <div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>

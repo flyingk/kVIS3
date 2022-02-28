@@ -9,6 +9,7 @@ var dir_2893e9ae8a9ea115db23ddea05868d85 =
     [ "kVIS_generateCustomPlotM.m", "k_v_i_s__generate_custom_plot_m_8m.html", "k_v_i_s__generate_custom_plot_m_8m" ],
     [ "kVIS_generateCustomPlotXLS.m", "k_v_i_s__generate_custom_plot_x_l_s_8m.html", "k_v_i_s__generate_custom_plot_x_l_s_8m" ],
     [ "kVIS_reportMode_Callback.m", "k_v_i_s__report_mode___callback_8m.html", "k_v_i_s__report_mode___callback_8m" ],
+    [ "kVIS_reportModeFigFormat_Callback.m", "k_v_i_s__report_mode_fig_format___callback_8m.html", "k_v_i_s__report_mode_fig_format___callback_8m" ],
     [ "kVIS_updateCustomPlotList_Callback.m", "k_v_i_s__update_custom_plot_list___callback_8m.html", "k_v_i_s__update_custom_plot_list___callback_8m" ],
     [ "old_event_plot.m", "old__event__plot_8m.html", "old__event__plot_8m" ]
 ];

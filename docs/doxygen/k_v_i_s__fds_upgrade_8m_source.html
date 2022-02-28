@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/upgrade/kVIS_fdsUpgrade.m Source File</title>
+<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/upgrade/kVIS_fdsUpgrade.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -173,37 +173,48 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_upgrade_8m_source.html','
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    fds.aircraftData = aircraftData;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    testInfo                           = fds.testInfo;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    testInfo.airfieldElevation_UNIT_m  = fds.testInfo.airfieldElevation;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    testInfo.windDir_UNIT_deg          = fds.testInfo.windDir;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    testInfo.windSpeed_UNIT_m_d_s      = fds.testInfo.windSpeed;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    testInfo.ambientPressure_UNIT_Pa   = fds.testInfo.ambientPressure;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    testInfo.ambientTemperature_UNIT_C = fds.testInfo.ambientTemperature;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    testInfo.gravity_UNIT_m_d_s2       = fds.testInfo.gravity;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    testInfo.magRef_N_UNIT_Gauss       = fds.testInfo.magRef_N;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    testInfo.magRef_E_UNIT_Gauss       = fds.testInfo.magRef_E;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    testInfo.magRef_D_UNIT_Gauss       = fds.testInfo.magRef_D;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    testInfo = rmfield(testInfo, {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="stringliteral">&#39;airfieldElevation&#39;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="stringliteral">&#39;windDir&#39;</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="stringliteral">&#39;windSpeed&#39;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="stringliteral">&#39;ambientPressure&#39;</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="stringliteral">&#39;ambientTemperature&#39;</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="stringliteral">&#39;gravity&#39;</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="stringliteral">&#39;magRef_N&#39;</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="stringliteral">&#39;magRef_E&#39;</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="stringliteral">&#39;magRef_D&#39;</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        });</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    fds.testInfo = testInfo;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keywordflow">else</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    fds = fds;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;end</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;end</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    old_test_info_fieldnames = {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="stringliteral">&#39;airfieldElevation&#39;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="stringliteral">&#39;windDir&#39;</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="stringliteral">&#39;windSpeed&#39;</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="stringliteral">&#39;ambientPressure&#39;</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="stringliteral">&#39;ambientTemperature&#39;</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="stringliteral">&#39;gravity&#39;</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="stringliteral">&#39;magRef_N&#39;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="stringliteral">&#39;magRef_E&#39;</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="stringliteral">&#39;magRef_D&#39;</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        };</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    new_test_info_field_names = {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="stringliteral">&#39;airfieldElevation_UNIT_m&#39;</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="stringliteral">&#39;windDir_UNIT_deg&#39;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="stringliteral">&#39;windSpeed_UNIT_m_d_s&#39;</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="stringliteral">&#39;ambientPressure_UNIT_Pa&#39;</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="stringliteral">&#39;ambientTemperature_UNIT_C&#39;</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="stringliteral">&#39;gravity_UNIT_m_d_s2&#39;</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="stringliteral">&#39;magRef_N_UNIT_Gauss&#39;</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="stringliteral">&#39;magRef_E_UNIT_Gauss&#39;</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="stringliteral">&#39;magRef_D_UNIT_Gauss&#39;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        };</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">for</span> i=1:numel(new_test_info_field_names)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> isfield(fds.testInfo,old_test_info_fieldnames{i})</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            testInfo.(new_test_info_field_names{i}) = fds.testInfo.(old_test_info_fieldnames{i});</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            testInfo = rmfield(testInfo, old_test_info_fieldnames{i});</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            testInfo.(new_test_info_field_names{i}) = nan;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        end</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    end</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    fds.testInfo = testInfo;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordflow">else</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    fds = fds;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;end</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__fds_upgrade_8m_html_a69a4761e514234fe8533a7940d30f324"><div class="ttname"><a href="k_v_i_s__fds_upgrade_8m.html#a69a4761e514234fe8533a7940d30f324">kVIS_fdsUpgrade</a></div><div class="ttdeci">function kVIS_fdsUpgrade(in fds)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_upgrade_8m_html_aaa082ec46d0dc794f5f24a80b419fb40"><div class="ttname"><a href="k_v_i_s__fds_upgrade_8m.html#aaa082ec46d0dc794f5f24a80b419fb40">UpgradeInfoStructs</a></div><div class="ttdeci">function UpgradeInfoStructs(in fds)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_upgrade___v__0___v__1__0_8m_html_a9fd219966088297064cc56082d3afc12"><div class="ttname"><a href="k_v_i_s__fds_upgrade___v__0___v__1__0_8m.html#a9fd219966088297064cc56082d3afc12">kVIS_fdsUpgrade_V_0_V_1_0</a></div><div class="ttdeci">function kVIS_fdsUpgrade_V_0_V_1_0(in fdsOld)</div></div>

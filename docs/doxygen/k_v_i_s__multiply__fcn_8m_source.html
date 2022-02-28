@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_CustomPlotFcn/kVIS_multiply_fcn.m Source File</title>
+<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_CustomPlotFcn/kVIS_multiply_fcn.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,18 +97,30 @@ $(document).ready(function(){initNavTree('k_v_i_s__multiply__fcn_8m_source.html'
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;pts  = varargin{2};</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;% separate argument <span class="keywordtype">string</span> supplied from spreadsheet</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;args = strsplit(varargin{3}, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;%% <span class="keyword">function</span> specific code</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;operatorChPath = args{1};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;ccF = strsplit(operatorChPath, <span class="charliteral">&#39;/&#39;</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;operatorCh = <a class="code" href="k_v_i_s__fds_get_channel_8m.html#a35830af834b5779b15a6869f8d3a0b6d">kVIS_fdsGetChannel</a>(fds, ccF{1}, ccF{2});</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;y = data .* operatorCh(pts); </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;end</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordflow">if</span> ~isnumeric(varargin{3})</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    operatorChPath = varargin{3};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    ccF = strsplit(operatorChPath, <span class="charliteral">&#39;/&#39;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    operatorCh = <a class="code" href="k_v_i_s__fds_get_channel_8m.html#a35830af834b5779b15a6869f8d3a0b6d">kVIS_fdsGetChannel</a>(fds, ccF{1}, ccF{2});</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span> operatorCh == -1</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        disp(<span class="stringliteral">&#39;Function channel not found... Ignoring.&#39;</span>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        y = data;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        return</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    end</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    operatorCh = operatorCh(pts);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;else</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    % add a constant to data</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    operatorCh = ones(length(data),1) * varargin{3};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;end</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;y = data .* operatorCh; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__fds_get_channel_8m_html_a35830af834b5779b15a6869f8d3a0b6d"><div class="ttname"><a href="k_v_i_s__fds_get_channel_8m.html#a35830af834b5779b15a6869f8d3a0b6d">kVIS_fdsGetChannel</a></div><div class="ttdeci">function kVIS_fdsGetChannel(in fds, in group, in channel)</div></div>
 <div class="ttc" id="ak_v_i_s__multiply__fcn_8m_html_a2da55ad4e856170f146a35d1dc0940a7"><div class="ttname"><a href="k_v_i_s__multiply__fcn_8m.html#a2da55ad4e856170f146a35d1dc0940a7">kVIS_multiply_fcn</a></div><div class="ttdeci">function kVIS_multiply_fcn(in data, in varargin)</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeTestInfoTable.m Source File</title>
+<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeTestInfoTable.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -136,33 +136,50 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_test_info_table_8m_sour
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>Date &amp; Test &amp;  Pilot  &amp;  FTE \\\\ \n<span class="stringliteral">&#39;);</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s  &amp;  %s\\\\ \n<span class="stringliteral">&#39;,...</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">    t.date, t.description, t.pilot, t.BSP_FTE);</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>Location &amp; ARQ No. &amp; Weather &amp; Airfield Elevation [$m$]\\\\ \n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">% fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s  &amp;  %s\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">%     t.date, t.description, t.pilot, t.BSP_FTE);</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">%%%% Lorenzo workaround</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">    t.date, t.description, t.pilot);</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">%%%%</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s  &amp; %d\\\\ \n<span class="stringliteral">&#39;,...</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">    t.location, t.BSP_arqNo, t.weather, t.airfieldElevation_UNIT_m);</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>Location &amp; ARQ No. &amp; Weather &amp; Airfield Elevation [$m$]\\\\ \n<span class="stringliteral">&#39;);</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>Pressure [$Pa$] &amp;  Temperature [$^{\\circ} C$]  &amp;  Wind Dir. [$deg$]  &amp; Wind Speed [$m/s$]\\\\ \n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span> %d &amp;  %d &amp;  %d   &amp; %.1f\\\\ \n<span class="stringliteral">&#39;,...</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">     t.ambientPressure_UNIT_Pa, t.ambientTemperature_UNIT_C, t.windDir_UNIT_deg, t.windSpeed_UNIT_m_d_s);</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">% fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s  &amp; %d\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">%     t.location, t.BSP_arqNo, t.weather, t.airfieldElevation_UNIT_m);</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">test_ID = split(fds.pathOpenedFrom,&#39;</span>\<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">test_ID = test_ID(end);</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">test_ID = split(test_ID,&#39;</span>_<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">test_ID = strcat(test_ID(1),&#39;</span>-<span class="stringliteral">&#39;,test_ID(2),&#39;</span>-<span class="stringliteral">&#39;,test_ID(3));</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{tabular} \n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{center}\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\caption{Test Information}\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{table}\n<span class="stringliteral">&#39;);</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral">end</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>%s &amp; %s &amp;  %s  &amp; %d\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">    t.location, test_ID{1}, t.weather, t.airfieldElevation_UNIT_m);</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">% %%%% Lorenzo workaround</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral">% fprintf(fid,&#39;</span>%s &amp; %s  &amp; %d\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral">%     t.location, t.weather, t.airfieldElevation_UNIT_m);</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral">% %%%%</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>Pressure [$Pa$] &amp;  Temperature [$^{\\circ} C$]  &amp;  Wind Dir. [$deg$]  &amp; Wind Speed [$m/s$]\\\\ \n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span> %d &amp;  %d &amp;  %d   &amp; %.1f\\\\ \n<span class="stringliteral">&#39;,...</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral">     t.ambientPressure_UNIT_Pa, t.ambientTemperature_UNIT_C, t.windDir_UNIT_deg, t.windSpeed_UNIT_m_d_s);</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\hline\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{tabular} \n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{center}\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\caption{Test Information}\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral">fprintf(fid,&#39;</span>\\end{table}\n<span class="stringliteral">&#39;);</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral">end</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="stringliteral"></span> </div>
 <div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
 <div class="ttc" id="ak_v_i_s__write_test_info_table_8m_html_aac0879d74332591e4f23bbb87cb2b5ec"><div class="ttname"><a href="k_v_i_s__write_test_info_table_8m.html#aac0879d74332591e4f23bbb87cb2b5ec">kVIS_writeTestInfoTable</a></div><div class="ttdeci">function kVIS_writeTestInfoTable(in hObject, in fid)</div><div class="ttdoc">Add a table with test info struct content to the report.</div></div>
 </div><!-- fragment --></div><!-- contents -->
