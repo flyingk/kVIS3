@@ -27,7 +27,8 @@ rootFolder = handles.bspInfo.rootFolder;
 
 path = fullfile(rootFolder ,'docs', 'index.html');
 
-web(path)
+% show help in system browser
+web(path,'-browser')
 
 end
 
