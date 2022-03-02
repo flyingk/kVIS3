@@ -1,8 +1,8 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="2904171545" file="/Users/kai/Projects/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Projects/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="1606829059" file="/Users/kai/Dropbox/developer/kVIS3/kVIS3/deploy/kVIS3.prj" location="/Users/kai/Dropbox/developer/kVIS3/kVIS3/deploy" name="kVIS3" target="target.mlapps" target-name="Package App">
     <param.appname>kVIS3</param.appname>
-    <param.authnamewatermark>Kai</param.authnamewatermark>
-    <param.email />
+    <param.authnamewatermark>Dr. Kai Lehmkuehler</param.authnamewatermark>
+    <param.email>kai@uav-flightresearch.com</param.email>
     <param.company />
     <param.icon>${PROJECT_ROOT}/kVIS3_resources/icon_24.png</param.icon>
     <param.icons>
@@ -11,9 +11,9 @@
       <file>${PROJECT_ROOT}/kVIS3_resources/icon_16.png</file>
     </param.icons>
     <param.summary />
-    <param.description>Beta 9.3 release</param.description>
+    <param.description>Release 2022.1</param.description>
     <param.screenshot />
-    <param.version>1.0.0.9</param.version>
+    <param.version>2022.1</param.version>
     <param.products.name>
       <item>MATLAB</item>
     </param.products.name>
@@ -27,21 +27,64 @@
     <param.output>/Users/kai/Desktop</param.output>
     <param.guid>7cf7fda3-0ebe-4d2f-a990-1d0c43f4b562</param.guid>
     <unset>
-      <param.email />
       <param.company />
       <param.summary />
       <param.screenshot />
       <param.platforms />
     </unset>
     <fileset.main>
-      <file>/Users/kai/Projects/kVIS3/kVIS3/kVIS3.m</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/kVIS3.m</file>
     </fileset.main>
-    <fileset.depfun />
+    <fileset.depfun>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/+mixin/Container.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/+mixin/Flex.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/+mixin/Panel.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/Box.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/ButtonBox.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/CardPanel.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/ChildEvent.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/ChildObserver.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/Divider.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/Empty.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/FigureData.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/FigureObserver.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/Grid.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/HBox.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/HBoxFlex.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/HButtonBox.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/Node.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/PointerManager.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/SelectionData.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/VBox.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/VBoxFlex.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/calcPixelSizes.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/getPosition.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/set.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/setPosition.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/GUI Layout Toolbox(2)/layout/+uix/tracking.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/resource/+uix/Container.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+abstract/BaseContainer.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+abstract/BaseLabel.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+abstract/BasePanel.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+abstract/JavaControl.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+abstract/WidgetContainer.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+event/EventData.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+event/KeyboardEvent.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+event/MouseEvent.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+mixin/AssignPVPairs.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+mixin/HasContainer.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+mixin/HasKeyEvents.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+utility/interpretColor.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+utility/setPropsIfDifferent.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+widget/Tree.m</file>
+      <file>/Users/kai/Documents/MATLAB/Add-Ons/Toolboxes/Widgets Toolbox(2)/widgets/+uiw/+widget/TreeNode.m</file>
+    </fileset.depfun>
     <fileset.resources>
-      <file>/Users/kai/Projects/kVIS3/kVIS3/contributed/icons</file>
-      <file>/Users/kai/Projects/kVIS3/kVIS3/contributed/plot_google_map</file>
-      <file>/Users/kai/Projects/kVIS3/kVIS3/docs</file>
-      <file>/Users/kai/Projects/kVIS3/kVIS3/src</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/contributed/icons</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/contributed/plot_google_map</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/contributed/plot_openstreetmap</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/docs</file>
+      <file>/Users/kai/Dropbox/developer/kVIS3/kVIS3/src</file>
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
@@ -61,7 +104,7 @@
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>10.15.7</osver>
+      <osver>10.16</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>maci64</arch>
