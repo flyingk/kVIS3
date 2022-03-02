@@ -7,26 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>FDS file format - kVIS3 Documentation</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <title>FDS data file format - kVIS3 Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "FDS file format";
+    var mkdocs_page_name = "FDS data file format";
     var mkdocs_page_input_path = "fdsFormat.md";
     var mkdocs_page_url = null;
   </script>
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
   <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,101 +35,67 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="index.html" class="icon icon-home"> kVIS3 Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="index.html">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">User Interface</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="dataViewer.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="timePlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="freqPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="corrPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="mapPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="dataTab.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="eventTab.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="plotTab.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="plotFormat.html">File formats for custom plot definition.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="exportTab.html">template</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Developer Information</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="fdsFormat.html">FDS file format</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#fds-file-format">FDS file format</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Information</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="plotFormat.html">File Formats for Custom Plot Definition.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="plotFcn.html">Custom Plot Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="reportFcn.html">Report Generator</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Developer Information</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="fdsFormat.html">FDS data file format</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-fields">List of Fields</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#list-of-fields">List of Fields</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#cell-array-fdata">Cell Array fdata:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-fdatarows">Struct fdataRows:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-fdataattributes">Struct fdataAttributes:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-eventlist">Struct eventList:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#array-eventtypes">Array eventTypes:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-aircaftdata">Struct aircaftData:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-testinfo">Struct testInfo:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-ftisensorproperties">Struct ftiSensorProperties:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-ftisensors">Struct ftiSensors:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#other-fields">Other Fields:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a>
+    </li>
         </ul>
-    
-
+    </li>
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="doxygen/files.html">Doxygen Code Docs</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="doxygen/files.html">Doxygen Code Documentation (WiP)</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -153,17 +119,19 @@
         
       
     
-    <li>FDS file format</li>
+    <li>FDS data file format</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
-                <h1 id="fds-file-format">FDS file format</h1>
+                <h1 id="fds-data-file-format">FDS data file format</h1>
 <p>The FDS ( Flight Data Structure ) file is a structure containing a cell array with the actual data, and some supporting fields that describe or ease the interpretation of the data:</p>
 <h2 id="list-of-fields">List of Fields</h2>
 <h3 id="cell-array-fdata">Cell Array <code>fdata</code>:</h3>
@@ -183,7 +151,6 @@
     'treeGroupSelected' ,10  ... group node selected
 );
 </code></pre>
-
 <h3 id="struct-fdataattributes">Struct <code>fdataAttributes</code>:</h3>
 <p>Store attributes of fdata for easy access without loading the potentially large cell array. All fields, except nfiles, are arrays of size [nfiles].</p>
 <pre><code>struct( ...
@@ -195,7 +162,6 @@
     'stopTimes'  , {}  ... stop time value for each group, relative to the `startTime` field in `testInfo`
 );
 </code></pre>
-
 <h3 id="struct-eventlist">Struct <code>eventList</code>:</h3>
 <p>Store event data</p>
 <pre><code>struct( ...
@@ -206,7 +172,6 @@
      'plotDef'    , {}  ... linked custom plot definition provided by the BSP
 );
 </code></pre>
-
 <h3 id="array-eventtypes">Array <code>eventTypes</code>:</h3>
 <p>List of event types - to be updated by BSP during import</p>
 <p>Should provide some generic types and an ‘unspecified’ default type.</p>
@@ -233,7 +198,6 @@
    'zCG',  ''  ... Take off CG location along Z body axis
 );
 </code></pre>
-
 <h3 id="struct-testinfo">Struct <code>testInfo</code>:</h3>
 <p>Store information about the flight test (pilot, weather, location…)</p>
 <ul>
@@ -257,7 +221,6 @@
    'magRef_D',          ''  ... magnetic reference vector D component [Gauss]
 );
 </code></pre>
-
 <h3 id="struct-ftisensorproperties">Struct <code>ftiSensorProperties</code>:</h3>
 <p>Information/location of a sensor</p>
 <pre><code>ftiSensorProperties = struct( ...
@@ -269,7 +232,6 @@
    'zCoord',            ''  ... Sensor ID
 );
 </code></pre>
-
 <h3 id="struct-ftisensors">Struct <code>ftiSensors</code>:</h3>
 <p>Structure containing one ftiSensorProperties struct for each installed sensor. Filled by BSP.</p>
 <pre><code>fds.ftiSensors = struct( ...
@@ -277,7 +239,6 @@
     'gpsAntenna', ftiSensorProperties  ...
 );
 </code></pre>
-
 <h3 id="other-fields">Other Fields:</h3>
 <ul>
 <li>
@@ -292,6 +253,9 @@
 <li>
 <p>float fdsVersion: version of FDS format definition</p>
 </li>
+<li>
+<p>char pathOpenedFrom[]: field to save origin path for save function</p>
+</li>
 </ul>
 <h3 id="notes">Notes</h3>
 <ul>
@@ -304,10 +268,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="doxygen/files.html" class="btn btn-neutral float-right" title="Doxygen Code Docs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="exportTab.html" class="btn btn-neutral" title="template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="reportFcn.html" class="btn btn-neutral" title="Report Generator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -319,7 +281,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -329,20 +291,24 @@
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="exportTab.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="doxygen/files.html" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="reportFcn.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
 </div>
     <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
     <script src="js/theme.js" defer></script>
       <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

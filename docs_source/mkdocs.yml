@@ -2,22 +2,14 @@ site_name: kVIS3 Documentation
 
 nav:
     - Home: 'index.md'
-    - User Interface: 
-        - dataViewer.md
-        - timePlot.md
-        - freqPlot.md
-        - corrPlot.md
-        - mapPlot.md
-        - dataTab.md
-        - eventTab.md
-        - plotTab.md
+    - User Information: 
         - plotFormat.md
-        - exportTab.md
-        
+        - plotFcn.md
+        - reportFcn.md        
         
     - Developer Information:
         - fdsFormat.md
-        - Doxygen Code Docs: doxygen/files.html
+        - Doxygen Code Documentation (WiP): doxygen/files.html
         
         
         

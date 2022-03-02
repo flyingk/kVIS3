@@ -7,26 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>File formats for custom plot definition. - kVIS3 Documentation</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <title>File Formats for Custom Plot Definition. - kVIS3 Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "File formats for custom plot definition.";
+    var mkdocs_page_name = "File Formats for Custom Plot Definition.";
     var mkdocs_page_input_path = "plotFormat.md";
     var mkdocs_page_url = null;
   </script>
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
   <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,103 +35,63 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="index.html" class="icon icon-home"> kVIS3 Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="index.html">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">User Interface</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="dataViewer.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="timePlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="freqPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="corrPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="mapPlot.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="dataTab.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="eventTab.html">template</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="plotTab.html">template</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="plotFormat.html">File formats for custom plot definition.</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#file-formats-for-custom-plot-definition">File formats for custom plot definition.</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Information</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="plotFormat.html">File Formats for Custom Plot Definition.</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#excel-format">Excel format</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#excel-format">Excel format</a></li>
-        
-            <li><a class="toctree-l4" href="#legacy-m-file-format">Legacy m file format</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#editable-fields">Editable Fields:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#header">Header:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#plot-definition-rows">Plot Definition Rows:</a>
+    </li>
         </ul>
-    
-
-    </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="exportTab.html">template</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Developer Information</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="fdsFormat.html">FDS file format</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="doxygen/files.html">Doxygen Code Docs</a>
-                </li>
-    </ul>
-	    </li>
-          
+    </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#legacy-m-file-format">Legacy m file format</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#plot-layout-fields">Plot layout fields:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#plot-entry-fields">Plot entry fields:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="plotFcn.html">Custom Plot Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="reportFcn.html">Report Generator</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Developer Information</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="fdsFormat.html">FDS data file format</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="doxygen/files.html">Doxygen Code Documentation (WiP)</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -151,32 +111,37 @@
     
       
         
-          <li>User Interface &raquo;</li>
+          <li>User Information &raquo;</li>
         
       
     
-    <li>File formats for custom plot definition.</li>
+    <li>File Formats for Custom Plot Definition.</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
-                <h1 id="file-formats-for-custom-plot-definition">File formats for custom plot definition.</h1>
+                <h1 id="file-formats-for-custom-plot-definition">File Formats for Custom Plot Definition.</h1>
 <h2 id="excel-format">Excel format</h2>
-<p><img alt="" src="img/custom_plot_def.jpeg" /></p>
+<p><a href="img/custom_plot_def.jpeg"><img src="img/custom_plot_def.jpeg"></a></p>
 <ul>
 <li>
-<p>save as .xlsx into CustomPlots folder of BSP</p>
+<p>Save as .xlsx into CustomPlots folder of BSP</p>
 </li>
 <li>
-<p>header format, including column labels (Rows 1-5), must not be changed</p>
+<p>Header format, including column labels (Rows 1-5), must not be changed</p>
 </li>
 <li>
-<p>the group/channel identifier(s) can be generated from the context menu  -&gt; copy to clipboard in the kVIS3 channel list.</p>
+<p>The group/channel identifier(s) can be generated from the right click context menu  -&gt; copy to clipboard in the kVIS3 channel list.</p>
+</li>
+<li>
+<p>Note: due to a limitation in the gui layout toolbox, the generated plots cannot be saved as a .fig file. An option to export the plot into a normal Matlab figure (loosing some layout functions) is provided.</p>
 </li>
 </ul>
 <h3 id="editable-fields">Editable Fields:</h3>
@@ -214,6 +179,9 @@
 <p>LegendLocation: valid Matlab legend location string</p>
 </li>
 <li>
+<p>Report Figure Label (Column I, not shown in above figure): Figure label used during report generation</p>
+</li>
+<li>
 <p>xChannel: data to use for plot x axis (default: time). Must have the same sample rate (number of points) as yChannel. Format: group Name / channel Name</p>
 </li>
 <li>
@@ -232,19 +200,16 @@
 <p>ScaleFactor: Scale yChannel by this value</p>
 </li>
 <li>
-<p>FunctionHandle: function handle to process yChannel data. Must be on path, typically provided by BSP in CustomPlotFcn folder. Function header: function [y,x] = demo_fcn(data, varargin)</p>
-<ul>
-<li>Output y: new y data to be plotted</li>
-<li>Output x: new x vector to be used for plotting (useful for fft and other special plots)</li>
-<li>Input data: yChannel data</li>
-<li>Input varargin: cell structure with content: {1}: fds structure {2}: selected data limits - must be applied to output to get consistent vector lengths {3}: string read from column FunctionChannel to be processed by the function.</li>
-</ul>
+<p>FunctionHandle: function handle to process yChannel data. Must be on path, typically provided by BSP in a CustomPlotFcn folder. See <a href="plotFcn.html">plot function page</a></p>
 </li>
 <li>
-<p>FunctionChannel: Comma separated string of arbitrary arguments for above function, must be compatible with the function definition (see examples psd_fcn.m, filter_fcn.m).</p>
+<p>FunctionChannel: Comma separated string of arbitrary arguments for above function, must be compatible with the function definition.</p>
 </li>
 <li>
 <p>LabelOverride: Specify new label for yChannel (appears in plot labels and legends). Provide a valid LaTeX string. Leave empty for defaults.</p>
+</li>
+<li>
+<p>UnitOverride: Specify a new unit for yChannel (appears in plot labels and legends). Provide a valid LaTeX string. Leave empty for defaults.</p>
 </li>
 </ul>
 <h2 id="legacy-m-file-format">Legacy m file format</h2>
@@ -304,10 +269,10 @@ CUSTOM_PLOTS.(BSP_NAME).Base = plot_definition;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="exportTab.html" class="btn btn-neutral float-right" title="template">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="plotFcn.html" class="btn btn-neutral float-right" title="Custom Plot Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="plotTab.html" class="btn btn-neutral" title="template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -319,7 +284,7 @@ CUSTOM_PLOTS.(BSP_NAME).Base = plot_definition;
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -329,20 +294,26 @@ CUSTOM_PLOTS.(BSP_NAME).Base = plot_definition;
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="plotTab.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="exportTab.html" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="plotFcn.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
     <script src="js/theme.js" defer></script>
       <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

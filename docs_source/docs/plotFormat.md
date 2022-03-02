@@ -1,14 +1,16 @@
-# File formats for custom plot definition.
+# File Formats for Custom Plot Definition.
 
 ## Excel format
 
-![](img/custom_plot_def.jpeg)
+[<img src="img/custom_plot_def.jpeg">](img/custom_plot_def.jpeg)
 
-- save as .xlsx into CustomPlots folder of BSP
+- Save as .xlsx into CustomPlots folder of BSP
 
-- header format, including column labels (Rows 1-5), must not be changed
+- Header format, including column labels (Rows 1-5), must not be changed
 
-- the group/channel identifier(s) can be generated from the context menu  -> copy to clipboard in the kVIS3 channel list.
+- The group/channel identifier(s) can be generated from the right click context menu  -> copy to clipboard in the kVIS3 channel list.
+
+- Note: due to a limitation in the gui layout toolbox, the generated plots cannot be saved as a .fig file. An option to export the plot into a normal Matlab figure (loosing some layout functions) is provided.
 
 ### Editable Fields:
 
@@ -32,6 +34,8 @@
 - LegendStyle: horizontal or vertical. Default: Matlab default 
 - LegendLocation: valid Matlab legend location string
 
+- Report Figure Label (Column I, not shown in above figure): Figure label used during report generation
+
 - xChannel: data to use for plot x axis (default: time). Must have the same sample rate (number of points) as yChannel. Format: group Name / channel Name
 - yChannel: data to use for plot y axis. Format: group Name / channel Name
 
@@ -41,17 +45,13 @@
 - LineColour: valid line colour spec character (‘k’)
 - ScaleFactor: Scale yChannel by this value
 
-- FunctionHandle: function handle to process yChannel data. Must be on path, typically provided by BSP in CustomPlotFcn folder. Function header: function [y,x] = demo_fcn(data, varargin)
+- FunctionHandle: function handle to process yChannel data. Must be on path, typically provided by BSP in a CustomPlotFcn folder. See [plot function page](plotFcn.md)
 
-	- Output y: new y data to be plotted
-	- Output x: new x vector to be used for plotting (useful for fft and other special plots)
-	- Input data: yChannel data
-	- Input varargin: cell structure with content: {1}: fds structure {2}: selected data limits - must be applied to output to get consistent vector lengths {3}: string read from column FunctionChannel to be processed by the function.
-
-- FunctionChannel: Comma separated string of arbitrary arguments for above function, must be compatible with the function definition (see examples psd_fcn.m, filter_fcn.m).
+- FunctionChannel: Comma separated string of arbitrary arguments for above function, must be compatible with the function definition.
 
 - LabelOverride: Specify new label for yChannel (appears in plot labels and legends). Provide a valid LaTeX string. Leave empty for defaults.
 
+- UnitOverride: Specify a new unit for yChannel (appears in plot labels and legends). Provide a valid LaTeX string. Leave empty for defaults.
 
 ## Legacy m file format
 

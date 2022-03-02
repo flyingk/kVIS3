@@ -1,4 +1,4 @@
-# FDS file format
+# FDS data file format
 
 The FDS ( Flight Data Structure ) file is a structure containing a cell array with the actual data, and some supporting fields that describe or ease the interpretation of the data:
 

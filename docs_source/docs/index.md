@@ -11,35 +11,6 @@ The functionality to interpret and handle the data files from the recording syst
 kVIS3 contains all the generic functionality described in this document. All BSP specific functionality must be documented in a BSP help.
 kVIS3 is based on a generic file format for the test data, which arranges the data in a convenient and easy to manage tree format. The file format also saves auxiliary data like event markers and test information together with the data in one place. The BSP is responsible to generate the FDS file format form the user supplied data format. This includes the generation of the tree structure, which can be entirely defined by the user.
 
+Usage of kVIS3 is mostly straightforward, with standard concepts, like tooltips and right click actions, available throughout.
 
-## Contents
-
-### UI Elements
-
-- Application Framework
-
-- Data Viewer Tab
-	- Timeplot
-	- Frequency plot
-	- Correlation plot
-	- Map plot
-
-
-- Function Tabs
-	- Data
-	- Events
-	-  Custom Plots
-	-  Exports
-
-
-### Developer Information
-
-- [FDS data structure](fdsFormat.md)
-
-- FDS API functions
-
-- BSP requirements
-
-- Custom functionality
-
-- [Code docs (doxygen - experimental)](doxygen/files.html)
+This documentation for the more complex functions is work in progress...
