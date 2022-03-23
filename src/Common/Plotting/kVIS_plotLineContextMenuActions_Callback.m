@@ -384,8 +384,8 @@ switch source.Label
             x_vector = kVIS_downSample([t'; flipud(t')], 10);
             y_vector = kVIS_downSample([y+uncert; flipud(y-uncert)], 10);
             
-            patch = fill(x_vector, y_vector, c);
-            set(patch, 'edgecolor', c);
+            patch = fill(x_vector(~isnan(y_vector)), y_vector(~isnan(y_vector)), c);
+            set(patch, 'edgecolor', 'none');
             set(patch, 'FaceAlpha', 0.3);
             patch.DisplayName = 'Uncertainty';
             uistack(patch, 'down')
