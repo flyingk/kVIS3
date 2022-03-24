@@ -61,7 +61,7 @@ fprintf(fid,'\\hline\n');
 %     a.xCG_UNIT_m, a.yCG_UNIT_m, a.zCG_UNIT_m, a.BSP_fccSoftware, a.BSP_fclVersion);
 
 %%%% Lorenzo workaround
-fprintf(fid,'  & %.3f &  %.3f  &  %.3f\\\\ \n',...
+fprintf(fid,'  & %.3f &  %.3f  &  %.3f & &\\\\ \n',...
     a.xCG_UNIT_m, a.yCG_UNIT_m, a.zCG_UNIT_m);
 %%%%
 fprintf(fid,'\\hline\n');
