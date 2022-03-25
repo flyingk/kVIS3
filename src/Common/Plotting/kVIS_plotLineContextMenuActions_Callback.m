@@ -312,8 +312,8 @@ switch source.Label
         y = line.YData(locs);
         
         % Get properties
-        m = mean(y);
-        sd= std(y);
+        m = mean(y(~isnan(y)));
+        sd= std(y(~isnan(y)));
         
         % Remove old lines
         if isfield(line.UserData,'Stats')

@@ -65,6 +65,9 @@ while ~feof(fidIN)
     elseif contains(l, '%_kVIS_test_info')
         kVIS_writeTestInfoTable(hObject, fidOUT);
         
+    elseif contains(l, '%_kVIS_FPRresults')
+        kVIS_writeFPRtable(hObject, fidOUT);
+        
     elseif contains(l, '%_kVIS_bsp_fcn_eval')
         
         fcnName = strsplit(l,{'{','}'});
