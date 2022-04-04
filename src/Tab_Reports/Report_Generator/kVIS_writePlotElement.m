@@ -38,7 +38,7 @@ fprintf(fid,'\n\n');
 
 fprintf(fid,'\\begin{figure}[!ht]\n');
 fprintf(fid,'\\center\n');
-fprintf(fid,'\\includegraphics[width=\\textwidth]{%s}\n',fileName{1});
+fprintf(fid,'\\includegraphics[width=0.9\\textwidth]{%s}\n',fileName{1});
 fprintf(fid,'\\caption{%s}\n',fileName{2});
 fprintf(fid,'\\label{%s}\n',['figure:' lbl{end}]);
 fprintf(fid,'\\end{figure}\n');
