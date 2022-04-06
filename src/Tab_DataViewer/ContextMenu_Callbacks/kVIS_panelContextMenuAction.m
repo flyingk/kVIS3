@@ -95,6 +95,36 @@ switch hObject.Label
         
         hObject.Checked = 'on';
         
+    case 'Save Layout'
+        
+        clc
+        
+        ce={};
+        
+        cols = handles.uiTabDataViewer.DividerH.Contents;
+                
+        for j = 1:size(cols.Contents,1)
+            
+            pan  = cols.Contents(j);
+            
+            ll = findobj(pan, 'Type', 'line');
+                        
+            for k = 1:length(ll)
+                
+                sm = ll(k).UserData.signalMeta;
+                
+                ce = [ce; {j,j,1,'S','','','','','','',[sm.dataGroup '/' sm.name],'','','',1,'','','',''}];
+                
+            end
+            
+        end
+        
+        tmpl = load('plotDefTemplate.mat');
+        
+        ce = [tmpl.template; ce];
+        
+        writecell(ce,'dataViewerLayoutSave.xlsx')
+        
     case 'Delete panel'
         
         % current object to delete (required for linked plots)
