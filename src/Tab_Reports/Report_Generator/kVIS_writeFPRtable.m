@@ -45,7 +45,7 @@ for ip=1:Nparam
     serro = serr * 5;
     serro_rel = serr_rel * 5;
     
-    fprintf(fid, '%s & %6.3f & $\\pm$%6.3f (%6.3f) & %4.2f (%4.2f) & [ %6.3f %6.3f ] \\\\',...
+    fprintf(fid, '$ %s $ & %6.3f & $\\pm$%6.3f (%6.3f) & %4.2f (%4.2f) & [ %6.3f %6.3f ] \\\\',...
         pnames, param, serr, serro, serr_rel, serro_rel, cbL, cbU);
     
     fprintf(fid, '\\hline\n');
