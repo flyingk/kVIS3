@@ -32,7 +32,8 @@ function kVIS_preferencesBspChange(~, ~)
 % change BSP directory
 %
 
-bspDir = uigetdir();
+%bspDir = uigetdir();
+[~,bspDir,~] = uigetfile('BSP_ID.m','Select BSP_ID.m File','BSP_ID.m');
 
 if bspDir == 0
     return
