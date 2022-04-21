@@ -70,11 +70,9 @@ while ~feof(fidIN)
         
     elseif contains(l, '%_kVIS_bsp_fcn_eval')
         
-        fcnName = strsplit(l,{'{','}'});
+        fcnName = strsplit(l,{'{','}','[',']'});
         
-        kVIS_terminalMsg(['Reports: Calling BSP function ' fcnName{2}])
-        
-        fileNames = kVIS_writeFcnPlotElement(hObject, fcnName{2}, outFolder);
+        fileNames = kVIS_writeFcnPlotElement(hObject, fcnName, outFolder);
         
         % generate tex with plot names
         for I = 1:size(fileNames,2)
@@ -160,7 +158,7 @@ function [ OutFile ] = TeX_compile(Document)
         setenv('TEX_COMPILE_DOCUMENT', Document);
         % Run LaTeX four times in order to update all references
         % (BasicTeX does not include `latexmk`).
-        for I = 1 : 4
+        for I = 1 : 2
             if isunix()
                 system('pdflatex -shell-escape -interaction=batchmode "%TEX_COMPILE_DOCUMENT%" </dev/null >/dev/null');
             else

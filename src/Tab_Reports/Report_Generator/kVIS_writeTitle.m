@@ -49,7 +49,7 @@ test_ID = strcat(test_ID(1),'-',test_ID(2),'-',test_ID(3));
 
 %%%% Lorenzo workaround
 % fprintf(fid,['\\title{Lilium Phoenix 1 Flight Report\\\\' t.BSP_arqNo '}']);
-fprintf(fid,['\\title{Lilium Phoenix II Flight Report\\\\' test_ID{1} '}\n\n']);
+fprintf(fid,['\\title{Lilium Phoenix II Flight Report \\\\' test_ID{1} '}\n\n']);
 % fprintf(fid,['\\title{Lilium Phoenix II Flight Report}\']);
 %%%%
     

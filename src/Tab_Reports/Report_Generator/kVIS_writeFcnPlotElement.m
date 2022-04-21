@@ -32,22 +32,37 @@
 %
 function fileNames = kVIS_writeFcnPlotElement(hObject, fcnName, outFolder)
 
+if size(fcnName,2) == 4
+    % selected plots from output
+    kVIS_terminalMsg(['Reports: Calling BSP function ' fcnName{3}])
+    fcn = fcnName{3};
+    pltIdx = str2double(fcnName{2});
+else
+    % all plots TODO
+    kVIS_terminalMsg(['Reports: Calling BSP function ' fcnName{2}])
+    fcn = fcnName{2};
+    pltIdx = [];
+    keyboard
+end
+
 % run bsp function
-figHdl = feval(fcnName, hObject, []);
+figHdl = feval(fcn, hObject, []);
 
 % save returned figures
-for I = 1:length(figHdl)
+for I = pltIdx
     
     figHdl(I).Position = [0 0 750 325];
     
 %     figHdl(I).Visible = 'on';
     
     % save figures
-    fileNames{1,I} = fullfile(outFolder, 'img', [fcnName '_' num2str(I) '.jpeg']);
+    fileNames{1,I} = fullfile(outFolder, 'img', [fcn '_' num2str(I) '.jpeg']);
     print(figHdl(I),'-noui',fileNames{1,I}, '-djpeg', '-r200')
     
     % relative path
-    fileNames{1,I} = ['./img/' fcnName '_' num2str(I) '.jpeg'];
+    fileNames{1,I} = ['./img/' fcn '_' num2str(I) '.jpeg'];
     fileNames{2,I} = figHdl(I).Name;
     
 end
+
+close(figHdl)
