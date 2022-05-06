@@ -42,7 +42,7 @@ else
 end
 
 % upsample signal with new time vector
-signalNew = interp1(ts, signal, tNew, 'linear');
+signalNew = interp1(ts, signal, tNew, 'pchip');
 
 end
 
