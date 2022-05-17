@@ -1,3 +1,6 @@
 [submodule "src/FDS_FileFormat"]
 	path = src/FDS_FileFormat
 	url = https://github.com/flyingk/kVIS3_fds_file_format_api.git
+[submodule "contributed/std_atmosphere"]
+	path = contributed/std_atmosphere
+	url = https://github.com/flyingk/standard-atmosphere.git
