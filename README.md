@@ -64,12 +64,14 @@ Refer to the [help](https://flyingk.github.io/kVIS3/) for a user manual and codi
 Development of kVIS3 supported by The University of Sydney, School of AMME, and Lilium GmbH. 
 
 ### External Contributions:
-kVIS3 relies on the following external contributions:
+kVIS3 uses the following external contributions:
 
 - [Matlab GUI Layout Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/47982-gui-layout-toolbox)
 - [Matlab Widgets Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/66235-widgets-toolbox)
 - [Plot Google Maps](https://github.com/zoharby/plot_google_map)
+- [Plot Open Street Map](https://github.com/alexvoronov/plot_openstreetmap)
 - [Icons](https://icons8.com)
+- [Standard-Atmosphere](https://github.com/sky-s/standard-atmosphere)
 
 Thanks for sharing!
 
