@@ -148,6 +148,11 @@ elapsed = toc;
 %
 movegui(finp,'center');
 finp.Visible = 'on';
+%
+% register kVIS callback for data cursor
+%
+dcm = datacursormode(finp);
+dcm.UpdateFcn = @kVIS_dataCursor_Callback;
 
 % clear selection so same entry can be selected again
 handles.uiTabPlots.customPlotTree.SelectedNodes = [];
