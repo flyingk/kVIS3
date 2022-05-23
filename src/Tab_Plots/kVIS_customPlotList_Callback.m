@@ -104,7 +104,7 @@ end
 %
 
 if endsWith(plotName,".xlsx")
-    [~,~,PlotDefinition] = xlsread(plotName,'','','basic');
+    [~,~,PlotDefinition] = xlsread(plotName,'','A:T','basic');
 elseif endsWith(plotName,".m")
     BSP_NAME = 'none'; % required for legacy plot definitions
     run(plotName)

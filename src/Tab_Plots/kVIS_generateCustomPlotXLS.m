@@ -123,14 +123,12 @@ LabelOverride = 18;
 UnitOverride = 19;
 AxesFormatting = 20;
 
-% assert(iscell(plotDef) & size(plotDef, 2) == 19, 'Invalid plot definition');
-
 % get data content
 % remove header
-plotDef = plotDef(6:end,1:19);
-% remove extra lines from import
+plotDef = plotDef(6:end,:);
+% remove extra lines from below the data
 rl = ~isnan(cell2mat(plotDef(:,1)));
-plotDef = plotDef(rl==1,1:19);
+plotDef = plotDef(rl==1,:);
 
 % set up figure
 nPlots = max(cell2mat(plotDef(:,plotNo)));
@@ -338,14 +336,14 @@ for plotDefRowNo = 1:size(plotDef, 1)
     
     grid(ax(pltindex), 'on');
     
-%     if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
-%         % read semicolon delimited string of axes formatting commands
-%         str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
-%         % apply commands
-%         for J = 1:size(str,2)
-%             eval(str{J});
-%         end
-%     end
+    if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
+        % read semicolon delimited string of axes formatting commands
+        str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
+        % apply commands
+        for J = 1:size(str,2)
+            eval(str{J});
+        end
+    end
     
     % specific x vector - don't link
     if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)
