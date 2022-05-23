@@ -37,11 +37,10 @@ clc
 
 [fds, name] = kVIS_getCurrentFds(hObject);
 
-
 % [file, path] = uigetfile('*.mp4');
 
 vid = VideoReader(fullfile(path, file));
-vid2 = VideoReader(fullfile(path, file2));
+vid2 = vid;%VideoReader(fullfile(path, file2));
 
 duration = vid.Duration
 
@@ -93,7 +92,7 @@ sliderHandle.UserData.mov = vid;
 sliderHandle.UserData.mov2 = vid2;
 sliderHandle.UserData.ax  = ax;
 sliderHandle.UserData.ax2  = ax2;
-sliderHandle.UserData.offset = 2.2974364e+04;
+sliderHandle.UserData.offset = 2.2974364e+04*0;
 sliderHandle.UserData.offset = 0;
 sliderHandle.UserData.offset2 = 0;
 
@@ -156,8 +155,8 @@ function sliderCallback(obj,~)
 obj.UserData;
 obj.Value;
 
-obj.UserData.offset = (25944.04-134.8527);
-obj.UserData.offset2 = (25944.04-128.3362);
+obj.UserData.offset = (22647.69-120.82)*1;
+obj.UserData.offset2 = (22647.69-120.82)*1;
 
 f = read(obj.UserData.mov, round(obj.Value));
 
@@ -166,7 +165,7 @@ obj.UserData.img.CData = f;
 obj.UserData.timeCode.String = num2str(obj.UserData.offset + obj.UserData.mov.CurrentTime,7);
 
 
-f2 = read(obj.UserData.mov2, round(obj.Value)-6.5*60);
+f2 = read(obj.UserData.mov2, round(obj.Value)-6.5*60*0);
 
 obj.UserData.img2.CData = f2;
 
