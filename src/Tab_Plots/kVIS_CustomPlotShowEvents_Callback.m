@@ -18,15 +18,18 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function hide_all_legends_Callback(hObject, ~)
+function kVIS_CustomPlotShowEvents_Callback(hObject, ~)
 
-    LegendHandles = findobj(gcbf(), 'tag', 'legend');
-    if ~isempty(LegendHandles)
-        if any(strcmp({LegendHandles(:).Visible}, 'on'))
-            set(LegendHandles, 'Visible', 'off');
-        else
-            set(LegendHandles, 'Visible', 'on');
-        end
+    fig = gcbf;
+
+    MainWindowHandle = fig.UserData.MainWindowHandle;
+
+    axHandles = findobj(gcbf(), 'tag', 'Xaxislink');
+
+    for I = 1:length(axHandles)
+
+        kVIS_eventPlot(MainWindowHandle, [], axHandles(I))
+
     end
-
+    
 end

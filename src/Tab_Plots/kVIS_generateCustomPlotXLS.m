@@ -45,7 +45,9 @@ if isempty(Style)
 else
 %     Style = KSID.Util.MergeStructs(Style, DefaultStyle);
 end
-
+%
+% format figure
+%
 kVIS_setGraphicsStyle(figure_handle, Style.Figure);
 
 main_div = uix.VBox('Parent', figure_handle, 'Tag', 'vbox');
@@ -61,7 +63,14 @@ ctrls= uix.HButtonBox('Parent', main_div, ...
 
 main_div.Heights = [-1 40];
 
-% Create buttons
+% Create buttons                % togglebutton
+uicontrol( ...
+    ctrls, ...
+    'Style', 'pushbutton', ...
+    'String', 'Add Events', ...
+    'Callback', @kVIS_CustomPlotShowEvents_Callback ...
+);
+
 uicontrol( ...
     ctrls, ...
     'Style', 'pushbutton', ...
@@ -80,7 +89,7 @@ uicontrol( ...
     ctrls, ...
     'Style', 'pushbutton', ...
     'String', 'Hide legends', ...
-    'Callback', @hide_all_legends_Callback ...
+    'Callback', @kVIS_hide_all_legends_Callback ...
 );
 
 uicontrol( ...
@@ -118,10 +127,10 @@ AxesFormatting = 20;
 
 % get data content
 % remove header
-plotDef = plotDef(6:end,1:20);
+plotDef = plotDef(6:end,1:19);
 % remove extra lines from import
 rl = ~isnan(cell2mat(plotDef(:,1)));
-plotDef = plotDef(rl==1,1:20);
+plotDef = plotDef(rl==1,1:19);
 
 % set up figure
 nPlots = max(cell2mat(plotDef(:,plotNo)));
@@ -329,14 +338,14 @@ for plotDefRowNo = 1:size(plotDef, 1)
     
     grid(ax(pltindex), 'on');
     
-    if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
-        % read semicolon delimited string of axes formatting commands
-        str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
-        % apply commands
-        for J = 1:size(str,2)
-            eval(str{J});
-        end
-    end
+%     if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
+%         % read semicolon delimited string of axes formatting commands
+%         str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
+%         % apply commands
+%         for J = 1:size(str,2)
+%             eval(str{J});
+%         end
+%     end
     
     % specific x vector - don't link
     if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)

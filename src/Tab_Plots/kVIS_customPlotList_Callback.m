@@ -153,6 +153,10 @@ finp.Visible = 'on';
 %
 dcm = datacursormode(finp);
 dcm.UpdateFcn = @kVIS_dataCursor_Callback;
+%
+% save fds in figure handle
+%
+finp.UserData.MainWindowHandle = hObject;
 
 % clear selection so same entry can be selected again
 handles.uiTabPlots.customPlotTree.SelectedNodes = [];

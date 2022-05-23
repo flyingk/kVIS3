@@ -18,15 +18,16 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_showEvents_Callback(hObject, ~)
+function kVIS_hide_all_legends_Callback(hObject, ~)
 
+    LegendHandles = findobj(gcbf(), 'tag', 'legend');
+    
+    if ~isempty(LegendHandles)
+        if any(strcmp({LegendHandles(:).Visible}, 'on'))
+            set(LegendHandles, 'Visible', 'off');
+        else
+            set(LegendHandles, 'Visible', 'on');
+        end
+    end
 
-if hObject.Value == 0
-    hObject.CData = imread('show_events.png');
-else
-    hObject.CData = imread('show_events_p.png')-10;
-    kVIS_eventPlot(hObject,[],[]);
 end
-
-end
-
