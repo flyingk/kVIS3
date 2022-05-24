@@ -295,19 +295,27 @@ for plotDefRowNo = 1:size(plotDef, 1)
         end
     else
         xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
-
     end
     
     % LabelOverride
     if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-        if ~isnan(plotDef{plotDefRowNo, UnitOverride})
-            errordlg('XLS Custom Plots: Unit override not yet implemented. Enter full string in Label Override.')
-            yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
-        else
-            yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
-        end
+        yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
     else
         yLabel = kVIS_generateLabels(yMeta, []);
+    end
+
+    % UnitOverride
+    if ~isnan(plotDef{plotDefRowNo, UnitOverride})
+        
+        if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+            % Combine label and unit override
+            str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
+            yLabel = kVIS_generateLabels(str, []);
+        else
+            % Combine original label and unit override latex string - might break....
+            str = split(yLabel,' $');
+            yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
+        end
     end
     
     % collect labels for legend/ylabel

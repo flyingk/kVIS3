@@ -35,6 +35,8 @@ function [ labelStr ] = kVIS_generateLabels(signalMeta, stringModifier)
 %
 
 if ~isstruct(signalMeta)
+
+    % name string already provided (option 3)
     if startsWith(strip(signalMeta), '$')
         labelStr = strip(signalMeta);
         return
@@ -44,6 +46,7 @@ if ~isstruct(signalMeta)
     
 else
     
+    % option 1/2
     NameStr = strip(signalMeta.name);
     
     % check which option applies
