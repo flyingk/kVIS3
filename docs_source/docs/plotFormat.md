@@ -53,6 +53,8 @@
 
 - UnitOverride: Specify a new unit for yChannel (appears in plot labels and legends). Provide a valid LaTeX string. Leave empty for defaults.
 
+- ***NEW Axes Formatting (Column T, not shown in above figure): Semi-colon separated list of Matlab axes formatting commands ( ylim([y1 y2]) for example ). Any command working on the current axes should work.***
+
 ## Legacy m file format
 
 Kept for compatibility, use for new plots is discouraged.
