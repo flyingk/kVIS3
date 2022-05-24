@@ -28,39 +28,18 @@
 %>
 %> @param GUI standard input 1
 %> @param GUI standard input 2
-%> @param Custom plot axes handle
+%> @param Axes handle
 %
 function kVIS_eventPlot(MainWindowObject, ~, axesHandle)
 
-handles=guidata(MainWindowObject);
+hold(axesHandle, 'on');
 
+ylim = axesHandle.YLim;
 
-%     if ~isempty(handles.uiTabDataViewer.showEvents)
-%         h = handles.uiTabDataViewer.showEvents;
-%         delete(h)
-%     end
-
-%
-% selected axes
-%
-if isempty(axesHandle)
-    targetPanel = kVIS_dataViewerGetActivePanel();
-    axes_handle = targetPanel.axesHandle;
-else
-    axes_handle = axesHandle;
-end
-
-hold(axes_handle, 'on');
-
-ylim = kVIS_getDataRange(MainWindowObject, 'YLim');
-
-if isnan(ylim)
-    %     current_lines = kVIS_findValidPlotLines(axes_handle);
-    %
-    %     ylim(1) = min(arrayfun(@(x) x.UserData.yMin, current_lines));
-    %     ylim(2) = max(arrayfun(@(x) x.UserData.yMax, current_lines));
-
-    ylim = axes_handle.YLim;
+% fix very small ylim difference
+if abs(ylim(1) - ylim(2)) < 1e-3
+    ylim(1) = ylim(1) - 1e-3;
+    ylim(2) = ylim(2) + 1e-3;
 end
 
 fds = kVIS_getCurrentFds(MainWindowObject);
@@ -81,9 +60,7 @@ for j = 1:size(eventList,2)
     % create plot
     pg = polyshape([in out out in],[ylim(1) ylim(1) ylim(2) ylim(2)]);
 
-    pp(j) = plot(axes_handle, pg, ...
-        'EdgeAlpha',0.4,...
-        'FaceAlpha',0.2);
+    pp(j) = plot(axesHandle, pg, 'EdgeAlpha',0.4, 'FaceAlpha',0.2);
 
     % use context menu for labels
     m = uicontextmenu();
@@ -91,24 +68,18 @@ for j = 1:size(eventList,2)
 
     pp(j).UIContextMenu = m;
     pp(j).DisplayName = eventList(j).type;
+    pp(j).Tag = 'EventDisplay';
 
-    % custom plot don't add to legend
+    % don't add to legend
     if ~isempty(axesHandle)
         pp(j).Annotation.LegendInformation.IconDisplayStyle = 'off';
     end
 
     % Add a label to each of the plots based on the name of the event
     eventName = [eventList(j).type,' '];
-    text(axes_handle, out,ylim(2),eventName,'Rotation',90,'FontSize',8, ...
-        'VerticalAlignment','bottom','HorizontalAlignment','right');
-end
-
-% not a custom plot ?
-if isempty(axesHandle)
-
-    handles.uiTabDataViewer.showEvents = pp;
-
-    guidata(MainWindowObject, handles);
+    text(axesHandle, out,ylim(2),eventName,'Rotation',90,'FontSize',8, ...
+        'VerticalAlignment','bottom','HorizontalAlignment','right',...
+        'Tag','EventDisplay');
 end
 
 end

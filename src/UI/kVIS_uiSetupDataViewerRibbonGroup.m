@@ -1,3 +1,7 @@
+%
+%> @file kVIS_uiSetupDataViewerRibbonGroup.m
+%> @brief Create Button group for Data Viewer
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +22,12 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Create Button group for Data Viewer
+%>
+%> @param GUI standard input 1
+%> @param Target UI element
+%
 function handles = kVIS_uiSetupDataViewerRibbonGroup(handles, uiRibbonRight)
 
 if ~nargin
@@ -86,12 +96,11 @@ uicontrol(rbn, 'Style', 'pushbutton',...
 uix.Empty('Parent', rbn);
 
 
-uicontrol(rbn, 'Style', 'pushbutton',...
+uicontrol(rbn, 'Style', 'togglebutton',...
     'CData', imread('show_events.png'),...
     'TooltipString','Show Event boundaries in Plot',...
     'Tag', 'showEventsToggle', ...
-    'Callback',{@kVIS_eventPlot,[]});
-    % kVIS_showEvents_Callback
+    'Callback',@kVIS_showEvents_Callback);
 
 handles.uiTabDataViewer.showEvents = [];
 

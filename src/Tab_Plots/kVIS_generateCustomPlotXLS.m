@@ -1,3 +1,7 @@
+%
+%> @file kVIS_generateCustomPlotXLS.m
+%> @brief Generate custom plot from XLS definition
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +22,15 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Generate custom plot from XLS definition
+%>
+%> @param Target figure
+%> @param FDS file
+%> @param Plot definition structure
+%> @param Plot time axis limits 
+%> @param Plot style structure
+%
 function [ ] = kVIS_generateCustomPlotXLS(figure_handle, fds, plotDef, lims, Style)
 
 warning('on','verbose')
@@ -63,11 +76,11 @@ ctrls= uix.HButtonBox('Parent', main_div, ...
 
 main_div.Heights = [-1 40];
 
-% Create buttons                % togglebutton
+% Create buttons
 uicontrol( ...
     ctrls, ...
-    'Style', 'pushbutton', ...
-    'String', 'Add Events', ...
+    'Style', 'togglebutton', ...
+    'String', 'Show Events', ...
     'Callback', @kVIS_CustomPlotShowEvents_Callback ...
 );
 

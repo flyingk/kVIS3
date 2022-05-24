@@ -1,3 +1,7 @@
+%
+%> @file kVIS_showEvents_Callback.m
+%> @brief Callback for show events button
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,14 +22,29 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Callback for show events button
+%>
+%> @param GUI standard input 1
+%> @param GUI standard input 2
+%
 function kVIS_showEvents_Callback(hObject, ~)
-
 
 if hObject.Value == 0
     hObject.CData = imread('show_events.png');
+
+    obj = findobj(gcbf(), 'Tag', 'EventDisplay');
+    delete(obj);
 else
     hObject.CData = imread('show_events_p.png')-10;
-    kVIS_eventPlot(hObject,[],[]);
+
+    axHandles = findobj(gcbf(), 'Type', 'axes');
+
+    for I = 1:length(axHandles)
+
+        kVIS_eventPlot(hObject, [], axHandles(I))
+
+    end
 end
 
 end
