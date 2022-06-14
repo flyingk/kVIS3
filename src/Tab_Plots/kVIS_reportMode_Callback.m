@@ -30,7 +30,7 @@ DefaultStyle.Axes.MinorGridColor = 'k';
 
 DefaultStyle.Legend.FontSize = 10;
 DefaultStyle.Legend.Location = 'Best';
-DefaultStyle.Legend.Orientation = 'horizontal';
+% DefaultStyle.Legend.Orientation = 'horizontal';
 DefaultStyle.Legend.Interpreter = 'latex';
 
 

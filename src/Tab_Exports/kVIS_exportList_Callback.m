@@ -90,6 +90,8 @@ unitOverride = 7;
 
 nExports = max(cell2mat(ExportDef(:,exportNo)));
 
+exportData = [];
+
 for I = 1: nExports
     
     % get data
@@ -99,6 +101,11 @@ for I = 1: nExports
     if yp == -1
         disp('y channel not found... Skipping.')
         continue;
+    end
+    
+    % init output structure with correct length
+    if isempty(exportData)
+        exportData = zeros(length(yp), nExports);
     end
     
     % apply scale factor
