@@ -29,5 +29,6 @@ end
 
 w = (fmin:0.01:fmax)*2*pi;
 
-[y, x] = spect(data, timeCh(pts), w, 25, 0, 0);
+% generate psd, remove bias from signal
+[y, x] = spect(data-mean(data), timeCh(pts), w, 10, 0, 0);
 end
