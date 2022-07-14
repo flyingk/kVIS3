@@ -112,7 +112,7 @@ end
 if osm == true
     % Use OpenStreetMap which not requires a Google API key
     % Add OpenStreetMap underlay
-    plot_openstreetmap('Alpha', 1, 'Scale', 1);
+    plot_openstreetmap('Alpha', 1, 'Scale', 1, 'Alt', min(alt));
 else
     % Add google map underlay
     plot_google_map( ...
