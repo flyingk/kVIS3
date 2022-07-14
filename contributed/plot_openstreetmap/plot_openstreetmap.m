@@ -31,10 +31,12 @@ p = inputParser;
 validScalar0to1 = @(x) isnumeric(x) && isscalar(x) && (x >= 0) && (x <=1);
 validScalarPos  = @(x) isnumeric(x) && isscalar(x);
 validMaxZoomLevel  = @(x) isnumeric(x) && isscalar(x) && (x >= 0);
+validScalarAltitude = @(x) isnumeric(x) && isscalar(x);
 addParameter(p, 'BaseUrl',"http://a.tile.openstreetmap.org", @isstring);
 addParameter(p, 'Alpha', 1, validScalar0to1);
 addParameter(p, 'Scale', 1, validScalarPos);
 addParameter(p, 'MaxZoomLevel', 16, validMaxZoomLevel);
+addParameter(p, 'Alt', 0, validScalarAltitude);
 parse(p,varargin{:});
 
 ax = gca();
@@ -44,6 +46,7 @@ baseurl = p.Results.BaseUrl;
 alpha = p.Results.Alpha;
 scale = p.Results.Scale;
 maxZoomLevel = p.Results.MaxZoomLevel;
+altitude = p.Results.Alt;
 
 %% Convertion from lat lon to tile x and y, and back.
 % See: https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
@@ -111,6 +114,13 @@ for x = min(minmaxX):max(minmaxX)
         set(im,'tag','osm_map_tile')
         set(im,'Parent',hgrp) 
         uistack(im, 'bottom') % move map to bottom (so it doesn't hide previously drawn annotations)
+
+        % Translate map along z axis to match a given altitude
+        t = hgtransform('Parent',ax);
+        set(im,'Parent',t)
+        Rz = eye(4);
+        Rz(3,4) = altitude;
+        set(t,'Matrix',Rz)
     end
 end
 set(hgrp,'tag','osm_map')
