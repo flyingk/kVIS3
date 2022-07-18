@@ -189,6 +189,8 @@ scaleUnits = 'si';
 if nargin >= 2
     for idx = 1:2:length(varargin)
         switch lower(varargin{idx})
+            case 'alt'
+                altitude = varargin{idx+1};
             case 'axis'
                 axHandle = varargin{idx+1};
             case 'height'
@@ -535,6 +537,13 @@ if nargout <= 1 % plot map
     end
     set(h, 'UserData', onCleanup(@() cleanupFunc(axHandle)));
     h_tmp.HitTest = 'off';
+
+    % Translate map along z axis to match a given altitude
+    t = hgtransform('Parent',axHandle);
+    set(h,'Parent',t)
+    Rz = eye(4);
+    Rz(3,4) = altitude;
+    set(t,'Matrix',Rz)
     
 %     % if auto-refresh mode - override zoom callback to allow autumatic 
 %     % refresh of map upon zoom actions.
