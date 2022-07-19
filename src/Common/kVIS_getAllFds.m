@@ -1,6 +1,6 @@
 %
-%> @file kVIS_dataSetListState.m
-%> @brief Return information about the open data files
+%> @file kVIS_getAllFds.m
+%> @brief Return all open fds files with their names
 %
 %
 % kVIS3 Data Visualisation
@@ -24,32 +24,31 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %
-%> @brief Return information about the open data files
+%> @brief Return all open fds files with their names
 %>
 %> @param GUI handles
 %>
-%> @retval Current list value property
-%> @retval Currently selected file name
-%> @retval Number of open files
-%> @retval Names of all open files
+%> @retval Cell array with fds structs
+%> @retval Char vector with corresponding names
 %
-function [currentVal, currentName, noOfEntries, str] = kVIS_dataSetListState(hObject)
+function [fds, names] = kVIS_getAllFds(hObject)
 
-h = guidata(hObject);
+[~, name, noOfEntries, str] = kVIS_dataSetListState(hObject);
 
-list = h.uiTabData.dataSetList;
-
-str = list.String;
-
-if ~isempty(str)
-    currentVal = list.Value;
-    currentName = str{currentVal};
-    noOfEntries = size(list.String, 1);
-else
-    currentName = '';
-    currentVal = 0;
-    noOfEntries = 0;
+if isempty(name)
+    fds = -1;
+    names = '';
+    return
 end
 
+for I = 1:noOfEntries
+
+    fname = strip(regexprep(str{I}, '\s.*$', ''));
+
+    fds{I} = evalin('base', fname);
+
 end
 
+names = str;
+
+end

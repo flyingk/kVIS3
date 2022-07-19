@@ -1,3 +1,8 @@
+%
+%> @file kVIS_getCurrentFds.m
+%> @brief Return currently selected fds structure and its name
+%
+%
 % kVIS3 Data Visualisation
 %
 % Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
@@ -18,6 +23,14 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+%
+%> @brief Return currently selected fds structure and its name
+%>
+%> @param GUI handles
+%>
+%> @retval Currently selected fds structure
+%> @retval Corresponding file name
+%
 function [fds, name] = kVIS_getCurrentFds(hObject)
 
 [~, name, ~] = kVIS_dataSetListState(hObject);

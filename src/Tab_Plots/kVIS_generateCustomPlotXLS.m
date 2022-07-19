@@ -357,7 +357,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
     
     grid(ax(pltindex), 'on');
     
-    if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
+    if ~isnan(plotDef{plotDefRowNo,AxesFormatting}) && ischar(plotDef{plotDefRowNo,AxesFormatting})
         % read semicolon delimited string of axes formatting commands
         str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
         % apply commands
