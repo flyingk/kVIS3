@@ -35,17 +35,20 @@ function fileNames = kVIS_writeMapPlotElement(hObject, pathColorChannel, outFold
 % run bsp function
 figHdl = feval('kVIS_createMap_Callback', hObject, [], pathColorChannel);
 
+% gen file ID
+id = randi(10000);
+
 % save returned figures
 for I = 1:length(figHdl)
     
     fcnName = ['mapPlot'];
     
     % save figures
-    fileNames{1,I} = fullfile(outFolder, 'img', [fcnName '_' num2str(I) '.jpeg']);
+    fileNames{1,I} = fullfile(outFolder, 'img', [fcnName '_' num2str(id) '.jpeg']);
     print(figHdl(I),'-noui',fileNames{1,I}, '-djpeg', '-r200')
     
     % relative path
-    fileNames{1,I} = ['./img/' fcnName '_' num2str(I) '.jpeg'];
+    fileNames{1,I} = ['./img/' fcnName '_' num2str(id) '.jpeg'];
     fileNames{2,I} = figHdl(I).Name;
     
     delete(figHdl);
