@@ -44,7 +44,7 @@ for ip=15:Nparam
     param = tbl{ip,7};
     serr = tbl{ip,8};
     
-    fprintf(fid, '$ %s $ & %g & $\\pm$%g \\\\ \n',...
+    fprintf(fid, '$ %s $ & %.3g & $\\pm$%.3g \\\\ \n',...
         pnames, param, serr);
     
     fprintf(fid, '\\hline\n');
