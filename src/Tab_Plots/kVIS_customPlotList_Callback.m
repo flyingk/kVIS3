@@ -93,24 +93,12 @@ end
 
 
 try
-    [fds, fds_name] = kVIS_getCurrentFds(hObject);
+%     [fds, fds_name] = kVIS_getCurrentFds(hObject);
+    [fds, fds_name, idxFdsCurrent] = kVIS_getAllFds(hObject);
 catch
     disp('No fds loaded. Abort.')
     return;
 end
-
-%
-% Read plot definition
-%
-
-if endsWith(plotName,".xlsx")
-    [~,~,PlotDefinition] = xlsread(plotName,'','A:T','basic');
-elseif endsWith(plotName,".m")
-    BSP_NAME = 'none'; % required for legacy plot definitions
-    run(plotName)
-    PlotDefinition = plot_definition;
-end
-
 
 % % plot full data length
 if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0
@@ -122,46 +110,51 @@ else % use X-Limits (if button pressed or for events)
     xlim = kVIS_getDataRange(hObject, 'XLim');
     
 end
+
 tic
 
 pltName = strsplit(plotName,'/');
 kVIS_terminalMsg(['Creating Plot >' pltName{end} '<']);
 
-if size(PlotDefinition, 2) < 19
+if endsWith(plotName,".m")
+    BSP_NAME = 'none'; % required for legacy plot definitions
+    run(plotName)
+
     % Create a new figure and format it
-    finp = figure('Position',[100,100,1000,800],'Units','normalized',...
+    figH = figure('Position',[100,100,1000,800],'Units','normalized',...
         'Visible','off');
     
-    kVIS_generateCustomPlotM(finp, fds, plot_definition, xlim, []);
+    kVIS_generateCustomPlotM(figH, fds{idxFdsCurrent}, plot_definition, xlim, []);
 else
     % Create a new figure and format it
-    finp = figure('Position',[100,100,PlotDefinition{3,5},PlotDefinition{3,6}],...
-        'Units','normalized','Name',[fds_name ': ' PlotDefinition{3,2}],...
-        'NumberTitle','off',...
-        'Visible','off');
+    figH = figure('NumberTitle','off', 'Visible','off');
     
-    kVIS_generateCustomPlotXLS(finp, fds, PlotDefinition, xlim, []);
+    ax = kVIS_generateCustomPlotXLS(figH, fds, plotName, xlim, [], fds_name, idxFdsCurrent);
 end
+
 elapsed = toc;
 %
 % show plot figure at screen center
 %
-movegui(finp,'center');
-finp.Visible = 'on';
+movegui(figH,'center');
+figH.Visible = 'on';
 %
 % register kVIS callback for data cursor
 %
-dcm = datacursormode(finp);
+dcm = datacursormode(figH);
 dcm.UpdateFcn = @kVIS_dataCursor_Callback;
 %
-% save fds in figure handle
+% save link to main window in figure handle
 %
-finp.UserData.MainWindowHandle = hObject;
+figH.UserData.MainWindowHandle = hObject;
 
 % clear selection so same entry can be selected again
 handles.uiTabPlots.customPlotTree.SelectedNodes = [];
 
 % success msg
 kVIS_terminalMsg(['Creating Plot... Complete (' num2str(elapsed,2) ' sec)']);
+
+% hg = figure()
+% ax(1).Parent = hg
 end
 

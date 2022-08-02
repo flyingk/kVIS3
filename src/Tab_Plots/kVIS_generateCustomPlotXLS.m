@@ -31,13 +31,24 @@
 %> @param Plot time axis limits 
 %> @param Plot style structure
 %
-function [ ] = kVIS_generateCustomPlotXLS(figure_handle, fds, plotDef, lims, Style)
+%> @return Axes handles
+%
+function [ ax ] = kVIS_generateCustomPlotXLS(figH, fds, plotName, lims, Style, fds_name, idxFdsCurrent)
 
 warning('on','verbose')
 % warning('off', 'MATLAB:gui:latexsup:UnableToInterpretLaTeXString')
 % warning('off', 'MATLAB:gui:latexsup:UnsupportedFont')
 warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
 
+
+[~,~,plotDef] = xlsread(plotName,'','A:T','basic');
+
+figH.Position = [100,100,plotDef{3,5},plotDef{3,6}];
+figH.Name     = [fds_name{idxFdsCurrent} ': ' plotDef{3,2}];
+
+%
+% format figure
+%
 DefaultStyle = struct();
 DefaultStyle.Figure = struct();
 DefaultStyle.Figure.Color = getpref('kVIS_prefs','uiBackgroundColour');
@@ -58,12 +69,13 @@ if isempty(Style)
 else
 %     Style = KSID.Util.MergeStructs(Style, DefaultStyle);
 end
-%
-% format figure
-%
-kVIS_setGraphicsStyle(figure_handle, Style.Figure);
 
-main_div = uix.VBox('Parent', figure_handle, 'Tag', 'vbox');
+kVIS_setGraphicsStyle(figH, Style.Figure);
+
+%
+% Build plot
+%
+main_div = uix.VBox('Parent', figH, 'Tag', 'vbox');
 
 plts = uix.HBox('Parent', main_div);
 plts.Tag = 'plts';
@@ -181,9 +193,8 @@ for plotDefRowNo = 1:size(plotDef, 1)
     %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % get y data
-    yChanID = strsplit(plotDef{plotDefRowNo, yChannel}, '/');
-    [yp, yMeta] = kVIS_fdsGetChannel(fds, yChanID{1}, yChanID{2});
-    
+    [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, yChannel, idxFdsCurrent);
+        
     if yp == -1
         disp('y channel not found... Skipping.')
         currentPlotLineNo = currentPlotLineNo - 1;
@@ -192,8 +203,8 @@ for plotDefRowNo = 1:size(plotDef, 1)
     
     % get x vector (default: time)
     if ~isnan(plotDef{plotDefRowNo,xChannel})
-        xChanID = strsplit(plotDef{plotDefRowNo, xChannel}, '/');
-        [xp, xMeta] = kVIS_fdsGetChannel(fds, xChanID{1}, xChanID{2});
+
+        [xp, xMeta] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, xChannel, idxFdsCurrent);
         
         if xp == -1
             disp('x channel not found... Skipping.')
@@ -221,7 +232,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
     if ~isnan(plotDef{plotDefRowNo,fcnHandle})
 
         try
-            [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds, pts, plotDef{plotDefRowNo,fcnChannel});
+            [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds{fdsIndex}, pts, plotDef{plotDefRowNo,fcnChannel});
             if ~isempty(xp2)
                 xp = xp2;
                 xMeta.texName = 'frequency \; [Hz]';
@@ -256,9 +267,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
     % scatter plot
     if ~isnan(plotDef{plotDefRowNo,cChannel})
         
-        ccC = strsplit(plotDef{plotDefRowNo, cChannel}, '/');
-        
-        [col] = kVIS_fdsGetChannel(fds, ccC{1}, ccC{2});
+        [col, ~] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, cChannel, idxFdsCurrent);
         
         if col == -1
             disp('Colour channel not available...')
@@ -396,10 +405,32 @@ for currentPlotLineNo = 1:pltindex
 end
 
 % find all axes handle of type 'axes' and tag for linking
-all_ha = findobj( figure_handle, 'type', 'axes', 'Tag', 'Xaxislink' );
+all_ha = findobj( figH, 'type', 'axes', 'Tag', 'Xaxislink' );
 
 if ~isempty(all_ha)
     linkaxes( all_ha, 'x' );
 end
 
+end
+
+%
+% Get channel data from selected FDS
+%
+function [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, colNo, idxFdsCurrent)
+%
+% Source fds - identifier gives list entry number
+%
+yChanFDS = strsplit(plotDef{plotDefRowNo, colNo}, ':');
+
+if length(yChanFDS) > 1
+    % get data from specified fds
+    yChanID = strsplit(yChanFDS{2}, '/');
+    fdsIndex = str2double(yChanFDS{1});
+    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
+else
+    % get data from currently selected fds
+    yChanID = strsplit(yChanFDS{1}, '/');
+    fdsIndex = idxFdsCurrent;
+    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
+end
 end

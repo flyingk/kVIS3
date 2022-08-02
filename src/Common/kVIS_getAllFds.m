@@ -30,10 +30,11 @@
 %>
 %> @retval Cell array with fds structs
 %> @retval Char vector with corresponding names
+%> @retval Index of currently sleected list entry
 %
-function [fds, names] = kVIS_getAllFds(hObject)
+function [fds, names, idxCurrent] = kVIS_getAllFds(hObject)
 
-[~, name, noOfEntries, str] = kVIS_dataSetListState(hObject);
+[idxCurrent, name, noOfEntries, str] = kVIS_dataSetListState(hObject);
 
 if isempty(name)
     fds = -1;
