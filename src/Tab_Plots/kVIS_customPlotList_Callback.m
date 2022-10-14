@@ -153,8 +153,5 @@ handles.uiTabPlots.customPlotTree.SelectedNodes = [];
 
 % success msg
 kVIS_terminalMsg(['Creating Plot... Complete (' num2str(elapsed,2) ' sec)']);
-
-% hg = figure()
-% ax(1).Parent = hg
 end
 
