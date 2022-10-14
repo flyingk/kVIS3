@@ -29,8 +29,8 @@ kVIS_setGraphicsStyle(figH, Style.Figure);
 
 [~,~,plotDef] = xlsread(plotName,'','A:T','basic');
 
-plts = uipanel('Parent', figH,'Position',[0 0.00 1 1]);
-plts.Tag = 'plts';
+figH.Position = [100,100,plotDef{3,5},plotDef{3,6}];
+figH.Name     = [fds_name{idxFdsCurrent} ': ' plotDef{3,2}];
 
 % Check plot definition.
 % Columns:
@@ -73,7 +73,7 @@ nPlotRows=[PlotRows(bbb)' PlotRows(end)];
 nPlots    = max(cell2mat(plotDef(:,plotNo)));
 nPlotCols = max(PlotCols);
 
-hh = setupPanels(plts, nPlotRows, nPlotCols);
+hh = setupPanels(figH, nPlotRows, nPlotCols);
 
 oldpltindex = 0;
 
@@ -83,40 +83,40 @@ plotFcnColors=[];
 for plotDefRowNo = 1:size(plotDef, 1)
     %% plot setup
     pltindex = plotDef{plotDefRowNo,plotNo};
-    
+
     if pltindex ~= oldpltindex
         % next plot axes
         currentPlotLineNo = 1;
         clear p labelstr mm ma
-        
+
         hh(pltindex).BackgroundColor = getpref('kVIS_prefs','uiBackgroundColour');
         hh(pltindex).Tag = 'cpTimeplot';
-        
+
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
         hh(pltindex).SizeChangedFcn = @kVIS_panelSizeChanged_Callback;
     else
         % continue in current axes
         currentPlotLineNo = currentPlotLineNo + 1;
     end
-    
+
     oldpltindex = pltindex;
-    
+
     %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     % get y data
     [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, yChannel, idxFdsCurrent);
-        
+
     if yp == -1
         disp('y channel not found... Skipping.')
         currentPlotLineNo = currentPlotLineNo - 1;
         continue;
     end
-    
+
     % get x vector (default: time)
     if ~isnan(plotDef{plotDefRowNo,xChannel})
 
         [xp, xMeta] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, xChannel, idxFdsCurrent);
-        
+
         if xp == -1
             disp('x channel not found... Skipping.')
             currentPlotLineNo = currentPlotLineNo - 1;
@@ -126,18 +126,18 @@ for plotDefRowNo = 1:size(plotDef, 1)
         xp = yMeta.timeVec;
         xMeta.name = 'Time_UNIT_sec';
     end
-    
-    
+
+
     % constrain to xlim
     pts = find(yMeta.timeVec > lims(1) & yMeta.timeVec < lims(2));
     xp = xp(pts);
     yp = yp(pts);
-    
+
     %% Y-axis data proc / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     % apply scale factor
     yp = yp * plotDef{plotDefRowNo,ScaleFactor};
-    
+
     % apply function to data - fcnData content is given to function as
     % string to be processed inside fcn.
     if ~isnan(plotDef{plotDefRowNo,fcnHandle})
@@ -157,15 +157,15 @@ for plotDefRowNo = 1:size(plotDef, 1)
     else
         xp2 = [];
     end
-    
+
     % ensure data is not complex
     if ~isreal(yp)
         disp('complex magic :( converting to real...')
         yp = real(yp);
     end
-        
+
     %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     % axes style
     if plotDef{plotDefRowNo,AxesLayout} == 'L'
         yyaxis(ax(pltindex), 'left')
@@ -177,36 +177,36 @@ for plotDefRowNo = 1:size(plotDef, 1)
 
     % scatter plot
     if ~isnan(plotDef{plotDefRowNo,cChannel})
-        
+
         [col, ~] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, cChannel, idxFdsCurrent);
-        
+
         if col == -1
             disp('Colour channel not available...')
             col = ones(size(xp));
         end
-        
+
         p = scatter(ax(pltindex), xp, yp, 2, col(pts));
         axis(ax(pltindex), 'tight');
-        
+
     elseif ~isempty(plotFcnColors)
-        
+
         p = scatter(ax(pltindex), xp, yp, 2, plotFcnColors);
         map = [0.2 0.8 0.2; 0.8 0 0];
         colormap(ax(pltindex),map);
         axis(ax(pltindex), 'tight');
-        
+
     else
-        
-        p = plot(ax(pltindex), xp, yp); 
-        
+
+        p = plot(ax(pltindex), xp, yp);
+
         hold(ax(pltindex), 'on');
         axis(ax(pltindex), 'tight');
-        
+
         p.LineWidth = 2.0;
 
     end
-    
-    
+
+
     %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~isnan(plotDef{plotDefRowNo, xAxisLabel})
         % generate (or ignore) custom x axis label
@@ -216,7 +216,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
     else
         xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
     end
-    
+
     % LabelOverride
     if ~isnan(plotDef{plotDefRowNo, LabelOverride})
         yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
@@ -226,7 +226,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
 
     % UnitOverride
     if ~isnan(plotDef{plotDefRowNo, UnitOverride})
-        
+
         if ~isnan(plotDef{plotDefRowNo, LabelOverride})
             % Combine label and unit override
             str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
@@ -237,46 +237,46 @@ for plotDefRowNo = 1:size(plotDef, 1)
             yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
         end
     end
-    
+
     % collect labels for legend/ylabel
     labelstr{currentPlotLineNo} = yLabel; %#ok<AGROW>
-   
+
     if currentPlotLineNo == 1 % this doesn't work with yyaxis...
         ylabel(labelstr{currentPlotLineNo},'Interpreter','latex', 'FontSize', 13);
     else
-        
+
         if ~isnan(plotDef{plotDefRowNo, yAxisLabel})
             ylabel(kVIS_generateLabels(plotDef{plotDefRowNo, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
         else
             ylabel([])
         end
-        
-        
+
+
         legend_handle = legend(ax(pltindex), labelstr);
-        
+
         if ~isnan(plotDef{plotDefRowNo,LegendLocation})
             Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
         end
-        
+
         if ~isnan(plotDef{plotDefRowNo,LegendStyle})
             Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
         end
-        
+
         kVIS_setGraphicsStyle(legend_handle, Style.Legend);
     end
-    
+
     %% formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     if ~isnan(plotDef{plotDefRowNo,PlotStyle})
         p.LineStyle = plotDef{plotDefRowNo,PlotStyle};
     end
-    
+
     if ~isnan(plotDef{plotDefRowNo,Color})
         p.Color = plotDef{plotDefRowNo,Color};
     end
-    
+
     grid(ax(pltindex), 'on');
-    
+
     if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
         % read semicolon delimited string of axes formatting commands
         str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
@@ -285,7 +285,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
             eval(str{J});
         end
     end
-    
+
     % specific x vector - don't link
     if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)
         Style.Axes.Tag = 'noXaxislink';
@@ -293,26 +293,26 @@ for plotDefRowNo = 1:size(plotDef, 1)
         Style.Axes.Tag = 'Xaxislink';
         xlim([p.XData(1) p.XData(end)])
     end
-    
-%     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
+
+    %     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
     if ax(pltindex).YLim(1) == 0
         ax(pltindex).YLim(1) = -0.1;
     end
-%     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
+    %     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
     if ax(pltindex).YLim(2) == 0
         ax(pltindex).YLim(2) = 0.1;
     end
-    
+
     kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
-    
+
 end
 %
 % maximise plot size - work required for yy plot
 %
 for currentPlotLineNo = 1:pltindex
-    
+
     ax(currentPlotLineNo).XRuler.Exponent = 0; % no exponent in time stamps
-    
+
 end
 
 % find all axes handle of type 'axes' and tag for linking
@@ -346,9 +346,12 @@ else
 end
 end
 
-function pnl=setupPanels(f, rows, cols)
+%
+% UI panel set up
+%
+function pnl = setupPanels(f, rows, cols)
 
-% panel width 
+% panel width
 colW = 1./cols;
 
 % panel height
@@ -357,21 +360,21 @@ rowH = 1./rows;
 K = 1;
 
 for I = 1:cols
-    
+
     % x-coord of column
     colX = 0:1/cols:0.999999999;
-    
+
     for J = rows(I):-1:1 % start from the top
-        
+
         % y-coord of panel
         rowY = [0:1/rows(I):0.9999999];
-    
+
         pnl(K) = uipanel('Parent',f,...
             'Position',[colX(I) rowY(J) colW rowH(I)]);
-        
+
         K = K + 1;
-         
+
     end
-    
+
 end
 end
