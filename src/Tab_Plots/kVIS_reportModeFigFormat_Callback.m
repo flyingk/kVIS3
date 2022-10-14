@@ -18,152 +18,360 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_reportModeFigFormat_Callback(hObject, ~)
+function [ ax ] = kVIS_reportModeFigFormat_Callback(~,~,~, fds, plotName, lims, Style, fds_name, idxFdsCurrent)
 
-clc
+warning('on','verbose')
+warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
 
-DefaultStyle.Axes = struct();
-DefaultStyle.Axes.XColor = 'k';
-DefaultStyle.Axes.YColor = 'k';
-DefaultStyle.Axes.GridColor = 'k';
-DefaultStyle.Axes.MinorGridColor = 'k';
+figH = figure();
 
-DefaultStyle.Legend.FontSize = 10;
-DefaultStyle.Legend.Location = 'Best';
-DefaultStyle.Legend.Orientation = 'horizontal';
-DefaultStyle.Legend.Interpreter = 'latex';
+kVIS_setGraphicsStyle(figH, Style.Figure);
+
+[~,~,plotDef] = xlsread(plotName,'','A:T','basic');
+
+plts = uipanel('Parent', figH,'Position',[0 0.00 1 1]);
+plts.Tag = 'plts';
+
+% Check plot definition.
+% Columns:
+plotNo = 1;
+Row = 2;
+Col = 3;
+AxesLayout = 4;
+xAxisLabel = 5;
+yAxisLabel = 6;
+LegendStyle= 7;
+LegendLocation = 8;
+xChannel = 10;
+yChannel = 11;
+cChannel = 12;
+PlotStyle = 13;
+Color = 14;
+ScaleFactor = 15;
+fcnHandle = 16;
+fcnChannel = 17;
+LabelOverride = 18;
+UnitOverride = 19;
+AxesFormatting = 20;
+
+% get data content
+% remove header
+plotDef = plotDef(6:end,:);
+% remove extra lines from below the data
+rl = ~isnan(cell2mat(plotDef(:,1)));
+plotDef = plotDef(rl==1,:);
 
 
+% set up figure
+PlotRows = cell2mat(plotDef(:,Row));
+PlotCols = cell2mat(plotDef(:,Col));
 
-fs = gcbf();
+aaa=diff(PlotCols);
+bbb=find(aaa>0);
+nPlotRows=[PlotRows(bbb)' PlotRows(end)];
 
-f3=figure('Visible','off');
-f3.Units = 'normalized';
-f3.Position = fs.Position;
+nPlots    = max(cell2mat(plotDef(:,plotNo)));
+nPlotCols = max(PlotCols);
 
-f3.Units = 'pixels';
+hh = setupPanels(plts, nPlotRows, nPlotCols);
 
+oldpltindex = 0;
 
-obj = findobj(gcbf(), 'Tag', 'plts');
+% line coloring provided by custom plot fcn
+plotFcnColors=[];
 
-
-hh = copyobj(obj(1), f3);
-
-
-hh.Position = [ 1 1 hh.Position(3) hh.Position(4)];
-f3.Position = [f3.Position(1)+200 f3.Position(2)+200 hh.Position(3) hh.Position(4)-hh.Position(2)];
-
-
-
-pHandles = findobj(f3, 'Type', 'uipanel');
-
-if ~isempty(pHandles)
+for plotDefRowNo = 1:size(plotDef, 1)
+    %% plot setup
+    pltindex = plotDef{plotDefRowNo,plotNo};
     
-    for i=1:length(pHandles)
-        pHandles(i).BackgroundColor = 'w';
+    if pltindex ~= oldpltindex
+        % next plot axes
+        currentPlotLineNo = 1;
+        clear p labelstr mm ma
+        
+        hh(pltindex).BackgroundColor = getpref('kVIS_prefs','uiBackgroundColour');
+        hh(pltindex).Tag = 'cpTimeplot';
+        
+        ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
+        hh(pltindex).SizeChangedFcn = @kVIS_panelSizeChanged_Callback;
+    else
+        % continue in current axes
+        currentPlotLineNo = currentPlotLineNo + 1;
     end
     
-end
-
-axHandles = findobj(f3, 'Type', 'axes');
-
-if ~isempty(axHandles)
+    oldpltindex = pltindex;
     
-    for i=1:length(axHandles)
-        kVIS_setGraphicsStyle(axHandles(i), DefaultStyle.Axes);
+    %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % get y data
+    [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, yChannel, idxFdsCurrent);
+        
+    if yp == -1
+        disp('y channel not found... Skipping.')
+        currentPlotLineNo = currentPlotLineNo - 1;
+        continue;
     end
     
-end
+    % get x vector (default: time)
+    if ~isnan(plotDef{plotDefRowNo,xChannel})
 
-axHandles = findobj(f3, 'Type', 'legend');
-
-if ~isempty(axHandles)
-    
-    for i=1:length(axHandles)
-        kVIS_setGraphicsStyle(axHandles(i), DefaultStyle.Legend);
-    end
-    
-end
-
-%% PR 115-1897 quick fix
-% Something in the existing plot will not load correctly when saved as a
-% .fig file.
-% in order to work around this, the subplots will be copied from the
-% existing plot to a new plot before saving.
-
-f_new = figure('visible','off');
-gcf;
-f_new.Name = fs.Name;
-w = length(f3.Children.Children);
-h_max = 0;
-for c=1:w
-    if length(f3.Children.Children(c,1).Children) > h_max
-        h_max = length(f3.Children.Children(c,1).Children);
-    end
-end
-
-%% 
-% The current figure subplot positions increase in rows from bottom to top
-% and columns from right to left. Therefore, we must iterate through them
-% in reverse order to maintain the same positions in the new plot.
-
-n_spp = 1;
-spp = 1;
-for r = h_max:-1:1
-    for c = w:-1:1
-        if length(f3.Children.Children(c,1).Children) < r
-            continue
+        [xp, xMeta] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, xChannel, idxFdsCurrent);
+        
+        if xp == -1
+            disp('x channel not found... Skipping.')
+            currentPlotLineNo = currentPlotLineNo - 1;
+            continue;
         end
-        if isa(f3.Children.Children(c,1).Children(r,1).Children, 'matlab.graphics.axis.Axes')
-            if length(f3.Children.Children(c,1).Children(r,1).Children.Children) > 0
-                % ensure we dont copy an empty axes
-                sp = copyobj(f3.Children.Children(c,1).Children(r,1).Children,...
-                    f_new);
-                sp_ax(n_spp, 1) = sp;
-                subplot(h_max, w, spp, sp_ax(n_spp, 1));
-                n_spp = n_spp + 1;
-            end    
-        elseif length(f3.Children.Children(c,1).Children(r,1).Children) == 2
-            sp = copyobj([f3.Children.Children(c,1).Children(r,1).Children(2,1),...
-                f3.Children.Children(c,1).Children(r,1).Children(1,1)], f_new);
-            sp(2).Orientation = 'vertical';
-            sp(2).Location = 'westoutside';
-            sp_ax(n_spp, 1) = sp(1);
-            subplot(h_max, w, spp, sp_ax(n_spp, 1));
-            n_spp = n_spp + 1;
+    else
+        xp = yMeta.timeVec;
+        xMeta.name = 'Time_UNIT_sec';
+    end
+    
+    
+    % constrain to xlim
+    pts = find(yMeta.timeVec > lims(1) & yMeta.timeVec < lims(2));
+    xp = xp(pts);
+    yp = yp(pts);
+    
+    %% Y-axis data proc / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % apply scale factor
+    yp = yp * plotDef{plotDefRowNo,ScaleFactor};
+    
+    % apply function to data - fcnData content is given to function as
+    % string to be processed inside fcn.
+    if ~isnan(plotDef{plotDefRowNo,fcnHandle})
+
+        try
+            [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds{fdsIndex}, pts, plotDef{plotDefRowNo,fcnChannel});
+            if ~isempty(xp2)
+                xp = xp2;
+                xMeta.texName = 'frequency \; [Hz]';
+            end
+        catch ME
+            ME.identifier
+            disp('Function eval error... Ignoring.')
+            currentPlotLineNo=currentPlotLineNo-1;
+            continue;
         end
-        spp = spp + 1;
+    else
+        xp2 = [];
     end
+    
+    % ensure data is not complex
+    if ~isreal(yp)
+        disp('complex magic :( converting to real...')
+        yp = real(yp);
+    end
+        
+    %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % axes style
+    if plotDef{plotDefRowNo,AxesLayout} == 'L'
+        yyaxis(ax(pltindex), 'left')
+    elseif plotDef{plotDefRowNo,AxesLayout} == 'R'
+        yyaxis(ax(pltindex), 'right')
+    else
+        % single plot
+    end
+
+    % scatter plot
+    if ~isnan(plotDef{plotDefRowNo,cChannel})
+        
+        [col, ~] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, cChannel, idxFdsCurrent);
+        
+        if col == -1
+            disp('Colour channel not available...')
+            col = ones(size(xp));
+        end
+        
+        p = scatter(ax(pltindex), xp, yp, 2, col(pts));
+        axis(ax(pltindex), 'tight');
+        
+    elseif ~isempty(plotFcnColors)
+        
+        p = scatter(ax(pltindex), xp, yp, 2, plotFcnColors);
+        map = [0.2 0.8 0.2; 0.8 0 0];
+        colormap(ax(pltindex),map);
+        axis(ax(pltindex), 'tight');
+        
+    else
+        
+        p = plot(ax(pltindex), xp, yp); 
+        
+        hold(ax(pltindex), 'on');
+        axis(ax(pltindex), 'tight');
+        
+        p.LineWidth = 2.0;
+
+    end
+    
+    
+    %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    if ~isnan(plotDef{plotDefRowNo, xAxisLabel})
+        % generate (or ignore) custom x axis label
+        if ~strcmp(plotDef{plotDefRowNo, xAxisLabel},'none')
+            xlabel(kVIS_generateLabels(plotDef{plotDefRowNo, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
+        end
+    else
+        xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
+    end
+    
+    % LabelOverride
+    if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+        yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
+    else
+        yLabel = kVIS_generateLabels(yMeta, []);
+    end
+
+    % UnitOverride
+    if ~isnan(plotDef{plotDefRowNo, UnitOverride})
+        
+        if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+            % Combine label and unit override
+            str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
+            yLabel = kVIS_generateLabels(str, []);
+        else
+            % Combine original label and unit override latex string - might break....
+            str = split(yLabel,' $');
+            yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
+        end
+    end
+    
+    % collect labels for legend/ylabel
+    labelstr{currentPlotLineNo} = yLabel; %#ok<AGROW>
+   
+    if currentPlotLineNo == 1 % this doesn't work with yyaxis...
+        ylabel(labelstr{currentPlotLineNo},'Interpreter','latex', 'FontSize', 13);
+    else
+        
+        if ~isnan(plotDef{plotDefRowNo, yAxisLabel})
+            ylabel(kVIS_generateLabels(plotDef{plotDefRowNo, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
+        else
+            ylabel([])
+        end
+        
+        
+        legend_handle = legend(ax(pltindex), labelstr);
+        
+        if ~isnan(plotDef{plotDefRowNo,LegendLocation})
+            Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
+        end
+        
+        if ~isnan(plotDef{plotDefRowNo,LegendStyle})
+            Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
+        end
+        
+        kVIS_setGraphicsStyle(legend_handle, Style.Legend);
+    end
+    
+    %% formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    if ~isnan(plotDef{plotDefRowNo,PlotStyle})
+        p.LineStyle = plotDef{plotDefRowNo,PlotStyle};
+    end
+    
+    if ~isnan(plotDef{plotDefRowNo,Color})
+        p.Color = plotDef{plotDefRowNo,Color};
+    end
+    
+    grid(ax(pltindex), 'on');
+    
+    if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
+        % read semicolon delimited string of axes formatting commands
+        str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
+        % apply commands
+        for J = 1:size(str,2)
+            eval(str{J});
+        end
+    end
+    
+    % specific x vector - don't link
+    if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)
+        Style.Axes.Tag = 'noXaxislink';
+    else
+        Style.Axes.Tag = 'Xaxislink';
+        xlim([p.XData(1) p.XData(end)])
+    end
+    
+%     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
+    if ax(pltindex).YLim(1) == 0
+        ax(pltindex).YLim(1) = -0.1;
+    end
+%     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
+    if ax(pltindex).YLim(2) == 0
+        ax(pltindex).YLim(2) = 0.1;
+    end
+    
+    kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
+    
+end
+%
+% maximise plot size - work required for yy plot
+%
+for currentPlotLineNo = 1:pltindex
+    
+    ax(currentPlotLineNo).XRuler.Exponent = 0; % no exponent in time stamps
+    
 end
 
-linkaxes(sp_ax, 'x');
- 
-%% 
+% find all axes handle of type 'axes' and tag for linking
+all_ha = findobj( figH, 'type', 'axes', 'Tag', 'Xaxislink' );
 
-if ismac
-    [f,p]=uiputfile('kVIS plot.fig',[],'~/Desktop/kVIS plot.fig');
-    
-    if f ~= 0
-        fileN = fullfile(p,f);
-        set(f_new, 'visible', 'on');
-        savefig(f_new, fileN);
-        kVIS_terminalMsg('Print complete.')
-    end
-    
-elseif ispc
-    [f,p]=uiputfile('kVIS plot.fig',[],['C:\Users\' getenv('Username') '\Desktop\kVIS plot.fig']);
-    
-    if f ~= 0
-        fileN = fullfile(p,f);
-        set(f_new, 'visible', 'on');
-        savefig(f_new, fileN);
-        kVIS_terminalMsg('Print complete.')
-    end
+if ~isempty(all_ha)
+    linkaxes( all_ha, 'x' );
+end
 
 end
 
-delete(f3)
-close(f_new);
+%
+% Get channel data from selected FDS
+%
+function [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, colNo, idxFdsCurrent)
+%
+% Source fds - identifier gives list entry number
+%
+yChanFDS = strsplit(plotDef{plotDefRowNo, colNo}, ':');
 
+if length(yChanFDS) > 1
+    % get data from specified fds
+    yChanID = strsplit(yChanFDS{2}, '/');
+    fdsIndex = str2double(yChanFDS{1});
+    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
+else
+    % get data from currently selected fds
+    yChanID = strsplit(yChanFDS{1}, '/');
+    fdsIndex = idxFdsCurrent;
+    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
+end
+end
 
+function pnl=setupPanels(f, rows, cols)
+
+% panel width 
+colW = 1./cols;
+
+% panel height
+rowH = 1./rows;
+
+K = 1;
+
+for I = 1:cols
+    
+    % x-coord of column
+    colX = 0:1/cols:0.999999999;
+    
+    for J = rows(I):-1:1 % start from the top
+        
+        % y-coord of panel
+        rowY = [0:1/rows(I):0.9999999];
+    
+        pnl(K) = uipanel('Parent',f,...
+            'Position',[colX(I) rowY(J) colW rowH(I)]);
+        
+        K = K + 1;
+         
+    end
+    
+end
 end
