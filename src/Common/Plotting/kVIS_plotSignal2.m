@@ -38,7 +38,7 @@ warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
 %
 % Hold mode
 %
-if hold_mode == 1
+if hold_mode == true
     hold(axes_handle, 'on');
 else
     hold(axes_handle, 'off');
@@ -91,7 +91,7 @@ else
 end
 
 %% labels
-xlabel(axes_handle, xLbl)
+xlabel(axes_handle, xLbl, 'Interpreter', 'latex')
     
 if size(current_lines) == 1
     [ labelStr ] = current_lines.DisplayName;
@@ -105,7 +105,7 @@ end
 
 
 % update all axes styles
-kVIS_setGraphicsStyle(axes_handle, plotStyles.AxesB);
+kVIS_setGraphicsStyle(axes_handle, plotStyles.Axes);
 end
 
 function legendCallback(h, events)

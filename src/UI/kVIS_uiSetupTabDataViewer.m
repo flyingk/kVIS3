@@ -51,23 +51,14 @@ function Style = data_viewer_options()
 Style = struct();
 
 % Axes style (any attributes understood by set(axes_handle, ...)).
-Style.AxesB.XColor = 'w';
-Style.AxesB.YColor = 'w';
-Style.AxesB.GridColor = 'k';
-Style.AxesB.MinorGridColor = 'k';
-Style.AxesB.XMinorGrid  = 'on';
-Style.AxesB.YMinorGrid  = 'on';
-Style.AxesB.XGrid  = 'on';
-Style.AxesB.YGrid  = 'on';
-
-Style.AxesT.XColor = 'w';
-Style.AxesT.YColor = 'w';
-Style.AxesT.GridColor = 'k';
-Style.AxesT.MinorGridColor = 'k';
-Style.AxesT.XMinorGrid  = 'on';
-Style.AxesT.YMinorGrid  = 'on';
-Style.AxesT.XGrid  = 'on';
-Style.AxesT.YGrid  = 'on';
+Style.Axes.XColor = 'w';
+Style.Axes.YColor = 'w';
+Style.Axes.GridColor = 'k';
+Style.Axes.MinorGridColor = 'k';
+Style.Axes.XMinorGrid  = 'on';
+Style.Axes.YMinorGrid  = 'on';
+Style.Axes.XGrid  = 'on';
+Style.Axes.YGrid  = 'on';
 
 % Style.Main.XAxis.Color  = 'w';
 % Style.Main.YLAxis.Color = 'w';

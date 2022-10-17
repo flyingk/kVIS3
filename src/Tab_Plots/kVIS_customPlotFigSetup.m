@@ -18,12 +18,10 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [ ax ] = kVIS_customPlotFigSetup(~,~,~, fds, plotName, lims, Style, fds_name, idxFdsCurrent)
+function [ ax ] = kVIS_customPlotFigSetup(figH, fds, plotName, lims, Style, fds_name, idxFdsCurrent)
 
 warning('on','verbose')
 warning('off', 'MATLAB:handle_graphics:exceptions:SceneNode')
-
-figH = figure();
 
 kVIS_setGraphicsStyle(figH, Style.Figure);
 

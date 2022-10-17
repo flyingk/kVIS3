@@ -50,7 +50,7 @@ ax = axes('Parent', np,...
 
 kVIS_axesResizeToContainer(ax)
 
-kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
+kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.Axes);
 
 %
 % set panel properties

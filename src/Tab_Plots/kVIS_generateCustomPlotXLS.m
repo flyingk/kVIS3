@@ -126,27 +126,11 @@ uicontrol( ...
 
 ctrls.ButtonSize = [100 30];
 
-% Check plot definition.
+% Plot definition.
 % Columns:
 plotNo = 1;
 Row = 2;
 Col = 3;
-AxesLayout = 4;
-xAxisLabel = 5;
-yAxisLabel = 6;
-LegendStyle= 7;
-LegendLocation = 8;
-xChannel = 10;
-yChannel = 11;
-cChannel = 12;
-PlotStyle = 13;
-Color = 14;
-ScaleFactor = 15;
-fcnHandle = 16;
-fcnChannel = 17;
-LabelOverride = 18;
-UnitOverride = 19;
-AxesFormatting = 20;
 
 % get data content
 % remove header
@@ -166,242 +150,38 @@ end
 
 oldpltindex = 0;
 
-% line coloring provided by custom plot fcn
-plotFcnColors=[];
+clc
 
 for plotDefRowNo = 1:size(plotDef, 1)
     %% plot setup
     pltindex = plotDef{plotDefRowNo,plotNo};
-    
+
     if pltindex ~= oldpltindex
         % next plot axes
         currentPlotLineNo = 1;
-        clear p labelstr mm ma
-        
+
         hh(pltindex) = uipanel('Parent', columnIDX(plotDef{plotDefRowNo,Col}), 'Backgroundcolor', getpref('kVIS_prefs','uiBackgroundColour'));
         hh(pltindex).Tag = 'cpTimeplot';
-        
+
         ax(pltindex) = axes(hh(pltindex), 'Units', 'normalized');
+        grid(ax(pltindex), 'on');
         hh(pltindex).SizeChangedFcn = @kVIS_panelSizeChanged_Callback;
     else
         % continue in current axes
         currentPlotLineNo = currentPlotLineNo + 1;
     end
-    
+
     oldpltindex = pltindex;
-    
-    %% X,Y-axis data / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    % get y data
-    [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, yChannel, idxFdsCurrent);
-        
-    if yp == -1
-        disp('y channel not found... Skipping.')
+
+    [ax(pltindex), error] = kVIS_customPlot(ax(pltindex), fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent);
+
+    if error > 0
         currentPlotLineNo = currentPlotLineNo - 1;
         continue;
     end
-    
-    % get x vector (default: time)
-    if ~isnan(plotDef{plotDefRowNo,xChannel})
 
-        [xp, xMeta] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, xChannel, idxFdsCurrent);
-        
-        if xp == -1
-            disp('x channel not found... Skipping.')
-            currentPlotLineNo = currentPlotLineNo - 1;
-            continue;
-        end
-    else
-        xp = yMeta.timeVec;
-        xMeta.name = 'Time_UNIT_sec';
-    end
-    
-    
-    % constrain to xlim
-    pts = find(yMeta.timeVec > lims(1) & yMeta.timeVec < lims(2));
-    xp = xp(pts);
-    yp = yp(pts);
-    
-    %% Y-axis data proc / label %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    % apply scale factor
-    yp = yp * plotDef{plotDefRowNo,ScaleFactor};
-    
-    % apply function to data - fcnData content is given to function as
-    % string to be processed inside fcn.
-    if ~isnan(plotDef{plotDefRowNo,fcnHandle})
+    ax(pltindex).XRuler.Exponent = 0; % no exponent in time stamps
 
-        try
-            [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds{fdsIndex}, pts, plotDef{plotDefRowNo,fcnChannel});
-            if ~isempty(xp2)
-                xp = xp2;
-                xMeta.texName = 'frequency \; [Hz]';
-            end
-        catch ME
-            ME.identifier
-            disp('Function eval error... Ignoring.')
-            currentPlotLineNo=currentPlotLineNo-1;
-            continue;
-        end
-    else
-        xp2 = [];
-    end
-    
-    % ensure data is not complex
-    if ~isreal(yp)
-        disp('complex magic :( converting to real...')
-        yp = real(yp);
-    end
-        
-    %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    % axes style
-    if plotDef{plotDefRowNo,AxesLayout} == 'L'
-        yyaxis(ax(pltindex), 'left')
-    elseif plotDef{plotDefRowNo,AxesLayout} == 'R'
-        yyaxis(ax(pltindex), 'right')
-    else
-        % single plot
-    end
-
-    % scatter plot
-    if ~isnan(plotDef{plotDefRowNo,cChannel})
-        
-        [col, ~] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, cChannel, idxFdsCurrent);
-        
-        if col == -1
-            disp('Colour channel not available...')
-            col = ones(size(xp));
-        end
-        
-        p = scatter(ax(pltindex), xp, yp, 2, col(pts));
-        axis(ax(pltindex), 'tight');
-        
-    elseif ~isempty(plotFcnColors)
-        
-        p = scatter(ax(pltindex), xp, yp, 2, plotFcnColors);
-        map = [0.2 0.8 0.2; 0.8 0 0];
-        colormap(ax(pltindex),map);
-        axis(ax(pltindex), 'tight');
-        
-    else
-        
-        p = plot(ax(pltindex), xp, yp); 
-        
-        hold(ax(pltindex), 'on');
-        axis(ax(pltindex), 'tight');
-        
-        p.LineWidth = 2.0;
-
-    end
-    
-    
-    %% annotations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if ~isnan(plotDef{plotDefRowNo, xAxisLabel})
-        % generate (or ignore) custom x axis label
-        if ~strcmp(plotDef{plotDefRowNo, xAxisLabel},'none')
-            xlabel(kVIS_generateLabels(plotDef{plotDefRowNo, xAxisLabel}, []),'Interpreter','latex','FontSize',13)
-        end
-    else
-        xlabel(kVIS_generateLabels(xMeta, []),'Interpreter','latex','FontSize',13)
-    end
-    
-    % LabelOverride
-    if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-        yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
-    else
-        yLabel = kVIS_generateLabels(yMeta, []);
-    end
-
-    % UnitOverride
-    if ~isnan(plotDef{plotDefRowNo, UnitOverride})
-        
-        if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-            % Combine label and unit override
-            str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
-            yLabel = kVIS_generateLabels(str, []);
-        else
-            % Combine original label and unit override latex string - might break....
-            str = split(yLabel,' $');
-            yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
-        end
-    end
-    
-    % collect labels for legend/ylabel
-    labelstr{currentPlotLineNo} = yLabel; %#ok<AGROW>
-   
-    if currentPlotLineNo == 1 % this doesn't work with yyaxis...
-        ylabel(labelstr{currentPlotLineNo},'Interpreter','latex', 'FontSize', 13);
-    else
-        
-        if ~isnan(plotDef{plotDefRowNo, yAxisLabel})
-            ylabel(kVIS_generateLabels(plotDef{plotDefRowNo, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
-        else
-            ylabel([])
-        end
-        
-        
-        legend_handle = legend(ax(pltindex), labelstr);
-        
-        if ~isnan(plotDef{plotDefRowNo,LegendLocation})
-            Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
-        end
-        
-        if ~isnan(plotDef{plotDefRowNo,LegendStyle})
-            Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
-        end
-        
-        kVIS_setGraphicsStyle(legend_handle, Style.Legend);
-    end
-    
-    %% formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    if ~isnan(plotDef{plotDefRowNo,PlotStyle})
-        p.LineStyle = plotDef{plotDefRowNo,PlotStyle};
-    end
-    
-    if ~isnan(plotDef{plotDefRowNo,Color})
-        p.Color = plotDef{plotDefRowNo,Color};
-    end
-    
-    grid(ax(pltindex), 'on');
-    
-    if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
-        % read semicolon delimited string of axes formatting commands
-        str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
-        % apply commands
-        for J = 1:size(str,2)
-            eval(str{J});
-        end
-    end
-    
-    % specific x vector - don't link
-    if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)
-        Style.Axes.Tag = 'noXaxislink';
-    else
-        Style.Axes.Tag = 'Xaxislink';
-        xlim([p.XData(1) p.XData(end)])
-    end
-    
-%     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
-    if ax(pltindex).YLim(1) == 0
-        ax(pltindex).YLim(1) = -0.1;
-    end
-%     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
-    if ax(pltindex).YLim(2) == 0
-        ax(pltindex).YLim(2) = 0.1;
-    end
-    
-    kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
-    
-end
-%
-% maximise plot size - work required for yy plot
-%
-for currentPlotLineNo = 1:pltindex
-    
-    ax(currentPlotLineNo).XRuler.Exponent = 0; % no exponent in time stamps
-    
 end
 
 % find all axes handle of type 'axes' and tag for linking
@@ -411,26 +191,4 @@ if ~isempty(all_ha)
     linkaxes( all_ha, 'x' );
 end
 
-end
-
-%
-% Get channel data from selected FDS
-%
-function [yp, yMeta, fdsIndex] = kVIS_cpltGetChannel(fds, plotDef, plotDefRowNo, colNo, idxFdsCurrent)
-%
-% Source fds - identifier gives list entry number
-%
-yChanFDS = strsplit(plotDef{plotDefRowNo, colNo}, ':');
-
-if length(yChanFDS) > 1
-    % get data from specified fds
-    yChanID = strsplit(yChanFDS{2}, '/');
-    fdsIndex = str2double(yChanFDS{1});
-    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
-else
-    % get data from currently selected fds
-    yChanID = strsplit(yChanFDS{1}, '/');
-    fdsIndex = idxFdsCurrent;
-    [yp, yMeta] = kVIS_fdsGetChannel(fds{fdsIndex}, yChanID{1}, yChanID{2});
-end
 end
