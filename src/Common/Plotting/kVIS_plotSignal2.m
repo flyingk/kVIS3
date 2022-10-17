@@ -54,7 +54,7 @@ if ~isempty(lineColor)
 end
 
 if ~isempty(lineStyle)
-    newLine.lineStyle = lineStyle;
+    newLine.LineStyle = lineStyle;
 end
 
 %
