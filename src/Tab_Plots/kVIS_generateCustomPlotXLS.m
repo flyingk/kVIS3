@@ -1,6 +1,6 @@
 %
 %> @file kVIS_generateCustomPlotXLS.m
-%> @brief Generate custom plot from XLS definition
+%> @brief Generate custom plot window from XLS definition
 %
 % kVIS3 Data Visualisation
 %

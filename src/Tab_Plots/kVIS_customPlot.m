@@ -1,3 +1,40 @@
+%
+%> @file kVIS_customPlot.m
+%> @brief Generate custom plot from XLS definition in the given axes
+%
+% kVIS3 Data Visualisation
+%
+% Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and
+% contributors
+%
+% Contact: kvis3@uav-flightresearch.com
+% 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%
+%> @brief Generate custom plot from XLS definition in the given axes
+%>
+%> @param Target axes
+%> @param FDS file
+%> @param Plot definition structure
+%> @param Plot definition row number
+%> @param Plot time axis limits 
+%> @param Plot style structure
+%
+%> @return Axes handles
+%> @return Error flag
+%
 function [ax, error] = kVIS_customPlot(ax, fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent)
 
 error = 0;
@@ -83,10 +120,52 @@ else
     xp2 = [];
 end
 
+%     % LabelOverride
+%     if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+%         yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
+%     end
+%
+%
+%     % UnitOverride
+%     if ~isnan(plotDef{plotDefRowNo, UnitOverride})
+%
+%         if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+%             % Combine label and unit override
+%             str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
+%             yLabel = kVIS_generateLabels(str, []);
+%         else
+%             % Combine original label and unit override latex string - might break....
+%             str = split(yLabel,' $');
+%             yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
+%         end
+%     end
+
 % ensure data is not complex
 if ~isreal(yp)
     disp('complex magic :( converting to real...')
     yp = real(yp);
+end
+
+% line styles
+if ~isnan(plotDef{plotDefRowNo,PlotStyle})
+    lineStyle = plotDef{plotDefRowNo,PlotStyle};
+else
+    lineStyle = [];
+end
+
+if ~isnan(plotDef{plotDefRowNo,Color})
+    lineColor = plotDef{plotDefRowNo,Color};
+else
+    lineColor = [];
+end
+
+% legend overrides
+if ~isnan(plotDef{plotDefRowNo,LegendLocation})
+    Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
+end
+
+if ~isnan(plotDef{plotDefRowNo,LegendStyle})
+    Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
 end
 
 %% plot data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,6 +213,7 @@ else
     kVIS_plotSignal2(ax, @plot, ...
         xp, xMeta, ...
         yp, yMeta, ...
+        lineColor, lineStyle, ...
         xLbl, yLbl, ...
         xLimits, yLimits, ...
         true, ...
@@ -155,72 +235,17 @@ end
 
 if ~isnan(plotDef{plotDefRowNo, yAxisLabel})
     ylabel(kVIS_generateLabels(plotDef{plotDefRowNo, yAxisLabel}, []),'Interpreter','latex', 'FontSize', 13);
-else
-    ylabel([])
 end
 
-%     % LabelOverride
-%     if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-%         yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
-%     end
-%
-%
-%     % UnitOverride
-%     if ~isnan(plotDef{plotDefRowNo, UnitOverride})
-%
-%         if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-%             % Combine label and unit override
-%             str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
-%             yLabel = kVIS_generateLabels(str, []);
-%         else
-%             % Combine original label and unit override latex string - might break....
-%             str = split(yLabel,' $');
-%             yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
-%         end
-%     end
+if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
+    % read semicolon delimited string of axes formatting commands
+    str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
+    % apply commands
+    for J = 1:size(str,2)
+        eval(str{J});
+    end
+end
 
-%
-%         if ~isnan(plotDef{plotDefRowNo,LegendLocation})
-%             Style.Legend.Location = plotDef{plotDefRowNo,LegendLocation};
-%         end
-%
-%         if ~isnan(plotDef{plotDefRowNo,LegendStyle})
-%             Style.Legend.Orientation = plotDef{plotDefRowNo,LegendStyle};
-%         end
-%
-
-%     end
-
-%     %% formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     if ~isnan(plotDef{plotDefRowNo,PlotStyle})
-%         p.LineStyle = plotDef{plotDefRowNo,PlotStyle};
-%     end
-%
-%     if ~isnan(plotDef{plotDefRowNo,Color})
-%         p.Color = plotDef{plotDefRowNo,Color};
-%     end
-%
-%
-%
-%     if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
-%         % read semicolon delimited string of axes formatting commands
-%         str = strsplit(plotDef{plotDefRowNo,AxesFormatting},';');
-%         % apply commands
-%         for J = 1:size(str,2)
-%             eval(str{J});
-%         end
-%     end
-%
-% %     ax(pltindex).YLim(1) = ax(pltindex).YLim(1) * 0.98;
-%     if ax(pltindex).YLim(1) == 0
-%         ax(pltindex).YLim(1) = -0.1;
-%     end
-% %     ax(pltindex).YLim(2) = ax(pltindex).YLim(2) * 1.02;
-%     if ax(pltindex).YLim(2) == 0
-%         ax(pltindex).YLim(2) = 0.1;
-%     end
-%
 %     kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
 
 % non time x vector - don't link

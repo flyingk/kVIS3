@@ -21,6 +21,7 @@
 function kVIS_plotSignal2(axes_handle, plotFcn, ...
                           xData, xDataMeta, ...
                           signal, signalMeta, ...
+                          lineColor, lineStyle, ...
                           xLbl, yLbl, ...
                           xLimits, yLimits, ...
                           hold_mode, ...
@@ -47,6 +48,15 @@ end
 % plot line (linear/log/others)
 %
 newLine = feval(plotFcn, axes_handle, xData, signal);
+
+if ~isempty(lineColor)
+    newLine.Color = lineColor;
+end
+
+if ~isempty(lineStyle)
+    newLine.lineStyle = lineStyle;
+end
+
 %
 % save meta data
 %
@@ -102,7 +112,6 @@ else
     lg.ItemHitFcn = @legendCallback;
     kVIS_setGraphicsStyle(lg, plotStyles.Legend);
 end
-
 
 % update all axes styles
 kVIS_setGraphicsStyle(axes_handle, plotStyles.Axes);
