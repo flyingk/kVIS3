@@ -120,25 +120,26 @@ else
     xp2 = [];
 end
 
-%     % LabelOverride
-%     if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-%         yLabel = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
-%     end
-%
-%
-%     % UnitOverride
-%     if ~isnan(plotDef{plotDefRowNo, UnitOverride})
-%
-%         if ~isnan(plotDef{plotDefRowNo, LabelOverride})
-%             % Combine label and unit override
-%             str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
-%             yLabel = kVIS_generateLabels(str, []);
-%         else
-%             % Combine original label and unit override latex string - might break....
-%             str = split(yLabel,' $');
-%             yLabel = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
-%         end
-%     end
+% LabelOverride
+if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+    yLbl = kVIS_generateLabels(plotDef{plotDefRowNo, LabelOverride}, []);
+else
+    yLbl = kVIS_generateLabels(yMeta, []);
+end
+
+% UnitOverride
+if ~isnan(plotDef{plotDefRowNo, UnitOverride})
+
+    if ~isnan(plotDef{plotDefRowNo, LabelOverride})
+        % Combine label and unit override
+        str = [plotDef{plotDefRowNo, LabelOverride} '  [' plotDef{plotDefRowNo, UnitOverride} ']'];
+        yLbl = kVIS_generateLabels(str, []);
+    else
+        % Combine original label and unit override latex string - might break....
+        str = split(yLbl,' $');
+        yLbl = [str{1} ' $ [' kVIS_generateLabels(plotDef{plotDefRowNo, UnitOverride}, []) ']'];
+    end
+end
 
 % ensure data is not complex
 if ~isreal(yp)
@@ -205,7 +206,7 @@ else
     % plot the signal into the specified axes
     %
     xLbl    = kVIS_generateLabels(xMeta, []);
-    yLbl    = kVIS_generateLabels(yMeta, []);
+    
     xLimits = [lims(1) lims(2)];
     yLimits = [NaN NaN];
     interactiveToggle = true;
