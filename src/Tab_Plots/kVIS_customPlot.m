@@ -84,6 +84,7 @@ if ~isnan(plotDef{plotDefRowNo,xChannel})
         error = 1;
         return
     end
+    xMeta.specialX = true;
 else
     xp = yMeta.timeVec;
     xMeta.name = 'Time_UNIT_sec';
@@ -190,12 +191,12 @@ if ~isnan(plotDef{plotDefRowNo,cChannel})
         col = ones(size(xp));
     end
 
-    p = scatter(ax, xp, yp, 2, col(pts));
+    scatter(ax, xp, yp, 2, col(pts));
     axis(ax, 'tight');
 
 elseif ~isempty(plotFcnColors)
 
-    p = scatter(ax, xp, yp, 2, plotFcnColors);
+    scatter(ax, xp, yp, 2, plotFcnColors);
     map = [0.2 0.8 0.2; 0.8 0 0];
     colormap(ax,map);
     axis(ax, 'tight');

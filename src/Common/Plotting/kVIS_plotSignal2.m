@@ -76,25 +76,20 @@ end
 %% adjust axes limits to data range fields
 current_lines = kVIS_findValidPlotLines(axes_handle);
 
-% time axis
-xlim(axes_handle, xLimits);
+% x axis
+if ~isfield(xDataMeta,'specialX')
+    xlim(axes_handle, xLimits);
+end
 
+% y axis
 if any(isnan(yLimits))
     % vertical axis - add margins to top and bottom
     plotMin = min(arrayfun(@(x) x.UserData.yMin, current_lines));
     plotMax = max(arrayfun(@(x) x.UserData.yMax, current_lines));
 
-    marginL = abs(0.05*plotMin);
-    if marginL == 0
-        marginL = 0.05;
-    end
+    margin = abs(0.05*(plotMax-plotMin));
 
-    marginU = abs(0.05*plotMax);
-    if marginU == 0
-        marginU = 0.05;
-    end
-
-    ylim(axes_handle, [plotMin-marginL plotMax+marginU]);
+    ylim(axes_handle, [plotMin-margin plotMax+margin]);
 else
     % set to prescribed limits
     ylim(axes_handle, yLimits);
