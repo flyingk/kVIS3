@@ -193,6 +193,8 @@ if ~isnan(plotDef{plotDefRowNo,cChannel})
 
     scatter(ax, xp, yp, 2, col(pts));
     axis(ax, 'tight');
+    grid on
+    kVIS_setGraphicsStyle(ax, Style.Axes);
 
 elseif ~isempty(plotFcnColors)
 
@@ -200,6 +202,8 @@ elseif ~isempty(plotFcnColors)
     map = [0.2 0.8 0.2; 0.8 0 0];
     colormap(ax,map);
     axis(ax, 'tight');
+    grid on
+    kVIS_setGraphicsStyle(ax, Style.Axes);
 
 else
 
@@ -247,8 +251,6 @@ if ~isnan(plotDef{plotDefRowNo,AxesFormatting})
         eval(str{J});
     end
 end
-
-%     kVIS_setGraphicsStyle(ax(pltindex), Style.Axes);
 
 % non time x vector - don't link
 if any(~isnan(plotDef{plotDefRowNo,xChannel})) || ~isempty(xp2)

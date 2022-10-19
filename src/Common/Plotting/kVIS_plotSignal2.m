@@ -88,6 +88,9 @@ if any(isnan(yLimits))
     plotMax = max(arrayfun(@(x) x.UserData.yMax, current_lines));
 
     margin = abs(0.05*(plotMax-plotMin));
+    if margin == 0
+        margin = 1e-3;
+    end
 
     ylim(axes_handle, [plotMin-margin plotMax+margin]);
 else
