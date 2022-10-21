@@ -35,7 +35,7 @@
 %> @return Axes handles
 %> @return Error flag
 %
-function [ax, error] = kVIS_customPlot(ax, fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent)
+function [ax, error] = kVIS_customPlot(ax, fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent, interactiveToggle)
 
 error = 0;
 
@@ -214,7 +214,6 @@ else
     
     xLimits = [lims(1) lims(2)];
     yLimits = [NaN NaN];
-    interactiveToggle = true;
 
     kVIS_plotSignal2(ax, @plot, ...
         xp, xMeta, ...

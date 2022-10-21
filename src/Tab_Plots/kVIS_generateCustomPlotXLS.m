@@ -100,7 +100,7 @@ uicontrol( ...
     ctrls, ...
     'Style', 'pushbutton', ...
     'String', 'Export .fig', ...
-    'Callback', {@kVIS_reportModeFigFormat_Callback,figH, fds, plotName, lims, Style, fds_name, idxFdsCurrent} ...
+    'Callback', {@kVIS_generateCustomPlotXLS_saveable, fds, plotName, lims, Style, fds_name, idxFdsCurrent, false} ...
 );
 
 uicontrol( ...
@@ -150,8 +150,6 @@ end
 
 oldpltindex = 0;
 
-clc
-
 for plotDefRowNo = 1:size(plotDef, 1)
     %% plot setup
     pltindex = plotDef{plotDefRowNo,plotNo};
@@ -173,7 +171,7 @@ for plotDefRowNo = 1:size(plotDef, 1)
 
     oldpltindex = pltindex;
 
-    [ax(pltindex), error] = kVIS_customPlot(ax(pltindex), fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent);
+    [ax(pltindex), error] = kVIS_customPlot(ax(pltindex), fds, plotDef, plotDefRowNo, lims, Style, idxFdsCurrent, true);
 
     if error > 0
         currentPlotLineNo = currentPlotLineNo - 1;
