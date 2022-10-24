@@ -92,7 +92,11 @@ if any(isnan(yLimits))
         margin = 1e-3;
     end
 
-    ylim(axes_handle, [plotMin-margin plotMax+margin]);
+    try
+        ylim(axes_handle, [plotMin-margin plotMax+margin]);
+    catch
+        % keyboard
+    end
 else
     % set to prescribed limits
     ylim(axes_handle, yLimits);
