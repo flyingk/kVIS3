@@ -30,7 +30,11 @@
 %> @param GUI standard input 2
 %> @param Axes handle
 %
-function kVIS_eventPlot(MainWindowObject, ~, axesHandle)
+function kVIS_eventPlot(MainWindowObject, ~, axesHandle, fds)
+
+% defines color range so all plots have same event colors
+col = {'#0072BD','#D95319','#EDB120','#7E2F8E',	'#77AC30','#4DBEEE','#A2142F'};
+colCount = 1;
 
 hold(axesHandle, 'on');
 
@@ -42,7 +46,9 @@ if abs(ylim(1) - ylim(2)) < 1e-3
     ylim(2) = ylim(2) + 1e-3;
 end
 
-fds = kVIS_getCurrentFds(MainWindowObject);
+if isempty(fds)
+    fds = kVIS_getCurrentFds(MainWindowObject);
+end
 
 eventList = fds.eventList;
 
@@ -60,7 +66,7 @@ for j = 1:size(eventList,2)
     % create plot
     pg = polyshape([in out out in],[ylim(1) ylim(1) ylim(2) ylim(2)]);
 
-    pp(j) = plot(axesHandle, pg, 'EdgeAlpha',0.4, 'FaceAlpha',0.2);
+    pp(j) = plot(axesHandle, pg, 'EdgeAlpha',0.4, 'FaceAlpha',0.2, 'FaceColor', col{colCount});
 
     % use context menu for labels
     m = uicontextmenu();
@@ -80,6 +86,11 @@ for j = 1:size(eventList,2)
     text(axesHandle, out,ylim(2),eventName,'Rotation',90,'FontSize',8, ...
         'VerticalAlignment','bottom','HorizontalAlignment','right',...
         'Tag','EventDisplay');
+
+    colCount = colCount + 1;
+    if colCount > length(col)
+        colCount = 1;
+    end
 end
 
 end

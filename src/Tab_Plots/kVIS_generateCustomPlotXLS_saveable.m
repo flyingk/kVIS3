@@ -33,7 +33,7 @@
 %
 %> @return Axes handles
 %
-function [ ax ] = kVIS_generateCustomPlotXLS_saveable(~,~, fds, plotName, lims, Style, fds_name, idxFdsCurrent, interactiveToggle)
+function [ ax ] = kVIS_generateCustomPlotXLS_saveable(~,~, fds, plotName, lims, Style, fds_name, idxFdsCurrent, interactiveToggle, eventsToggle)
 
 warning('on','verbose')
 % warning('off', 'MATLAB:gui:latexsup:UnableToInterpretLaTeXString')
@@ -113,6 +113,13 @@ all_ha = findobj( figH, 'type', 'axes', 'Tag', 'Xaxislink' );
 
 if ~isempty(all_ha)
     linkaxes( all_ha, 'x' );
+end
+
+% add events if they have been selected in source plot
+if ~isempty(all_ha) && eventsToggle.Value == 1
+    for i=1:length(all_ha)
+        kVIS_eventPlot([], [], all_ha(i), fds{idxFdsCurrent})
+    end
 end
 
 end
