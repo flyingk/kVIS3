@@ -47,6 +47,10 @@ if ~ispref('kVIS_prefs','defaultLegendFontSize')
     addpref('kVIS_prefs','defaultLegendFontSize', 12)
 end
 
+if ~ispref('kVIS_prefs','defaultLineWidth')
+    addpref('kVIS_prefs','defaultLineWidth', 1.5)
+end
+
 if ~ispref('kVIS_prefs','dataReplayFeature')
     addpref('kVIS_prefs','dataReplayFeature', 'off')
 end

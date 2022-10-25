@@ -57,6 +57,8 @@ if ~isempty(lineStyle)
     newLine.LineStyle = lineStyle;
 end
 
+newLine.LineWidth = getpref('kVIS_prefs','defaultLineWidth');
+
 %
 % save meta data
 %
