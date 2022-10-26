@@ -22,7 +22,7 @@ function kVIS_updateMap(hObject, h)
 %
 % update map track colouring with data from selected channel
 %
-[signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+[signal, signalMeta] = kVIS_GetCurrentChannel(hObject);
 
 % re-sample signal on scatter plot time vector
 signal = kVIS_reSample(signal, signalMeta.timeVec, h.UserData.timeVec);

@@ -4,17 +4,17 @@
 % contributors
 %
 % Contact: kvis3@uav-flightresearch.com
-% 
+%
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
-% 
+%
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -40,7 +40,13 @@ else
 end
 
 % Get the track co-ords - assumed on a common time vector
-[lat, lon, alt, t] = BSP_mapCoordsFcn(fds);
+try
+    [lat, lon, alt, t] = BSP_mapCoordsFcn(fds);
+catch
+    errordlg('Map coordinate BSP function not found or function error.')
+%     keyboard
+    return;
+end
 
 % get selected time limits
 xlim = kVIS_getDataRange(hObject, 'XLim');
@@ -58,7 +64,7 @@ alt = kVIS_reSample(alt, t, tNew);
 try
     if isempty(pathColorChannel)
         % use currently selected channel
-        [c, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
+        [c, signalMeta] = kVIS_GetCurrentChannel(hObject);
     else
         % use specified channel
         pcc = strsplit(pathColorChannel,'/');
