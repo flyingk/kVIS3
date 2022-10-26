@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/UI/Button_Callbacks/kVIS_zoomOutButton_Callback.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/UI/Button_Callbacks/kVIS_zoomOutButton_Callback.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__zoom_out_button___callback_8m
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;% You should have received a copy of the GNU General Public License</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;% along with <span class="keyword">this</span> program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="k_v_i_s__zoom_out_button___callback_8m.html#a9b80b06c0fe6f6c9b01c1120d8aec758">   21</a></span>&#160;function <a class="code" href="k_v_i_s__zoom_out_button___callback_8m.html#a9b80b06c0fe6f6c9b01c1120d8aec758">kVIS_zoomOutButton_Callback</a>(hObject, events, reset)</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="k_v_i_s__zoom_out_button___callback_8m.html#a9b80b06c0fe6f6c9b01c1120d8aec758">   21</a></span>&#160;function <a class="code" href="k_v_i_s__zoom_out_button___callback_8m.html#a9b80b06c0fe6f6c9b01c1120d8aec758">kVIS_zoomOutButton_Callback</a>(hObject, <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a>, reset)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;% handles = guidata(hObject);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
@@ -121,9 +121,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__zoom_out_button___callback_8m
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    track = findobj(ax, &#39;Type&#39;, &#39;Scatter&#39;);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    xlim(ax, [min(track.XData)-abs(min(track.XData))*0.000005 max(track.XData)+abs(max(track.XData))*0.000005])</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    ylim(ax, [min(track.YData)-abs(min(track.YData))*0.000005 max(track.YData)+abs(max(track.YData))*0.000005])</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    update_google_map(hObject, events);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    update_google_map(hObject, <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a>);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;else</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="k_v_i_s__clear_plot_lim___callback_8m.html#a9092243458fe905fa00271967ca67bfb">kVIS_clearPlotLim_Callback</a>(hObject, [], &#39;all&#39;);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
@@ -134,6 +134,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__zoom_out_button___callback_8m
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="ttc" id="ak_v_i_s__clear_plot_lim___callback_8m_html_a9092243458fe905fa00271967ca67bfb"><div class="ttname"><a href="k_v_i_s__clear_plot_lim___callback_8m.html#a9092243458fe905fa00271967ca67bfb">kVIS_clearPlotLim_Callback</a></div><div class="ttdeci">function kVIS_clearPlotLim_Callback(in hObject, in ignoredArg, in select)</div></div>
 <div class="ttc" id="ak_v_i_s__data_viewer_get_active_panel_8m_html_ab88a89ff153734beb244b193c7584ada"><div class="ttname"><a href="k_v_i_s__data_viewer_get_active_panel_8m.html#ab88a89ff153734beb244b193c7584ada">kVIS_dataViewerGetActivePanel</a></div><div class="ttdeci">function kVIS_dataViewerGetActivePanel()</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div><div class="ttdeci">@ events</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00123">kVIS_plotSignal2.m:123</a></div></div>
 <div class="ttc" id="ak_v_i_s__zoom_out_button___callback_8m_html_a9b80b06c0fe6f6c9b01c1120d8aec758"><div class="ttname"><a href="k_v_i_s__zoom_out_button___callback_8m.html#a9b80b06c0fe6f6c9b01c1120d8aec758">kVIS_zoomOutButton_Callback</a></div><div class="ttdeci">function kVIS_zoomOutButton_Callback(in hObject, in events, in reset)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

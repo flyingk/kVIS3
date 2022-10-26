@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/UI/kVIS_uiSetupDataViewerRibbonGroup.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/UI/kVIS_uiSetupDataViewerRibbonGroup.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,159 +85,168 @@ $(document).ready(function(){initNavTree('k_v_i_s__ui_setup_data_viewer_ribbon_g
 <div class="title">kVIS_uiSetupDataViewerRibbonGroup.m</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;% kVIS3 Data Visualisation</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;%</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;% Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;% contributors</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;%</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;% Contact: kvis3@uav-flightresearch.com</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;% </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;% This program is free software: you can redistribute it and/or modify</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;% it under the terms of the GNU General Public License as published by</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;% the Free Software Foundation, either version 3 of the License, or</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;% (at your option) any later version.</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;% </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;% This program is distributed in the hope that it will be useful,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;% but WITHOUT ANY WARRANTY; without even the implied warranty of</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;% GNU General Public License <span class="keywordflow">for</span> more details.</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;% </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;% You should have received a copy of the GNU General Public License</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;% along with <span class="keyword">this</span> program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">   21</a></span>&#160;function handles = <a class="code" href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a>(handles, uiRibbonRight)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordflow">if</span> ~nargin</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    close all;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    kVIS3;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;end</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;rbn = uix.HButtonBox(<span class="stringliteral">&#39;Parent&#39;</span>, uiRibbonRight,...</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="stringliteral">&#39;HorizontalAlignment&#39;</span>,<span class="stringliteral">&#39;left&#39;</span>,...</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;tabDataViewerRibbon&#39;</span>,...</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="stringliteral">&#39;Backgroundcolor&#39;</span>,getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;uiBackgroundColour&#39;</span>));</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;add_plot.png&#39;</span>),...</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Add plot to layout&#39;</span>,...</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__add_plot_axes___callback_8m.html#a7655e56b2fdec988bfb80e35281e3af5">kVIS_addPlotAxes_Callback</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;add_column.png&#39;</span>),...</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Add column to layout&#39;</span>,...</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__add_plot_column___callback_8m.html#a7a15510c900d16072ded918f518af4f8">kVIS_addPlotColumn_Callback</a>);</div>
+<a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;%</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;%&gt; @file <a class="code" href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a>.m</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;%&gt; @brief Create Button group <span class="keywordflow">for</span> Data Viewer</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;%</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;% kVIS3 Data Visualisation</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;%</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;% Copyright (C) 2012 - present  Kai Lehmkuehler, Matt Anderson and</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;% contributors</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;%</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;% Contact: kvis3@uav-flightresearch.com</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;% </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;% This program is free software: you can redistribute it and/or modify</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;% it under the terms of the GNU General Public License as published by</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;% the Free Software Foundation, either version 3 of the License, or</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;% (at your option) any later version.</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;% </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;% This program is distributed in the hope that it will be useful,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;% but WITHOUT ANY WARRANTY; without even the implied warranty of</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;% GNU General Public License <span class="keywordflow">for</span> more details.</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;% </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;% You should have received a copy of the GNU General Public License</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;% along with <span class="keyword">this</span> program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;%</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;%&gt; @brief Create Button group <span class="keywordflow">for</span> Data Viewer</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;%&gt;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;%&gt; @param GUI standard input 1</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;%&gt; @param Target UI element</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;%</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">   31</a></span>&#160;<span class="keyword">function</span> handles = <a class="code" href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a>(handles, uiRibbonRight)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordflow">if</span> ~nargin</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    close all;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    kVIS3;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;end</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;rbn = uix.HButtonBox(<span class="stringliteral">&#39;Parent&#39;</span>, uiRibbonRight,...</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="stringliteral">&#39;HorizontalAlignment&#39;</span>,<span class="stringliteral">&#39;left&#39;</span>,...</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;tabDataViewerRibbon&#39;</span>,...</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="stringliteral">&#39;Backgroundcolor&#39;</span>,getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;uiBackgroundColour&#39;</span>));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;clear_layout.png&#39;</span>),...</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Clear layout&#39;</span>,...</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__clear_plot_layout___callback_8m.html#a767f503f4a8f836109b2da7a62807c7c">kVIS_clearPlotLayout_Callback</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;add_plot.png&#39;</span>),...</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Add plot to layout&#39;</span>,...</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__add_plot_axes___callback_8m.html#a7655e56b2fdec988bfb80e35281e3af5">kVIS_addPlotAxes_Callback</a>);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;% handles.uiTabDataViewer.axesLeftToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;left_ax.png&#39;</span>),...</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Main Axes Left&#39;</span>,...</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 0});</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;% </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;% handles.uiTabDataViewer.axesRightToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;right_ax.png&#39;</span>),...</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Main Axes Right&#39;</span>,...</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 1});</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;% </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;% handles.uiTabDataViewer.axesTopToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;top_ax.png&#39;</span>),...</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Top Axes&#39;</span>,...</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 2});</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;% </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;% handles.uiTabDataViewer.axesTop2Toggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;top_ax.png&#39;</span>),...</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Top Axes Mode Style&#39;</span>,...</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 3},...</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;plot_export.png&#39;</span>),...</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Export selected plot as new figure&#39;</span>,...</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_viewer_export_plot_8m.html#a3833945207b3287238d24a52a3866be9">kVIS_dataViewerExportPlot</a>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;add_column.png&#39;</span>),...</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Add column to layout&#39;</span>,...</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__add_plot_column___callback_8m.html#a7a15510c900d16072ded918f518af4f8">kVIS_addPlotColumn_Callback</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;clear_layout.png&#39;</span>),...</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Clear layout&#39;</span>,...</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__clear_plot_layout___callback_8m.html#a767f503f4a8f836109b2da7a62807c7c">kVIS_clearPlotLayout_Callback</a>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;% handles.uiTabDataViewer.axesLeftToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;left_ax.png&#39;</span>),...</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Main Axes Left&#39;</span>,...</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 0});</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;% </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;% handles.uiTabDataViewer.axesRightToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;right_ax.png&#39;</span>),...</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Main Axes Right&#39;</span>,...</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 1});</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;% handles.uiTabDataViewer.axesTopToggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;top_ax.png&#39;</span>),...</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Top Axes&#39;</span>,...</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 2});</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;% </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;% handles.uiTabDataViewer.axesTop2Toggle = uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;top_ax.png&#39;</span>),...</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Top Axes Mode Style&#39;</span>,...</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;%     <span class="stringliteral">&#39;Value&#39;</span>, 0,...</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,{@kVIS_dataViewerAxesSelect_Callback, 3},...</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;show_events.png&#39;</span>),...</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Show Event boundaries in Plot&#39;</span>,...</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>, <span class="stringliteral">&#39;showEventsToggle&#39;</span>, ...</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__event_plot_8m.html#ac6233a68abf095e5646cc3a4082a1d68">kVIS_eventPlot</a>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    % <a class="code" href="k_v_i_s__show_events___callback_8m.html#aabecdc4a43694666cfefbcb8fdd0da0b">kVIS_showEvents_Callback</a></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;plot_export.png&#39;</span>),...</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Export selected plot as new figure&#39;</span>,...</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_viewer_export_plot_8m.html#a3833945207b3287238d24a52a3866be9">kVIS_dataViewerExportPlot</a>);</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;handles.uiTabDataViewer.showEvents = [];</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-waypoint-map-36.png&#39;</span>),...</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Map plot&#39;</span>,...</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__create_map___callback_8m.html#a816e006908c8088c6b17a52a234c1fac">kVIS_createMap_Callback</a>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;show_events.png&#39;</span>),...</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Show Event boundaries in Plot&#39;</span>,...</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>, <span class="stringliteral">&#39;showEventsToggle&#39;</span>, ...</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__show_events___callback_8m.html#aab39a5de16f94c8bd948e7bbf94fc1bc">kVIS_showEvents_Callback</a>);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-cut-36.png&#39;</span>),...</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Trim Timeline&#39;</span>,...</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__edit_timeline___callback_8m.html#ac6fccbbbaaed1237815ba75bf0a566af">kVIS_editTimeline_Callback</a>);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-map-pin-36.png&#39;</span>),...</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Set Time Reference&#39;</span>,...</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1">tmp_Callback</a>,...</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;% </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-map-pinpoint-36.png&#39;</span>),...</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Time Offset&#39;</span>,...</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1">tmp_Callback</a>,...</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;% </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;%     <span class="stringliteral">&#39;String&#39;</span>,<span class="stringliteral">&#39;Zero time&#39;</span>,<span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Remove Time Offset&#39;</span>,...</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__zero_time_btn___callback_8m.html#a6d6b11a549ab1c849ffaa7af1795a06c">kVIS_zeroTimeBtn_Callback</a>,...</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>,<span class="stringliteral">&#39;off&#39;</span>);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-play-32.png&#39;</span>),...</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Start replay&#39;</span>,...</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;startPlaybackToggle&#39;</span>,...</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_start___callback_8m.html#a1ca8e7eea341fc8df67bed22a78c47b6">kVIS_dataReplayStart_Callback</a>,...</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-pause-32.png&#39;</span>),...</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Pause replay&#39;</span>,...</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;pausePlaybackToggle&#39;</span>,...</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_pause___callback_8m.html#ae7387d0a90169cf780470b17a53a94ae">kVIS_dataReplayPause_Callback</a>,...</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-stop-32.png&#39;</span>),...</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Stop replay&#39;</span>,...</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;stopPlaybackBtn&#39;</span>,...</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_stop___callback_8m.html#a742004520110cc486dce152d7eff8414">kVIS_dataReplayStop_Callback</a>,...</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;rbn.ButtonSize = [50 50];</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;handles.uiTabDataViewer.showEvents = [];</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-waypoint-map-36.png&#39;</span>),...</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Map plot&#39;</span>,...</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__create_map___callback_8m.html#a816e006908c8088c6b17a52a234c1fac">kVIS_createMap_Callback</a>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-cut-36.png&#39;</span>),...</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Trim Timeline&#39;</span>,...</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__edit_timeline___callback_8m.html#ac6fccbbbaaed1237815ba75bf0a566af">kVIS_editTimeline_Callback</a>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;uix.Empty(<span class="stringliteral">&#39;Parent&#39;</span>, rbn);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-map-pin-36.png&#39;</span>),...</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Set Time Reference&#39;</span>,...</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1">tmp_Callback</a>,...</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;% </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;%     <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-map-pinpoint-36.png&#39;</span>),...</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;%     <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Time Offset&#39;</span>,...</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1">tmp_Callback</a>,...</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;% </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;% uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;%     <span class="stringliteral">&#39;String&#39;</span>,<span class="stringliteral">&#39;Zero time&#39;</span>,<span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Remove Time Offset&#39;</span>,...</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;%     <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__zero_time_btn___callback_8m.html#a6d6b11a549ab1c849ffaa7af1795a06c">kVIS_zeroTimeBtn_Callback</a>,...</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;%     <span class="stringliteral">&#39;Enable&#39;</span>,<span class="stringliteral">&#39;off&#39;</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-play-32.png&#39;</span>),...</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Start replay&#39;</span>,...</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;startPlaybackToggle&#39;</span>,...</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_start___callback_8m.html#a1ca8e7eea341fc8df67bed22a78c47b6">kVIS_dataReplayStart_Callback</a>,...</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;togglebutton&#39;</span>,...</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-pause-32.png&#39;</span>),...</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Pause replay&#39;</span>,...</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;pausePlaybackToggle&#39;</span>,...</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_pause___callback_8m.html#ae7387d0a90169cf780470b17a53a94ae">kVIS_dataReplayPause_Callback</a>,...</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;end</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;uicontrol(rbn, <span class="stringliteral">&#39;Style&#39;</span>, <span class="stringliteral">&#39;pushbutton&#39;</span>,...</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="stringliteral">&#39;CData&#39;</span>, imread(<span class="stringliteral">&#39;icons8-stop-32.png&#39;</span>),...</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="stringliteral">&#39;TooltipString&#39;</span>,<span class="stringliteral">&#39;Stop replay&#39;</span>,...</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="stringliteral">&#39;Tag&#39;</span>,<span class="stringliteral">&#39;stopPlaybackBtn&#39;</span>,...</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>,@<a class="code" href="k_v_i_s__data_replay_stop___callback_8m.html#a742004520110cc486dce152d7eff8414">kVIS_dataReplayStop_Callback</a>,...</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, getpref(<span class="stringliteral">&#39;kVIS_prefs&#39;</span>,<span class="stringliteral">&#39;dataReplayFeature&#39;</span>));</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;rbn.ButtonSize = [50 50];</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__add_plot_axes___callback_8m_html_a7655e56b2fdec988bfb80e35281e3af5"><div class="ttname"><a href="k_v_i_s__add_plot_axes___callback_8m.html#a7655e56b2fdec988bfb80e35281e3af5">kVIS_addPlotAxes_Callback</a></div><div class="ttdeci">function kVIS_addPlotAxes_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__add_plot_column___callback_8m_html_a7a15510c900d16072ded918f518af4f8"><div class="ttname"><a href="k_v_i_s__add_plot_column___callback_8m.html#a7a15510c900d16072ded918f518af4f8">kVIS_addPlotColumn_Callback</a></div><div class="ttdeci">function kVIS_addPlotColumn_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__clear_plot_layout___callback_8m_html_a767f503f4a8f836109b2da7a62807c7c"><div class="ttname"><a href="k_v_i_s__clear_plot_layout___callback_8m.html#a767f503f4a8f836109b2da7a62807c7c">kVIS_clearPlotLayout_Callback</a></div><div class="ttdeci">function kVIS_clearPlotLayout_Callback(in hObject, in ignoredArg)</div><div class="ttdoc">Clear all plot panels from layout except the last.</div></div>
@@ -247,9 +256,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__ui_setup_data_viewer_ribbon_g
 <div class="ttc" id="ak_v_i_s__data_replay_stop___callback_8m_html_a742004520110cc486dce152d7eff8414"><div class="ttname"><a href="k_v_i_s__data_replay_stop___callback_8m.html#a742004520110cc486dce152d7eff8414">kVIS_dataReplayStop_Callback</a></div><div class="ttdeci">function kVIS_dataReplayStop_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__data_viewer_export_plot_8m_html_a3833945207b3287238d24a52a3866be9"><div class="ttname"><a href="k_v_i_s__data_viewer_export_plot_8m.html#a3833945207b3287238d24a52a3866be9">kVIS_dataViewerExportPlot</a></div><div class="ttdeci">function kVIS_dataViewerExportPlot(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__edit_timeline___callback_8m_html_ac6fccbbbaaed1237815ba75bf0a566af"><div class="ttname"><a href="k_v_i_s__edit_timeline___callback_8m.html#ac6fccbbbaaed1237815ba75bf0a566af">kVIS_editTimeline_Callback</a></div><div class="ttdeci">function kVIS_editTimeline_Callback(in hObject, in ignoredArg)</div></div>
-<div class="ttc" id="ak_v_i_s__event_plot_8m_html_ac6233a68abf095e5646cc3a4082a1d68"><div class="ttname"><a href="k_v_i_s__event_plot_8m.html#ac6233a68abf095e5646cc3a4082a1d68">kVIS_eventPlot</a></div><div class="ttdeci">function kVIS_eventPlot(in hObject, in ignoredArg)</div><div class="ttdoc">Add event boundaries to a selected plot.</div></div>
-<div class="ttc" id="ak_v_i_s__show_events___callback_8m_html_aabecdc4a43694666cfefbcb8fdd0da0b"><div class="ttname"><a href="k_v_i_s__show_events___callback_8m.html#aabecdc4a43694666cfefbcb8fdd0da0b">kVIS_showEvents_Callback</a></div><div class="ttdeci">function kVIS_showEvents_Callback(in hObject, in eventdata)</div></div>
-<div class="ttc" id="ak_v_i_s__ui_setup_data_viewer_ribbon_group_8m_html_a2d6e39bfd0f3a5efe066c5e2c2b2f3e1"><div class="ttname"><a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a></div><div class="ttdeci">function kVIS_uiSetupDataViewerRibbonGroup(in handles, in uiRibbonRight)</div></div>
+<div class="ttc" id="ak_v_i_s__show_events___callback_8m_html_aab39a5de16f94c8bd948e7bbf94fc1bc"><div class="ttname"><a href="k_v_i_s__show_events___callback_8m.html#aab39a5de16f94c8bd948e7bbf94fc1bc">kVIS_showEvents_Callback</a></div><div class="ttdeci">function kVIS_showEvents_Callback(in hObject, in ignoredArg)</div><div class="ttdoc">Callback for show events button.</div></div>
+<div class="ttc" id="ak_v_i_s__ui_setup_data_viewer_ribbon_group_8m_html_a2d6e39bfd0f3a5efe066c5e2c2b2f3e1"><div class="ttname"><a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a></div><div class="ttdeci">function kVIS_uiSetupDataViewerRibbonGroup(in handles, in uiRibbonRight)</div><div class="ttdoc">Create Button group for Data Viewer.</div></div>
 <div class="ttc" id="ak_v_i_s__zero_time_btn___callback_8m_html_a6d6b11a549ab1c849ffaa7af1795a06c"><div class="ttname"><a href="k_v_i_s__zero_time_btn___callback_8m.html#a6d6b11a549ab1c849ffaa7af1795a06c">kVIS_zeroTimeBtn_Callback</a></div><div class="ttdeci">function kVIS_zeroTimeBtn_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="atmp___callback_8m_html_a944de6909079fdca67d820c4f57a5ab1"><div class="ttname"><a href="tmp___callback_8m.html#a944de6909079fdca67d820c4f57a5ab1">tmp_Callback</a></div><div class="ttdeci">function tmp_Callback(in hObject, in ignoredArg)</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Common/Plotting/kVIS_plotSignal.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Common/Plotting/kVIS_plotSignal.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__plot_signal_8m_source.html','
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;%</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;if hold_mode == 1</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    hold(axes_handle, &#39;on&#39;);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;else</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    hold(axes_handle, &#39;off&#39;);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;end</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;%</div>
@@ -185,7 +185,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__plot_signal_8m_source.html','
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;if size(current_lines) == 1</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    [ labelStr ] = current_lines.DisplayName;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    ylabel(axes_handle, labelStr, &#39;Interpreter&#39;, &#39;latex&#39;, &#39;FontSize&#39;, 13)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;else</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    ylabel(axes_handle, []);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    lg = legend(axes_handle, current_lines, {}, <span class="stringliteral">&#39;Interpreter&#39;</span>, <span class="stringliteral">&#39;latex&#39;</span>);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    lg.ItemHitFcn = @<a class="code" href="k_v_i_s__plot_signal_8m.html#a667c79881b1ace0580972734e58eb6d2">legendCallback</a>;</div>
@@ -207,7 +207,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__plot_signal_8m_source.html','
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;%</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordflow">if</span> strcmp(e.Peer.Visible, <span class="stringliteral">&#39;on&#39;</span>)</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    e.Peer.Visible = &#39;off&#39;;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;else</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    e.Peer.Visible = &#39;on&#39;;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;end</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;end</div>
@@ -217,6 +217,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__plot_signal_8m_source.html','
 <div class="ttc" id="ak_v_i_s__find_valid_plot_lines_8m_html_a9e295ebb01eb682ee58da8def5a1c017"><div class="ttname"><a href="k_v_i_s__find_valid_plot_lines_8m.html#a9e295ebb01eb682ee58da8def5a1c017">kVIS_findValidPlotLines</a></div><div class="ttdeci">function kVIS_findValidPlotLines(in axes_handle)</div></div>
 <div class="ttc" id="ak_v_i_s__generate_labels_8m_html_ac2b42c9f42c86037099f069e1a11feb0"><div class="ttname"><a href="k_v_i_s__generate_labels_8m.html#ac2b42c9f42c86037099f069e1a11feb0">kVIS_generateLabels</a></div><div class="ttdeci">function kVIS_generateLabels(in signalMeta, in stringModifier)</div></div>
 <div class="ttc" id="ak_v_i_s__get_data_range_8m_html_a84b35e61b2fad4476f7ed5df54549a88"><div class="ttname"><a href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a></div><div class="ttdeci">function kVIS_getDataRange(in hObject, in select)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
 <div class="ttc" id="ak_v_i_s__plot_signal_8m_html_a667c79881b1ace0580972734e58eb6d2"><div class="ttname"><a href="k_v_i_s__plot_signal_8m.html#a667c79881b1ace0580972734e58eb6d2">legendCallback</a></div><div class="ttdeci">function legendCallback(in h, in e)</div></div>
 <div class="ttc" id="ak_v_i_s__plot_signal_8m_html_ab4aec9c655b9290a8a6054e45d584283"><div class="ttname"><a href="k_v_i_s__plot_signal_8m.html#ab4aec9c655b9290a8a6054e45d584283">kVIS_plotSignal</a></div><div class="ttdeci">function kVIS_plotSignal(in hObject, in signal, in signalMeta, in hold_mode, in axes_handle, in plotFcn)</div></div>
 <div class="ttc" id="ak_v_i_s__set_data_range_8m_html_a9ef72389551744eb9416fd30c75d59ab"><div class="ttname"><a href="k_v_i_s__set_data_range_8m.html#a9ef72389551744eb9416fd30c75d59ab">kVIS_setDataRange</a></div><div class="ttdeci">function kVIS_setDataRange(in hObject, in select, in value)</div></div>

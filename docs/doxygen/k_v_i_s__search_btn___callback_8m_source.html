@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Data/kVIS_searchBtn_Callback.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Data/kVIS_searchBtn_Callback.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -111,9 +111,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__search_btn___callback_8m_sour
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;fds = <a class="code" href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a>(hObject);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;% disp(<span class="stringliteral">&#39;Search Results:&#39;</span>)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;% disp(<span class="stringliteral">&#39;===============&#39;</span>)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;% disp(<span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;% <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;Search Results:&#39;</span>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;% <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;===============&#39;</span>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;% <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="charliteral">&#39; &#39;</span>)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;searchStr = handles.uiTabData.groupSearchString.String;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
@@ -121,11 +121,11 @@ $(document).ready(function(){initNavTree('k_v_i_s__search_btn___callback_8m_sour
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;% findGroups = contains(fds.fdata(fds.fdataRows.groupLabel, :), searchStr, &#39;IgnoreCase&#39;,true);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;% </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;% if ~any(findGroups)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;%     disp(&#39;No match in group names found...&#39;)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;%     disp(&#39; &#39;)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;% else</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;%     <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(&#39;No match in group names found...&#39;)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;%     <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(&#39; &#39;)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;% <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;%     GroupResults = fds.fdata{fds.fdataRows.groupLabel, findGroups}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;%     disp(<span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;%     <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="charliteral">&#39; &#39;</span>)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;% end</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;% search <span class="keywordflow">for</span> channels</div>
@@ -182,11 +182,11 @@ $(document).ready(function(){initNavTree('k_v_i_s__search_btn___callback_8m_sour
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    warndlg(<span class="stringliteral">&#39;No match for search query found...&#39;</span>)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;end</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;return</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;if ~isempty(findChan)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;%     disp(&#39;ChannelResults:&#39;)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;%     disp(&#39; &#39;)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;%     <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(&#39;ChannelResults:&#39;)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;%     <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(&#39; &#39;)</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;%     for i = 1: length(findChan)</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;%         fprintf(&#39;%d) %s\n&#39;, i, findChan{i})</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;%     end</div>
@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__search_btn___callback_8m_sour
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="stringliteral">&#39;SelectionMode&#39;</span>,<span class="stringliteral">&#39;single&#39;</span>,<span class="stringliteral">&#39;PromptString&#39;</span>,<span class="stringliteral">&#39;Search results:&#39;</span>,<span class="stringliteral">&#39;OkString&#39;</span>,<span class="stringliteral">&#39;Select&#39;</span>);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordflow">else</span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    sel = [];</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    disp(<span class="stringliteral">&#39;No match in channel names found...&#39;</span>)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;No match in channel names found...&#39;</span>)</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;end</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;%</div>
@@ -221,8 +221,11 @@ $(document).ready(function(){initNavTree('k_v_i_s__search_btn___callback_8m_sour
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="ttc" id="ak_v_i_s__channel_list___callback_8m_html_a284dabc9dad62f9b8797de4bd8c3f93b"><div class="ttname"><a href="k_v_i_s__channel_list___callback_8m.html#a284dabc9dad62f9b8797de4bd8c3f93b">kVIS_channelList_Callback</a></div><div class="ttdeci">function kVIS_channelList_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_update_selection_info_8m_html_a86d123501cfbd887967605a7e8db1b25"><div class="ttname"><a href="k_v_i_s__fds_update_selection_info_8m.html#a86d123501cfbd887967605a7e8db1b25">kVIS_fdsUpdateSelectionInfo</a></div><div class="ttdeci">function kVIS_fdsUpdateSelectionInfo(in hObject, in groupSelected)</div></div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div><div class="ttdoc">Return currently selected fds structure and its name.</div></div>
 <div class="ttc" id="ak_v_i_s__group_tree_update_8m_html_ae4792666ac607c330a1fea3f3317695c"><div class="ttname"><a href="k_v_i_s__group_tree_update_8m.html#ae4792666ac607c330a1fea3f3317695c">kVIS_groupTreeUpdate</a></div><div class="ttdeci">function kVIS_groupTreeUpdate(in hObject, in fds, in mode)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__search_btn___callback_8m_html_a27e7f3d4f3c78e48a82639e5b8588b8f"><div class="ttname"><a href="k_v_i_s__search_btn___callback_8m.html#a27e7f3d4f3c78e48a82639e5b8588b8f">kVIS_searchBtn_Callback</a></div><div class="ttdeci">function kVIS_searchBtn_Callback(in hObject, in ignoredArg)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsImportCSV.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsImportCSV.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_c_s_v_8m_source.ht
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordflow">if</span> iscell(Tr)</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    errordlg(<span class="stringliteral">&#39;Faulty FTI file - contains non-numerical data. Abort&#39;</span>)</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    fds = -1;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    return</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;end</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
@@ -164,24 +164,56 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_c_s_v_8m_source.ht
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;varFrames = cellfun(@(x) &#39;&#39;, varFrames, &#39;UniformOutput&#39;, false);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;% select location in data tree</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;answ = inputdlg({<span class="stringliteral">&#39;New Tree branch&#39;</span>,<span class="stringliteral">&#39;New Group name&#39;</span>},<span class="stringliteral">&#39;Select import names&#39;</span>,1,{<span class="stringliteral">&#39;Imported&#39;</span>,<span class="stringliteral">&#39;FTI Data&#39;</span>});</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;% answ = inputdlg({<span class="stringliteral">&#39;File Name&#39;</span>,<span class="stringliteral">&#39;New Tree branch&#39;</span>,<span class="stringliteral">&#39;New Group name&#39;</span>},<span class="stringliteral">&#39;Select import names&#39;</span>,1,{<span class="stringliteral">&#39;CSV_Data&#39;</span>,<span class="stringliteral">&#39;Imported&#39;</span>,<span class="stringliteral">&#39;FTI Data&#39;</span>});</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordflow">if</span> isempty(answ)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">return</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;end</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;% add data to tree</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;fds = <a class="code" href="k_v_i_s__fds_add_data_group_8m.html#a29457be5ea4a9303bd6653a95303c019">kVIS_fdsAddDataGroup</a>(fds, answ{1}, answ{2}, varNames, varUnits, varFrames, fdata);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;fds = <a class="code" href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a>(fds);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="k_v_i_s__add_data_set_8m.html#a0ffa94f7bb52c7f8e18354444a36f5e9">kVIS_addDataSet</a>(hObject, fds, <span class="stringliteral">&#39;CSV_Data&#39;</span>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;end</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;%</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;% get <span class="keyword">new</span> name (valid matlab var name required)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;%</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;newName = {<span class="stringliteral">&#39;&#39;</span>};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordflow">while</span> ~isvarname(newName{1})</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    newName = inputdlg({<span class="stringliteral">&#39;File Name&#39;</span>,<span class="stringliteral">&#39;New Tree branch&#39;</span>,<span class="stringliteral">&#39;New Group name&#39;</span>},<span class="stringliteral">&#39;Select import names&#39;</span>,1,{<span class="stringliteral">&#39;CSV_Data&#39;</span>,<span class="stringliteral">&#39;Imported&#39;</span>,<span class="stringliteral">&#39;FTI Data&#39;</span>});</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    % cancel</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> isempty(newName)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    end</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    % check name</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> ~isvarname(newName{1})</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        he = errordlg(<span class="stringliteral">&#39;Not a valid Matlab variable name...&#39;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        newName = {<span class="stringliteral">&#39;&#39;</span>};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        uiwait(gcf, 2)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        delete(he);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    end</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    % check duplication</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    str = sprintf(&#39;exist(&#39;&#39;%s&#39;&#39;, &#39;&#39;var&#39;&#39;)&#39;, newName{1});</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> evalin(<span class="stringliteral">&#39;base&#39;</span>,str)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        he = errordlg(<span class="stringliteral">&#39;Name exists...&#39;</span>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        newName = {<span class="stringliteral">&#39;&#39;</span>};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        uiwait(gcf, 2)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        delete(he);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    end</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;end</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;answ = newName;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;% add data to tree</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;fds = <a class="code" href="k_v_i_s__fds_add_data_group_8m.html#a29457be5ea4a9303bd6653a95303c019">kVIS_fdsAddDataGroup</a>(fds, answ{2}, answ{3}, varNames, varUnits, varFrames, fdata);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;fds = <a class="code" href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a>(fds);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<a class="code" href="k_v_i_s__add_data_set_8m.html#a0ffa94f7bb52c7f8e18354444a36f5e9">kVIS_addDataSet</a>(hObject, fds, answ{1})</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__add_data_set_8m_html_a0ffa94f7bb52c7f8e18354444a36f5e9"><div class="ttname"><a href="k_v_i_s__add_data_set_8m.html#a0ffa94f7bb52c7f8e18354444a36f5e9">kVIS_addDataSet</a></div><div class="ttdeci">function kVIS_addDataSet(in hObject, in fds, in fdsName)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_add_data_group_8m_html_a29457be5ea4a9303bd6653a95303c019"><div class="ttname"><a href="k_v_i_s__fds_add_data_group_8m.html#a29457be5ea4a9303bd6653a95303c019">kVIS_fdsAddDataGroup</a></div><div class="ttdeci">function kVIS_fdsAddDataGroup(in fds, in parentNode, in groupName, in varNames, in varUnits, in varFrames, in fdata)</div><div class="ttdoc">Add a group to tree, or update group if it exists.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_import_c_s_v_8m_html_a81d0f4e70b9d02a55e54b9e4d3c7c41d"><div class="ttname"><a href="k_v_i_s__fds_import_c_s_v_8m.html#a81d0f4e70b9d02a55e54b9e4d3c7c41d">kVIS_fdsImportCSV</a></div><div class="ttdeci">function kVIS_fdsImportCSV(in hObject, in ignoredArg)</div><div class="ttdoc">Add data from a CSV file to the current data tree.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_init_new_8m_html_a52c48b9fdd2046873aaed49446a367ad"><div class="ttname"><a href="k_v_i_s__fds_init_new_8m.html#a52c48b9fdd2046873aaed49446a367ad">kVIS_fdsInitNew</a></div><div class="ttdeci">function kVIS_fdsInitNew()</div><div class="ttdoc">Create a new FDS structure as per specification V 1.0 for BSP 'generic'.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_update_attributes_8m_html_acaed4f9e897e3e799a412bc958e3ab64"><div class="ttname"><a href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a></div><div class="ttdeci">function kVIS_fdsUpdateAttributes(in fds)</div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

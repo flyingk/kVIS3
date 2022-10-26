@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Common/Plotting/kVIS_generateLabels.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Common/Plotting/kVIS_generateLabels.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -122,48 +122,58 @@ $(document).ready(function(){initNavTree('k_v_i_s__generate_labels_8m_source.htm
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;%</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordflow">if</span> ~isstruct(signalMeta)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span> startsWith(strip(signalMeta), <span class="charliteral">&#39;$&#39;</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        labelStr = strip(signalMeta);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        return</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    else</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        NameStr = strip(signalMeta);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    end</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;else</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    NameStr = strip(signalMeta.name);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    % check which option applies</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    if ~contains(NameStr, &#39;UNIT&#39;)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        % option 2 - assemble <span class="keywordtype">string</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        if ~isempty(signalMeta.unit)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            NameStr = [NameStr &#39;_UNIT_&#39; strip(signalMeta.unit)];</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        end</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        if ~isempty(signalMeta.frame)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            NameStr = [NameStr &#39;_FRAME_&#39; strip(signalMeta.frame)];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        end</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    end</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;end</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;%</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;% Process name <span class="keywordtype">string</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;%</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;[ SignalInfo ] = <a class="code" href="k_v_i_s__extract_info_from_signal_name_8m.html#a146a8693bd1f3d983ee8b350ade1bcc2">kVIS_extractInfoFromSignalName</a>( NameStr );</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;%</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;% Assemble output</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;%</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;if isempty(SignalInfo.TeX_Unit)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    labelStr = SignalInfo.TeX_Name;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;else</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    labelStr = [SignalInfo.TeX_Name &#39; &#39; SignalInfo.TeX_Unit];</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;end</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span> ~ischar(signalMeta)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        labelStr = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    end</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    % name <span class="keywordtype">string</span> already provided (option 3)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> startsWith(strip(signalMeta), <span class="charliteral">&#39;$&#39;</span>)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        labelStr = strip(signalMeta);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        NameStr = strip(signalMeta);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    end</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    % option 1/2</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    NameStr = strip(signalMeta.name);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    % check which option applies</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    if ~contains(NameStr, &#39;UNIT&#39;)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        % option 2 - assemble <span class="keywordtype">string</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        if ~isempty(signalMeta.unit)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            NameStr = [NameStr &#39;_UNIT_&#39; strip(signalMeta.unit)];</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        end</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        if ~isempty(signalMeta.frame)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            NameStr = [NameStr &#39;_FRAME_&#39; strip(signalMeta.frame)];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        end</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    end</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;end</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;%</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% Process name <span class="keywordtype">string</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;%</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;[ SignalInfo ] = <a class="code" href="k_v_i_s__extract_info_from_signal_name_8m.html#a146a8693bd1f3d983ee8b350ade1bcc2">kVIS_extractInfoFromSignalName</a>( NameStr );</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;%</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;% Assemble output</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;%</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;if isempty(SignalInfo.TeX_Unit)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    labelStr = SignalInfo.TeX_Name;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    labelStr = [SignalInfo.TeX_Name &#39; &#39; SignalInfo.TeX_Unit];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__extract_info_from_signal_name_8m_html_a146a8693bd1f3d983ee8b350ade1bcc2"><div class="ttname"><a href="k_v_i_s__extract_info_from_signal_name_8m.html#a146a8693bd1f3d983ee8b350ade1bcc2">kVIS_extractInfoFromSignalName</a></div><div class="ttdeci">function kVIS_extractInfoFromSignalName(in Name)</div></div>
 <div class="ttc" id="ak_v_i_s__generate_labels_8m_html_ac2b42c9f42c86037099f069e1a11feb0"><div class="ttname"><a href="k_v_i_s__generate_labels_8m.html#ac2b42c9f42c86037099f069e1a11feb0">kVIS_generateLabels</a></div><div class="ttdeci">function kVIS_generateLabels(in signalMeta, in stringModifier)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

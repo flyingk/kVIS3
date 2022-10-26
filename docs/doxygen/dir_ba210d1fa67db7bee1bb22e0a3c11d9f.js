@@ -8,6 +8,7 @@ var dir_ba210d1fa67db7bee1bb22e0a3c11d9f =
     [ "kVIS_appDeleteFcn.m", "k_v_i_s__app_delete_fcn_8m.html", "k_v_i_s__app_delete_fcn_8m" ],
     [ "kVIS_downSample.m", "k_v_i_s__down_sample_8m.html", "k_v_i_s__down_sample_8m" ],
     [ "kVIS_eventPlot.m", "k_v_i_s__event_plot_8m.html", "k_v_i_s__event_plot_8m" ],
+    [ "kVIS_getAllFds.m", "k_v_i_s__get_all_fds_8m.html", "k_v_i_s__get_all_fds_8m" ],
     [ "kVIS_getCurrentFds.m", "k_v_i_s__get_current_fds_8m.html", "k_v_i_s__get_current_fds_8m" ],
     [ "kVIS_panelSizeChanged_Callback.m", "k_v_i_s__panel_size_changed___callback_8m.html", "k_v_i_s__panel_size_changed___callback_8m" ],
     [ "kVIS_reSample.m", "k_v_i_s__re_sample_8m.html", "k_v_i_s__re_sample_8m" ],

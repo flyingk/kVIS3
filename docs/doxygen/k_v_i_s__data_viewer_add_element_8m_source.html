@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_DataViewer/Layout_Framework/kVIS_dataViewerAddElement.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_DataViewer/Layout_Framework/kVIS_dataViewerAddElement.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__data_viewer_add_element_8m_so
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="k_v_i_s__axes_resize_to_container_8m.html#a419d9fe075b3481470d7bb96ae292317">kVIS_axesResizeToContainer</a>(ax)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="k_v_i_s__set_graphics_style_8m.html#a4a48cbe795943305e831b357c738c47b">kVIS_setGraphicsStyle</a>(ax, handles.uiTabDataViewer.plotStyles.AxesB);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="k_v_i_s__set_graphics_style_8m.html#a4a48cbe795943305e831b357c738c47b">kVIS_setGraphicsStyle</a>(ax, handles.uiTabDataViewer.plotStyles.Axes);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;%</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;% set panel properties</div>
@@ -252,12 +252,18 @@ $(document).ready(function(){initNavTree('k_v_i_s__data_viewer_add_element_8m_so
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;off&#39;</span>);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;uimenu( ...</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="stringliteral">&#39;Parent&#39;</span>, m, ...</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="stringliteral">&#39;Label&#39;</span>, <span class="stringliteral">&#39;Delete panel&#39;</span>, ...</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="stringliteral">&#39;Label&#39;</span>, <span class="stringliteral">&#39;Save Layout&#39;</span>, ...</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="stringliteral">&#39;Separator&#39;</span>,<span class="stringliteral">&#39;on&#39;</span>,...</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>, {@<a class="code" href="k_v_i_s__panel_context_menu_action_8m.html#a68cdc8ee52b9b2885f25640e9c2292bd">kVIS_panelContextMenuAction</a>, panel} ...</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    );</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;end</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>, {@<a class="code" href="k_v_i_s__panel_context_menu_action_8m.html#a68cdc8ee52b9b2885f25640e9c2292bd">kVIS_panelContextMenuAction</a>, panel}, ...</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="stringliteral">&#39;Enable&#39;</span>, <span class="stringliteral">&#39;on&#39;</span>);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;uimenu( ...</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="stringliteral">&#39;Parent&#39;</span>, m, ...</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="stringliteral">&#39;Label&#39;</span>, <span class="stringliteral">&#39;Delete panel&#39;</span>, ...</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="stringliteral">&#39;Separator&#39;</span>,<span class="stringliteral">&#39;on&#39;</span>,...</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="stringliteral">&#39;Callback&#39;</span>, {@<a class="code" href="k_v_i_s__panel_context_menu_action_8m.html#a68cdc8ee52b9b2885f25640e9c2292bd">kVIS_panelContextMenuAction</a>, panel} ...</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    );</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__axes_resize_to_container_8m_html_a419d9fe075b3481470d7bb96ae292317"><div class="ttname"><a href="k_v_i_s__axes_resize_to_container_8m.html#a419d9fe075b3481470d7bb96ae292317">kVIS_axesResizeToContainer</a></div><div class="ttdeci">function kVIS_axesResizeToContainer(in ax)</div></div>
 <div class="ttc" id="ak_v_i_s__data_range_update___callback_8m_html_a38d4f47a751eb965be357a160b132aba"><div class="ttname"><a href="k_v_i_s__data_range_update___callback_8m.html#a38d4f47a751eb965be357a160b132aba">kVIS_dataRangeUpdate_Callback</a></div><div class="ttdeci">function kVIS_dataRangeUpdate_Callback(in hObject, in ignoredArg, in select)</div></div>
 <div class="ttc" id="ak_v_i_s__data_viewer_add_element_8m_html_a232a801edfd3cae82caeb4dbd754894c"><div class="ttname"><a href="k_v_i_s__data_viewer_add_element_8m.html#a232a801edfd3cae82caeb4dbd754894c">newPanel</a></div><div class="ttdeci">function newPanel(in handles, in column)</div></div>

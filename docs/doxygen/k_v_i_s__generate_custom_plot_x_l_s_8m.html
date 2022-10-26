@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_generateCustomPlotXLS.m File Reference</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_generateCustomPlotXLS.m File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,16 +88,24 @@ $(document).ready(function(){initNavTree('k_v_i_s__generate_custom_plot_x_l_s_8m
 </div><!--header-->
 <div class="contents">
 
+<p>Generate custom plot window from XLS definition.  
+<a href="#details">More...</a></p>
+
 <p><a href="k_v_i_s__generate_custom_plot_x_l_s_8m_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b3ba8674043168fd5733dfd69554743"><td class="memItemLeft" align="right" valign="top">function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k_v_i_s__generate_custom_plot_x_l_s_8m.html#a9b3ba8674043168fd5733dfd69554743">kVIS_generateCustomPlotXLS</a> (in figure_handle, in fds, in plotDef, in lims, in Style)</td></tr>
-<tr class="separator:a9b3ba8674043168fd5733dfd69554743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16e1ae79b0dea7ff50bcd3fc5a7f449"><td class="memItemLeft" align="right" valign="top">function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k_v_i_s__generate_custom_plot_x_l_s_8m.html#aa16e1ae79b0dea7ff50bcd3fc5a7f449">kVIS_generateCustomPlotXLS</a> (in figH, in fds, in plotName, in lims, in Style, in fds_name, in idxFdsCurrent)</td></tr>
+<tr class="memdesc:aa16e1ae79b0dea7ff50bcd3fc5a7f449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate custom plot from XLS definition.  <a href="k_v_i_s__generate_custom_plot_x_l_s_8m.html#aa16e1ae79b0dea7ff50bcd3fc5a7f449">More...</a><br /></td></tr>
+<tr class="separator:aa16e1ae79b0dea7ff50bcd3fc5a7f449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a9b3ba8674043168fd5733dfd69554743"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b3ba8674043168fd5733dfd69554743">&#9670;&nbsp;</a></span>kVIS_generateCustomPlotXLS()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Generate custom plot window from XLS definition. </p>
+
+<p class="definition">Definition in file <a class="el" href="k_v_i_s__generate_custom_plot_x_l_s_8m_source.html">kVIS_generateCustomPlotXLS.m</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aa16e1ae79b0dea7ff50bcd3fc5a7f449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16e1ae79b0dea7ff50bcd3fc5a7f449">&#9670;&nbsp;</a></span>kVIS_generateCustomPlotXLS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -106,7 +114,7 @@ Functions</h2></td></tr>
           <td class="memname">function kVIS_generateCustomPlotXLS </td>
           <td>(</td>
           <td class="paramtype">in&#160;</td>
-          <td class="paramname"><em>figure_handle</em>, </td>
+          <td class="paramname"><em>figH</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -118,7 +126,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">in&#160;</td>
-          <td class="paramname"><em>plotDef</em>, </td>
+          <td class="paramname"><em>plotName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -130,7 +138,19 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">in&#160;</td>
-          <td class="paramname"><em>Style</em>&#160;</td>
+          <td class="paramname"><em>Style</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">in&#160;</td>
+          <td class="paramname"><em>fds_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">in&#160;</td>
+          <td class="paramname"><em>idxFdsCurrent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,6 +159,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generate custom plot from XLS definition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>figure </td></tr>
+    <tr><td class="paramname">FDS</td><td>file </td></tr>
+    <tr><td class="paramname">Plot</td><td>definition structure </td></tr>
+    <tr><td class="paramname">Plot</td><td>time axis limits </td></tr>
+    <tr><td class="paramname">Plot</td><td>style structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Axes handles </dd></dl>
 
 </div>
 </div>

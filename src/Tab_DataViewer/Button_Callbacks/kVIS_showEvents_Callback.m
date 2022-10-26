@@ -42,7 +42,7 @@ else
 
     for I = 1:length(axHandles)
 
-        kVIS_eventPlot(hObject, [], axHandles(I))
+        kVIS_eventPlot(hObject, [], axHandles(I), [])
 
     end
 end

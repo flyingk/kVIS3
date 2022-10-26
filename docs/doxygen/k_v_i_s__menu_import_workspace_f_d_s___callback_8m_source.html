@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/UI/Menu_Callbacks/kVIS_menuImportWorkspaceFDS_Callback.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/UI/Menu_Callbacks/kVIS_menuImportWorkspaceFDS_Callback.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__menu_import_workspace_f_d_s__
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;% <span class="keyword">register</span> in data set list - how to check <span class="keywordflow">for</span> duplicates???</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;disp(<span class="stringliteral">&#39;kVIS_menuImportWorkspaceFDS_Callback: WARNING! will override existing workspace data!&#39;</span>)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;kVIS_menuImportWorkspaceFDS_Callback: WARNING! will override existing workspace data!&#39;</span>)</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;c = evalin(&#39;base&#39;,&#39;who&#39;);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__menu_import_workspace_f_d_s__
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;[s,ok] = listdlg(&#39;ListString&#39;,c, &#39;SelectionMode&#39;, &#39;single&#39;);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;if ok == 0</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    return</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;end</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;%</div>
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__menu_import_workspace_f_d_s__
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    end</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;else</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    newName{1} = c{s};</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
@@ -177,9 +177,12 @@ $(document).ready(function(){initNavTree('k_v_i_s__menu_import_workspace_f_d_s__
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;end</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
 <div class="ttc" id="ak_v_i_s__add_data_set_8m_html_a0ffa94f7bb52c7f8e18354444a36f5e9"><div class="ttname"><a href="k_v_i_s__add_data_set_8m.html#a0ffa94f7bb52c7f8e18354444a36f5e9">kVIS_addDataSet</a></div><div class="ttdeci">function kVIS_addDataSet(in hObject, in fds, in fdsName)</div></div>
-<div class="ttc" id="ak_v_i_s__data_set_list_state_8m_html_ad33c05766717516d9e3944bed3115ec3"><div class="ttname"><a href="k_v_i_s__data_set_list_state_8m.html#ad33c05766717516d9e3944bed3115ec3">kVIS_dataSetListState</a></div><div class="ttdeci">function kVIS_dataSetListState(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__data_set_list_state_8m_html_ad33c05766717516d9e3944bed3115ec3"><div class="ttname"><a href="k_v_i_s__data_set_list_state_8m.html#ad33c05766717516d9e3944bed3115ec3">kVIS_dataSetListState</a></div><div class="ttdeci">function kVIS_dataSetListState(in hObject)</div><div class="ttdoc">Return information about the open data files.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_upgrade_8m_html_a69a4761e514234fe8533a7940d30f324"><div class="ttname"><a href="k_v_i_s__fds_upgrade_8m.html#a69a4761e514234fe8533a7940d30f324">kVIS_fdsUpgrade</a></div><div class="ttdeci">function kVIS_fdsUpgrade(in fds)</div></div>
 <div class="ttc" id="ak_v_i_s__menu_import_workspace_f_d_s___callback_8m_html_afc0ae3ef5768e7d57d6579d4a1261da0"><div class="ttname"><a href="k_v_i_s__menu_import_workspace_f_d_s___callback_8m.html#afc0ae3ef5768e7d57d6579d4a1261da0">kVIS_menuImportWorkspaceFDS_Callback</a></div><div class="ttdeci">function kVIS_menuImportWorkspaceFDS_Callback(in hObject, in ignoredArg)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

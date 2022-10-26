@@ -45,7 +45,7 @@ else
 
     for I = 1:length(axHandles)
 
-        kVIS_eventPlot(MainWindowHandle, [], axHandles(I))
+        kVIS_eventPlot(MainWindowHandle, [], axHandles(I), [])
 
     end
 end

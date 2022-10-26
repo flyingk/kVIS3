@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsTrimToTimeRange.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsTrimToTimeRange.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_trim_to_time_range_8m_sou
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    fds.fdata{fds.fdataRows.data, I} = data(in:out,:);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;end</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;% edit <span class="keyword">event</span> list to remove events outside <span class="keyword">new</span> time range</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;% edit <span class="keyword">event</span> list to remove <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a> outside <span class="keyword">new</span> time range</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;eList = fds.eventList;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;EventID = [];</div>
@@ -158,7 +158,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_trim_to_time_range_8m_sou
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;if ~isempty(EventID)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    fds.eventList = <a class="code" href="k_v_i_s__trim_event_list_8m.html#a769f20e25a0c57d2939f3114ef0731e4">kVIS_trimEventList</a>(EventID, eList);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    msg=&#39;Dataset trimming complete. Event list was adjusted.&#39;;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;else</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    msg=&#39;Dataset trimming complete&#39;;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;end</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
@@ -168,6 +168,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_trim_to_time_range_8m_sou
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;fds = <a class="code" href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a>(fds);</div>
 <div class="ttc" id="ak_v_i_s__fds_trim_to_time_range_8m_html_a32a0c555338a029e85aba5b9f8d52360"><div class="ttname"><a href="k_v_i_s__fds_trim_to_time_range_8m.html#a32a0c555338a029e85aba5b9f8d52360">kVIS_fdsTrimToTimeRange</a></div><div class="ttdeci">function kVIS_fdsTrimToTimeRange(in fds, in TimeRange)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_update_attributes_8m_html_acaed4f9e897e3e799a412bc958e3ab64"><div class="ttname"><a href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a></div><div class="ttdeci">function kVIS_fdsUpdateAttributes(in fds)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div><div class="ttdeci">@ events</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00123">kVIS_plotSignal2.m:123</a></div></div>
 <div class="ttc" id="ak_v_i_s__trim_event_list_8m_html_a769f20e25a0c57d2939f3114ef0731e4"><div class="ttname"><a href="k_v_i_s__trim_event_list_8m.html#a769f20e25a0c57d2939f3114ef0731e4">kVIS_trimEventList</a></div><div class="ttdeci">function kVIS_trimEventList(in EventID, in eList)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/UI/Preferences/kVIS_preferencesInit.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/UI/Preferences/kVIS_preferencesInit.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -134,48 +134,52 @@ $(document).ready(function(){initNavTree('k_v_i_s__preferences_init_8m_source.ht
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;defaultLegendFontSize&#39;, 12)</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;end</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplayFeature&#39;)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplayFeature&#39;, &#39;off&#39;)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;defaultLineWidth&#39;)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;defaultLineWidth&#39;, 1.5)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;end</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplayTargetIP&#39;)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplayTargetIP&#39;, &#39;127.0.0.1&#39;)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplayFeature&#39;)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplayFeature&#39;, &#39;off&#39;)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;end</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplaySpeed&#39;)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplaySpeed&#39;, 10)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplayTargetIP&#39;)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplayTargetIP&#39;, &#39;127.0.0.1&#39;)</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;end</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;google_maps_api_key&#39;)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;google_maps_api_key&#39;, &#39;&#39;)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;dataReplaySpeed&#39;)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;dataReplaySpeed&#39;, 10)</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;end</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;clear_path_on_exit&#39;)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;clear_path_on_exit&#39;, 1)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;google_maps_api_key&#39;)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;google_maps_api_key&#39;, &#39;&#39;)</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;end</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_X_digits&#39;)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_X_digits&#39;, 6)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;clear_path_on_exit&#39;)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;clear_path_on_exit&#39;, 1)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;end</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_Y_digits&#39;)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_Y_digits&#39;, 6)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_X_digits&#39;)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_X_digits&#39;, 6)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;end</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_format_dec_hex_bin&#39;)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_format_dec_hex_bin&#39;, &#39;dec&#39;)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_Y_digits&#39;)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_Y_digits&#39;, 6)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;end</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;% prefs = getpref(&#39;kVIS_prefs&#39;)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;end</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;%% todo:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;% Preferences data structure:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;% </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;% Value</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;% Value data type</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;% Restart flag</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;% Update fcn handle</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;if ~ispref(&#39;kVIS_prefs&#39;,&#39;DataTip_format_dec_hex_bin&#39;)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    addpref(&#39;kVIS_prefs&#39;,&#39;DataTip_format_dec_hex_bin&#39;, &#39;dec&#39;)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;end</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;% prefs = getpref(&#39;kVIS_prefs&#39;)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;end</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;%% todo:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;% Preferences data structure:</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;% </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;% Value</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;% Value data type</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;% Restart flag</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;% Update fcn handle</div>
 <div class="ttc" id="ak_v_i_s__preferences_init_8m_html_ab5200068c1d440336584fa38864b10f7"><div class="ttname"><a href="k_v_i_s__preferences_init_8m.html#ab5200068c1d440336584fa38864b10f7">kVIS_preferencesInit</a></div><div class="ttdeci">function kVIS_preferencesInit()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_updateCustomPlotList_Callback.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_updateCustomPlotList_Callback.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__update_custom_plot_list___cal
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;%&gt; @brief Builds a tree structure from the contents of the CustomPlots dir inside the BSP</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;%&gt;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;%&gt; @param Standard GUI handles</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;%&gt; @param Standard GUI events</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;%&gt; @param Standard GUI <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;%</div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="k_v_i_s__update_custom_plot_list___callback_8m.html#ad108618a7d85c758d9331a35fc9f66e6">   32</a></span>&#160;<span class="keyword">function</span> [] = <a class="code" href="k_v_i_s__update_custom_plot_list___callback_8m.html#ad108618a7d85c758d9331a35fc9f66e6">kVIS_updateCustomPlotList_Callback</a>(hObject, ~)</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
@@ -131,9 +131,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__update_custom_plot_list___cal
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    % get valid plot names</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    fileNames = ~startsWith(fileListCell(1,:), &quot;.&quot;);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;else</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    errordlg(&#39;Custom plot folder not found...&#39;)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    return</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;end</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;% tree handle</div>
@@ -193,6 +193,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__update_custom_plot_list___cal
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;guidata(hObject, handles);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;end</div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div><div class="ttdeci">@ events</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00123">kVIS_plotSignal2.m:123</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__update_custom_plot_list___callback_8m_html_ad108618a7d85c758d9331a35fc9f66e6"><div class="ttname"><a href="k_v_i_s__update_custom_plot_list___callback_8m.html#ad108618a7d85c758d9331a35fc9f66e6">kVIS_updateCustomPlotList_Callback</a></div><div class="ttdeci">function kVIS_updateCustomPlotList_Callback(in hObject, in ignoredArg)</div><div class="ttdoc">Builds a tree structure from the contents of the CustomPlots dir inside the BSP.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

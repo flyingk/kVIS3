@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeMapPlotElement.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeMapPlotElement.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -122,22 +122,25 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_map_plot_element_8m_sou
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;% run bsp <span class="keyword">function</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;figHdl = feval(<span class="stringliteral">&#39;kVIS_createMap_Callback&#39;</span>, hObject, [], pathColorChannel);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;% save returned figures</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordflow">for</span> I = 1:length(figHdl)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    fcnName = [<span class="stringliteral">&#39;mapPlot&#39;</span>];</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    % save figures</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    fileNames{1,I} = fullfile(outFolder, <span class="stringliteral">&#39;img&#39;</span>, [fcnName <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>]);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    print(figHdl(I),<span class="stringliteral">&#39;-noui&#39;</span>,fileNames{1,I}, <span class="stringliteral">&#39;-djpeg&#39;</span>, <span class="stringliteral">&#39;-r200&#39;</span>)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    % relative path</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    fileNames{1,I} = [<span class="stringliteral">&#39;./img/&#39;</span> fcnName <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>];</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    fileNames{2,I} = figHdl(I).Name;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">delete</span>(figHdl);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;end</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;% gen file ID</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">id</span> = randi(10000);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;% save returned figures</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordflow">for</span> I = 1:length(figHdl)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    fcnName = [<span class="stringliteral">&#39;mapPlot&#39;</span>];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    % save figures</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    fileNames{1,I} = fullfile(outFolder, <span class="stringliteral">&#39;img&#39;</span>, [fcnName <span class="charliteral">&#39;_&#39;</span> num2str(<span class="keywordtype">id</span>) <span class="stringliteral">&#39;.jpeg&#39;</span>]);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    print(figHdl(I),<span class="stringliteral">&#39;-noui&#39;</span>,fileNames{1,I}, <span class="stringliteral">&#39;-djpeg&#39;</span>, <span class="stringliteral">&#39;-r200&#39;</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    % relative path</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    fileNames{1,I} = [<span class="stringliteral">&#39;./img/&#39;</span> fcnName <span class="charliteral">&#39;_&#39;</span> num2str(<span class="keywordtype">id</span>) <span class="stringliteral">&#39;.jpeg&#39;</span>];</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    fileNames{2,I} = figHdl(I).Name;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">delete</span>(figHdl);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__write_fcn_plot_element_8m_html_ab1bc27cd1f74acc0ac14f11816849bfc"><div class="ttname"><a href="k_v_i_s__write_fcn_plot_element_8m.html#ab1bc27cd1f74acc0ac14f11816849bfc">kVIS_writeFcnPlotElement</a></div><div class="ttdeci">function kVIS_writeFcnPlotElement(in hObject, in fcnName, in outFolder)</div><div class="ttdoc">Add a plot element to the report returned by a bsp function call.</div></div>
 <div class="ttc" id="ak_v_i_s__write_map_plot_element_8m_html_af940670927385b8d5732c00bf54969c1"><div class="ttname"><a href="k_v_i_s__write_map_plot_element_8m.html#af940670927385b8d5732c00bf54969c1">kVIS_writeMapPlotElement</a></div><div class="ttdeci">function kVIS_writeMapPlotElement(in hObject, in pathColorChannel, in outFolder)</div><div class="ttdoc">Add a plot element to the report returned by a bsp function call.</div></div>
 </div><!-- fragment --></div><!-- contents -->

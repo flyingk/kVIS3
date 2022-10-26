@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_DataViewer/Special_Plots/kVIS_fftUpdate.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_DataViewer/Special_Plots/kVIS_fftUpdate.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fft_update_8m_source.html',''
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordflow">if</span> isempty(targetPanel)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    errordlg(<span class="stringliteral">&#39;Cannot find data source. Ensure the corresponding timeplot is selected for manual update...&#39;</span>)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    return</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;end</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;% plot axes</div>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fft_update_8m_source.html',''
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    if ll &gt; 1</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        hold(ax, &#39;on&#39;);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    else</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        hold(ax, &#39;off&#39;);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    end</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
@@ -173,7 +173,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fft_update_8m_source.html',''
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        if any(isnan(signal))</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            errordlg(&#39;Signal contains NaN. FFT not possible at the moment...&#39;)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            return</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        end</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        w = [fmin:0.01:fmax]*2*pi;</div>
@@ -382,7 +382,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fft_update_8m_source.html',''
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  df=1/(npts*dt);</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  f=[0:df:fs/2]&#39;;</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  w=2*pi*f;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;else</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  w=cvec(w);</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  f=w/(2*pi);</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  df=f(2)-f(1);</div>
@@ -445,6 +445,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__fft_update_8m_source.html',''
 <div class="ttc" id="ak_v_i_s__fft_update_8m_html_aa2c85f98f16f4b94c794d6db0e4f9eac"><div class="ttname"><a href="k_v_i_s__fft_update_8m.html#aa2c85f98f16f4b94c794d6db0e4f9eac">kVIS_createFFTContextMenu</a></div><div class="ttdeci">function kVIS_createFFTContextMenu(in ax)</div></div>
 <div class="ttc" id="ak_v_i_s__fft_update_8m_html_af326f5eacf5dd106333f8d618e245a15"><div class="ttname"><a href="k_v_i_s__fft_update_8m.html#af326f5eacf5dd106333f8d618e245a15">kVIS_fftUpdate</a></div><div class="ttdeci">function kVIS_fftUpdate(in ignoredArg, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__get_data_range_8m_html_a84b35e61b2fad4476f7ed5df54549a88"><div class="ttname"><a href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a></div><div class="ttdeci">function kVIS_getDataRange(in hObject, in select)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__set_graphics_style_8m_html_a4a48cbe795943305e831b357c738c47b"><div class="ttname"><a href="k_v_i_s__set_graphics_style_8m.html#a4a48cbe795943305e831b357c738c47b">kVIS_setGraphicsStyle</a></div><div class="ttdeci">function kVIS_setGraphicsStyle(in graphics_handle, in attributes)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

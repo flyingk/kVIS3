@@ -53,7 +53,7 @@ kVIS_setDataRange(hObject, 'YLim', []);
 %
 % format plot
 %
-kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.AxesB);
+kVIS_setGraphicsStyle(l.axesHandle, handles.uiTabDataViewer.plotStyles.Axes);
 kVIS_axesResizeToContainer(l.axesHandle);
 %
 % reset button states

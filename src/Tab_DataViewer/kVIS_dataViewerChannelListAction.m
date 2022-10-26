@@ -34,37 +34,50 @@ end
 % update map plot
 %
 if strcmp(targetPanel.Tag, 'mapplot')
-    
+
     h = findobj(targetPanel.axesHandle, 'Type', 'Scatter');
-    
+
     if isempty(h)
         errordlg('Map has been cleared. Select ''timeplot'' to plot data or re-create map.')
         return
     end
-    
+
     kVIS_updateMap(hObject, h)
-    
+
 elseif strcmp(targetPanel.Tag, 'timeplot')
     %
     %  Plot the selected column of fdata.
     %
     handles=guidata(hObject);
-    
+
     % Load signal data.
     [signal, signalMeta] = kVIS_fdsGetCurrentChannel(hObject);
-    
+
     %
     % plot the signal into the specified axes
     %
-    kVIS_plotSignal( ...
-        hObject, ...
+    lineColor = [];
+    lineStyle = [];
+    xLbl    = 'Time [sec]';
+    yLbl    = kVIS_generateLabels(signalMeta, []);
+    xLimits = kVIS_getDataRange(hObject, 'XLim');
+    yLimits = kVIS_getDataRange(hObject, 'YLim');
+    interactiveToggle = true;
+
+    kVIS_plotSignal2(targetPanel.axesHandle, @plot, ...
+        signalMeta.timeVec, [], ...
         signal, signalMeta, ...
+        lineColor, lineStyle, ...
+        xLbl, yLbl, ...
+        xLimits, yLimits, ...
         handles.uiFramework.holdToggle, ...
-        targetPanel.axesHandle, ...
-        @plot ...
+        handles.uiTabDataViewer.plotStyles, ...
+        interactiveToggle ...
         );
-    
+
     targetPanel.plotChanged = randi(1000);
+    kVIS_axesResizeToContainer(targetPanel.axesHandle);
+    targetPanel.axesHandle.XRuler.Exponent = false; % no exp in time stamps
 end
 
 end

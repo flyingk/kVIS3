@@ -40,6 +40,12 @@ if ~nargin
     return;
 end
 
+if ispc
+    ftSize = 13;
+else
+    ftSize = 16;
+end
+
 handles.uiTabData.tabHandle = uitab('Parent', uiTabGroupRight, 'Title', 'Data');
 
 data_tab_hbox = uix.HBoxFlex('Parent', handles.uiTabData.tabHandle);
@@ -53,7 +59,7 @@ data_tab_hbox.Widths = [getpref('kVIS_prefs','uiDataChannelBoxWidth') -1];
 handles.uiTabData.channelListboxLabel = uicontrol(data_tab_left,'Style','text',...
     'String','Data Channels',...
     'Units','normalized',...
-    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',16);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',ftSize);
 
 channelListBoxMenu = uicontextmenu;
 handles.uiTabData.channelListBoxMenu1 = uimenu(channelListBoxMenu, 'Label', 'Show display names (default)',...
@@ -83,7 +89,7 @@ data_tab_left.Heights = [30 -1];
 uicontrol(data_tab_right,'Style','text',...
     'String','Data Sets',...
     'Units','normalized',...
-    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',16);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',ftSize);
 
 dataSetListBoxMenu = uicontextmenu();
 uimenu(dataSetListBoxMenu,'Text','Rename Dataset','Callback', @kVIS_menuRenameDataSet_Callback);
@@ -104,7 +110,7 @@ handles.uiTabData.dataSetList = uicontrol(data_tab_right,...
 uicontrol(data_tab_right,'Style','text',...
     'String','Data Groups',...
     'Units','normalized',...
-    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',16);
+    'Backgroundcolor',getpref('kVIS_prefs','uiBackgroundColour'), 'Foregroundcolor','w','FontSize',ftSize);
 
 % Requires
 % https://de.mathworks.com/matlabcentral/fileexchange/66235-widgets-toolbox

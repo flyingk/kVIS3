@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_CustomPlotFcn/kVIS_subtract_fcn.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Plots/kVIS_CustomPlotFcn/kVIS_subtract_fcn.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,13 +105,13 @@ $(document).ready(function(){initNavTree('k_v_i_s__subtract__fcn_8m_source.html'
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    operatorCh = <a class="code" href="k_v_i_s__fds_get_channel_8m.html#a35830af834b5779b15a6869f8d3a0b6d">kVIS_fdsGetChannel</a>(fds, ccF{1}, ccF{2});</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span> operatorCh == -1</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        disp(<span class="stringliteral">&#39;Function channel not found... Ignoring.&#39;</span>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;Function channel not found... Ignoring.&#39;</span>)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        y = data;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        return</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    end</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    operatorCh = operatorCh(pts);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;else</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    % add a constant to data</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    operatorCh = ones(length(data),1) * varargin{3};</div>
@@ -121,6 +121,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__subtract__fcn_8m_source.html'
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;y = data - operatorCh;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__fds_get_channel_8m_html_a35830af834b5779b15a6869f8d3a0b6d"><div class="ttname"><a href="k_v_i_s__fds_get_channel_8m.html#a35830af834b5779b15a6869f8d3a0b6d">kVIS_fdsGetChannel</a></div><div class="ttdeci">function kVIS_fdsGetChannel(in fds, in group, in channel)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__subtract__fcn_8m_html_ab34d5c4d5e00ea43cbc48af11e2f985b"><div class="ttname"><a href="k_v_i_s__subtract__fcn_8m.html#ab34d5c4d5e00ea43cbc48af11e2f985b">kVIS_subtract_fcn</a></div><div class="ttdeci">function kVIS_subtract_fcn(in data, in varargin)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

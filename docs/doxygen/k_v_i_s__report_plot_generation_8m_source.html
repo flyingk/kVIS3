@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_reportPlotGeneration.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_reportPlotGeneration.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__report_plot_generation_8m_sou
 </div><!--header-->
 <div class="contents">
 <a href="k_v_i_s__report_plot_generation_8m.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;%</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;%&gt; @file <a class="code" href="k_v_i_s__report_plot_generation_8m.html#acf48071f777e1c9838d2018eb9fb3ca9">kVIS_reportPlotGeneration</a>.m</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;%&gt; @file <a class="code" href="k_v_i_s__report_plot_generation_8m.html#a05fdfaf7a3b7cad5ee5ced7e01152a28">kVIS_reportPlotGeneration</a>.m</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;%&gt; @brief Generate plots <span class="keywordflow">for</span> a report from a custom plot definition</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;%</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;%</div>
@@ -96,17 +96,17 @@ $(document).ready(function(){initNavTree('k_v_i_s__report_plot_generation_8m_sou
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;% contributors</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;%</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;% Contact: kvis3@uav-flightresearch.com</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;% </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;%</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;% This program is free software: you can redistribute it and/or modify</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;% it under the terms of the GNU General Public License as published by</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;% the Free Software Foundation, either version 3 of the License, or</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;% (at your option) any later version.</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;% </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;%</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;% This program is distributed in the hope that it will be useful,</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;% but WITHOUT ANY WARRANTY; without even the implied warranty of</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;% GNU General Public License <span class="keywordflow">for</span> more details.</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;% </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;%</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;% You should have received a copy of the GNU General Public License</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;% along with <span class="keyword">this</span> program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
@@ -117,56 +117,161 @@ $(document).ready(function(){initNavTree('k_v_i_s__report_plot_generation_8m_sou
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;%&gt; @param Name of custom plot definition</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;%&gt; @param Path of report output folder (plots will be generated in a subfolder ./img)</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;%</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#acf48071f777e1c9838d2018eb9fb3ca9">   33</a></span>&#160;<span class="keyword">function</span> fileNames = <a class="code" href="k_v_i_s__report_plot_generation_8m.html#acf48071f777e1c9838d2018eb9fb3ca9">kVIS_reportPlotGeneration</a>(hObject, plotName, plotNo, outFolder)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#a05fdfaf7a3b7cad5ee5ced7e01152a28">   33</a></span>&#160;<span class="keyword">function</span> fileNames = <a class="code" href="k_v_i_s__report_plot_generation_8m.html#a05fdfaf7a3b7cad5ee5ced7e01152a28">kVIS_reportPlotGeneration</a>(hObject, plotName, plotSel, outFolder)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">try</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    [fds, ~] = <a class="code" href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a>(hObject);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordflow">catch</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    disp(<span class="stringliteral">&#39;No fds loaded. Abort.&#39;</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    return;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;end</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;%</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;% Read plot definition</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;eventsToggle = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1">   36</a></span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordflow">try</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499">   38</a></span>&#160;    [fds, ~, idxFdsCurrent] = <a class="code" href="k_v_i_s__get_all_fds_8m.html#a33dae22c0ed512f40ecbde4cef68a812">kVIS_getAllFds</a>(hObject);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordflow">catch</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81">   40</a></span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;No fds loaded. Abort.&#39;</span>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">   41</a></span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">   42</a></span>&#160;end</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;%</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;if endsWith(plotName,&quot;.xlsx&quot;)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    try</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    [~,~,PlotDefinition] = xlsread(plotName,&#39;&#39;,&#39;&#39;,&#39;basic&#39;);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    catch</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        errordlg(&#39;Plot definition does not exist.&#39;)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        fileNames = [];</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        return</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    end</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;end</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;% % plot full data length</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;handles = guidata(hObject);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    xlim = <a class="code" href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a>(hObject);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;else % use X-Limits (if button pressed or for events)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    xlim = <a class="code" href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a>(hObject, &#39;XLim&#39;);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;end</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;tic</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;fileNames = <a class="code" href="k_v_i_s__generate_report_plot_x_l_s_8m.html#adbb975d1cc65ca91a825956d85a4f8b9">kVIS_generateReportPlotXLS</a>(fds, PlotDefinition, plotNo, xlim, [], outFolder);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;toc</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;% Read plot definition</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;%</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;if endsWith(plotName,&quot;.xlsx&quot;)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499">try</a></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        [~,~,plotDef] = xlsread(plotName,&#39;&#39;,&#39;A:T&#39;,&#39;basic&#39;);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81">catch</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        errordlg(&#39;Plot definition does not exist.&#39;)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        fileNames = [];</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    end</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;end</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;%</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;% format figure</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;%</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;DefaultStyle = struct();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;DefaultStyle.Figure = struct();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;DefaultStyle.Figure.Color = &#39;w&#39;;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;DefaultStyle.Axes = struct();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;DefaultStyle.Axes.XColor = &#39;k&#39;;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;DefaultStyle.Axes.YColor = &#39;k&#39;;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;DefaultStyle.Axes.GridColor = &#39;k&#39;;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;DefaultStyle.Axes.MinorGridColor = &#39;k&#39;;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;DefaultStyle.Legend.FontSize = 10;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;DefaultStyle.Legend.Location = &#39;best&#39;;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;DefaultStyle.Legend.Orientation = &#39;horizontal&#39;;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;DefaultStyle.Legend.Interpreter = &#39;latex&#39;;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;end</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;Style = DefaultStyle;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;% % plot full data length</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;handles = guidata(hObject);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;if handles.uiTabPlots.plotsUseLimitsBtn.Value == 0</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    xlim = <a class="code" href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a>(hObject);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a> % use X-Limits (if button pressed or for <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    xlim = <a class="code" href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a>(hObject, &#39;XLim&#39;);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;end</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;% get data content</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;% remove header</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;plotDef = plotDef(6:end,:);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;% remove extra lines from below the data</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;rl = ~isnan(cell2mat(plotDef(:,1)));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;plotDef = plotDef(rl==1,:);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;oldpltindex = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;figs = [];</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;axlist = [];</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;interactiveToggle = false;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;plotNo = 1;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;ReportCaption=9;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;for plotDefRowNo = 1:size(plotDef, 1)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    %% plot setup</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    pltindex = plotDef{plotDefRowNo,plotNo};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    % generate only selected plots</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> ~isempty(plotNo)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> isempty(find(plotSel==pltindex,1))</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            continue;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        end</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    end</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    if pltindex ~= oldpltindex</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        % next plot axes</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        currentPlotLineNo = 1;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        clear p labelstr mm ma hh ax</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        hh = figure(&#39;Position&#39;,[0 0 750 325],&#39;Color&#39;,&#39;w&#39;,&#39;Visible&#39;,&#39;off&#39;);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        hh.Tag = &#39;cpTimeplot&#39;;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        hh.SizeChangedFcn = @<a class="code" href="k_v_i_s__panel_size_changed___callback_8m.html#aea1fd6804aceca2e4e8762741f2e9b38">kVIS_panelSizeChanged_Callback</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        ax = axes(hh, &#39;Units&#39;, &#39;normalized&#39;);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        grid(ax, &#39;on&#39;);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        figs = [figs, hh];</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        axlist = [axlist, ax];</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        % continue in current axes</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        currentPlotLineNo = currentPlotLineNo + 1;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    end</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    oldpltindex = pltindex;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    [ax, error] = <a class="code" href="k_v_i_s__custom_plot_8m.html#ab07c17af9402ff432518bdff15dee15e">kVIS_customPlot</a>(ax, fds, plotDef, plotDefRowNo, xlim, Style, idxFdsCurrent, interactiveToggle);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    if error &gt; 0</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        currentPlotLineNo = currentPlotLineNo - 1;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        continue;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    end</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    caption{pltindex} = plotDef{plotDefRowNo, ReportCaption};</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    ax.XRuler.Exponent = 0; % no exponent in time stamps</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;end</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;% add <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a> <span class="keywordflow">if</span> they have been selected</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keywordflow">if</span> eventsToggle == 1</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">for</span> I = 1:length(axlist)</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="k_v_i_s__event_plot_8m.html#a92b93837676c770f65f3e2fe22afafb2">kVIS_eventPlot</a>([], [], axlist(I), fds{idxFdsCurrent})</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    end</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;end</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;%% save image(s) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keywordflow">for</span> I = 1:length(figs)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    fileNames{1,I} = fullfile(outFolder, <span class="stringliteral">&#39;img&#39;</span>, [plotName <span class="charliteral">&#39;_&#39;</span> num2str(plotSel(I)) <span class="stringliteral">&#39;.jpeg&#39;</span>]);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    print(figs(I),<span class="stringliteral">&#39;-noui&#39;</span>,fileNames{1,I}, <span class="stringliteral">&#39;-djpeg&#39;</span>, <span class="stringliteral">&#39;-r200&#39;</span>)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    % relative path</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    fileNames{1,I} = [<span class="stringliteral">&#39;./img/&#39;</span> plotName <span class="charliteral">&#39;_&#39;</span> num2str(plotSel(I)) <span class="stringliteral">&#39;.jpeg&#39;</span>];</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    fileNames{2,I} = caption{plotSel(I)};</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;end</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;clear figs axlist</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;end</div>
+<div class="ttc" id="ak_v_i_s__custom_plot_8m_html_ab07c17af9402ff432518bdff15dee15e"><div class="ttname"><a href="k_v_i_s__custom_plot_8m.html#ab07c17af9402ff432518bdff15dee15e">kVIS_customPlot</a></div><div class="ttdeci">function kVIS_customPlot(in ax, in fds, in plotDef, in plotDefRowNo, in lims, in Style, in idxFdsCurrent, in interactiveToggle)</div><div class="ttdoc">Generate custom plot from XLS definition in the given axes.</div></div>
+<div class="ttc" id="ak_v_i_s__event_plot_8m_html_a92b93837676c770f65f3e2fe22afafb2"><div class="ttname"><a href="k_v_i_s__event_plot_8m.html#a92b93837676c770f65f3e2fe22afafb2">kVIS_eventPlot</a></div><div class="ttdeci">function kVIS_eventPlot(in MainWindowObject, in ignoredArg, in axesHandle, in fds)</div><div class="ttdoc">Add event boundaries to a selected plot.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_get_global_data_range_8m_html_a3d8dc3a8fa5be234d1a898c8da4c3724"><div class="ttname"><a href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a></div><div class="ttdeci">function kVIS_fdsGetGlobalDataRange(in hObject)</div></div>
-<div class="ttc" id="ak_v_i_s__generate_report_plot_x_l_s_8m_html_adbb975d1cc65ca91a825956d85a4f8b9"><div class="ttname"><a href="k_v_i_s__generate_report_plot_x_l_s_8m.html#adbb975d1cc65ca91a825956d85a4f8b9">kVIS_generateReportPlotXLS</a></div><div class="ttdeci">function kVIS_generateReportPlotXLS(in fds, in plotDef, in plotSel, in lims, in Style, in outFolder)</div></div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_all_fds_8m_html_a33dae22c0ed512f40ecbde4cef68a812"><div class="ttname"><a href="k_v_i_s__get_all_fds_8m.html#a33dae22c0ed512f40ecbde4cef68a812">kVIS_getAllFds</a></div><div class="ttdeci">function kVIS_getAllFds(in hObject)</div><div class="ttdoc">Return all open fds files with their names.</div></div>
 <div class="ttc" id="ak_v_i_s__get_data_range_8m_html_a84b35e61b2fad4476f7ed5df54549a88"><div class="ttname"><a href="k_v_i_s__get_data_range_8m.html#a84b35e61b2fad4476f7ed5df54549a88">kVIS_getDataRange</a></div><div class="ttdeci">function kVIS_getDataRange(in hObject, in select)</div></div>
-<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_acf48071f777e1c9838d2018eb9fb3ca9"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#acf48071f777e1c9838d2018eb9fb3ca9">kVIS_reportPlotGeneration</a></div><div class="ttdeci">function kVIS_reportPlotGeneration(in hObject, in plotName, in plotNo, in outFolder)</div><div class="ttdoc">Generate plots for a report from a custom plot definition.</div></div>
+<div class="ttc" id="ak_v_i_s__panel_size_changed___callback_8m_html_aea1fd6804aceca2e4e8762741f2e9b38"><div class="ttname"><a href="k_v_i_s__panel_size_changed___callback_8m.html#aea1fd6804aceca2e4e8762741f2e9b38">kVIS_panelSizeChanged_Callback</a></div><div class="ttdeci">function kVIS_panelSizeChanged_Callback(in hObject, in events)</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div><div class="ttdeci">@ events</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00123">kVIS_plotSignal2.m:123</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_a05fdfaf7a3b7cad5ee5ced7e01152a28"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#a05fdfaf7a3b7cad5ee5ced7e01152a28">kVIS_reportPlotGeneration</a></div><div class="ttdeci">function kVIS_reportPlotGeneration(in hObject, in plotName, in plotSel, in outFolder)</div><div class="ttdoc">Generate plots for a report from a custom plot definition.</div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499">try</a></div><div class="ttdeci">@ try</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00038">kVIS_reportPlotGeneration.m:38</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81">catch</a></div><div class="ttdeci">@ catch</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00040">kVIS_reportPlotGeneration.m:40</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

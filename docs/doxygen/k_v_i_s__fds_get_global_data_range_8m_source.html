@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/query/kVIS_fdsGetGlobalDataRange.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/query/kVIS_fdsGetGlobalDataRange.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -111,14 +111,12 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_get_global_data_range_8m_
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;%</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;fds = <a class="code" href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a>(hObject);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;disp(<span class="stringliteral">&#39;ToDo kVIS_fdsGetGlobalDataRange: load only fds attributes&#39;</span>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;dataRange = [min(fds.fdataAttributes.startTimes) max(fds.fdataAttributes.stopTimes)];</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;dataRange = [min(fds.fdataAttributes.startTimes) max(fds.fdataAttributes.stopTimes)];</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;end</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;end</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="ttc" id="ak_v_i_s__fds_get_global_data_range_8m_html_a3d8dc3a8fa5be234d1a898c8da4c3724"><div class="ttname"><a href="k_v_i_s__fds_get_global_data_range_8m.html#a3d8dc3a8fa5be234d1a898c8da4c3724">kVIS_fdsGetGlobalDataRange</a></div><div class="ttdeci">function kVIS_fdsGetGlobalDataRange(in hObject)</div></div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div><div class="ttdoc">Return currently selected fds structure and its name.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

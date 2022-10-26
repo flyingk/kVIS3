@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Events/kVIS_eventExport_Callback.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Events/kVIS_eventExport_Callback.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__event_export___callback_8m_so
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordflow">if</span> isempty(name)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    errordlg(<span class="stringliteral">&#39;Nothing loaded...&#39;</span>)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    return</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;end</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;handles = guidata(hObject);</div>
@@ -125,24 +125,24 @@ $(document).ready(function(){initNavTree('k_v_i_s__event_export___callback_8m_so
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;%</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;% get selected row(s) from user data field, if any</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;%</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;try</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499">try</a></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    EventSelected = eventList.UserData.rowSelected;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;catch</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81">catch</a></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    EventSelected = [];</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;end</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;if isempty(EventSelected)</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    button = questdlg(&#39;Export all events?&#39;,&#39;Event export&#39;,&#39;All&#39;,&#39;Cancel&#39;,&#39;All&#39;);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    button = questdlg(&#39;Export all <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a>?&#39;,&#39;Event export&#39;,&#39;All&#39;,&#39;Cancel&#39;,&#39;All&#39;);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;else</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    button = questdlg(&#39;Export all or selected events?&#39;,&#39;Event export&#39;,&#39;All&#39;,&#39;Selected&#39;,&#39;Cancel&#39;,&#39;All&#39;);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    button = questdlg(&#39;Export all or selected <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a>?&#39;,&#39;Event export&#39;,&#39;All&#39;,&#39;Selected&#39;,&#39;Cancel&#39;,&#39;All&#39;);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;end</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;if strcmp(button, &#39;Cancel&#39;)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    return</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;end</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
@@ -154,21 +154,21 @@ $(document).ready(function(){initNavTree('k_v_i_s__event_export___callback_8m_so
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;answer = inputdlg(prompt,dlg_title,num_lines,def);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;name_template = answer{1};</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;% Get number of events</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;% Get number of <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;n_events = numel(fds.eventList);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;%</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% Export only selected events</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% Export only selected <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;%</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordflow">if</span> strcmp(button, <span class="stringliteral">&#39;Selected&#39;</span>)</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    n_events = EventSelected&#39;;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;else</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    n_events = 1:n_events;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;end</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;% Loop through each of the events</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;% Loop through each of the <a class="code" href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;for ii = n_events</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    %</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    % Get time limits</div>
@@ -197,7 +197,12 @@ $(document).ready(function(){initNavTree('k_v_i_s__event_export___callback_8m_so
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__event_export___callback_8m_html_a2da6a16416651f274ce06190b3017123"><div class="ttname"><a href="k_v_i_s__event_export___callback_8m.html#a2da6a16416651f274ce06190b3017123">kVIS_eventExport_Callback</a></div><div class="ttdeci">function kVIS_eventExport_Callback(in hObject, in ignoredArg)</div></div>
 <div class="ttc" id="ak_v_i_s__fds_trim_to_time_range_8m_html_a32a0c555338a029e85aba5b9f8d52360"><div class="ttname"><a href="k_v_i_s__fds_trim_to_time_range_8m.html#a32a0c555338a029e85aba5b9f8d52360">kVIS_fdsTrimToTimeRange</a></div><div class="ttdeci">function kVIS_fdsTrimToTimeRange(in fds, in TimeRange)</div></div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div><div class="ttdoc">Return currently selected fds structure and its name.</div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1aa67fb5928ddba024bddd41d3aea67b5e">else</a></div><div class="ttdeci">@ else</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00122">kVIS_plotSignal2.m:122</a></div></div>
+<div class="ttc" id="ak_v_i_s__plot_signal2_8m_html_af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a"><div class="ttname"><a href="k_v_i_s__plot_signal2_8m.html#af60e00b78607064c5be6aa9397ea49c1ad5fd35b9681133a506e3f7f6b3a7707a">events</a></div><div class="ttdeci">@ events</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__plot_signal2_8m_source.html#l00123">kVIS_plotSignal2.m:123</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a4aa2318b628145d3756fd0831a95f499">try</a></div><div class="ttdeci">@ try</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00038">kVIS_reportPlotGeneration.m:38</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1ab6376f284b337581bee0b1424c73bc81">catch</a></div><div class="ttdeci">@ catch</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00040">kVIS_reportPlotGeneration.m:40</a></div></div>
 <div class="ttc" id="ak_v_i_s__terminal_msg_8m_html_a92624253ddee129a6959c0f4950472a4"><div class="ttname"><a href="k_v_i_s__terminal_msg_8m.html#a92624253ddee129a6959c0f4950472a4">kVIS_terminalMsg</a></div><div class="ttdeci">function kVIS_terminalMsg(in msg)</div><div class="ttdoc">Prints a message onto the app terminal window.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

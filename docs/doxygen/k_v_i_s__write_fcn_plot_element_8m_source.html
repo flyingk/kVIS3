@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeFcnPlotElement.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeFcnPlotElement.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -119,25 +119,41 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_fcn_plot_element_8m_sou
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;%</div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="k_v_i_s__write_fcn_plot_element_8m.html#ab1bc27cd1f74acc0ac14f11816849bfc">   33</a></span>&#160;<span class="keyword">function</span> fileNames = <a class="code" href="k_v_i_s__write_fcn_plot_element_8m.html#ab1bc27cd1f74acc0ac14f11816849bfc">kVIS_writeFcnPlotElement</a>(hObject, fcnName, outFolder)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;% run bsp <span class="keyword">function</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;figHdl = feval(fcnName, hObject, []);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;% save returned figures</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordflow">for</span> I = 1:length(figHdl)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    figHdl(I).Position = [0 0 750 325];</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;%     figHdl(I).Visible = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    % save figures</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    fileNames{1,I} = fullfile(outFolder, <span class="stringliteral">&#39;img&#39;</span>, [fcnName <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>]);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    print(figHdl(I),<span class="stringliteral">&#39;-noui&#39;</span>,fileNames{1,I}, <span class="stringliteral">&#39;-djpeg&#39;</span>, <span class="stringliteral">&#39;-r200&#39;</span>)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    % relative path</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    fileNames{1,I} = [<span class="stringliteral">&#39;./img/&#39;</span> fcnName <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>];</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    fileNames{2,I} = figHdl(I).Name;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;end</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordflow">if</span> size(fcnName,2) == 4</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    % selected plots from output</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="k_v_i_s__terminal_msg_8m.html#a92624253ddee129a6959c0f4950472a4">kVIS_terminalMsg</a>([<span class="stringliteral">&#39;Reports: Calling BSP function &#39;</span> fcnName{3}])</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    fcn = fcnName{3};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    pltIdx = str2double(fcnName{2});</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordflow">else</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    % all plots TODO</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="k_v_i_s__terminal_msg_8m.html#a92624253ddee129a6959c0f4950472a4">kVIS_terminalMsg</a>([<span class="stringliteral">&#39;Reports: Calling BSP function &#39;</span> fcnName{2}])</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    fcn = fcnName{2};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    pltIdx = [];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    keyboard</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;end</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;% run bsp <span class="keyword">function</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;figHdl = feval(fcn, hObject, []);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;% save returned figures</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordflow">for</span> I = pltIdx</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    figHdl(I).Position = [0 0 750 325];</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;%     figHdl(I).Visible = <span class="stringliteral">&#39;on&#39;</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    % save figures</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    fileNames{1,I} = fullfile(outFolder, <span class="stringliteral">&#39;img&#39;</span>, [fcn <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>]);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    print(figHdl(I),<span class="stringliteral">&#39;-noui&#39;</span>,fileNames{1,I}, <span class="stringliteral">&#39;-djpeg&#39;</span>, <span class="stringliteral">&#39;-r200&#39;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    % relative path</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    fileNames{1,I} = [<span class="stringliteral">&#39;./img/&#39;</span> fcn <span class="charliteral">&#39;_&#39;</span> num2str(I) <span class="stringliteral">&#39;.jpeg&#39;</span>];</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    fileNames{2,I} = figHdl(I).Name;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;end</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;close(figHdl)</div>
+<div class="ttc" id="ak_v_i_s__terminal_msg_8m_html_a92624253ddee129a6959c0f4950472a4"><div class="ttname"><a href="k_v_i_s__terminal_msg_8m.html#a92624253ddee129a6959c0f4950472a4">kVIS_terminalMsg</a></div><div class="ttdeci">function kVIS_terminalMsg(in msg)</div><div class="ttdoc">Prints a message onto the app terminal window.</div></div>
 <div class="ttc" id="ak_v_i_s__write_fcn_plot_element_8m_html_ab1bc27cd1f74acc0ac14f11816849bfc"><div class="ttname"><a href="k_v_i_s__write_fcn_plot_element_8m.html#ab1bc27cd1f74acc0ac14f11816849bfc">kVIS_writeFcnPlotElement</a></div><div class="ttdeci">function kVIS_writeFcnPlotElement(in hObject, in fcnName, in outFolder)</div><div class="ttdoc">Add a plot element to the report returned by a bsp function call.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

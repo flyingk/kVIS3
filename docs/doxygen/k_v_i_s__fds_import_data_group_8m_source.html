@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsImportDataGroup.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/modify/kVIS_fdsImportDataGroup.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_data_group_8m_sour
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordflow">if</span> ~isstruct(fds)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    errordlg(<span class="stringliteral">&#39;No data loaded to be assigned.&#39;</span>)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    return</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;end</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
@@ -134,7 +134,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_data_group_8m_sour
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;[file, pathname] = uigetfile(&#39;*.csv&#39;);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;if file==0</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    return</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;end</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;InputFile = fullfile(pathname,file);</div>
@@ -155,7 +155,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_data_group_8m_sour
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;if iscell(Tr)</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    errordlg(&#39;Faulty FTI file - contains non-numerical data. Abort&#39;)</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    fds = -1;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    return</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;end</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
@@ -184,7 +184,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_import_data_group_8m_sour
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__fds_add_data_group_8m_html_a29457be5ea4a9303bd6653a95303c019"><div class="ttname"><a href="k_v_i_s__fds_add_data_group_8m.html#a29457be5ea4a9303bd6653a95303c019">kVIS_fdsAddDataGroup</a></div><div class="ttdeci">function kVIS_fdsAddDataGroup(in fds, in parentNode, in groupName, in varNames, in varUnits, in varFrames, in fdata)</div><div class="ttdoc">Add a group to tree, or update group if it exists.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_import_data_group_8m_html_ae669c7eefaa1c94fbb7f51a25640b404"><div class="ttname"><a href="k_v_i_s__fds_import_data_group_8m.html#ae669c7eefaa1c94fbb7f51a25640b404">kVIS_fdsImportDataGroup</a></div><div class="ttdeci">function kVIS_fdsImportDataGroup(in hObject, in ignoredArg)</div><div class="ttdoc">Add data from a CSV file to the current data tree.</div></div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div><div class="ttdoc">Return currently selected fds structure and its name.</div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__update_data_set_8m_html_a5a11822fa3414653ea2918ee7e11b785"><div class="ttname"><a href="k_v_i_s__update_data_set_8m.html#a5a11822fa3414653ea2918ee7e11b785">kVIS_updateDataSet</a></div><div class="ttdeci">function kVIS_updateDataSet(in hObject, in fds, in flightVar)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

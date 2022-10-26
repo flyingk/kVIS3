@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeTitle.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/Tab_Reports/Report_Generator/kVIS_writeTitle.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -121,8 +121,8 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_title_8m_source.html','
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordflow">try</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    [fds, ~] = <a class="code" href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a>(hObject);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordflow">catch</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    disp(<span class="stringliteral">&#39;No fds loaded. Abort.&#39;</span>)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    return;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>(<span class="stringliteral">&#39;No fds loaded. Abort.&#39;</span>)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;end</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;t = fds.testInfo;</div>
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_title_8m_source.html','
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;%%%% Lorenzo workaround</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;% fprintf(fid,[&#39;\\title{Lilium Phoenix 1 Flight Report\\\\<span class="stringliteral">&#39; t.BSP_arqNo &#39;</span>}<span class="stringliteral">&#39;]);</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">fprintf(fid,[&#39;</span>\\title{Lilium Phoenix II Flight Report\\\\<span class="stringliteral">&#39; test_ID{1} &#39;</span>}<span class="stringliteral">&#39;]);</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">fprintf(fid,[&#39;</span>\\title{Lilium Phoenix II Flight Report \\\\<span class="stringliteral">&#39; test_ID{1} &#39;</span>}\n\n<span class="stringliteral">&#39;]);</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">% fprintf(fid,[&#39;</span>\\title{Lilium Phoenix II Flight Report}\<span class="stringliteral">&#39;]);</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">%%%%</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">    </span></div>
@@ -176,7 +176,9 @@ $(document).ready(function(){initNavTree('k_v_i_s__write_title_8m_source.html','
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="stringliteral">end</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral"></span> </div>
-<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div></div>
+<div class="ttc" id="ak_v_i_s__get_current_fds_8m_html_a77803134e4d28f471193234ae834d768"><div class="ttname"><a href="k_v_i_s__get_current_fds_8m.html#a77803134e4d28f471193234ae834d768">kVIS_getCurrentFds</a></div><div class="ttdeci">function kVIS_getCurrentFds(in hObject)</div><div class="ttdoc">Return currently selected fds structure and its name.</div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1aa64126806cd033b09cd3134c592437fa">return</a></div><div class="ttdeci">@ return</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00042">kVIS_reportPlotGeneration.m:42</a></div></div>
 <div class="ttc" id="ak_v_i_s__write_title_8m_html_aa05060caeb105dd33bacdb543fb6dec1"><div class="ttname"><a href="k_v_i_s__write_title_8m.html#aa05060caeb105dd33bacdb543fb6dec1">kVIS_writeTitle</a></div><div class="ttdeci">function kVIS_writeTitle(in hObject, in fid)</div><div class="ttdoc">Write report title.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

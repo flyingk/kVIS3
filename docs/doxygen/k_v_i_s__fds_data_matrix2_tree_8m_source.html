@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/FDS_FileFormat/create/kVIS_fdsDataMatrix2Tree.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/FDS_FileFormat/create/kVIS_fdsDataMatrix2Tree.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -287,12 +287,12 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_data_matrix2_tree_8m_sour
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;findChannel = strcmp(fds.fdata{fds.fdataRows.varNames, group}, var);</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="keywordflow">if</span> sum(findChannel) &gt; 1</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    disp([<span class="stringliteral">&#39;Duplicate channel name found in group. Skipping. &lt;&#39;</span> var <span class="charliteral">&#39;&gt;&#39;</span>])</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>([<span class="stringliteral">&#39;Duplicate channel name found in &#39;</span> group <span class="stringliteral">&#39;. Skipping. &lt;&#39;</span> var <span class="charliteral">&#39;&gt;&#39;</span>])</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">return</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;end</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keywordflow">if</span> ~isnumeric(data)</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    %disp([<span class="stringliteral">&#39;group&#39;</span> group <span class="stringliteral">&#39;contains non-numeric data... Bad :(&#39;</span>])</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    %<a class="code" href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a>([<span class="stringliteral">&#39;group&#39;</span> group <span class="stringliteral">&#39;contains non-numeric data... Bad :(&#39;</span>])</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    data = str2double(data);</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;end</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
@@ -307,6 +307,7 @@ $(document).ready(function(){initNavTree('k_v_i_s__fds_data_matrix2_tree_8m_sour
 <div class="ttc" id="ak_v_i_s__fds_data_matrix2_tree_8m_html_af8b5347826d662e97cd6d2a65d1076ca"><div class="ttname"><a href="k_v_i_s__fds_data_matrix2_tree_8m.html#af8b5347826d662e97cd6d2a65d1076ca">kVIS_fdsDataMatrix2Tree</a></div><div class="ttdeci">function kVIS_fdsDataMatrix2Tree(in bspName, in rootName, in delimiter, in dataNames, in data, in skipLast)</div><div class="ttdoc">Creates a FDS tree from a data matrix and corresponding data names.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_init_new_8m_html_a52c48b9fdd2046873aaed49446a367ad"><div class="ttname"><a href="k_v_i_s__fds_init_new_8m.html#a52c48b9fdd2046873aaed49446a367ad">kVIS_fdsInitNew</a></div><div class="ttdeci">function kVIS_fdsInitNew()</div><div class="ttdoc">Create a new FDS structure as per specification V 1.0 for BSP 'generic'.</div></div>
 <div class="ttc" id="ak_v_i_s__fds_update_attributes_8m_html_acaed4f9e897e3e799a412bc958e3ab64"><div class="ttname"><a href="k_v_i_s__fds_update_attributes_8m.html#acaed4f9e897e3e799a412bc958e3ab64">kVIS_fdsUpdateAttributes</a></div><div class="ttdeci">function kVIS_fdsUpdateAttributes(in fds)</div></div>
+<div class="ttc" id="ak_v_i_s__report_plot_generation_8m_html_af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d"><div class="ttname"><a href="k_v_i_s__report_plot_generation_8m.html#af60e00b78607064c5be6aa9397ea49c1a907fdae89cf8e28d0084b51ca013601d">disp</a></div><div class="ttdeci">@ disp</div><div class="ttdef"><b>Definition:</b> <a href="k_v_i_s__report_plot_generation_8m_source.html#l00041">kVIS_reportPlotGeneration.m:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

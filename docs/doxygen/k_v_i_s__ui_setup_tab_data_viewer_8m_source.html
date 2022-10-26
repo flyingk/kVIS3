@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>kVIS3: /Users/kai/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/kVIS3/kVIS3/src/UI/kVIS_uiSetupTabDataViewer.m Source File</title>
+<title>kVIS3: /Users/kai/Projects/kVIS3/kVIS3/src/UI/kVIS_uiSetupTabDataViewer.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -138,46 +138,37 @@ $(document).ready(function(){initNavTree('k_v_i_s__ui_setup_tab_data_viewer_8m_s
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;Style = <span class="keyword">struct</span>();</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;% Axes style (any attributes understood by set(axes_handle, ...)).</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;Style.AxesB.XColor = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;Style.AxesB.YColor = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;Style.AxesB.GridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;Style.AxesB.MinorGridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;Style.AxesB.XMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;Style.AxesB.YMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;Style.AxesB.XGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;Style.AxesB.YGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;Style.Axes.XColor = <span class="charliteral">&#39;w&#39;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;Style.Axes.YColor = <span class="charliteral">&#39;w&#39;</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;Style.Axes.GridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;Style.Axes.MinorGridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;Style.Axes.XMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;Style.Axes.YMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;Style.Axes.XGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;Style.Axes.YGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;Style.AxesT.XColor = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;Style.AxesT.YColor = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;Style.AxesT.GridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;Style.AxesT.MinorGridColor = <span class="charliteral">&#39;k&#39;</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;Style.AxesT.XMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;Style.AxesT.YMinorGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;Style.AxesT.XGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;Style.AxesT.YGrid  = <span class="stringliteral">&#39;on&#39;</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;% Style.Main.XAxis.Color  = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;% Style.Main.YLAxis.Color = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% Style.Main.YRAxis.Color = <span class="charliteral">&#39;w&#39;</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;% </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;% Style.Top.Axes.XGrid       = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;% Style.Top.Axes.YGrid       = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;% Style.Top.Axes.XMinorGrid  = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;% Style.Top.Axes.YMinorGrid  = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;% Style.Top.XAxis.Visible = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;% Style.Top.YAxis.Visible = <span class="stringliteral">&#39;off&#39;</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;% Line style (any attributes understood by set(line_handle, ...))</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;Style.Signal.LineStyle = &#39;-&#39;;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;Style.Signal.LineWidth = 0.5;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;% Legend style (any attributes understood by set(legend_handle, ...))</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;%DV.Style.Legend.Interpreter = &#39;latex&#39;;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;Style.Legend.FontSize = getpref(&#39;kVIS_prefs&#39;,&#39;defaultLegendFontSize&#39;);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;end</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;% Style.Main.XAxis.Color  = <span class="charliteral">&#39;w&#39;</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;% Style.Main.YLAxis.Color = <span class="charliteral">&#39;w&#39;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;% Style.Main.YRAxis.Color = <span class="charliteral">&#39;w&#39;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;% </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;% Style.Top.Axes.XGrid       = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;% Style.Top.Axes.YGrid       = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;% Style.Top.Axes.XMinorGrid  = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;% Style.Top.Axes.YMinorGrid  = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;% Style.Top.XAxis.Visible = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;% Style.Top.YAxis.Visible = <span class="stringliteral">&#39;off&#39;</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;% Line style (any attributes understood by set(line_handle, ...))</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;Style.Signal.LineStyle = &#39;-&#39;;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;Style.Signal.LineWidth = 0.5;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;% Legend style (any attributes understood by set(legend_handle, ...))</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;%DV.Style.Legend.Interpreter = &#39;latex&#39;;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;Style.Legend.FontSize = getpref(&#39;kVIS_prefs&#39;,&#39;defaultLegendFontSize&#39;);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;end</div>
 <div class="ttc" id="ak_v_i_s__data_viewer_channel_list_action_8m_html_a515def8e0e908c1f4557adbbdffbac91"><div class="ttname"><a href="k_v_i_s__data_viewer_channel_list_action_8m.html#a515def8e0e908c1f4557adbbdffbac91">kVIS_dataViewerChannelListAction</a></div><div class="ttdeci">function kVIS_dataViewerChannelListAction(in hObject)</div></div>
-<div class="ttc" id="ak_v_i_s__ui_setup_data_viewer_ribbon_group_8m_html_a2d6e39bfd0f3a5efe066c5e2c2b2f3e1"><div class="ttname"><a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a></div><div class="ttdeci">function kVIS_uiSetupDataViewerRibbonGroup(in handles, in uiRibbonRight)</div></div>
+<div class="ttc" id="ak_v_i_s__ui_setup_data_viewer_ribbon_group_8m_html_a2d6e39bfd0f3a5efe066c5e2c2b2f3e1"><div class="ttname"><a href="k_v_i_s__ui_setup_data_viewer_ribbon_group_8m.html#a2d6e39bfd0f3a5efe066c5e2c2b2f3e1">kVIS_uiSetupDataViewerRibbonGroup</a></div><div class="ttdeci">function kVIS_uiSetupDataViewerRibbonGroup(in handles, in uiRibbonRight)</div><div class="ttdoc">Create Button group for Data Viewer.</div></div>
 <div class="ttc" id="ak_v_i_s__ui_setup_tab_data_viewer_8m_html_adbb8d757cf59821d204c2dacadfc55cc"><div class="ttname"><a href="k_v_i_s__ui_setup_tab_data_viewer_8m.html#adbb8d757cf59821d204c2dacadfc55cc">data_viewer_options</a></div><div class="ttdeci">function data_viewer_options()</div></div>
 <div class="ttc" id="ak_v_i_s__ui_setup_tab_data_viewer_8m_html_ae1a87c48bae80be690a4616dd4e38759"><div class="ttname"><a href="k_v_i_s__ui_setup_tab_data_viewer_8m.html#ae1a87c48bae80be690a4616dd4e38759">kVIS_uiSetupTabDataViewer</a></div><div class="ttdeci">function kVIS_uiSetupTabDataViewer(in handles, in uiTabGroupLeft)</div></div>
 </div><!-- fragment --></div><!-- contents -->
