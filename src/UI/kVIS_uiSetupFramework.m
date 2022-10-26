@@ -57,7 +57,7 @@ appWindow = figure( ...
 %
 % Assign the a name to appear in the window title.
 %
-set(appWindow,'name',['kVIS3 2022.4 - BSP: ' BSP_Info.Name ' build ' BSP_Info.Version]);
+set(appWindow,'name',['kVIS3 2022.4 fds2 - BSP: ' BSP_Info.Name ' build ' BSP_Info.Version]);
 
 %
 % get handle structure
@@ -128,7 +128,7 @@ uiBoxRight.Heights = [-1 120];
 handles.uiFramework.uiRibbonLeft  = uix.CardPanel('Parent', uiRibbon);
 handles.uiFramework.uiRibbonRight = uix.CardPanel('Parent', uiRibbon);
 
-uiRibbon.Widths = [630 -1];
+uiRibbon.Widths = [700 -1];
 
 %
 % add default ribbon (file/plot options)
