@@ -1,6 +1,6 @@
 %
 %> @file kVIS_customPlot.m
-%> @brief Generate custom plot from XLS definition in the given axes
+%> @brief Generate a custom plot from XLS definition in the given axes
 %
 % kVIS3 Data Visualisation
 %
@@ -23,14 +23,16 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %
-%> @brief Generate custom plot from XLS definition in the given axes
+%> @brief Generate a custom plot from XLS definition in the given axes
 %>
 %> @param Target axes
-%> @param FDS file
+%> @param FDS file(s) in cell array
 %> @param Plot definition structure
 %> @param Plot definition row number
 %> @param Plot time axis limits 
 %> @param Plot style structure
+%> @param Current fds index in cell array
+%> @param Enable interactive plot elemnts
 %
 %> @return Axes handles
 %> @return Error flag
