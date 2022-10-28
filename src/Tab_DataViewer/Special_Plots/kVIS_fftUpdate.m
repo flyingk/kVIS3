@@ -129,7 +129,7 @@ if ~isempty(lines)
     end
     
     handles = guidata(gcf);
-    kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.AxesB);
+    kVIS_setGraphicsStyle(ax, handles.uiTabDataViewer.plotStyles.Axes);
     kVIS_axesResizeToContainer(ax);
 end
 
