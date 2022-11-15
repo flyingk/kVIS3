@@ -18,10 +18,27 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function y = kVIS_reSample(x, tOrig, tNew)
+function y = kVIS_reSample(x, tOrig, tNew, extrap)
+%
+% Remove duplicated samples
+%
+[T_unique, idx] = unique(tOrig);
+
+X_unique = x(idx,:); 
 %
 % re-sample data onto new time vector
 %
-y = interp1(tOrig, x, tNew);
+if extrap == true
+    y = interp1(T_unique, X_unique, tNew,'pchip','extrap');
+else
+    y = interp1(T_unique, X_unique, tNew,'pchip');
+end
+%
+% output row vector
+%
+if size(y,2) > size(y,1)
+    y= y';
+end
+
 end
 
