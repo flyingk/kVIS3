@@ -30,6 +30,7 @@ X_unique = x(idx,:);
 %
 if extrap == true
     y = interp1(T_unique, X_unique, tNew,'pchip','extrap');
+    warning('reSample extrapolate: check data')
 else
     y = interp1(T_unique, X_unique, tNew,'pchip');
 end
