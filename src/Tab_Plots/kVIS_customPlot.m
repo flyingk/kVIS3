@@ -108,7 +108,17 @@ yp = yp * plotDef{plotDefRowNo,ScaleFactor};
 if ~isnan(plotDef{plotDefRowNo,fcnHandle})
 
     try
-        [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds{fdsIndex}, pts, plotDef{plotDefRowNo,fcnChannel});
+        [fdsIndexNew] = strsplit(plotDef{plotDefRowNo,fcnChannel},':');
+        if size(fdsIndexNew, 2) > 1
+            plotDef{plotDefRowNo,fcnChannel} = fdsIndexNew{2};
+            fdsIndexNew = str2double(fdsIndexNew{1});
+            dataGroupName = split(plotDef{plotDefRowNo,fcnChannel},'/');
+            pts_new = find(kVIS_fdsGetChannel(fds{1, fdsIndexNew},dataGroupName{1},'Time') > lims(1) & kVIS_fdsGetChannel(fds{1, fdsIndexNew},dataGroupName{1},'Time') < lims(2));
+        else
+            fdsIndexNew = 1;
+            pts_new = pts;
+        end
+        [yp, xp2, plotFcnColors] = feval(plotDef{plotDefRowNo,fcnHandle}, yp, fds{fdsIndex}, pts, plotDef{plotDefRowNo,fcnChannel}, fds{fdsIndexNew}, pts_new);   
         if ~isempty(xp2)
             xp = xp2;
             xMeta.texName = 'frequency \; [Hz]';
