@@ -112,7 +112,8 @@ if ~isnan(plotDef{plotDefRowNo,fcnHandle})
         if size(fdsIndexNew, 2) > 1
             plotDef{plotDefRowNo,fcnChannel} = fdsIndexNew{2};
             fdsIndexNew = str2double(fdsIndexNew{1});
-            pts_new = find(kVIS_fdsGetChannel(fds{1, fdsIndexNew},'FTI_Pilot Commands','Time') > lims(1) & kVIS_fdsGetChannel(fds{1, fdsIndexNew},'FTI_Pilot Commands','Time') < lims(2));
+            dataGroupName = split(plotDef{plotDefRowNo,fcnChannel},'/');
+            pts_new = find(kVIS_fdsGetChannel(fds{1, fdsIndexNew},dataGroupName{1},'Time') > lims(1) & kVIS_fdsGetChannel(fds{1, fdsIndexNew},dataGroupName{1},'Time') < lims(2));
         else
             fdsIndexNew = 1;
             pts_new = pts;
