@@ -52,10 +52,10 @@ Freely available BSP's are (work in progress):
 - [PX4](https://github.com/flyingk/kVIS3_bsp_px4)
 - [Betaflight](https://github.com/flyingk/kVIS3_bsp_betaflight)
 
-As many of these BSPs rely on submodules for the log > MATLAB conversion, make sure to `init` and `update` the submodules.
+As many of these BSPs rely on submodules for the log -> MATLAB conversion, make sure to `init` and `update` the submodules.
 
 ## How to run:
-Run 'kVIS3.m' from the main directory. On first launch you will be asked to specify the path to the BSP folder containing the `BSP_ID.m` file.  Make sure to select the root folder for the BSP and not one of the BSPs sub-folders.
+Run 'kVIS3.m' from the main directory. On first launch you will be asked to specify the path to the BSP folder containing the `BSP_ID.m` file.  Make sure to select the root folder for the BSP (the one containing BSP_ID.m) and not one of the BSPs sub-folders.
 
 ## Additional information:
 
