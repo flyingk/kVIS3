@@ -59,7 +59,7 @@ Run 'kVIS3.m' from the main directory. On first launch you will be asked to spec
 
 ## Additional information:
 
-Refer to the [help](https://flyingk.github.io/kVIS3/) for a user manual and coding information. (WiP)
+Refer to the help menu for a user manual and coding information. (WiP)
 
 Development of kVIS3 supported by The University of Sydney, School of AMME, and Lilium GmbH. 
 
