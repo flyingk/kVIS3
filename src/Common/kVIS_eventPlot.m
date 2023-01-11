@@ -33,7 +33,14 @@
 function kVIS_eventPlot(MainWindowObject, ~, axesHandle, fds)
 
 % defines color range so all plots have same event colors
-col = {'#0072BD','#D95319','#EDB120','#7E2F8E',	'#77AC30','#4DBEEE','#A2142F'};
+% col = {'#0072BD','#D95319','#EDB120','#7E2F8E',	'#77AC30','#4DBEEE','#A2142F'};
+col = [0 0.4470 0.7410
+    0.8500 0.3250 0.0980
+    0.9290 0.6940 0.1250
+    0.4940 0.1840 0.5560
+    0.4660 0.6740 0.1880
+    0.3010 0.7450 0.9330
+    0.6350 0.0780 0.1840];
 colCount = 1;
 
 hold(axesHandle, 'on');
@@ -66,7 +73,7 @@ for j = 1:size(eventList,2)
     % create plot
     pg = polyshape([in out out in],[ylim(1) ylim(1) ylim(2) ylim(2)]);
 
-    pp(j) = plot(axesHandle, pg, 'EdgeAlpha',0.4, 'FaceAlpha',0.2, 'FaceColor', col{colCount});
+    pp(j) = plot(axesHandle, pg, 'EdgeAlpha',0.4, 'FaceAlpha',0.2, 'FaceColor', col(colCount,:));
 
     % use context menu for labels
     m = uicontextmenu();

@@ -32,9 +32,11 @@ function kVIS_terminalMsg(msg)
 
 hdl = findobj('Tag','uiTerminal');
 
-hdl.String = msg;
+if ~isempty(hdl)
+    hdl.String = msg;
 
-pause(0.2);
+    pause(0.2);
+end
 
 end
 

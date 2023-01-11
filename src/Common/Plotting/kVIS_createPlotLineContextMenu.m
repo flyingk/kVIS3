@@ -28,7 +28,12 @@ function [ m ] = kVIS_createPlotLineContextMenu(line)
     % metadata section
     uimenu('Parent', m, 'Label', sprintf('Signal: %s', strip(line.UserData.signalMeta.name)), 'Enable', 'off');
     uimenu('Parent', m, 'Label', sprintf('Units: %s' , strip(line.UserData.signalMeta.unit))     , 'Enable', 'off');
-    uimenu('Parent', m, 'Label', sprintf('Data Set: %s', strip(line.UserData.signalMeta.dataSet)), 'Enable', 'off');
+    % old versions did not fill this field...
+    if ischar(line.UserData.signalMeta.dataSet)
+        uimenu('Parent', m, 'Label', sprintf('Data Set: %s', strip(line.UserData.signalMeta.dataSet)), 'Enable', 'off');
+    else
+        uimenu('Parent', m, 'Label', sprintf('Data Set: %s', 'unknown'), 'Enable', 'off');
+    end
 
     uimenu( ...
         'Parent', m, ...
