@@ -41,7 +41,7 @@ disp(' ')
 %
 checkInst = ver;
 checkInst = struct2cell(checkInst);
-wTB = any(any(strcmp(checkInst, 'Widgets Toolbox - Compatibility Support')));
+wTB = any(any(strcmp(checkInst, 'Widgets Toolbox')));
 gTB = any(any(strcmp(checkInst, 'GUI Layout Toolbox')));
 
 if wTB == false || gTB == false
