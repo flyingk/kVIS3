@@ -51,6 +51,11 @@ ylim = axesHandle.YLim;
 if abs(ylim(1) - ylim(2)) < 1e-3
     ylim(1) = ylim(1) - 1e-3;
     ylim(2) = ylim(2) + 1e-3;
+elseif abs(ylim(1)) == inf || abs(ylim(2)) == inf
+    % handle inf case (axis scale to fit mode)
+    ylim(1) = axesHandle.YTick(1)   - abs(axesHandle.YTick(1)-axesHandle.YTick(2));
+    ylim(2) = axesHandle.YTick(end) + abs(axesHandle.YTick(end)-axesHandle.YTick(end-1));
+    %keyboard
 end
 
 if isempty(fds)
