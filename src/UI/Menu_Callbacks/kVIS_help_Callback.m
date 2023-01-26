@@ -27,8 +27,8 @@ rootFolder = handles.bspInfo.rootFolder;
 
 path = fullfile(rootFolder ,'docs', 'index.html');
 
-% show help in system browser
-web(path,'-browser')
+% show help in matlab browser
+web(path)
 
 end
 
