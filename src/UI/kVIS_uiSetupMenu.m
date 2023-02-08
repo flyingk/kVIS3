@@ -48,7 +48,9 @@ uimenu(m11,'Text','Add Video (experimental)','Callback', @kVIS_fdsImportVideo);
 % add BSP import function(s)
 uimenu(m11,'Text','BSP functions:','Enable','off','Separator','on');
 for i=1:size(BSP_Info.importFcn,1)
-    uimenu(m11,'Text',BSP_Info.importFcn{i,1},'Callback',str2func(BSP_Info.importFcn{i,2}));
+    if ~isempty(BSP_Info.importFcn{i,1})
+        uimenu(m11,'Text',BSP_Info.importFcn{i,1},'Callback',str2func(BSP_Info.importFcn{i,2}));
+    end
 end
 
 uimenu(m1,'Text','Open FDS file (.mat)','Callback',@kVIS_menuFileOpen_Callback);
