@@ -46,11 +46,11 @@ end
 
 if isempty(EventSelected)
 
-    button = questdlg('Export all events?','Event export','All','Cancel','All');
+    button = questdlg({['Dataset: ',name],'Export all events?'},'Event export','All','Cancel','All');
 
 else
     
-    button = questdlg('Export all or selected events?','Event export','All','Selected','Cancel','All');
+    button = questdlg({['Dataset: ',name],'Export all or selected events?'},'Event export','All','Selected','Cancel','All');
 
 end
 
