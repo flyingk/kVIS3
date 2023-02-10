@@ -18,17 +18,24 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_help_Callback(hObject, ~)
+function kVIS_eventExportBatch_Callback(hObject,~)
+%
+% export event(s) as individual fds files
+%
 
-handles = guidata(hObject);
+h = guidata(hObject);
 
-% get root folder
-rootFolder = handles.bspInfo.rootFolder;
+% Loop through each of the data sets
+for ii = 1:numel(h.uiTabData.dataSetList.String)
 
-path = fullfile(rootFolder ,'docs', 'index.html');
+    % Set the data file
+    h.uiTabData.dataSetList.Value = ii;
 
-% show help in matlab browser
-web(path)
+    % Run the standard export script
+    kVIS_eventExport_Callback(hObject);
 
 end
 
+kVIS_terminalMsg('Export Complete.');
+
+return
