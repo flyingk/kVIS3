@@ -23,41 +23,70 @@ function kVIS_eventExport_Callback(hObject,~)
 % export event(s) as individual fds files
 %
 
-% Get the current fild file
-[fds, name] = kVIS_getCurrentFds(hObject);
-
-if isempty(name)
-    errordlg('Nothing loaded...')
-    return
-end
-
 handles = guidata(hObject);
 
 eventList = handles.uiTabEvents.eventTable;
 
-%
-% get selected row(s) from user data field, if any
-%
-try
-    EventSelected = eventList.UserData.rowSelected;
-catch
-    EventSelected = [];
-end
+% Get the open fds files
+[fds, names, idx] = kVIS_getAllFds(hObject)
 
-if isempty(EventSelected)
-
-    button = questdlg({['Dataset: ',name],'Export all events?'},'Event export','All','Cancel','All');
-
-else
-    
-    button = questdlg({['Dataset: ',name],'Export all or selected events?'},'Event export','All','Selected','Cancel','All');
-
-end
-
-if strcmp(button, 'Cancel')
+if isempty(names)
+    errordlg('Nothing loaded...')
     return
 end
 
+%
+% more than one fiel open - export is all?
+%
+if length(fds) > 1
+
+    button0 = questdlg({['Open Datasets: ', num2str(length(fds))],'Export all events?'},'Event export','All Files','Active','Cancel','Active');
+
+end
+
+
+if strcmp(button0, 'Active')
+
+    %
+    % get selected row(s) from user data field, if any
+    %
+    try
+        EventSelected = eventList.UserData.rowSelected;
+    catch
+        EventSelected = [];
+    end
+
+    if isempty(EventSelected)
+
+        button = questdlg({['Active Dataset: ',names{idx}],'Export all events?'},'Event export','All Files','All','Cancel','All');
+
+    else
+
+        button = questdlg({['Dataset: ',names{idx}],'Export all or selected events?'},'Event export','All','Selected','Cancel','All');
+
+    end
+
+    if strcmp(button, 'Cancel')
+        return
+    end
+
+    doExport(fds{idx}, names{idx}, button, EventSelected);
+
+elseif strcmp(button0, 'All Files')
+    for I = 1:length(fds)
+        doExport(fds{I}, names{I}, 'All', []);
+    end
+else
+    return
+end
+
+
+kVIS_terminalMsg('Export Complete.');
+end
+
+
+
+function doExport(fds, name, button, EventSelected)
 
 % promt for file name template
 prompt = {'Enter file name template:'};
@@ -106,5 +135,4 @@ for ii = n_events
     
 end
 
-kVIS_terminalMsg('Export Complete.');
 end
