@@ -53,12 +53,12 @@ xlim = kVIS_getDataRange(hObject, 'XLim');
 % find corresponding samples
 locs = find(t>xlim(1) & t<xlim(2));
 
-% create time vector for map plot @ 10 Hz
-tNew = t(locs(1)):1/10:t(locs(end));
+% create time vector for map plot @ 25 Hz
+tNew = t(locs(1)):1/25:t(locs(end));
 
-lon = kVIS_reSample(lon, t, tNew);
-lat = kVIS_reSample(lat, t, tNew);
-alt = kVIS_reSample(alt, t, tNew);
+lon = kVIS_reSample(lon, t, tNew, false);
+lat = kVIS_reSample(lat, t, tNew, false);
+alt = kVIS_reSample(alt, t, tNew, false);
 
 % track colouring
 try

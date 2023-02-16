@@ -25,12 +25,12 @@ function kVIS_updateMap(hObject, h)
 [signal, signalMeta] = kVIS_GetCurrentChannel(hObject);
 
 % re-sample signal on scatter plot time vector
-signal = kVIS_reSample(signal, signalMeta.timeVec, h.UserData.timeVec);
+signal = kVIS_reSample(signal, signalMeta.timeVec, h.UserData.timeVec, false);
 
 % update plot
 h.CData = signal;
 
-caxis(h.Parent,'auto')
+clim(h.Parent,'auto')
 
 lbl = kVIS_generateLabels(signalMeta, []);
 
