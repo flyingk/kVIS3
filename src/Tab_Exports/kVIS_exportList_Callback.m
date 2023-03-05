@@ -113,19 +113,15 @@ for I = 1: nExports
     
     % apply function to data
     if ~isnan(ExportDef{I,fcnHandle})
-        ccF = strsplit(ExportDef{I, fcnChannel}, '/');
-        [fcnData] = kVIS_fdsGetChannel(fds, ccF{1}, ccF{2});
-        
-        if fcnData == -1
-            disp('Function channel not found... Ignoring.')
-            continue;
-        end
-        
+
         try
-            yp = feval(ExportDef{I,fcnHandle}, yp, fcnData);
-        catch
-            disp('Function handle invalid... Ignoring.')
-            continue;
+            yp = feval(ExportDef{I,fcnHandle}, yp, fds, [], ExportDef{I,fcnChannel});
+
+        catch ME
+            ME.identifier
+            disp('Function eval error... Ignoring.')
+            error = 1;
+            return
         end
     end
     
