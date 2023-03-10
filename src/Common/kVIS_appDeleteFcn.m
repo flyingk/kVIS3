@@ -20,12 +20,20 @@
 
 function kVIS_appDeleteFcn(hObject, ~)
 
+BSP_keepOnPath = false;
+
+handles = guidata(hObject);
+
 kVIS_Prefs = getpref('kVIS_prefs');
 
-if kVIS_Prefs.clear_path_on_exit == 1
-    
-    handles = guidata(hObject);
-    
+if isfield(handles.bspInfo, 'BSP_keepOnPath')
+    if handles.bspInfo.BSP_keepOnPath == true
+        BSP_keepOnPath = true;
+    end
+end
+
+if kVIS_Prefs.clear_path_on_exit == 1 && BSP_keepOnPath == false
+        
     % get root folder
     rootFolder = handles.bspInfo.rootFolder;
     
@@ -38,10 +46,10 @@ if kVIS_Prefs.clear_path_on_exit == 1
         rmpath(genpath(getpref('kVIS_prefs','bspDir')));
     end
     
-    disp('PATH cleanup complete. Bye')
+    disp('PATH cleanup complete. kVIS out.')
     
 else
-    disp('kVIS remains on PATH. Bye')
+    disp('kVIS remains on PATH. Good Bye')
 end
 
 end
