@@ -18,29 +18,19 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_updateDataSet(hObject, fds, flightVar)
+function kVIS_importWP_Callback(hObject, ~)
+%
+% import waypoint list using BSP provided function
+%
+% existing list is replaced for now
+%
+waypointList = BSP_waypointImportFcn(hObject);
 
-%
-% update existing data set with new data
-%
-fds = kVIS_fdsUpdateAttributes(fds);
 
-%
-% save fds to workspace
-%
-assignin('base', flightVar, fds);
+[fds, name] = kVIS_getCurrentFds(hObject);
 
-%
-% update UI
-%
-kVIS_groupTreeUpdate(hObject, fds, 'default');
+fds.waypointList = waypointList;
 
-%
-% update event table
-%
-kVIS_updateEventList(hObject, fds.eventList, false);
-%
-% update waypoint table
-%
-kVIS_updateWaypointList(hObject, fds.waypointList, false);
+kVIS_updateDataSet(hObject, fds, name)
+
 end

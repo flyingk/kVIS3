@@ -18,29 +18,33 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function kVIS_updateDataSet(hObject, fds, flightVar)
+function kVIS_updateWaypointList(hObject, wpList, reset)
+%
+% Update UI waypoint table from fds waypoint list
+%
+handles = guidata(hObject);
 
-%
-% update existing data set with new data
-%
-fds = kVIS_fdsUpdateAttributes(fds);
+if reset == true
+    handles.uiTabWP.wpTable.Data = [];
+    return
+end
 
-%
-% save fds to workspace
-%
-assignin('base', flightVar, fds);
+if ~isstruct(wpList)
+    disp('Bad waypoint list. Aborting waypoints...')
+    return
+end
 
-%
-% update UI
-%
-kVIS_groupTreeUpdate(hObject, fds, 'default');
 
-%
-% update event table
-%
-kVIS_updateEventList(hObject, fds.eventList, false);
-%
-% update waypoint table
-%
-kVIS_updateWaypointList(hObject, fds.waypointList, false);
+DataMap = handles.uiTabWP.wpTableColumns;
+
+ColumnNames = fieldnames(DataMap);
+
+Table = cell(numel(wpList), numel(ColumnNames));
+
+for I = 1 : numel(ColumnNames)
+    Name = ColumnNames{I};
+    Table(:, DataMap.(Name)) = {wpList(:).(Name)};
+end
+
+handles.uiTabWP.wpTable.Data = Table;
 end
