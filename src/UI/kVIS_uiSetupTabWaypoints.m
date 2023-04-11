@@ -104,8 +104,8 @@ wpTable.ColumnName = { ...
     'Radius',      ...5
     'Description', ...6
 };
-wpTable.ColumnWidth = {60 45 45 45 100};
-wpTable.ColumnFormat = {'char', 'bank', 'bank','char'};
+wpTable.ColumnWidth = {60 45 45 45 45 100};
+wpTable.ColumnFormat = {'char', 'numeric', 'numeric', 'numeric', 'numeric', 'char'};
 wpTable.RowStriping = 'on';
 wpTable.FontName = 'Monospaced';
 wpTable.ColumnEditable = [

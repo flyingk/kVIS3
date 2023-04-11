@@ -131,6 +131,12 @@ else
         );
 end
 
+try
+    BSP_mapObjectsFcn(hObject, axes_handle)
+catch
+    disp('Bad BSP map object Fcn')
+end
+
 % Pretty run
 zlim([min(alt), max(alt)]);
 lbl = kVIS_generateLabels(signalMeta, []);

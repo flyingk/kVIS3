@@ -29,22 +29,22 @@ if reset == true
     return
 end
 
-if ~isstruct(wpList)
-    disp('Bad waypoint list. Aborting waypoints...')
-    return
-end
+% if ~isstruct(wpList)
+%     disp('Bad waypoint list. Aborting waypoints...')
+%     return
+% end
+% 
+% 
+% DataMap = handles.uiTabWP.wpTableColumns;
+% 
+% ColumnNames = fieldnames(DataMap);
+% 
+% Table = cell(numel(wpList), numel(ColumnNames));
+% 
+% for I = 1 : numel(ColumnNames)
+%     Name = ColumnNames{I};
+%     Table(:, DataMap.(Name)) = {wpList(:).(Name)};
+% end
 
-
-DataMap = handles.uiTabWP.wpTableColumns;
-
-ColumnNames = fieldnames(DataMap);
-
-Table = cell(numel(wpList), numel(ColumnNames));
-
-for I = 1 : numel(ColumnNames)
-    Name = ColumnNames{I};
-    Table(:, DataMap.(Name)) = {wpList(:).(Name)};
-end
-
-handles.uiTabWP.wpTable.Data = Table;
+handles.uiTabWP.wpTable.Data = wpList;
 end
