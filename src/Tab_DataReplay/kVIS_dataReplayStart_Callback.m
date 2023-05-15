@@ -21,6 +21,36 @@
 
 function kVIS_dataReplayStart_Callback(hObject, ~)
 
+[fds, name] = kVIS_getCurrentFds(hObject);
+
+if isempty(name)
+    errordlg('Nothing loaded...')
+    % reset toggle button
+    hObject.Value = 0;
+    return
+end
+
+Data = BSP_replayDataPrepareFcn2(fds);
+
+xlim = kVIS_getDataRange(hObject, 'XLim');
+
+pts = find(Data.Time > xlim(1) & Data.Time < xlim(2));
+
+% open
+ReplayMex(0,0,0);
+
+% tx HB
+ReplayMex(3,0,0);
+
+% tx data
+% ReplayMex(2, Data.VS(1:1000,:), Data.CTRL(1:1000,:));
+ReplayMex(2, Data.VS(pts,:), Data.CTRL(pts,:));
+
+% close
+ReplayMex(1,0,0);
+
+return
+
 %
 % Restart playback from pause?
 %
